@@ -247,65 +247,76 @@
       pointer-events:none;
     }
 
-    .farmer{
-      position:absolute;
-      left:915px;
-      top:178px;
-      width:345px;
-      height:500px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      filter:drop-shadow(0 18px 20px rgba(8,42,16,.18));
-    }
-    .farmer::before{
-      content:"👨‍🌾";
-      font-size:280px;
-      line-height:1;
-      transform:translateY(16px);
-    }
-
-    .drone-main{
-      position:absolute;
-      left:1210px;
-      top:160px;
-      font-size:128px;
-      filter:drop-shadow(0 12px 14px rgba(7,31,12,.18));
-    }
-
-    .satellite{
-      position:absolute;
-      right:185px;
-      top:126px;
-      font-size:88px;
-      transform:rotate(18deg);
-      filter:drop-shadow(0 10px 12px rgba(7,31,12,.16));
-    }
-
-    .signal-arcs{
-      position:absolute;
-      right:158px;
-      top:180px;
-      width:84px;
-      height:84px;
-      border-radius:50%;
-      border:3px solid rgba(255,255,255,.0);
-      box-shadow:
-        0 0 0 0 rgba(255,255,255,0),
-        -8px 10px 0 0 rgba(255,255,255,0);
-    }
-    .signal-arcs::before,
-    .signal-arcs::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      border-top:4px solid rgba(255,255,255,.44);
-      border-right:4px solid rgba(255,255,255,.44);
-      border-left:4px solid transparent;
-      border-bottom:4px solid transparent;
-      transform:rotate(40deg);
-    }
+    .ai-orb{
+  position:absolute;
+  right:260px;
+  top:120px;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.95), rgba(255,255,255,.18) 33%, rgba(16,135,44,.08) 62%, rgba(255,255,255,0) 72%);
+  filter:drop-shadow(0 24px 42px rgba(7,55,18,.18));
+}
+.ai-orb::before{
+  content:"";
+  position:absolute;
+  inset:44px;
+  border-radius:50%;
+  border:1px solid rgba(13,117,35,.22);
+  background:rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+}
+.orb-core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:86px;
+  height:86px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  font-size:30px;
+  font-weight:1000;
+  letter-spacing:-1px;
+  background:linear-gradient(145deg,#075b18,#13a33c);
+  box-shadow:0 16px 34px rgba(5,92,24,.32), inset 0 0 0 2px rgba(255,255,255,.22);
+}
+.orb-ring{
+  position:absolute;
+  inset:16px;
+  border-radius:50%;
+  border:2px solid rgba(13,117,35,.20);
+}
+.orb-ring.one{
+  animation:spinAI 18s linear infinite;
+}
+.orb-ring.two{
+  inset:38px;
+  border-color:rgba(242,107,33,.22);
+  animation:spinAI 12s linear infinite reverse;
+}
+.orb-ring.one::before,
+.orb-ring.two::before{
+  content:"";
+  position:absolute;
+  top:18px;
+  left:50%;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#18c957;
+  box-shadow:0 0 18px rgba(24,201,87,.65);
+}
+.orb-ring.two::before{
+  background:#f26b21;
+}
+@keyframes spinAI{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
     .signal-arcs::after{
       inset:12px;
       opacity:.75;
@@ -910,6 +921,222 @@
       .cta-box h2{font-size:36px}
     }
   </style>
+
+<style id="km-final-exact-polish">
+  body{
+    background:#eef5ef !important;
+  }
+
+  .hero-wrap{
+    padding:24px 48px 0 !important;
+    background:#eef5ef !important;
+  }
+
+  .hero{
+    width:100% !important;
+    min-height:900px !important;
+    border-radius:0 !important;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,.80) 0%, rgba(255,255,255,.60) 34%, rgba(255,255,255,.20) 62%, rgba(255,255,255,.05) 100%),
+      url("./kisanmitra-web-ui/assets/kisanmitra-bg-clean.webp") center center / cover no-repeat !important;
+  }
+
+  .nav-shell{
+    top:0 !important;
+    left:0 !important;
+    right:0 !important;
+    height:108px !important;
+    border-radius:22px !important;
+    background:rgba(255,255,255,.88) !important;
+    box-shadow:0 20px 44px rgba(6,35,13,.13) !important;
+    padding:0 36px !important;
+  }
+
+  .brand img{
+    width:360px !important;
+    height:auto !important;
+    object-fit:contain !important;
+  }
+
+  .nav-links{
+    gap:58px !important;
+    font-size:19px !important;
+    font-weight:950 !important;
+  }
+
+  .login-btn{
+    height:60px !important;
+    min-width:150px !important;
+    border-radius:14px !important;
+    background:linear-gradient(180deg,#1a7c2d,#0a641d) !important;
+  }
+
+  .hero-inner{
+    min-height:900px !important;
+    padding:148px 40px 176px !important;
+  }
+
+  .hero-left{
+    left:74px !important;
+    top:190px !important;
+    width:940px !important;
+  }
+
+  .hero-title{
+    font-size:74px !important;
+    line-height:1.06 !important;
+    letter-spacing:-2.3px !important;
+    max-width:950px !important;
+  }
+
+  .title-line{
+    white-space:nowrap !important;
+  }
+
+  .hero-underline{
+    width:136px !important;
+    height:6px !important;
+    margin:18px 0 18px !important;
+  }
+
+  .hero-desc{
+    max-width:660px !important;
+    font-size:20px !important;
+    line-height:1.45 !important;
+    color:#223228 !important;
+  }
+
+  .hero-actions{
+    margin-top:28px !important;
+    gap:14px !important;
+  }
+
+  .btn{
+    height:56px !important;
+    border-radius:12px !important;
+    font-size:16px !important;
+    box-shadow:0 12px 24px rgba(6,35,13,.10) !important;
+  }
+
+  .visual{
+    z-index:7 !important;
+  }
+
+  .ai-orb{
+    right:245px !important;
+    top:128px !important;
+    opacity:.95 !important;
+  }
+
+  .crop-card{
+    left:auto !important;
+    right:165px !important;
+    top:300px !important;
+    width:282px !important;
+    min-height:246px !important;
+    padding:20px !important;
+    border-radius:18px !important;
+    background:rgba(68,105,88,.76) !important;
+    box-shadow:0 20px 42px rgba(5,35,14,.20) !important;
+  }
+
+  .weather-card{
+    right:64px !important;
+    top:455px !important;
+    width:220px !important;
+    min-height:238px !important;
+    padding:20px !important;
+    border-radius:18px !important;
+    background:rgba(72,105,82,.80) !important;
+    box-shadow:0 20px 42px rgba(5,35,14,.20) !important;
+  }
+
+  .crop-card h3,
+  .weather-card h3{
+    font-size:20px !important;
+    line-height:1.15 !important;
+  }
+
+  .data-row{
+    font-size:13px !important;
+    padding:8px 0 !important;
+  }
+
+  .feature-strip{
+    left:92px !important;
+    right:92px !important;
+    bottom:92px !important;
+    gap:20px !important;
+  }
+
+  .hero-card{
+    min-height:162px !important;
+    grid-template-columns:78px 1fr !important;
+    gap:16px !important;
+    padding:20px !important;
+    border-radius:20px !important;
+    background:rgba(255,255,255,.88) !important;
+    backdrop-filter:blur(16px) !important;
+    box-shadow:0 18px 34px rgba(9,45,16,.15) !important;
+  }
+
+  .hero-icon{
+    width:70px !important;
+    height:70px !important;
+    font-size:31px !important;
+  }
+
+  .hero-card h4{
+    font-size:19px !important;
+  }
+
+  .hero-card p{
+    font-size:13.5px !important;
+  }
+
+  .stats-bar{
+    height:82px !important;
+    min-height:82px !important;
+    padding:12px 130px !important;
+    background:rgba(5,62,17,.82) !important;
+  }
+
+  .stat-badge{
+    width:50px !important;
+    height:50px !important;
+  }
+
+  .stat strong{
+    font-size:26px !important;
+  }
+
+  .weather-station{
+    right:85px !important;
+    top:275px !important;
+  }
+
+  .solar-left{
+    left:0 !important;
+    bottom:190px !important;
+  }
+
+  @media (max-width:1280px){
+    .hero-left{
+      position:relative !important;
+      left:auto !important;
+      top:auto !important;
+      width:100% !important;
+    }
+
+    .feature-strip,
+    .stats-bar{
+      position:relative !important;
+      left:auto !important;
+      right:auto !important;
+      bottom:auto !important;
+    }
+  }
+</style>
 </head>
 <body>
   <div class="page">
@@ -965,10 +1192,11 @@
               <div class="pole"></div>
             </div>
 
-            <div class="farmer"></div>
-            <div class="drone-main">🚁</div>
-            <div class="satellite">🛰️</div>
-            <div class="signal-arcs"></div>
+            <div class="ai-orb">
+  <div class="orb-ring one"></div>
+  <div class="orb-ring two"></div>
+  <div class="orb-core">AI</div>
+</div>
 
             <div class="weather-station">
               <div class="mast-head"><span></span></div>
@@ -979,20 +1207,25 @@
             </div>
 
             <div class="panel-card crop-card">
-              <h3>AI Crop Insight</h3>
-              <div class="crop-name">🍅 <span>Tomato</span></div>
-              <div class="data-row"><span>Growth Stage</span><strong>Flowering</strong></div>
-              <div class="data-row"><span>Health</span><strong>Excellent</strong></div>
-              <div class="data-row"><span>Irrigation</span><strong>Optimal</strong></div>
-              <div class="data-row"><span>Action</span><strong>Maintain NPK</strong></div>
-            </div>
+  <h3>AI Crop Insight</h3>
+  <div class="crop-name">🍅 <span>Tomato Intelligence</span></div>
+  <div class="data-row"><span>Growth Stage</span><strong>Flowering</strong></div>
+  <div class="data-row"><span>Crop Health</span><strong>Excellent</strong></div>
+  <div class="data-row"><span>Irrigation</span><strong>Optimal</strong></div>
+  <div class="data-row"><span>Next Action</span><strong>Maintain NPK</strong></div>
+</div>
 
-            <div class="panel-card weather-card">
-              <h3>Weather Update</h3>
-              <div class="weather-main">
-                <span class="sun">☀</span>
-                <span class="weather-temp">28°C</span>
-              </div>
+<div class="panel-card weather-card">
+  <h3>Weather Update</h3>
+  <div class="weather-main">
+    <span class="sun">☀</span>
+    <span class="weather-temp">28°C</span>
+  </div>
+  <div class="weather-sub">Sunny · Farm risk low</div>
+  <div class="data-row"><span>Humidity</span><strong>54%</strong></div>
+  <div class="data-row"><span>Wind</span><strong>12 km/h</strong></div>
+  <div class="data-row"><span>Rain Chance</span><strong>10%</strong></div>
+</div>
               <div class="weather-sub">Sunny</div>
               <div class="data-row"><span>Humidity</span><strong>54%</strong></div>
               <div class="data-row"><span>Wind</span><strong>12 km/h</strong></div>
@@ -1255,3 +1488,4 @@
   </div>
 </body>
 </html>
+
