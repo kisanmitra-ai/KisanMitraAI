@@ -6,62 +6,51 @@
   <title>KisanMitraAI | AI Farming Friend for Farmers and Buyers</title>
   <meta name="description" content="KisanMitraAI is an AI-powered farm intelligence, crop planning, farmer account book, mandi advice, buyer trust, and farm-to-market support platform for Indian farmers and buyers." />
   <link rel="icon" href="./kisanmitra-web-ui/assets/favicon.png" />
+
   <style>
     :root {
       --green: #065f18;
-      --green-dark: #053f12;
-      --green-soft: #eaf7ed;
+      --green-dark: #043d10;
+      --green-mid: #0b7a22;
       --orange: #f26522;
-      --text: #132015;
-      --muted: #53625a;
-      --white: #ffffff;
+      --cream: #f8fbf5;
+      --text: #102116;
+      --muted: #58665d;
       --line: rgba(6, 95, 24, 0.16);
+      --white: #ffffff;
       --shadow: 0 18px 45px rgba(5, 63, 18, 0.14);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      background: #f7fbf7;
+      background: var(--cream);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px clamp(18px, 5vw, 72px);
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(14px);
+      gap: 24px;
+      padding: 12px clamp(18px, 5vw, 72px);
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(6, 95, 24, 0.10);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand img {
+    .logo img {
       width: 190px;
-      max-width: 46vw;
-      height: auto;
+      max-width: 48vw;
       display: block;
     }
 
@@ -69,19 +58,12 @@
       display: flex;
       align-items: center;
       gap: 22px;
-      font-weight: 700;
-      color: #16431d;
       font-size: 14px;
+      font-weight: 800;
+      color: #17451e;
     }
 
-    .nav a {
-      opacity: 0.9;
-    }
-
-    .nav a:hover {
-      opacity: 1;
-      color: var(--orange);
-    }
+    .nav a:hover { color: var(--orange); }
 
     .btn {
       display: inline-flex;
@@ -90,87 +72,82 @@
       min-height: 44px;
       padding: 0 20px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: transform .18s ease, box-shadow .18s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-1px);
-    }
+    .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
       background: linear-gradient(90deg, #075f18, #008322);
-      color: white;
-      box-shadow: 0 10px 24px rgba(6, 95, 24, 0.22);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(6, 95, 24, 0.24);
     }
 
-    .btn-secondary {
+    .btn-light {
       background: rgba(255, 255, 255, 0.92);
       color: var(--green);
-      border-color: rgba(6, 95, 24, 0.22);
+      border-color: rgba(6, 95, 24, 0.20);
     }
 
     .hero {
       position: relative;
       min-height: 760px;
-      display: grid;
+      display: flex;
       align-items: center;
+      padding: clamp(60px, 8vw, 110px) clamp(18px, 5vw, 72px);
       overflow: hidden;
-      padding: clamp(56px, 7vw, 100px) clamp(18px, 5vw, 72px);
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.90), rgba(255,255,255,0.70), rgba(255,255,255,0.55)),
+        linear-gradient(90deg, rgba(255,255,255,.94) 0%, rgba(255,255,255,.80) 43%, rgba(255,255,255,.52) 100%),
         url("./kisanmitra-web-ui/assets/kisanmitra-bg-clean.webp") center / cover no-repeat;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      inset: auto 0 0;
-      height: 160px;
-      background: linear-gradient(to top, #f7fbf7, rgba(247, 251, 247, 0));
+      inset: auto 0 0 0;
+      height: 170px;
+      background: linear-gradient(to top, var(--cream), rgba(248, 251, 245, 0));
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 790px;
     }
 
     .eyebrow {
       display: inline-flex;
-      align-items: center;
       gap: 8px;
+      align-items: center;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255,255,255,.82);
       color: var(--green);
+      border: 1px solid rgba(6,95,24,.16);
       font-weight: 900;
-      border: 1px solid rgba(6, 95, 24, 0.15);
-      box-shadow: 0 6px 18px rgba(6, 95, 24, 0.08);
+      box-shadow: 0 8px 22px rgba(6,95,24,.08);
     }
 
     h1 {
       margin: 22px 0 16px;
-      font-size: clamp(42px, 6vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -2.8px;
-      color: #064d15;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: .96;
+      letter-spacing: -3px;
+      color: var(--green-dark);
     }
 
-    h1 span {
-      color: var(--orange);
-    }
+    h1 span { color: var(--orange); }
 
-    .hero p {
+    .hero-copy {
+      max-width: 720px;
       margin: 0;
-      max-width: 680px;
-      font-size: clamp(18px, 2vw, 24px);
-      line-height: 1.45;
-      color: #243226;
-      font-weight: 500;
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.46;
+      color: #25352a;
+      font-weight: 560;
     }
 
     .hero-actions {
@@ -180,84 +157,83 @@
       margin-top: 30px;
     }
 
-    .hero-points {
+    .hero-metrics {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-top: 34px;
-      max-width: 760px;
     }
 
-    .mini-card {
-      background: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(6, 95, 24, 0.12);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 12px 28px rgba(6, 95, 24, 0.10);
+    .metric {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(6,95,24,.13);
+      box-shadow: 0 12px 28px rgba(6,95,24,.10);
     }
 
-    .mini-card strong {
+    .metric strong {
       display: block;
       color: var(--green);
-      font-size: 15px;
-      margin-bottom: 5px;
+      font-size: 16px;
+      margin-bottom: 6px;
     }
 
-    .mini-card small {
+    .metric small {
       color: var(--muted);
-      line-height: 1.35;
-      font-weight: 600;
+      line-height: 1.4;
+      font-weight: 650;
     }
 
     section {
-      padding: clamp(54px, 7vw, 92px) clamp(18px, 5vw, 72px);
+      padding: clamp(56px, 7vw, 96px) clamp(18px, 5vw, 72px);
     }
 
     .section-head {
-      max-width: 900px;
-      margin: 0 auto 34px;
+      max-width: 940px;
+      margin: 0 auto 36px;
       text-align: center;
     }
 
     .section-head h2 {
       margin: 0 0 12px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -1.2px;
+      font-size: clamp(32px, 4.4vw, 56px);
+      line-height: 1.04;
       color: var(--green-dark);
+      letter-spacing: -1.4px;
     }
 
     .section-head p {
       margin: 0;
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.55;
-      font-weight: 500;
+      line-height: 1.58;
+      font-weight: 560;
     }
 
     .grid {
+      max-width: 1180px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      max-width: 1180px;
-      margin: 0 auto;
     }
 
     .card {
-      background: var(--white);
+      background: #fff;
       border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(5, 63, 18, 0.07);
+      border-radius: 26px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(5,63,18,.07);
     }
 
-    .card .icon {
-      width: 48px;
-      height: 48px;
+    .icon {
+      width: 50px;
+      height: 50px;
       display: grid;
       place-items: center;
-      border-radius: 16px;
-      background: var(--green-soft);
+      border-radius: 17px;
+      background: #eaf7ed;
       color: var(--green);
       font-size: 25px;
       margin-bottom: 16px;
@@ -267,62 +243,66 @@
       margin: 0 0 10px;
       color: var(--green-dark);
       font-size: 20px;
-      line-height: 1.2;
+      line-height: 1.22;
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.56;
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 560;
     }
 
+    .soft { background: linear-gradient(180deg, #f8fbf5, #edf7ee); }
+
     .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 28px;
       max-width: 1180px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 28px;
       align-items: center;
     }
 
-    .panel {
-      background: linear-gradient(135deg, #063f13, #087220);
-      color: white;
-      border-radius: 30px;
-      padding: clamp(30px, 4vw, 48px);
+    .green-panel {
+      border-radius: 34px;
+      padding: clamp(32px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(5,63,18,.96), rgba(8,126,34,.92)),
+        url("./kisanmitra-web-ui/assets/kisanmitra-bg-clean.webp") center / cover no-repeat;
+      color: #fff;
       box-shadow: var(--shadow);
     }
 
-    .panel h2 {
+    .green-panel h2 {
       margin: 0 0 14px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1.05;
+      font-size: clamp(32px, 4.4vw, 56px);
+      line-height: 1.04;
     }
 
-    .panel p {
+    .green-panel p {
       margin: 0 0 24px;
-      color: rgba(255,255,255,0.86);
+      color: rgba(255,255,255,.86);
       line-height: 1.6;
       font-size: 17px;
     }
 
     .check-list {
-      display: grid;
-      gap: 12px;
       margin: 0;
       padding: 0;
       list-style: none;
+      display: grid;
+      gap: 13px;
     }
 
     .check-list li {
       display: flex;
       gap: 10px;
       align-items: flex-start;
-      color: rgba(255,255,255,0.94);
-      font-weight: 700;
-      line-height: 1.4;
+      color: rgba(255,255,255,.94);
+      font-weight: 760;
+      line-height: 1.42;
     }
 
     .check-list li::before {
@@ -333,9 +313,9 @@
       display: grid;
       place-items: center;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,.16);
       color: #b9ffca;
-      font-weight: 900;
+      font-weight: 1000;
     }
 
     .steps {
@@ -347,73 +327,69 @@
       display: flex;
       gap: 16px;
       align-items: flex-start;
-      background: white;
+      padding: 18px;
+      background: #fff;
       border: 1px solid var(--line);
       border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 8px 24px rgba(5, 63, 18, 0.06);
+      box-shadow: 0 8px 24px rgba(5,63,18,.06);
     }
 
     .step span {
-      flex: 0 0 38px;
-      width: 38px;
-      height: 38px;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
-      border-radius: 13px;
-      background: #0b751f;
-      color: white;
-      font-weight: 900;
+      border-radius: 14px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 1000;
     }
 
     .step strong {
       display: block;
-      color: var(--green-dark);
       margin-bottom: 4px;
+      color: var(--green-dark);
       font-size: 17px;
     }
 
     .step p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.45;
-      font-weight: 500;
-    }
-
-    .trust {
-      background: linear-gradient(180deg, #f7fbf7, #edf7ee);
+      line-height: 1.48;
+      font-weight: 560;
     }
 
     .cta {
       max-width: 1120px;
       margin: 0 auto;
       border-radius: 34px;
-      padding: clamp(34px, 5vw, 58px);
+      padding: clamp(36px, 5vw, 60px);
       background:
-        linear-gradient(90deg, rgba(6, 75, 18, 0.94), rgba(6, 95, 24, 0.88)),
+        linear-gradient(90deg, rgba(5,63,18,.96), rgba(9,111,31,.88)),
         url("./kisanmitra-web-ui/assets/kisanmitra-bg-clean.webp") center / cover no-repeat;
-      color: white;
+      color: #fff;
       text-align: center;
       box-shadow: var(--shadow);
     }
 
     .cta h2 {
       margin: 0 0 12px;
-      font-size: clamp(30px, 4vw, 50px);
+      font-size: clamp(32px, 4.4vw, 54px);
     }
 
     .cta p {
+      max-width: 780px;
       margin: 0 auto 26px;
-      max-width: 760px;
-      color: rgba(255,255,255,0.88);
-      line-height: 1.55;
+      color: rgba(255,255,255,.88);
+      line-height: 1.58;
       font-size: 17px;
     }
 
-    .site-footer {
+    footer {
       padding: 34px clamp(18px, 5vw, 72px);
       background: #06180b;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,.78);
     }
 
     .footer-inner {
@@ -421,50 +397,34 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      gap: 24px;
       align-items: center;
       flex-wrap: wrap;
+      gap: 22px;
     }
 
-    .footer-inner strong {
-      color: white;
-    }
+    .footer-inner strong { color: #fff; }
 
     .footer-links {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .footer-links a {
-      color: rgba(255,255,255,0.78);
-    }
+    .footer-links a { color: rgba(255,255,255,.80); }
 
-    @media (max-width: 900px) {
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-points,
-      .grid,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .brand img {
-        width: 170px;
-      }
+    @media (max-width: 940px) {
+      .nav { display: none; }
+      .hero { min-height: auto; }
+      .hero-metrics, .grid, .split { grid-template-columns: 1fr; }
+      .logo img { width: 170px; }
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
-    <a class="brand" href="/">
+    <a class="logo" href="./index.html">
       <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
     </a>
 
@@ -483,31 +443,31 @@
       <div class="hero-content">
         <div class="eyebrow">🌱 AI-powered Farm-to-Market Trust Platform</div>
         <h1>Kisan<span>Mitra</span>AI</h1>
-        <p>
+        <p class="hero-copy">
           Your AI Farming Friend for farm mapping, crop planning, farmer P&amp;L,
-          personal account books, daily crop calendar, mandi advice, buyer connection,
-          and verified crop-to-market support.
+          personal account books, day-to-day crop calendar, best mandi-rate advice,
+          buyer connection, and verified crop-to-market support.
         </p>
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="./login.html">Login to Web Tool</a>
-          <a class="btn btn-secondary" href="#farmers">For Farmers</a>
-          <a class="btn btn-secondary" href="#buyers">For Buyers</a>
-          <a class="btn btn-secondary" href="#contact">Contact Us</a>
+          <a class="btn btn-light" href="#farmers">For Farmers</a>
+          <a class="btn btn-light" href="#buyers">For Buyers</a>
+          <a class="btn btn-light" href="#contact">Contact Us</a>
         </div>
 
-        <div class="hero-points">
-          <div class="mini-card">
+        <div class="hero-metrics">
+          <div class="metric">
             <strong>Farm Intelligence</strong>
             <small>GPS boundary, satellite view, soil estimate, weather and crop suitability.</small>
           </div>
-          <div class="mini-card">
+          <div class="metric">
             <strong>Farmer Finance</strong>
-            <small>Account book, crop-wise cost tracking, P&amp;L and payment records.</small>
+            <small>Account book, crop-wise cost, P&amp;L and payment records.</small>
           </div>
-          <div class="mini-card">
+          <div class="metric">
             <strong>Buyer Trust</strong>
-            <small>Verified crop catalogue, crop-cycle evidence and safer deal records.</small>
+            <small>Verified catalogue, crop-cycle evidence and safer deal records.</small>
           </div>
         </div>
       </div>
@@ -517,9 +477,9 @@
       <div class="section-head">
         <h2>Who we are</h2>
         <p>
-          KisanMitraAI is building an AI agriculture operating system for farmers,
-          buyers, FPOs and agri businesses. The goal is to create a trusted data and
-          deal layer from farm boundary to confirmed sale.
+          KisanMitraAI is building an AI agriculture operating system for farmers, buyers,
+          FPOs and agri businesses. The goal is to create a trusted data and deal layer
+          from farm boundary to confirmed sale.
         </p>
       </div>
 
@@ -527,27 +487,29 @@
         <article class="card">
           <div class="icon">🛰️</div>
           <h3>Farm-to-data intelligence</h3>
-          <p>We help convert farm location, crop cycle, soil, weather and photo evidence into simple, usable intelligence.</p>
+          <p>Convert farm location, crop cycle, soil, weather and photo evidence into simple, usable intelligence.</p>
         </article>
+
         <article class="card">
           <div class="icon">📒</div>
           <h3>Farmer operating support</h3>
-          <p>Farmers can manage crop calendar, account book, P&amp;L reports, cost records and selling options in one system.</p>
+          <p>Manage crop calendar, account book, P&amp;L reports, cost records and selling options in one place.</p>
         </article>
+
         <article class="card">
           <div class="icon">🤝</div>
           <h3>Buyer confidence layer</h3>
-          <p>Buyers get verified crop context, quality evidence, expected harvest, quantity estimate and safer deal flow.</p>
+          <p>Help buyers understand crop origin, quality evidence, harvest window, quantity and deal confidence.</p>
         </article>
       </div>
     </section>
 
-    <section id="farmers" class="trust">
+    <section id="farmers" class="soft">
       <div class="section-head">
         <h2>What we do for farmers</h2>
         <p>
           We help farmers understand their land, plan the crop, track expenses, compare mandi and buyer options,
-          and build stronger selling power with verified crop evidence.
+          improve crop value and build stronger selling power with verified crop evidence.
         </p>
       </div>
 
@@ -557,30 +519,35 @@
           <h3>Farm Mapping &amp; Farm Passport</h3>
           <p>GPS boundary, area, satellite view, farm profile, soil estimate, weather zone and crop suitability.</p>
         </article>
+
         <article class="card">
           <div class="icon">📊</div>
           <h3>Farmer P&amp;L Reports</h3>
           <p>Track crop-wise cost, expected production, sale value, advance, pending payment and profit/loss range.</p>
         </article>
+
         <article class="card">
           <div class="icon">📒</div>
           <h3>Personal Account Book</h3>
           <p>Keep seed, fertilizer, spray, labour, irrigation, transport, loan, advance and buyer payment records.</p>
         </article>
+
         <article class="card">
           <div class="icon">🗓️</div>
           <h3>Day-to-Day Crop Calendar</h3>
           <p>Daily and weekly crop-stage tasks for watering, fertilizer, pest check, photo upload and harvest planning.</p>
         </article>
+
         <article class="card">
           <div class="icon">🏪</div>
           <h3>Best Mandi Rate Advice</h3>
           <p>Nearby mandi rates, India-wide price comparison, distance, arrivals, transport estimate and selling guidance.</p>
         </article>
+
         <article class="card">
           <div class="icon">📦</div>
           <h3>Value Addition Guidance</h3>
-          <p>Advice on grading, sorting, packing, drying, storage, processing and aggregation to improve crop value.</p>
+          <p>Advice on grading, sorting, packing, drying, storage, processing and farmer aggregation for better value.</p>
         </article>
       </div>
     </section>
@@ -600,27 +567,30 @@
           <h3>Verified Crop Catalogue</h3>
           <p>Crop, variety, expected harvest, quantity estimate, quality score, farm photos and crop-cycle records.</p>
         </article>
+
         <article class="card">
           <div class="icon">🔎</div>
           <h3>Demand Matching</h3>
-          <p>Search by crop, location, quality, harvest date, distance, price range and chemical/organic preference.</p>
+          <p>Search by crop, region, quality, harvest date, distance, price range and chemical/organic preference.</p>
         </article>
+
         <article class="card">
           <div class="icon">🛡️</div>
           <h3>Safer Deal Flow</h3>
-          <p>Admin-mediated communication, translation, agreement draft, payment terms, pickup rules and dispute records.</p>
+          <p>Platform-mediated communication, translation, agreement draft, payment terms, pickup rules and dispute records.</p>
         </article>
       </div>
     </section>
 
-    <section id="how" class="trust">
+    <section id="how" class="soft">
       <div class="split">
-        <div class="panel">
+        <div class="green-panel">
           <h2>How KisanMitraAI works</h2>
           <p>
             A simple, controlled flow that protects farmers, helps buyers trust supply,
             and keeps every important crop and deal record organized.
           </p>
+
           <ul class="check-list">
             <li>Admin verifies data before farmer and buyer release.</li>
             <li>Farmer receives simple guidance, not complicated forms.</li>
@@ -637,6 +607,7 @@
               <p>Start with simple details, language, location and consent.</p>
             </div>
           </div>
+
           <div class="step">
             <span>2</span>
             <div>
@@ -644,6 +615,7 @@
               <p>Create farm boundary, crop cycle, account book and crop calendar.</p>
             </div>
           </div>
+
           <div class="step">
             <span>3</span>
             <div>
@@ -651,6 +623,7 @@
               <p>Use weather, soil estimates, mandi data, crop evidence and admin review.</p>
             </div>
           </div>
+
           <div class="step">
             <span>4</span>
             <div>
@@ -677,11 +650,13 @@
           <h3>Estimate vs verified data</h3>
           <p>Soil and satellite intelligence are labelled as estimates unless verified by lab tests or expert review.</p>
         </article>
+
         <article class="card">
           <div class="icon">📷</div>
           <h3>Crop-cycle evidence</h3>
           <p>Photos, GPS, time, crop stage and quality records help build buyer confidence and reduce fraud risk.</p>
         </article>
+
         <article class="card">
           <div class="icon">🏛️</div>
           <h3>Scheme guidance</h3>
@@ -697,20 +672,22 @@
           We are building for farmers, buyers, FPOs and agri partners who want trusted farm-to-market intelligence.
           Contact us for pilot participation, buyer demand, farmer onboarding or partnership.
         </p>
+
         <div class="hero-actions" style="justify-content:center;">
-          <a class="btn btn-secondary" href="mailto:admin@kisanmitraai.com">admin@kisanmitraai.com</a>
-          <a class="btn btn-secondary" href="./login.html">Login to Web Tool</a>
+          <a class="btn btn-light" href="mailto:admin@kisanmitraai.com">admin@kisanmitraai.com</a>
+          <a class="btn btn-light" href="./login.html">Login to Web Tool</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer>
     <div class="footer-inner">
       <div>
         <strong>KisanMitraAI</strong><br />
         Your AI Farming Friend — built for Indian farmers and serious buyers.
       </div>
+
       <div class="footer-links">
         <a href="#farmers">Farmers</a>
         <a href="#buyers">Buyers</a>
