@@ -1,0 +1,18 @@
+{
+  "name": "KisanMitra AI",
+  "short_name": "KisanMitra",
+  "description": "KisanMitra AI farming friend app welcome and onboarding interface.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#eef8e9",
+  "theme_color": "#1f8d2d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./assets/kisanmitra-final-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

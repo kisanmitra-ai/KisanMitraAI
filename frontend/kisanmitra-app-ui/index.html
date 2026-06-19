@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eef8e9">
+  <title>KisanMitra AI App UI</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+
+  <script src="../shared/brand.js"></script>
+  <script src="../shared/module-registry.js"></script>
+  <script src="../shared/studio-store.js"></script>
+  <script src="../shared/studio-bridge.js"></script>
+</head>
+<body>
+  <main class="app-screen" id="appScreen">
+    <section class="screen active" id="welcomeScreen">
+      <div class="leaf leaf-left"></div>
+      <div class="leaf leaf-right"></div>
+
+      <header class="brand-block">
+        <img class="brand-logo" src="./assets/kisanmitra-final-logo.png" alt="KisanMitra AI">
+      </header>
+
+      <section class="welcome-title">
+        <h1>Welcome to KisanMitra AI</h1>
+        <p>Choose how you want to use KisanMitra</p>
+      </section>
+
+      <section class="role-grid">
+        <article class="role-card farmer-card">
+          <div class="role-hero farmer-hero">
+            <span>👨‍🌾</span>
+          </div>
+          <h2>Farmer</h2>
+          <div class="role-line green-line"></div>
+          <ul>
+            <li><i>🌿</i><span>Manage Farms</span></li>
+            <li><i>🌾</i><span>Get Crop Advice</span></li>
+            <li><i>🌦</i><span>Check Weather</span></li>
+            <li><i>🧺</i><span>Sell Crops</span></li>
+            <li><i>🛡</i><span>Track Farm Health</span></li>
+          </ul>
+          <button class="role-btn farmer-btn" type="button" data-go="farmer">Enter as Farmer <b>→</b></button>
+        </article>
+
+        <article class="role-card buyer-card">
+          <div class="role-hero buyer-hero">
+            <span>🏭</span>
+          </div>
+          <h2>Buyer</h2>
+          <div class="role-line blue-line"></div>
+          <ul>
+            <li><i>👥</i><span>Find Farmers</span></li>
+            <li><i>🔍</i><span>Discover Supply</span></li>
+            <li><i>📋</i><span>Track Procurement</span></li>
+            <li><i>🤝</i><span>Manage Purchases</span></li>
+            <li><i>🛒</i><span>Source Crops</span></li>
+          </ul>
+          <button class="role-btn buyer-btn" type="button" data-go="buyer">Enter as Buyer <b>→</b></button>
+        </article>
+      </section>
+
+      <section class="trust-card">
+        <div class="shield">🛡</div>
+        <div class="trust-copy">
+          <b>Trusted by Thousands</b>
+          <span>Farmers • FPOs • Buyers • Agri Businesses</span>
+        </div>
+        <div class="trust-icons">
+          <div><i>🌿</i><span>Grow Better</span></div>
+          <div><i>₹</i><span>Earn More</span></div>
+          <div><i>👥</i><span>Connect Easily</span></div>
+        </div>
+      </section>
+
+      <section class="friend-card">
+        <div class="friend-face">👨‍🌾</div>
+        <div>
+          <b>KisanMitra is here for you!</b>
+          <span>We make farming simple, profitable and connected.</span>
+        </div>
+        <div class="sprout">🌱</div>
+      </section>
+    </section>
+
+    <section class="screen register-screen" id="farmerRegisterScreen">
+      <button class="back-btn" type="button" data-back>‹</button>
+      <div class="leaf leaf-right"></div>
+      <header class="brand-block compact">
+        <img class="brand-logo" src="./assets/kisanmitra-final-logo.png" alt="KisanMitra AI">
+      </header>
+      <section class="welcome-title compact-title">
+        <h1 data-i18n="welcomeFarmer">Welcome, Farmer!</h1>
+        <p data-i18n="started">Let's get you started</p>
+      </section>
+
+      <form class="register-card" id="farmerForm">
+        <label class="field-row">
+          <i>♙</i>
+          <span>
+            <b data-i18n="fullName">Full Name</b>
+            <input id="farmerName" name="full_name" placeholder="Enter your full name" autocomplete="name" required>
+          </span>
+        </label>
+        <label class="field-row">
+          <i>☎</i>
+          <span>
+            <b data-i18n="mobile">Mobile Number</b>
+            <input id="farmerMobile" name="mobile" placeholder="+91  Enter your mobile number" inputmode="tel" autocomplete="tel" required>
+          </span>
+        </label>
+        <label class="field-row">
+          <i>◎</i>
+          <span>
+            <b data-i18n="language">Language</b>
+            <select id="farmerLanguage" name="language">
+              <option>English</option>
+              <option>Hindi</option>
+              <option>Bengali</option>
+            </select>
+          </span>
+        </label>
+
+        <div class="location-card">
+          <i>📍</i>
+          <span>
+            <b data-i18n="locationTitle">Share Your Location</b>
+            <em data-i18n="locationHelp">Allow access to your location so we can give you local weather, crop advice and nearby market prices.</em>
+          </span>
+        </div>
+        <button class="gps-btn" type="button" id="gpsBtn">⌖ <span data-i18n="gps">Share GPS Location</span></button>
+        <p class="safe-note">🔒 <span data-i18n="safe">Your location is safe with us and will never be shared.</span></p>
+        <button class="continue-btn" type="submit"><span data-i18n="continue">Continue</span> <b>→</b></button>
+        <div class="save-status" id="saveStatus"></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

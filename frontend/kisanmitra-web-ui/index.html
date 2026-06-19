@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KisanMitraAI Web AI Studio</title>
+
+  <script src="../shared/brand.js"></script>
+  <script src="../shared/module-registry.js"></script>
+  <script src="../shared/studio-store.js"></script>
+  <script src="../shared/studio-bridge.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: #07110c;
+      color: #eefaf1;
+    }
+
+    header {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      background: #0d1b12;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .links a {
+      color: #9ff5b7;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 13px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr 300px;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .panel {
+      background: #0f1f15;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 18px;
+      min-height: 520px;
+    }
+
+    .preview {
+      background: linear-gradient(180deg,#10291a,#07110c);
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 520px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .km-module-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .km-module-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .km-status {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #1d3b28;
+      color: #b7f7c7;
+      text-transform: uppercase;
+    }
+
+    .km-module-card p {
+      font-size: 13px;
+      line-height: 1.4;
+      color: #c9d8cd;
+    }
+
+    small {
+      color: #8aa894;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img id="brandLogo" src="../assets/branding/kisanmitra-logo.png" />
+    <div>
+      <strong id="studioTitle">KisanMitraAI Web AI Studio</strong><br>
+      <small id="tagline">Your AI Farming Companion</small>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="../index.html">Admin Main</a>
+    <a href="../kisanmitra-app-ui/index.html">App AI Studio</a>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="panel">
+    <h3>Web Modules</h3>
+    <div id="webModules"></div>
+  </section>
+
+  <section class="preview">
+    <h2>KisanMitraAI Web Preview</h2>
+    <p>This is the desktop/web rendering layer. Admin remains the master control center.</p>
+    <div id="webPreviewModules"></div>
+  </section>
+
+  <section class="panel">
+    <h3>Shared System</h3>
+    <p>Brand, modules and studio state are loaded from shared files.</p>
+    <p><b>Source:</b> frontend/shared/</p>
+  </section>
+</main>
+
+<script>
+  const brand = window.KisanMitraStudioBridge.brand;
+
+  document.title = brand.webStudioTitle;
+  document.getElementById("studioTitle").textContent = brand.webStudioTitle;
+  document.getElementById("tagline").textContent = brand.tagline;
+
+  window.KisanMitraStudioBridge.renderModuleCards("webModules", "web");
+  window.KisanMitraStudioBridge.renderModuleCards("webPreviewModules", "web");
+</script>
+
+</body>
+</html>
