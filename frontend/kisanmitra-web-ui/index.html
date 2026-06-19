@@ -1,157 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KisanMitraAI Web AI Studio</title>
-
-  <script src="../shared/brand.js"></script>
-  <script src="../shared/module-registry.js"></script>
-  <script src="../shared/studio-store.js"></script>
-  <script src="../shared/studio-bridge.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: #07110c;
-      color: #eefaf1;
-    }
-
-    header {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      background: #0d1b12;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand img {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    .links a {
-      color: #9ff5b7;
-      text-decoration: none;
-      margin-left: 18px;
-      font-size: 13px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 260px 1fr 300px;
-      gap: 18px;
-      padding: 18px;
-    }
-
-    .panel {
-      background: #0f1f15;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 20px;
-      padding: 18px;
-      min-height: 520px;
-    }
-
-    .preview {
-      background: linear-gradient(180deg,#10291a,#07110c);
-      border-radius: 24px;
-      padding: 22px;
-      min-height: 520px;
-      border: 1px solid rgba(255,255,255,.1);
-    }
-
-    .km-module-card {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 12px;
-    }
-
-    .km-module-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .km-status {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: #1d3b28;
-      color: #b7f7c7;
-      text-transform: uppercase;
-    }
-
-    .km-module-card p {
-      font-size: 13px;
-      line-height: 1.4;
-      color: #c9d8cd;
-    }
-
-    small {
-      color: #8aa894;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#075f13" />
+  <title>KisanMitra AI | Web Tool Login</title>
+  <link rel="icon" href="./assets/favicon.png" />
+  <link rel="preload" href="./assets/kisanmitra-bg-clean.webp" as="image" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <main class="km-stage" aria-label="KisanMitra AI login screen">
+    <picture class="km-background" aria-hidden="true">
+      <source srcset="./assets/kisanmitra-bg-clean.webp" type="image/webp" />
+      <img src="./assets/kisanmitra-bg-clean.jpg" alt="" />
+    </picture>
 
-<header>
-  <div class="brand">
-    <img id="brandLogo" src="/assets/branding/kisanmitra-logo.svg" />
-    <div>
-      <strong id="studioTitle">KisanMitraAI Web AI Studio</strong><br>
-      <small id="tagline">Your AI Farming Companion</small>
-    </div>
+    <img
+      class="km-logo"
+      src="./assets/kisanmitra-logo-exact.png"
+      alt="KisanMitra AI - Your Farming Friend"
+      draggable="false"
+    />
+
+    <section class="login-card" aria-label="KisanMitra AI sign in">
+      <div class="welcome-row">
+        <span></span>
+        <p>Welcome to</p>
+        <span></span>
+      </div>
+
+      <h1 class="brand-title">
+        <span class="green">Kisan</span><span class="orange">Mitra</span><span class="green">&nbsp;AI</span>
+      </h1>
+
+      <div class="leaf-divider" aria-hidden="true">
+  <span></span>
+  <strong class="leaf-mark">
+    <svg viewBox="0 0 44 34" aria-hidden="true">
+      <path d="M22 17.4c-2.7-6.4.9-11.8 9.3-13.2-.2 6.8-3.8 11.9-9.3 13.2Z" fill="#59B323"/>
+      <path d="M21.8 17.6c1.7-6.1-1.4-10.9-8.5-12.1-.3 6.4 2.8 11.2 8.5 12.1Z" fill="#8BD32A"/>
+      <path d="M22 17.6c.1 3.2-.2 6.1-.9 9.1" stroke="#398D1B" stroke-width="2.6" stroke-linecap="round"/>
+    </svg>
+  </strong>
+  <span></span>
+</div>
+
+      <p class="tagline">
+        Your smart assistant for better farming<br />
+        decisions and a better tomorrow
+      </p>
+
+      <form class="login-form" id="loginForm" autocomplete="on">
+        <label for="userId">User ID</label>
+        <div class="field">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 12.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2.1c-4.15 0-7.5 2.35-7.5 5.25 0 .4.33.72.72.72h13.56c.4 0 .72-.32.72-.72 0-2.9-3.35-5.25-7.5-5.25Z"/>
+          </svg>
+          <input id="userId" name="userId" type="text" placeholder="Enter your User ID" required />
+        </div>
+
+        <label class="password-label" for="password">Password</label>
+        <div class="field">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17 9h-1V7a4 4 0 1 0-8 0v2H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2Zm-7 0V7a2 2 0 1 1 4 0v2h-4Zm3 7.73V18h-2v-1.27a2 2 0 1 1 2 0Z"/>
+          </svg>
+          <input id="password" name="password" type="password" placeholder="Enter your Password" required />
+          <button class="eye-btn" type="button" id="togglePassword" aria-label="Show password">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5c5.4 0 9.3 5.1 9.3 7s-3.9 7-9.3 7-9.3-5.1-9.3-7S6.6 5 12 5Zm0 2C7.9 7 4.9 10.6 4.7 12c.2 1.4 3.2 5 7.3 5s7.1-3.6 7.3-5C19.1 10.6 16.1 7 12 7Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/>
+            </svg>
+          </button>
+        </div>
+
+        <a class="forgot-link" href="#" id="forgotPassword">Forgot Password?</a>
+
+        <button class="login-btn" type="submit">Login</button>
+
+        <div class="or-row" aria-hidden="true">
+          <span></span>
+          <p>or</p>
+          <span></span>
+        </div>
+
+        <p class="signup-line">
+  Don&#39;t have an account?
+  <a href="#" id="signUp">Sign Up</a>
+</p>
+
+        <p class="status-message" id="statusMessage" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <footer class="trust-strip" aria-label="KisanMitra AI trust message">
+  <div class="trust-strip-inner">
+    <span class="trust-icon trust-shield" aria-hidden="true">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 3.8 32.7 7.6v9.3c0 8.5-5.1 13.6-12.7 16.8C12.4 30.5 7.3 25.4 7.3 16.9V7.6L20 3.8Z" fill="#ffffff" stroke="#12813A" stroke-width="2"/>
+        <path d="M20.2 25.7V13.1" stroke="#12813A" stroke-width="2.1" stroke-linecap="round"/>
+        <path d="M19.7 15.1c-3.4-2.2-6.6-1.9-9.4.7 3.4.6 6.2 1.8 8.6 4.2" fill="#83C733"/>
+        <path d="M20.3 15.1c3.4-2.2 6.6-1.9 9.4.7-3.4.6-6.2 1.8-8.6 4.2" fill="#5BB42A"/>
+      </svg>
+    </span>
+
+    <strong>Trusted by Farmers and Buyers, Built for Indian Farmers</strong>
+
+    <span class="trust-icon trust-wheat" aria-hidden="true">
+      <svg viewBox="0 0 34 40" aria-hidden="true">
+        <path d="M17.2 5.2v27.6" stroke="#E79A18" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M17.2 10.2c2.2-2.3 4.8-3.6 8-4.1-1 3.2-3 5.5-6.4 6.8" fill="#F0A51B"/>
+        <path d="M16.9 12.7c-2.2-2.1-4.6-3.2-7.5-3.7.9 2.9 2.8 5.1 6 6.3" fill="#F7C64A"/>
+        <path d="M17.2 16.2c2.2-2.1 4.7-3.2 7.7-3.6-.9 3-2.8 5.2-6.1 6.4" fill="#ECA018"/>
+        <path d="M16.9 18.5c-2-1.8-4.2-2.9-6.9-3.3.8 2.6 2.5 4.6 5.4 5.7" fill="#F4C34B"/>
+        <path d="M17.2 22c1.9-1.6 4-2.6 6.5-3-.7 2.5-2.3 4.3-5 5.3" fill="#E29215"/>
+        <path d="M16.9 24c-1.7-1.4-3.6-2.3-5.8-2.7.7 2.2 2 3.9 4.4 4.8" fill="#F1BE45"/>
+      </svg>
+    </span>
   </div>
+</footer>
+  </main>
 
-  <div class="links">
-    <a href="../index.html">Admin Main</a>
-    <a href="../kisanmitra-app-ui/index.html">App AI Studio</a>
-  </div>
-</header>
-
-<main class="layout">
-  <section class="panel">
-    <h3>Web Modules</h3>
-    <div id="webModules"></div>
-  </section>
-
-  <section class="preview">
-    <h2>KisanMitraAI Web Preview</h2>
-    <p>This is the desktop/web rendering layer. Admin remains the master control center.</p>
-    <div id="webPreviewModules"></div>
-  </section>
-
-  <section class="panel">
-    <h3>Shared System</h3>
-    <p>Brand, modules and studio state are loaded from shared files.</p>
-    <p><b>Source:</b> frontend/shared/</p>
-  </section>
-</main>
-
-<script>
-  const brand = window.KisanMitraStudioBridge.brand;
-
-  document.title = brand.webStudioTitle;
-  document.getElementById("studioTitle").textContent = brand.webStudioTitle;
-  document.getElementById("tagline").textContent = brand.tagline;
-
-  window.KisanMitraStudioBridge.renderModuleCards("webModules", "web");
-  window.KisanMitraStudioBridge.renderModuleCards("webPreviewModules", "web");
-</script>
-
+  <script src="./app.js"></script>
 </body>
 </html>
+
 

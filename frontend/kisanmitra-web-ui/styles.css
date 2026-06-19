@@ -1,0 +1,783 @@
+﻿:root {
+  --green: #005915;
+  --green-deep: #004c0f;
+  --orange: #f55a13;
+  --ink: #151827;
+  --muted: #6a7086;
+  --line: #cfd5df;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #eef7ef;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+}
+
+.km-stage {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+  background: #eaf6ed;
+  isolation: isolate;
+}
+
+.km-background,
+.km-background img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.km-background img {
+  object-fit: cover;
+  object-position: center center;
+  user-select: none;
+  pointer-events: none;
+}
+
+.km-logo {
+  position: absolute;
+  left: clamp(32px, 3.6vw, 60px);
+  top: clamp(22px, 3.2vh, 42px);
+  width: clamp(220px, 19vw, 320px);
+  height: auto;
+  z-index: 2;
+  user-select: none;
+  filter: drop-shadow(0 3px 5px rgba(255, 255, 255, 0.25));
+}
+
+.login-card {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  width: clamp(430px, 37.4vw, 625px);
+  z-index: 3;
+  border: 1.5px solid rgba(112, 121, 135, 0.52);
+  border-radius: clamp(18px, 1.5vw, 24px);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 16px 34px rgba(16, 24, 40, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  padding:
+    clamp(26px, 3.1vh, 42px)
+    clamp(42px, 3.6vw, 60px)
+    clamp(20px, 2.6vh, 30px);
+}
+
+.welcome-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.1vw, 18px);
+  margin-top: 0;
+}
+
+.welcome-row span {
+  width: clamp(48px, 3.8vw, 64px);
+  height: 2px;
+  background: linear-gradient(90deg, rgba(0, 89, 21, 0), rgba(0, 89, 21, 0.9));
+}
+
+.welcome-row span:last-child {
+  background: linear-gradient(90deg, rgba(0, 89, 21, 0.9), rgba(0, 89, 21, 0));
+}
+
+.welcome-row p {
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 30px);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: #005915;
+}
+
+.brand-title {
+  margin: clamp(8px, 1vh, 12px) 0 0;
+  text-align: center;
+  font-size: clamp(46px, 3.9vw, 66px);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.green {
+  color: #005915;
+}
+
+.orange {
+  color: #fb5a0f;
+}
+
+.leaf-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 1.1vw, 18px);
+  margin-top: clamp(10px, 1.4vh, 16px);
+}
+
+.leaf-divider span {
+  width: clamp(82px, 7vw, 118px);
+  height: 2px;
+  background: #0A6F1D;
+  opacity: 0.95;
+}
+
+.leaf-divider .leaf-mark {
+  width: clamp(26px, 2vw, 34px);
+  height: clamp(22px, 1.7vw, 28px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1px);
+}
+
+.leaf-divider .leaf-mark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.tagline {
+  margin: clamp(16px, 2vh, 21px) 0 clamp(22px, 3vh, 31px);
+  text-align: center;
+  color: #23263a;
+  font-size: clamp(15px, 1.25vw, 21px);
+  line-height: 1.48;
+  font-weight: 400;
+}
+
+.login-form {
+  position: relative;
+}
+
+.login-form label {
+  display: block;
+  margin: 0 0 clamp(7px, 0.8vh, 9px);
+  color: #000000;
+  font-size: clamp(14px, 1.1vw, 20px);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.password-label {
+  margin-top: clamp(18px, 2.5vh, 27px) !important;
+}
+
+.field {
+  height: clamp(42px, 5.9vh, 61px);
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.2vw, 20px);
+  border: 1.5px solid #c7cdd7;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: inset 0 1px 3px rgba(17, 24, 39, 0.03);
+  padding: 0 16px 0 19px;
+}
+
+.field > svg {
+  width: clamp(20px, 1.6vw, 27px);
+  height: clamp(20px, 1.6vw, 27px);
+  flex: 0 0 auto;
+  fill: #687086;
+}
+
+.field input {
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #202334;
+  font: inherit;
+  font-size: clamp(14px, 1.1vw, 19px);
+  font-weight: 400;
+}
+
+.field input::placeholder {
+  color: #747a91;
+  opacity: 1;
+}
+
+.eye-btn {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.eye-btn svg {
+  width: clamp(23px, 1.8vw, 30px);
+  height: clamp(23px, 1.8vw, 30px);
+  fill: #687086;
+}
+
+.forgot-link {
+  display: block;
+  margin: clamp(12px, 1.7vh, 16px) 0 clamp(16px, 2.4vh, 24px);
+  text-align: right;
+  color: #005915;
+  font-size: clamp(12px, 0.95vw, 16px);
+  line-height: 1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100%;
+  height: clamp(42px, 5.6vh, 58px);
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(90deg, #00550f 0%, #005f13 48%, #00520d 100%);
+  box-shadow:
+    0 6px 10px rgba(0, 83, 18, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: clamp(18px, 1.5vw, 25px);
+  line-height: 1;
+  font-weight: 800;
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+}
+
+.or-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1vw, 16px);
+  margin: clamp(11px, 1.8vh, 17px) 0 clamp(12px, 2vh, 19px);
+}
+
+.or-row span {
+  height: 1px;
+  flex: 1;
+  background: #d4d9e2;
+}
+
+.or-row p {
+  margin: 0;
+  color: #252739;
+  font-size: clamp(13px, 1.1vw, 19px);
+  line-height: 1;
+}
+
+.signup-line {
+  margin: 0;
+  text-align: center;
+  color: #242738;
+  font-size: clamp(14px, 1.2vw, 21px);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.signup-line a {
+  margin-left: 10px;
+  color: #005915;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.status-message {
+  margin: 8px 0 0;
+  text-align: center;
+  color: #005915;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.trust-strip {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(13px, 1.7vh, 18px);
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.75vw, 12px);
+  min-width: clamp(480px, 42vw, 620px);
+  height: clamp(32px, 3.8vh, 40px);
+  padding: 0 clamp(18px, 1.2vw, 24px);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  color: #0D6718;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.trust-strip strong {
+  font-size: clamp(12px, 0.88vw, 14px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.trust-icon {
+  width: clamp(24px, 1.8vw, 30px);
+  height: clamp(24px, 1.8vw, 30px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.trust-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.trust-icon.left {
+  margin-left: -11px;
+  margin-right: 2px;
+}
+
+.trust-icon.right {
+  margin-left: 2px;
+  margin-right: -9px;
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: hidden;
+  }
+
+  .km-background img {
+    object-position: center center;
+  }
+
+  .km-logo {
+    left: 5%;
+    top: 3.2%;
+    width: min(48vw, 280px);
+  }
+
+  .login-card {
+    top: 50%;
+    width: min(90vw, 420px);
+    padding: 30px 30px 24px;
+    border-radius: 20px;
+  }
+
+  .brand-title {
+    font-size: 46px;
+    letter-spacing: -1.2px;
+  }
+
+  .welcome-row p {
+    font-size: 22px;
+  }
+
+  .welcome-row span {
+    width: 42px;
+  }
+
+  .leaf-divider span {
+    width: 74px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .login-form label {
+    font-size: 16px;
+  }
+
+  .field {
+    height: 54px;
+  }
+
+  .field input {
+    font-size: 16px;
+  }
+
+  .login-btn {
+    height: 54px;
+    font-size: 22px;
+  }
+
+  .signup-line {
+    font-size: 17px;
+  }
+
+  .trust-strip {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(13px, 1.7vh, 18px);
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.75vw, 12px);
+  min-width: clamp(480px, 42vw, 620px);
+  height: clamp(32px, 3.8vh, 40px);
+  padding: 0 clamp(18px, 1.2vw, 24px);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.93);
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  color: #0D6718;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.trust-strip strong {
+  font-size: clamp(12px, 0.88vw, 14px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.trust-icon {
+  width: clamp(24px, 1.8vw, 30px);
+  height: clamp(24px, 1.8vw, 30px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12));
+}
+
+.trust-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.trust-icon.left {
+  margin-left: -11px;
+  margin-right: 2px;
+}
+
+.trust-icon.right {
+  margin-left: 2px;
+  margin-right: -9px;
+}
+}
+
+
+
+
+
+
+
+/* KM_EXACT_REFERENCE_BOTTOM_START */
+
+.leaf-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(14px, 1.1vw, 18px) !important;
+  margin-top: clamp(10px, 1.3vh, 15px) !important;
+}
+
+.leaf-divider span {
+  width: clamp(82px, 7vw, 118px) !important;
+  height: 2px !important;
+  background: #1F8A28 !important;
+  opacity: 0.95 !important;
+}
+
+.leaf-divider .leaf-mark {
+  width: 36px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transform: translateY(2px) !important;
+}
+
+.leaf-divider .leaf-mark svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.trust-strip {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: 4 !important;
+  width: 100% !important;
+  height: 68px !important;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.88) 46%,
+    rgba(255, 255, 255, 0.42) 76%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  pointer-events: none !important;
+}
+
+.trust-strip-inner {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 0 18px 16px !important;
+  color: #0A6417 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.trust-strip strong {
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1px !important;
+}
+
+.trust-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+}
+
+.trust-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.trust-shield {
+  width: 34px !important;
+  height: 34px !important;
+  margin-right: 4px !important;
+  transform: translateY(6px) !important;
+}
+
+.trust-wheat {
+  width: 28px !important;
+  height: 34px !important;
+  margin-left: 4px !important;
+  transform: translateY(5px) !important;
+}
+
+@media (max-width: 760px) {
+  .trust-strip {
+    height: 56px !important;
+  }
+
+  .trust-strip-inner {
+    gap: 8px !important;
+    padding: 0 12px 12px !important;
+  }
+
+  .trust-strip strong {
+    font-size: 11px !important;
+  }
+
+  .trust-shield {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .trust-wheat {
+    width: 21px !important;
+    height: 25px !important;
+  }
+
+  .leaf-divider .leaf-mark {
+    width: 30px !important;
+    height: 24px !important;
+  }
+}
+
+/* KM_EXACT_REFERENCE_BOTTOM_END */
+
+
+/* KM_FOOTER_SHIFT_FIX_START */
+
+.trust-strip {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 64px !important;
+  transform: none !important;
+  z-index: 20 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.90) 45%,
+    rgba(255, 255, 255, 0.45) 75%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+.trust-strip-inner {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 14px !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: auto !important;
+  min-width: max-content !important;
+  height: 34px !important;
+  padding: 0 !important;
+  color: #0A6417 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+
+.trust-strip strong {
+  font-size: 15px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1px !important;
+}
+
+.trust-shield {
+  width: 34px !important;
+  height: 34px !important;
+  transform: translateY(2px) !important;
+  margin-right: 4px !important;
+}
+
+.trust-wheat {
+  width: 28px !important;
+  height: 34px !important;
+  transform: translateY(2px) !important;
+  margin-left: 4px !important;
+}
+
+.leaf-divider .leaf-mark {
+  width: 38px !important;
+  height: 28px !important;
+  transform: translateY(2px) !important;
+}
+
+/* KM_FOOTER_SHIFT_FIX_END */
+
+
+
+/* KM_BOTTOM_FINAL_ADJUST_START */
+
+/* Show a little more of the lower background area */
+.km-background img {
+  object-fit: cover !important;
+  object-position: center 46% !important;
+}
+
+/* Make bottom white fade a bit smaller so it hides less */
+.trust-strip {
+  height: 54px !important;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.84) 42%,
+    rgba(255, 255, 255, 0.28) 72%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+}
+
+/* Move the bottom line content slightly down */
+.trust-strip-inner {
+  bottom: 8px !important;
+  gap: 10px !important;
+  padding-bottom: 0 !important;
+}
+
+/* Keep only the left icon */
+.trust-wheat {
+  display: none !important;
+}
+
+/* Small footer text polish after removing right icon */
+.trust-strip strong {
+  font-size: 14px !important;
+}
+
+/* Keep the left icon nicely aligned */
+.trust-shield {
+  width: 32px !important;
+  height: 32px !important;
+  margin-right: 6px !important;
+  transform: translateY(2px) !important;
+}
+
+@media (max-width: 760px) {
+  .km-background img {
+    object-position: center 44% !important;
+  }
+
+  .trust-strip {
+    height: 48px !important;
+  }
+
+  .trust-strip-inner {
+    bottom: 6px !important;
+  }
+
+  .trust-strip strong {
+    font-size: 11px !important;
+  }
+
+  .trust-shield {
+    width: 22px !important;
+    height: 22px !important;
+  }
+}
+
+/* KM_BOTTOM_FINAL_ADJUST_END */
+
+
+
+/* KM_FOOTER_DOWN_5PX_START */
+
+.trust-strip-inner {
+  bottom: 3px !important;
+}
+
+/* KM_FOOTER_DOWN_5PX_END */
