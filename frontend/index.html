@@ -513,293 +513,39 @@
   </style>
 
 
-<style id="km-hero-natural-ratio-final">
-  html,
-  body {
-    background: #eef5ef !important;
-  }
 
-  .hero {
-    height: auto !important;
-    min-height: 0 !important;
-    padding-top: 96px !important;
-    display: block !important;
-    overflow: visible !important;
-    background: #eef5ef !important;
-  }
 
-  .hero-image {
-    width: 100vw !important;
-    aspect-ratio: 1672 / 485 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: hidden !important;
-    background: #eef5ef !important;
-    position: relative !important;
-  }
 
-  .hero-image img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    display: block !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-    transform: none !important;
-  }
 
-  .hero-strip {
-    height: 68px !important;
-    background: #063d15 !important;
-    overflow: hidden !important;
-    position: relative !important;
-  }
 
-  .hero-card-row {
-    top: 8px !important;
-  }
 
-  .hero-stats,
-  .km-clean-stats-row,
-  .km-compact-stats,
-  .km-green-stats {
-    display: none !important;
-  }
 
-  .km-header {
-    background: #ffffff !important;
-    z-index: 99999 !important;
-  }
-</style>
-<style id="km-final-natural-hero-no-cut">
+
+
+
+<style id="km-final-hero-layout-reset">
   @media (min-width: 769px) {
-    /* Do not force hero into 100vh. Let image keep natural ratio. */
-    .hero {
-      height: auto !important;
-      min-height: 0 !important;
-      padding-top: 96px !important;
-      display: block !important;
-      overflow: visible !important;
+    html,
+    body {
       background: #eef5ef !important;
-    }
-
-    .hero-image {
-      width: 100vw !important;
-      height: auto !important;
-      min-height: 0 !important;
-      aspect-ratio: auto !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-      position: relative !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .hero-image img {
-      width: 100vw !important;
-      height: auto !important;
-      max-width: none !important;
-      display: block !important;
-
-      /* No stretch, no crop */
-      object-fit: contain !important;
-      object-position: center top !important;
-      transform: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .hero-strip {
-      height: 68px !important;
-      min-height: 68px !important;
-      background: #063d15 !important;
-      overflow: hidden !important;
-      position: relative !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .hero-card-row {
-      top: 8px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-    }
-
-    .hero-card {
-      height: 52px !important;
-      min-height: 52px !important;
-    }
-
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
     }
 
     .km-header {
+      position: fixed !important;
+      top: 14px !important;
+      left: 18px !important;
+      right: 18px !important;
+      height: 82px !important;
       z-index: 999999 !important;
       background: #ffffff !important;
     }
-  }
-</style>
-<style id="km-remove-bottom-white-patches-only">
-  /* Remove only the white/light patch under hero and behind bottom cards */
-  .hero-strip,
-  .hero-card-row,
-  .hero-card-row-wrap,
-  .hero-cards-wrap,
-  .hero-cards,
-  .hero-bottom-strip,
-  .hero-bottom-overlay,
-  .hero-bottom-panel,
-  .hero-bottom-band {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    backdrop-filter: none !important;
-  }
 
-  .hero-strip::before,
-  .hero-strip::after,
-  .hero-card-row::before,
-  .hero-card-row::after,
-  .hero-card-row-wrap::before,
-  .hero-card-row-wrap::after,
-  .hero-cards-wrap::before,
-  .hero-cards-wrap::after,
-  .hero-cards::before,
-  .hero-cards::after,
-  .hero-bottom-strip::before,
-  .hero-bottom-strip::after,
-  .hero-bottom-overlay::before,
-  .hero-bottom-overlay::after,
-  .hero-bottom-panel::before,
-  .hero-bottom-panel::after,
-  .hero-bottom-band::before,
-  .hero-bottom-band::after {
-    display: none !important;
-    content: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-  }
-
-  /* If a direct section below hero is creating the light patch */
-  .hero + section {
-    background: transparent !important;
-  }
-</style>
-<style id="km-remove-bottom-patches-force-final">
-  @media (min-width: 769px) {
-    /* Make hero fill the visible first screen so no white area appears below */
     .hero {
       position: relative !important;
       height: 100vh !important;
-      min-height: 100vh !important;
-      padding-top: 96px !important;
-      display: block !important;
-      overflow: hidden !important;
-      background: transparent !important;
-    }
-
-    /* Let image fill the full hero area behind the bottom cards */
-    .hero-image {
-      position: absolute !important;
-      top: 96px !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      width: 100vw !important;
-      height: auto !important;
-      overflow: hidden !important;
-      background: transparent !important;
-      z-index: 1 !important;
-    }
-
-    .hero-image img {
-      width: 100vw !important;
-      height: 100% !important;
-      max-width: none !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-      transform: none !important;
-    }
-
-    /* Remove patch behind bottom cards */
-    .hero-strip {
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      height: 72px !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-      overflow: visible !important;
-      z-index: 5 !important;
-    }
-
-    .hero-strip::before,
-    .hero-strip::after,
-    .hero-card-row::before,
-    .hero-card-row::after {
-      display: none !important;
-      content: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-
-    .hero-card-row {
-      position: absolute !important;
-      top: 8px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      z-index: 10 !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-    }
-
-    /* Remove any remaining stats/white block */
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      height: 0 !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      overflow: hidden !important;
-    }
-
-    /* Push next section below the first screen */
-    .hero + section,
-    .hero + .mobile-home,
-    .hero + .content {
-      margin-top: 0 !important;
-    }
-  }
-</style>
-<style id="km-float-bottom-cards-on-hero-final">
-  @media (min-width: 769px) {
-    /* First screen becomes one hero image area, no separate white bottom block */
-    .hero {
-      position: relative !important;
-      height: calc(100vh - 0px) !important;
       min-height: 620px !important;
-      padding-top: 96px !important;
+      padding-top: 0 !important;
+      margin-top: 0 !important;
       display: block !important;
       overflow: hidden !important;
       background: #eef5ef !important;
@@ -807,12 +553,9 @@
 
     .hero-image {
       position: absolute !important;
-      top: 96px !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
+      inset: 0 !important;
       width: 100vw !important;
-      height: auto !important;
+      height: 100% !important;
       overflow: hidden !important;
       background: #eef5ef !important;
       z-index: 1 !important;
@@ -828,24 +571,25 @@
       transform: none !important;
     }
 
-    /* Remove the separate patch and float cards on the image */
     .hero-strip {
       position: absolute !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 14px !important;
-      height: 64px !important;
+      height: 62px !important;
+      margin: 0 !important;
+      padding: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
       border: 0 !important;
       overflow: visible !important;
-      z-index: 5 !important;
-      margin: 0 !important;
-      padding: 0 !important;
+      z-index: 20 !important;
     }
 
     .hero-strip::before,
-    .hero-strip::after {
+    .hero-strip::after,
+    .hero-card-row::before,
+    .hero-card-row::after {
       display: none !important;
       content: none !important;
     }
@@ -861,7 +605,6 @@
       background: transparent !important;
       box-shadow: none !important;
       border: 0 !important;
-      z-index: 10 !important;
     }
 
     .hero-card {
@@ -872,7 +615,6 @@
       border: 0 !important;
     }
 
-    /* No stats row, no lower white/green block */
     .hero-stats,
     .hero-stats *,
     .km-clean-stats-row,
@@ -882,248 +624,12 @@
     .km-green-stats,
     .km-green-stats * {
       display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      overflow: hidden !important;
     }
 
-    /* Next section starts after first screen */
-    .hero + .content,
-    .hero + section {
-      margin-top: 0 !important;
-    }
-  }
-</style>
-
-<style id="km-force-left-hero-final">
-  @media (min-width: 769px) {
-    .hero-image,
-    .hero-main {
-      overflow: hidden !important;
-      position: relative !important;
-    }
-
-    .hero-image img,
-    .hero-main img,
-    .hero img[alt*="KisanMitraAI"] {
-      object-fit: cover !important;
-      object-position: left top !important;
-      transform: none !important;
-      transform-origin: left top !important;
-    }
-  }
-</style>
-<style id="km-hero-right-and-bottom-clean-v4">
-  @media (min-width: 769px) {
-    /* Keep layout same, only correct hero image framing */
-    .hero-image img {
-      object-fit: cover !important;
-      object-position: 43% top !important;
-      transform: none !important;
-    }
-
-    /* Cards float on image, no strip/patch behind them */
-    .hero-strip {
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-      bottom: 12px !important;
-      overflow: visible !important;
-    }
-
-    .hero-strip::before,
-    .hero-strip::after,
-    .hero-card-row::before,
-    .hero-card-row::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-card-row {
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-    }
-
-    /* Remove stats permanently */
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      overflow: hidden !important;
-    }
-  }
-</style>
-<style id="km-bottom-cards-overlay-no-image-change">
-  @media (min-width: 769px) {
-    /* Do not resize/change hero image. Only pull cards upward on top of image */
-    .hero {
-      height: auto !important;
-      min-height: 0 !important;
-      padding-top: 96px !important;
-      display: block !important;
-      overflow: visible !important;
-      background: #eef5ef !important;
-    }
-
-    .hero-image {
-      position: relative !important;
-      width: 100vw !important;
-      height: auto !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-      z-index: 1 !important;
-    }
-
-    .hero-image img {
-      width: 100vw !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      transform: none !important;
-    }
-
-    /* Remove the white strip by overlapping the cards on the hero image */
-    .hero-strip {
-      position: relative !important;
-      height: 76px !important;
-      margin-top: -86px !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-      overflow: visible !important;
-      z-index: 10 !important;
-    }
-
-    .hero-strip::before,
-    .hero-strip::after,
-    .hero-card-row::before,
-    .hero-card-row::after {
-      display: none !important;
-      content: none !important;
-      background: transparent !important;
-      box-shadow: none !important;
-    }
-
-    .hero-card-row {
-      position: absolute !important;
-      top: 10px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-      background: transparent !important;
-      box-shadow: none !important;
-      border: 0 !important;
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.94) !important;
-      box-shadow: 0 10px 24px rgba(5,35,14,0.18) !important;
-      border: 0 !important;
-    }
-
-    /* Remove any bottom stats or extra band */
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      height: 0 !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      overflow: hidden !important;
-    }
-
-    /* Remove first light block gap after hero */
-    .hero + section {
-      margin-top: 0 !important;
-    }
-  }
-</style>
-<style id="km-hero-gap-fix-v2">
-  @media (min-width: 769px) {
-
-    /* 1) Bring hero image up directly below header */
-    .hero,
-    .hero-section,
-    .homepage-hero {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-      min-height: auto !important;
-      background: #eef4ef !important;
-    }
-
-    .hero-image,
-    .hero-banner,
-    .hero-media {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-      display: block !important;
-      position: relative !important;
-      top: 0 !important;
-    }
-
-    .hero-image img,
-    .hero-banner img,
-    .hero-media img {
-      width: 100% !important;
-      height: auto !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-    }
-
-    /* 2) Reduce the bottom white patch height */
-    .hero-bottom,
-    .hero-strip,
-    .hero-cards-wrap,
-    .hero-cards-section {
-      margin-top: 0 !important;
-      padding-top: 10px !important;
-      padding-bottom: 10px !important;
-      min-height: 90px !important;
-      height: auto !important;
-      background: #eef4ef !important;
-    }
-
-    /* 3) Keep bottom cards compact */
-    .hero-card-row,
-    .bottom-card-row {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      align-items: center !important;
-    }
-
-    .hero-card,
-    .bottom-mini-card {
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
-
-    /* 4) Reduce extra empty light area before next section */
     .hero + section,
-    .hero-section + section,
-    .homepage-hero + section {
+    .hero + .content {
       margin-top: 0 !important;
-      padding-top: 18px !important;
+      padding-top: 72px !important;
     }
   }
 </style>
@@ -1281,27 +787,10 @@
       </div>
     </div>
   </footer>
-<script id="km-force-left-hero-final-js">
-(function () {
-  function forceHeroLeft() {
-    var img = document.querySelector('.hero-image img, .hero-main img, .hero img[alt*="KisanMitraAI"]');
-    if (!img) return;
 
-    img.style.setProperty('object-fit', 'cover', 'important');
-    img.style.setProperty('object-position', 'left top', 'important');
-    img.style.setProperty('transform', 'none', 'important');
-    img.style.setProperty('transform-origin', 'left top', 'important');
-    img.style.setProperty('max-width', 'none', 'important');
-  }
-
-  forceHeroLeft();
-  window.addEventListener('load', forceHeroLeft);
-  setTimeout(forceHeroLeft, 500);
-  setTimeout(forceHeroLeft, 1500);
-})();
-</script>
 </body>
 </html>
+
 
 
 
