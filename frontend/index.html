@@ -4,32 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KisanMitraAI | Precision Farming & Market Intelligence</title>
-  <meta name="description" content="KisanMitraAI is an AI-powered precision farming, crop intelligence, farmer account books, mandi advice, buyer trust and farm-to-market platform." />
+  <meta name="description" content="KisanMitraAI is an AI-powered precision farming, crop intelligence, farmer P&L, account books, mandi advice, buyer trust and farm-to-market platform." />
 
   <style>
     :root {
       --green: #075b18;
-      --green2: #118331;
+      --green-dark: #032d10;
       --orange: #f26522;
-      --dark: #102315;
-      --muted: #5d6a61;
       --bg: #eef5ef;
-      --shadow: 0 18px 44px rgba(6, 35, 13, 0.16);
+      --text: #102315;
+      --muted: #53625a;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       width: 100%;
-      max-width: 100%;
       overflow-x: hidden;
       background: var(--bg);
-      color: var(--dark);
+      color: var(--text);
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       scroll-behavior: smooth;
       scroll-padding-top: 112px;
@@ -40,35 +35,31 @@
       text-decoration: none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    /* Real fixed header */
     .km-header {
       position: fixed;
       top: 14px;
-      left: clamp(16px, 4vw, 72px);
-      right: clamp(16px, 4vw, 72px);
-      z-index: 99999;
+      left: 18px;
+      right: 18px;
       height: 82px;
+      z-index: 99999;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 28px;
       padding: 8px 26px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.78);
-      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.76);
+      box-shadow: 0 18px 44px rgba(6,35,13,0.16);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
 
     .km-logo img {
-      width: 248px;
+      width: 238px;
       height: auto;
+      display: block;
+      mix-blend-mode: multiply;
     }
 
     .km-nav {
@@ -77,7 +68,7 @@
       justify-content: center;
       gap: clamp(28px, 4vw, 64px);
       font-size: 16px;
-      font-weight: 900;
+      font-weight: 500;
       color: #0b3316;
     }
 
@@ -93,14 +84,14 @@
       justify-content: center;
       gap: 10px;
       border-radius: 14px;
+      color: #fff;
       background: linear-gradient(180deg, #197b2b, #08611c);
-      color: white;
       font-size: 16px;
-      font-weight: 900;
-      box-shadow: 0 12px 26px rgba(7, 91, 24, 0.28);
+      font-weight: 650;
+      box-shadow: 0 12px 26px rgba(7,91,24,0.28);
     }
 
-    .km-login-icon {
+    .km-login span {
       width: 27px;
       height: 27px;
       border: 2px solid rgba(255,255,255,0.86);
@@ -110,95 +101,163 @@
       font-size: 13px;
     }
 
-    /* Full width desktop hero */
     .desktop-hero {
-      width: 100vw;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
+      min-height: 100vh;
+      height: 100vh;
+      padding-top: 96px;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) 104px;
       overflow: hidden;
+      background: var(--bg);
     }
 
-    .desktop-hero-inner {
+    .hero-main {
       position: relative;
+      min-height: 0;
       width: 100vw;
-      margin: 0;
-      padding: 0;
       overflow: hidden;
       background: var(--bg);
     }
 
-    .desktop-hero-img {
+    .hero-main img {
       width: 100vw;
-      height: auto;
-      max-width: none;
+      height: 100%;
       display: block;
       object-fit: cover;
       object-position: center top;
     }
 
-    .hotspot {
+    .hero-click {
       position: absolute;
       z-index: 5;
       display: block;
-      border-radius: 12px;
-      outline: none;
+      border-radius: 14px;
     }
 
-    .hotspot:focus-visible {
-      outline: 3px solid rgba(242, 101, 34, 0.7);
-      outline-offset: 2px;
+    .hero-farmer { left: 7.2%; top: 67%; width: 10.8%; height: 10%; }
+    .hero-buyer  { left: 18.5%; top: 67%; width: 10.8%; height: 10%; }
+    .hero-how    { left: 30.2%; top: 67%; width: 14%; height: 10%; }
+
+    .hero-bottom {
+      height: 104px;
+      background: linear-gradient(180deg, #074918 0%, #063d15 52%, #02280e 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+      position: relative;
+      overflow: hidden;
     }
 
-    .hs-logo { left: 2.6%; top: 2.3%; width: 24%; height: 11.5%; }
-    .hs-farmers { left: 38%; top: 5.4%; width: 7%; height: 5%; }
-    .hs-buyers { left: 46.8%; top: 5.4%; width: 7%; height: 5%; }
-    .hs-engine { left: 55.8%; top: 5.4%; width: 8.8%; height: 5%; }
-    .hs-trust { left: 65.6%; top: 5.4%; width: 6%; height: 5%; }
-    .hs-contact { left: 72.7%; top: 5.4%; width: 7%; height: 5%; }
-    .hs-login { left: 86.2%; top: 3.6%; width: 10%; height: 7%; }
+    .hero-card-row {
+      position: absolute;
+      top: 8px;
+      left: clamp(58px, 7vw, 118px);
+      right: clamp(58px, 7vw, 118px);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-    .hs-farmer { left: 7%; top: 54%; width: 10.5%; height: 6%; }
-    .hs-buyer { left: 18.3%; top: 54%; width: 10.7%; height: 6%; }
-    .hs-how { left: 29.9%; top: 54%; width: 13.5%; height: 6%; }
+    .hero-card {
+      height: 54px;
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 10px;
+      border-radius: 13px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.78);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
 
-    .hs-card-farmers { left: 7%; top: 66%; width: 21.5%; height: 18%; }
-    .hs-card-buyers { left: 29.2%; top: 66%; width: 20%; height: 18%; }
-    .hs-card-engine { left: 50.2%; top: 66%; width: 20%; height: 18%; }
-    .hs-card-trust { left: 71%; top: 66%; width: 21%; height: 18%; }
+    .hero-card-icon {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 13px;
+      background: linear-gradient(180deg, #2b8d22, #13691d);
+    }
 
-    /* Mobile separate layout */
+    .hero-card-icon.orange {
+      background: linear-gradient(180deg, #f39a14, #f27900);
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 11.5px;
+      line-height: 1.05;
+      font-weight: 650;
+      margin-bottom: 2px;
+    }
+
+    .hero-card small {
+      display: block;
+      font-size: 8px;
+      line-height: 1.12;
+      color: #4b594f;
+      font-weight: 430;
+    }
+
+    .hero-stats {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 34px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: center;
+      gap: 10px;
+      padding: 3px clamp(80px, 15vw, 270px);
+      color: #fff;
+      background: #02280e;
+    }
+
+    .hero-stats div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .hero-stats span {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.13);
+      font-size: 10px;
+    }
+
+    .hero-stats strong {
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .hero-stats small {
+      font-size: 8.5px;
+      color: rgba(255,255,255,0.86);
+      font-weight: 430;
+    }
+
     .mobile-home {
       display: none;
-      padding: 86px 14px 34px;
+      padding: 90px 16px 42px;
+      text-align: center;
       background: linear-gradient(180deg, #eef5ef, #f8fbf8);
     }
 
-    .mobile-shell {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .mobile-hero-card {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 14px 34px rgba(6, 35, 13, 0.12);
-      background: white;
-    }
-
-    .mobile-hero-card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .mobile-intro {
-      padding: 26px 4px 0;
-      text-align: center;
-    }
-
-    .mobile-brand {
-      width: min(230px, 72vw);
-      margin: 0 auto 18px;
+    .mobile-logo {
+      width: min(230px, 70vw);
+      margin: 0 auto 20px;
+      display: block;
+      mix-blend-mode: multiply;
     }
 
     .mobile-title {
@@ -206,8 +265,8 @@
       color: var(--green);
       font-size: clamp(34px, 10vw, 58px);
       line-height: 1.04;
-      letter-spacing: -1.2px;
       font-weight: 950;
+      letter-spacing: -1px;
     }
 
     .mobile-title span {
@@ -226,7 +285,7 @@
     .mobile-actions {
       display: grid;
       gap: 12px;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     .btn {
@@ -234,54 +293,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 18px;
       border-radius: 15px;
+      padding: 0 18px;
       font-weight: 850;
       font-size: 17px;
-      text-align: center;
-      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.08);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green2));
-      color: white;
+      background: linear-gradient(135deg, var(--green), #118331);
+      color: #fff;
     }
 
     .btn-secondary {
-      background: white;
+      background: #fff;
       color: var(--green);
-      border: 1px solid rgba(7, 91, 24, 0.14);
+      border: 1px solid rgba(7,91,24,0.14);
     }
 
-    .mobile-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .mobile-card {
-      padding: 18px;
-      border-radius: 18px;
-      background: white;
-      border: 1px solid rgba(7, 91, 24, 0.12);
-      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.07);
-      text-align: left;
-    }
-
-    .mobile-card h3 {
-      margin: 0 0 8px;
-      color: var(--green);
-      font-size: 21px;
-    }
-
-    .mobile-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-      font-weight: 550;
-    }
-
-    /* Content sections */
     section.content {
       padding: clamp(54px, 7vw, 92px) clamp(18px, 5vw, 72px);
     }
@@ -302,7 +330,6 @@
       color: var(--green);
       font-size: clamp(30px, 4vw, 52px);
       line-height: 1.05;
-      letter-spacing: -1px;
     }
 
     .section-head p {
@@ -322,9 +349,9 @@
     .feature {
       padding: 24px;
       border-radius: 22px;
-      background: white;
-      border: 1px solid rgba(7, 91, 24, 0.12);
-      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.07);
+      background: #fff;
+      border: 1px solid rgba(7,91,24,0.12);
+      box-shadow: 0 12px 28px rgba(6,35,13,0.07);
     }
 
     .feature-icon {
@@ -341,7 +368,7 @@
 
     .feature h3 {
       margin: 0 0 9px;
-      color: var(--dark);
+      color: var(--text);
       font-size: 20px;
     }
 
@@ -353,29 +380,24 @@
     }
 
     .dark {
-      background:
-        radial-gradient(circle at 12% 14%, rgba(0, 170, 70, 0.18), transparent 30%),
-        linear-gradient(135deg, #041609, #082e14);
-      color: white;
+      background: radial-gradient(circle at 12% 14%, rgba(0,170,70,0.18), transparent 30%), linear-gradient(135deg, #041609, #082e14);
+      color: #fff;
     }
 
-    .dark .section-head h2 {
-      color: white;
+    .dark .section-head h2,
+    .dark .feature h3 {
+      color: #fff;
     }
 
     .dark .section-head p,
     .dark .feature p {
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255,255,255,0.75);
     }
 
     .dark .feature {
       background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.13);
       box-shadow: none;
-    }
-
-    .dark .feature h3 {
-      color: white;
     }
 
     .cta-wrap {
@@ -387,12 +409,9 @@
       margin: 0 auto;
       border-radius: 30px;
       padding: clamp(34px, 5vw, 58px);
-      background:
-        linear-gradient(90deg, rgba(7, 91, 24, 0.95), rgba(10, 132, 37, 0.86)),
-        url("./home-assets/kisanmitra-reference-hero.png") center / cover no-repeat;
-      color: white;
+      background: linear-gradient(90deg, rgba(7,91,24,0.95), rgba(10,132,37,0.86));
+      color: #fff;
       text-align: center;
-      box-shadow: 0 20px 46px rgba(6, 35, 13, 0.14);
     }
 
     .cta h2 {
@@ -405,7 +424,6 @@
       margin: 0 auto 24px;
       color: rgba(255,255,255,0.84);
       line-height: 1.55;
-      font-weight: 550;
     }
 
     .cta-actions {
@@ -426,13 +444,12 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 20px;
       flex-wrap: wrap;
     }
 
     footer strong {
-      color: white;
+      color: #fff;
     }
 
     .footer-links {
@@ -443,12 +460,37 @@
     }
 
     @media (max-width: 1100px) {
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .hero-card-row {
+        left: 22px;
+        right: 22px;
+        gap: 8px;
+      }
+
+      .hero-card {
+        grid-template-columns: 26px 1fr;
+        padding: 5px 7px;
+      }
+
+      .hero-card-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+      }
+
+      .hero-card strong {
+        font-size: 10.5px;
+      }
+
+      .hero-card small {
+        font-size: 7.3px;
+      }
+
+      .hero-stats {
+        padding: 3px 28px;
       }
 
       .km-logo img {
-        width: 220px;
+        width: 210px;
       }
 
       .km-nav {
@@ -458,11 +500,6 @@
     }
 
     @media (max-width: 768px) {
-      html,
-      body {
-        scroll-padding-top: 84px;
-      }
-
       .desktop-hero {
         display: none;
       }
@@ -493,515 +530,25 @@
         height: 38px;
         font-size: 14px;
         border-radius: 12px;
-        gap: 7px;
       }
 
-      .km-login-icon {
+      .km-login span {
         width: 22px;
         height: 22px;
         font-size: 11px;
-        border-width: 1.5px;
       }
 
       .grid {
         grid-template-columns: 1fr;
       }
-
-      section.content {
-        padding: 44px 16px;
-      }
-
-      .cta-wrap {
-        padding: 0 16px 52px;
-      }
     }
   </style>
-
-
-
-
-
-
-<style id="km-hero-safe-offset-final">
-  @media (min-width: 769px) {
-    .desktop-hero {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      padding: 110px 0 0 0 !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero-inner {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      height: calc(100vw * 0.5628 - 128px) !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      position: relative !important;
-      border-radius: 0 !important;
-      background: #eef5ef !important;
-    }
-
-    .desktop-hero-inner::before {
-      display: none !important;
-      content: none !important;
-    }
-
-    .desktop-hero-img {
-      width: 100vw !important;
-      max-width: none !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      transform: translateY(-128px) !important;
-      transform-origin: top center !important;
-      border-radius: 0 !important;
-    }
-
-    .km-header {
-      position: fixed !important;
-      top: 14px !important;
-      left: clamp(18px, 4vw, 72px) !important;
-      right: clamp(18px, 4vw, 72px) !important;
-      height: 82px !important;
-      padding: 8px 26px !important;
-      border-radius: 22px !important;
-      z-index: 2147483647 !important;
-      background: rgba(255, 255, 255, 0.95) !important;
-      box-shadow: 0 18px 44px rgba(6, 35, 13, 0.16) !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
-    }
-
-    .km-logo img {
-      width: 248px !important;
-      height: auto !important;
-    }
-
-    .km-nav {
-      font-size: 16px !important;
-      gap: clamp(28px, 4vw, 64px) !important;
-    }
-
-    .km-login {
-      height: 50px !important;
-      min-width: 124px !important;
-      font-size: 16px !important;
-    }
-
-    /* Hide clickable areas for the baked header inside the image */
-    .hs-logo,
-    .hs-farmers,
-    .hs-buyers,
-    .hs-engine,
-    .hs-trust,
-    .hs-contact,
-    .hs-login {
-      display: none !important;
-    }
-
-    /* Realign hero click zones after top crop */
-    .hs-farmer { top: 46.8% !important; }
-    .hs-buyer { top: 46.8% !important; }
-    .hs-how { top: 46.8% !important; }
-
-    .hs-card-farmers,
-    .hs-card-buyers,
-    .hs-card-engine,
-    .hs-card-trust {
-      top: 60.6% !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .desktop-hero {
-      display: none !important;
-    }
-
-    .mobile-home {
-      display: block !important;
-      padding-top: 84px !important;
-    }
-
-    .mobile-hero-card {
-      display: none !important;
-    }
-
-    .km-header {
-      position: fixed !important;
-      top: 10px !important;
-      left: 12px !important;
-      right: 12px !important;
-      height: 62px !important;
-      padding: 8px 12px !important;
-      border-radius: 18px !important;
-      z-index: 2147483647 !important;
-    }
-
-    .km-logo img {
-      width: 122px !important;
-    }
-
-    .km-nav {
-      display: none !important;
-    }
-  }
-</style>
-<style id="km-remove-double-header">
-  /* keep only the real top header */
-  body {
-    overflow-x: hidden !important;
-  }
-
-  .km-header {
-    position: fixed !important;
-    top: 14px !important;
-    left: 18px !important;
-    right: 18px !important;
-    z-index: 99999 !important;
-  }
-
-  /* remove/disable any extra header inside hero or duplicate wrappers */
-  .desktop-hero .km-header,
-  .desktop-hero header,
-  .desktop-hero .site-header,
-  .desktop-hero .top-header,
-  .desktop-hero .main-header,
-  .hero-header,
-  .hero-topbar,
-  .header-clone,
-  .header-duplicate,
-  .sticky-header-clone,
-  .floating-header-clone {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* avoid second spacing caused by duplicate sticky containers */
-  .header-spacer,
-  .sticky-spacer,
-  .topbar-spacer {
-    display: none !important;
-    height: 0 !important;
-  }
-</style>
-
-<script id="km-remove-double-header">
-document.addEventListener("DOMContentLoaded", function () {
-  const mainHeader = document.querySelector(".km-header");
-  const allHeaders = Array.from(document.querySelectorAll("header, .km-header, .site-header, .main-header, .top-header"));
-
-  let kept = false;
-  allHeaders.forEach((el) => {
-    if (!kept && el.classList.contains("km-header")) {
-      kept = true;
-      return;
-    }
-    if (mainHeader && el === mainHeader) return;
-
-    const insideHero = el.closest(".desktop-hero, .desktop-hero-inner, .hero, .hero-section");
-    const looksDuplicate =
-      el.classList.contains("km-header") ||
-      el.classList.contains("site-header") ||
-      el.classList.contains("main-header") ||
-      el.classList.contains("top-header") ||
-      insideHero;
-
-    if (looksDuplicate) {
-      el.remove();
-    }
-  });
-});
-</script>
-<style id="km-header-logo-menu-polish">
-  .km-logo,
-  .km-logo img {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-  }
-
-  .km-logo img {
-    width: 238px !important;
-    object-fit: contain !important;
-  }
-
-  .km-nav,
-  .km-nav a {
-    font-weight: 650 !important;
-    letter-spacing: 0 !important;
-  }
-
-  .km-login {
-    font-weight: 750 !important;
-  }
-
-  @media (max-width: 768px) {
-    .km-logo img {
-      width: 118px !important;
-    }
-  }
-</style>
-<style id="km-final-header-logo-clean">
-  /* Remove visible patch behind header logo */
-  .km-header {
-    background: rgba(255, 255, 255, 0.90) !important;
-  }
-
-  .km-logo {
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    overflow: visible !important;
-  }
-
-  .km-logo img {
-    width: 238px !important;
-    height: auto !important;
-    object-fit: contain !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-
-    /* This removes the light rectangle inside the logo image */
-    mix-blend-mode: multiply !important;
-    filter: saturate(1.08) contrast(1.05) !important;
-  }
-
-  /* Menu text less bold */
-  .km-nav,
-  .km-nav a {
-    font-weight: 500 !important;
-    letter-spacing: 0 !important;
-    text-shadow: none !important;
-  }
-
-  .km-login {
-    font-weight: 650 !important;
-  }
-
-  @media (max-width: 768px) {
-    .km-logo img {
-      width: 118px !important;
-    }
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-<style id="km-clean-final-homepage">
-  @media (min-width: 769px) {
-    .km-header {
-      position: fixed !important;
-      top: 14px !important;
-      left: 18px !important;
-      right: 18px !important;
-      height: 82px !important;
-      z-index: 99999 !important;
-      background: rgba(255,255,255,.94) !important;
-    }
-
-    .km-logo img {
-      width: 238px !important;
-      mix-blend-mode: multiply !important;
-    }
-
-    .km-nav,
-    .km-nav a {
-      font-weight: 500 !important;
-    }
-
-    .km-clean-home-hero {
-      height: 100vh !important;
-      padding-top: 96px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .km-clean-hero-image {
-      position: relative !important;
-      flex: 1 1 auto !important;
-      min-height: 0 !important;
-      width: 100vw !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .km-clean-hero-image img {
-      width: 100vw !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-    }
-
-    .km-hero-btn {
-      position: absolute !important;
-      z-index: 8 !important;
-      display: block !important;
-      border-radius: 12px !important;
-    }
-
-    .km-hero-farmer {
-      left: 7.2% !important;
-      top: 63% !important;
-      width: 10.5% !important;
-      height: 9% !important;
-    }
-
-    .km-hero-buyer {
-      left: 18.5% !important;
-      top: 63% !important;
-      width: 10.5% !important;
-      height: 9% !important;
-    }
-
-    .km-hero-how {
-      left: 30.2% !important;
-      top: 63% !important;
-      width: 14% !important;
-      height: 9% !important;
-    }
-
-    .km-clean-bottom-strip {
-      flex: 0 0 104px !important;
-      height: 104px !important;
-      width: 100vw !important;
-      background: linear-gradient(180deg, #074918 0%, #063d15 52%, #02280e 100%) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
-      position: relative !important;
-      overflow: hidden !important;
-    }
-
-    .km-clean-card-row {
-      position: absolute !important;
-      top: 8px !important;
-      left: clamp(58px, 7vw, 118px) !important;
-      right: clamp(58px, 7vw, 118px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-    }
-
-    .km-clean-card {
-      height: 54px !important;
-      display: grid !important;
-      grid-template-columns: 30px 1fr !important;
-      align-items: center !important;
-      gap: 9px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-      background: rgba(255,255,255,.94) !important;
-      color: #102315 !important;
-      text-decoration: none !important;
-      overflow: hidden !important;
-    }
-
-    .km-clean-icon {
-      width: 28px !important;
-      height: 28px !important;
-      display: grid !important;
-      place-items: center !important;
-      border-radius: 999px !important;
-      color: #fff !important;
-      font-size: 13px !important;
-      background: linear-gradient(180deg, #2b8d22, #13691d) !important;
-    }
-
-    .km-clean-icon.orange {
-      background: linear-gradient(180deg, #f39a14, #f27900) !important;
-    }
-
-    .km-clean-card strong {
-      display: block !important;
-      font-size: 11.5px !important;
-      line-height: 1.05 !important;
-      font-weight: 650 !important;
-      margin-bottom: 2px !important;
-    }
-
-    .km-clean-card small {
-      display: block !important;
-      font-size: 8px !important;
-      line-height: 1.12 !important;
-      color: #4b594f !important;
-      font-weight: 430 !important;
-    }
-
-    .km-clean-stats-row {
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      height: 34px !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      align-items: center !important;
-      gap: 10px !important;
-      padding: 3px clamp(80px, 15vw, 270px) !important;
-      color: #fff !important;
-      background: #02280e !important;
-    }
-
-    .km-clean-stats-row div {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 7px !important;
-    }
-
-    .km-clean-stats-row span {
-      width: 22px !important;
-      height: 22px !important;
-      display: grid !important;
-      place-items: center !important;
-      border-radius: 999px !important;
-      background: rgba(255,255,255,.13) !important;
-      font-size: 10px !important;
-    }
-
-    .km-clean-stats-row strong {
-      font-size: 13px !important;
-      line-height: 1 !important;
-      font-weight: 700 !important;
-    }
-
-    .km-clean-stats-row small {
-      font-size: 8.5px !important;
-      color: rgba(255,255,255,.86) !important;
-      font-weight: 430 !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .km-clean-home-hero {
-      display: none !important;
-    }
-  }
-</style>
 </head>
 
 <body>
   <header class="km-header">
     <a class="km-logo" href="./index.html" aria-label="KisanMitraAI Home">
-      <img src="./home-assets/kisanmitra-logo-header-transparent.png" alt="KisanMitraAI" />
+      <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
     </a>
 
     <nav class="km-nav" aria-label="Main navigation">
@@ -1012,99 +559,45 @@ document.addEventListener("DOMContentLoaded", function () {
       <a href="#contact">Contact</a>
     </nav>
 
-    <a class="km-login" href="./login.html">
-      <span class="km-login-icon">◎</span>
-      Login
-    </a>
+    <a class="km-login" href="./login.html"><span>◎</span>Login</a>
   </header>
 
   <main>
-    <section class="desktop-hero km-clean-home-hero">
-  <div class="km-clean-hero-image">
-    <img src="./home-assets/kisanmitra-hero-main-crop.png" alt="KisanMitraAI precision farming and market intelligence" />
+    <section class="desktop-hero">
+      <div class="hero-main">
+        <img src="./home-assets/kisanmitra-hero-clean-main.png" alt="KisanMitraAI precision farming and market intelligence" />
 
-    <a class="km-hero-btn km-hero-farmer" href="#farmers" aria-label="I am a Farmer"></a>
-    <a class="km-hero-btn km-hero-buyer" href="#buyers" aria-label="I am a Buyer"></a>
-    <a class="km-hero-btn km-hero-how" href="#engine" aria-label="See How It Works"></a>
-  </div>
+        <a class="hero-click hero-farmer" href="#farmers" aria-label="I am a Farmer"></a>
+        <a class="hero-click hero-buyer" href="#buyers" aria-label="I am a Buyer"></a>
+        <a class="hero-click hero-how" href="#engine" aria-label="See How It Works"></a>
+      </div>
 
-  <div class="km-clean-bottom-strip">
-    <div class="km-clean-card-row">
-      <a class="km-clean-card" href="#farmers">
-        <span class="km-clean-icon">👨‍🌾</span>
-        <span>
-          <strong>For Farmers</strong>
-          <small>Crop advisory, P&L, account books and better yields.</small>
-        </span>
-      </a>
-
-      <a class="km-clean-card" href="#buyers">
-        <span class="km-clean-icon orange">🛒</span>
-        <span>
-          <strong>For Buyers</strong>
-          <small>Verified suppliers, crop visibility and procurement.</small>
-        </span>
-      </a>
-
-      <a class="km-clean-card" href="#engine">
-        <span class="km-clean-icon">🧠</span>
-        <span>
-          <strong>AI Engine</strong>
-          <small>Crop intelligence, image analysis and smart advice.</small>
-        </span>
-      </a>
-
-      <a class="km-clean-card" href="#trust">
-        <span class="km-clean-icon">🛡</span>
-        <span>
-          <strong>Trust</strong>
-          <small>Verified data, safer flow and traceability.</small>
-        </span>
-      </a>
-    </div>
-
-    <div class="km-clean-stats-row">
-      <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
-      <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
-      <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
-      <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
-    </div>
-  </div>
-</section>
-
-<section class="mobile-home">
-      <div class="mobile-shell">
-        <div class="mobile-hero-card">
-          <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI homepage hero" />
+      <div class="hero-bottom">
+        <div class="hero-card-row">
+          <a class="hero-card" href="#farmers"><span class="hero-card-icon">👨‍🌾</span><span><strong>For Farmers</strong><small>Crop advisory, P&L, account books and better yields.</small></span></a>
+          <a class="hero-card" href="#buyers"><span class="hero-card-icon orange">🛒</span><span><strong>For Buyers</strong><small>Verified suppliers, crop visibility and procurement.</small></span></a>
+          <a class="hero-card" href="#engine"><span class="hero-card-icon">🧠</span><span><strong>AI Engine</strong><small>Crop intelligence, image analysis and smart advice.</small></span></a>
+          <a class="hero-card" href="#trust"><span class="hero-card-icon">🛡</span><span><strong>Trust</strong><small>Verified data, safer flow and traceability.</small></span></a>
         </div>
 
-        <div class="mobile-intro">
-          <img class="mobile-brand" src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo" />
-
-          <h1 class="mobile-title">
-            Exact Information.<br>
-            <span>Precision Farming.</span><br>
-            Stronger Market Connection.
-          </h1>
-
-          <p class="mobile-desc">
-            KisanMitraAI empowers farmers with AI crop intelligence, account books, P&amp;L reports,
-            mandi advice, buyer trust, and verified farm-to-market support.
-          </p>
-
-          <div class="mobile-actions">
-            <a class="btn btn-primary" href="./login.html">Login to Web Tool</a>
-            <a class="btn btn-secondary" href="#farmers">I’m a Farmer</a>
-            <a class="btn btn-secondary" href="#buyers">I’m a Buyer</a>
-            <a class="btn btn-secondary" href="#engine">See How It Works</a>
-          </div>
-
-          <div class="mobile-grid">
-            <div class="mobile-card"><h3>For Farmers</h3><p>AI crop advisory, farmer P&amp;L, personal account books, crop calendar, mandi advice and value addition support.</p></div>
-            <div class="mobile-card"><h3>For Buyers</h3><p>Verified crop visibility, supplier confidence, demand matching and safer crop-to-market transactions.</p></div>
-            <div class="mobile-card"><h3>AI Engine</h3><p>Farm intelligence, image analysis, weather, soil estimates, market signals and trust-based recommendations.</p></div>
-          </div>
+        <div class="hero-stats">
+          <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
+          <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
+          <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
+          <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
         </div>
+      </div>
+    </section>
+
+    <section class="mobile-home">
+      <img class="mobile-logo" src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo" />
+      <h1 class="mobile-title">Exact Information.<br><span>Precision Farming.</span><br>Stronger Market Connection.</h1>
+      <p class="mobile-desc">KisanMitraAI empowers farmers with AI crop intelligence, account books, P&L reports, mandi advice, buyer trust, and verified farm-to-market support.</p>
+      <div class="mobile-actions">
+        <a class="btn btn-primary" href="./login.html">Login to Web Tool</a>
+        <a class="btn btn-secondary" href="#farmers">I’m a Farmer</a>
+        <a class="btn btn-secondary" href="#buyers">I’m a Buyer</a>
+        <a class="btn btn-secondary" href="#engine">See How It Works</a>
       </div>
     </section>
 
@@ -1112,16 +605,15 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="section-inner">
         <div class="section-head">
           <h2>AI tools for farmers</h2>
-          <p>Farm mapping, farmer P&amp;L reports, personal account books, day-to-day crop calendar, mandi-rate advice and more value-addition intelligence.</p>
+          <p>Farm mapping, farmer P&L reports, personal account books, day-to-day crop calendar, mandi-rate advice and value-addition intelligence.</p>
         </div>
-
         <div class="grid">
           <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS farm boundary, area, satellite view, crop planning support and farm profile intelligence.</p></article>
-          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&amp;L Reports</h3><p>Crop-wise production cost, sale forecast, logistics, dues and profit/loss visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise production cost, sale forecast, logistics, dues and profit/loss visibility.</p></article>
           <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Books</h3><p>Farmer expense records, input purchase, labour, irrigation, loans and payments in one place.</p></article>
           <article class="feature"><div class="feature-icon">🗓️</div><h3>Crop Calendar</h3><p>Day-to-day tasks, sowing, irrigation, fertilizer, crop stage tracking and harvest reminders.</p></article>
-          <article class="feature"><div class="feature-icon">🏪</div><h3>Mandi Advice</h3><p>Nearby and India-wide mandi rate intelligence with comparison and timing guidance.</p></article>
-          <article class="feature"><div class="feature-icon">📦</div><h3>More Value Addition</h3><p>Sorting, grading, packing, storage and value-add pathways to improve crop realization.</p></article>
+          <article class="feature"><div class="feature-icon">🏪</div><h3>Mandi Advice</h3><p>Nearby and India-wide mandi-rate intelligence with comparison and timing guidance.</p></article>
+          <article class="feature"><div class="feature-icon">📦</div><h3>Value Addition</h3><p>Sorting, grading, packing, storage and value-add pathways to improve crop realization.</p></article>
         </div>
       </div>
     </section>
@@ -1129,14 +621,13 @@ document.addEventListener("DOMContentLoaded", function () {
     <section class="content dark" id="engine">
       <div class="section-inner">
         <div class="section-head">
-          <h2>KisanMitraAI engine</h2>
+          <h2>KisanMitraAI Engine</h2>
           <p>An intelligent AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
         </div>
-
         <div class="grid">
           <article class="feature"><div class="feature-icon">AI</div><h3>Crop Intelligence</h3><p>Smart advisory based on crop stage, risk, weather and field information.</p></article>
           <article class="feature"><div class="feature-icon">🛰️</div><h3>Satellite + GPS</h3><p>Farm visibility, crop mapping and field-level intelligence for better decisions.</p></article>
-          <article class="feature"><div class="feature-icon">🌦️</div><h3>Weather Layer</h3><p>Weather-linked crop support for planning irrigation, spray and field actions.</p></article>
+          <article class="feature"><div class="feature-icon">🌦️</div><h3>Weather Layer</h3><p>Weather-linked crop support for irrigation, spray and field actions.</p></article>
         </div>
       </div>
     </section>
@@ -1147,10 +638,9 @@ document.addEventListener("DOMContentLoaded", function () {
           <h2>Trusted tools for buyers</h2>
           <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
         </div>
-
         <div class="grid">
           <article class="feature"><div class="feature-icon">🛒</div><h3>Verified Crop Visibility</h3><p>See crop type, expected supply, producer background and trust-supporting farm details.</p></article>
-          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Matching</h3><p>Get relevant farmer-side opportunities based on location, crop, timing and requirements.</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Matching</h3><p>Get farmer-side opportunities based on location, crop, timing and requirements.</p></article>
           <article class="feature"><div class="feature-icon">🛡️</div><h3>Safer Procurement</h3><p>Transparency, evidence-based sourcing and a stronger farm-to-buyer connection layer.</p></article>
         </div>
       </div>
@@ -1162,11 +652,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <h2>Trust & transparency</h2>
           <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
         </div>
-
         <div class="grid">
-          <article class="feature"><div class="feature-icon">✅</div><h3>Verified Data</h3><p>Clear farmer-side records, structured intelligence and support for traceable workflows.</p></article>
+          <article class="feature"><div class="feature-icon">✅</div><h3>Verified Data</h3><p>Structured farmer-side records and intelligence for traceable workflows.</p></article>
           <article class="feature"><div class="feature-icon">🔍</div><h3>Transparency</h3><p>Better confidence through visible crop information, planning support and account-backed flow.</p></article>
-          <article class="feature"><div class="feature-icon">🌍</div><h3>Global Market Linkage</h3><p>A broader AI-powered system helping connect farmers and buyers more intelligently.</p></article>
+          <article class="feature"><div class="feature-icon">🌍</div><h3>Market Linkage</h3><p>A broader AI-powered system helping connect farmers and buyers more intelligently.</p></article>
         </div>
       </div>
     </section>
@@ -1198,25 +687,3 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
