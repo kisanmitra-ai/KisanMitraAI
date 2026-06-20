@@ -4,33 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KisanMitraAI | Precision Farming & Market Intelligence</title>
-  <meta name="description" content="KisanMitraAI is an AI-powered precision farming, crop intelligence, farmer account book, mandi advice, buyer trust, and farm-to-market platform." />
-  <link rel="icon" href="./kisanmitra-web-ui/assets/favicon.png" />
+  <meta name="description" content="KisanMitraAI is an AI-powered precision farming, crop intelligence, farmer account books, mandi advice, buyer trust and farm-to-market platform." />
 
   <style>
     :root {
       --green: #075b18;
-      --green2: #0b7a25;
+      --green2: #118331;
       --orange: #f26522;
-      --deep: #06230d;
-      --soft: #f3f8f3;
-      --muted: #53625a;
+      --dark: #102315;
+      --muted: #5d6a61;
+      --bg: #eef5ef;
+      --shadow: 0 18px 44px rgba(6, 35, 13, 0.16);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      color: var(--deep);
-      background: var(--soft);
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
       overflow-x: hidden;
+      background: var(--bg);
+      color: var(--dark);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      scroll-behavior: smooth;
+      scroll-padding-top: 112px;
     }
 
     a {
@@ -38,107 +40,187 @@
       text-decoration: none;
     }
 
-    .hero-stage {
-      min-height: 100svh;
-      display: grid;
-      place-items: start center;
-      padding: clamp(8px, 1.4vw, 22px);
-      background:
-        radial-gradient(circle at 18% 8%, rgba(255,255,255,.95), transparent 28%),
-        linear-gradient(180deg, #eef6ef, #f8fbf8);
-    }
-
-    .hero-canvas {
-      position: relative;
-      width: min(100%, 1780px);
-      aspect-ratio: 1672 / 941;
-      border-radius: clamp(0px, 0.8vw, 18px);
-      overflow: hidden;
-      box-shadow: 0 22px 70px rgba(6, 35, 13, 0.14);
-      background: #eaf3ea;
-    }
-
-    .hero-art {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    img {
       display: block;
-      user-select: none;
-      -webkit-user-drag: none;
+      max-width: 100%;
+    }
+
+    /* Real fixed header */
+    .km-header {
+      position: fixed;
+      top: 14px;
+      left: clamp(16px, 4vw, 72px);
+      right: clamp(16px, 4vw, 72px);
+      z-index: 99999;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 8px 26px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .km-logo img {
+      width: 248px;
+      height: auto;
+    }
+
+    .km-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(28px, 4vw, 64px);
+      font-size: 16px;
+      font-weight: 900;
+      color: #0b3316;
+    }
+
+    .km-nav a:hover {
+      color: var(--orange);
+    }
+
+    .km-login {
+      min-width: 124px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #197b2b, #08611c);
+      color: white;
+      font-size: 16px;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(7, 91, 24, 0.28);
+    }
+
+    .km-login-icon {
+      width: 27px;
+      height: 27px;
+      border: 2px solid rgba(255,255,255,0.86);
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+
+    /* Full width desktop hero */
+    .desktop-hero {
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .desktop-hero-inner {
+      position: relative;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .desktop-hero-img {
+      width: 100vw;
+      height: auto;
+      max-width: none;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
     }
 
     .hotspot {
       position: absolute;
       z-index: 5;
       display: block;
-      border-radius: 14px;
+      border-radius: 12px;
       outline: none;
     }
 
     .hotspot:focus-visible {
       outline: 3px solid rgba(242, 101, 34, 0.7);
-      outline-offset: 3px;
+      outline-offset: 2px;
     }
 
-    /* Reference-image clickable areas */
-    .hs-logo { left: 2.6%; top: 2.4%; width: 24%; height: 11.8%; }
-    .hs-farmers { left: 38.5%; top: 5.5%; width: 6.8%; height: 5%; }
-    .hs-buyers { left: 47.2%; top: 5.5%; width: 6.4%; height: 5%; }
-    .hs-engine { left: 55.8%; top: 5.5%; width: 8.6%; height: 5%; }
-    .hs-trust { left: 65.2%; top: 5.5%; width: 6%; height: 5%; }
-    .hs-contact { left: 72.5%; top: 5.5%; width: 7%; height: 5%; }
-    .hs-login { left: 86.4%; top: 3.8%; width: 9.6%; height: 7%; }
+    .hs-logo { left: 2.6%; top: 2.3%; width: 24%; height: 11.5%; }
+    .hs-farmers { left: 38%; top: 5.4%; width: 7%; height: 5%; }
+    .hs-buyers { left: 46.8%; top: 5.4%; width: 7%; height: 5%; }
+    .hs-engine { left: 55.8%; top: 5.4%; width: 8.8%; height: 5%; }
+    .hs-trust { left: 65.6%; top: 5.4%; width: 6%; height: 5%; }
+    .hs-contact { left: 72.7%; top: 5.4%; width: 7%; height: 5%; }
+    .hs-login { left: 86.2%; top: 3.6%; width: 10%; height: 7%; }
 
-    .hs-farmer-cta { left: 7.2%; top: 54%; width: 10.4%; height: 6%; }
-    .hs-buyer-cta { left: 18.4%; top: 54%; width: 10.8%; height: 6%; }
-    .hs-how { left: 30.0%; top: 54%; width: 13.5%; height: 6%; }
+    .hs-farmer { left: 7%; top: 54%; width: 10.5%; height: 6%; }
+    .hs-buyer { left: 18.3%; top: 54%; width: 10.7%; height: 6%; }
+    .hs-how { left: 29.9%; top: 54%; width: 13.5%; height: 6%; }
 
-    .hs-card-farmers { left: 7.2%; top: 65.8%; width: 21.2%; height: 18.8%; }
-    .hs-card-buyers { left: 29.2%; top: 65.8%; width: 20.8%; height: 18.8%; }
-    .hs-card-engine { left: 50.5%; top: 65.8%; width: 19.8%; height: 18.8%; }
-    .hs-card-trust { left: 71.0%; top: 65.8%; width: 20.5%; height: 18.8%; }
+    .hs-card-farmers { left: 7%; top: 66%; width: 21.5%; height: 18%; }
+    .hs-card-buyers { left: 29.2%; top: 66%; width: 20%; height: 18%; }
+    .hs-card-engine { left: 50.2%; top: 66%; width: 20%; height: 18%; }
+    .hs-card-trust { left: 71%; top: 66%; width: 21%; height: 18%; }
 
-    .mobile-content {
+    /* Mobile separate layout */
+    .mobile-home {
       display: none;
-      padding: 28px 18px 44px;
-      background: #f8fbf8;
+      padding: 86px 14px 34px;
+      background: linear-gradient(180deg, #eef5ef, #f8fbf8);
     }
 
-    .mobile-inner {
-      max-width: 760px;
+    .mobile-shell {
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    .mobile-logo {
-      width: 210px;
-      max-width: 72vw;
-      display: block;
-      margin: 0 auto 22px;
+    .mobile-hero-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(6, 35, 13, 0.12);
+      background: white;
     }
 
-    .mobile-content h1 {
-      margin: 0 0 12px;
-      color: var(--green);
-      font-size: clamp(34px, 10vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -1.4px;
+    .mobile-hero-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .mobile-intro {
+      padding: 26px 4px 0;
       text-align: center;
     }
 
-    .mobile-content h1 span {
+    .mobile-brand {
+      width: min(230px, 72vw);
+      margin: 0 auto 18px;
+    }
+
+    .mobile-title {
+      margin: 0;
+      color: var(--green);
+      font-size: clamp(34px, 10vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -1.2px;
+      font-weight: 950;
+    }
+
+    .mobile-title span {
       color: var(--orange);
     }
 
-    .mobile-content p {
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-      text-align: center;
+    .mobile-desc {
+      margin: 18px auto 0;
       max-width: 620px;
-      font-weight: 550;
+      color: var(--muted);
+      font-size: clamp(17px, 4.8vw, 24px);
+      line-height: 1.48;
+      font-weight: 600;
     }
 
     .mobile-actions {
@@ -147,26 +229,34 @@
       margin-top: 22px;
     }
 
-    .mobile-btn {
-      min-height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      font-weight: 900;
-      background: white;
-      border: 1px solid rgba(7, 91, 24, 0.15);
-      box-shadow: 0 10px 24px rgba(6, 35, 13, 0.08);
+    .btn {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 15px;
+      font-weight: 850;
+      font-size: 17px;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.08);
     }
 
-    .mobile-btn.primary {
-      background: linear-gradient(135deg, #075b18, #0b8d29);
+    .btn-primary {
+      background: linear-gradient(135deg, var(--green), var(--green2));
       color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--green);
+      border: 1px solid rgba(7, 91, 24, 0.14);
     }
 
     .mobile-grid {
       display: grid;
       gap: 14px;
-      margin-top: 24px;
+      margin-top: 22px;
     }
 
     .mobile-card {
@@ -174,24 +264,25 @@
       border-radius: 18px;
       background: white;
       border: 1px solid rgba(7, 91, 24, 0.12);
-      box-shadow: 0 10px 24px rgba(6, 35, 13, 0.07);
+      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.07);
+      text-align: left;
     }
 
-    .mobile-card strong {
-      display: block;
+    .mobile-card h3 {
+      margin: 0 0 8px;
       color: var(--green);
-      font-size: 18px;
-      margin-bottom: 6px;
+      font-size: 21px;
     }
 
-    .mobile-card small {
-      display: block;
+    .mobile-card p {
+      margin: 0;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.5;
       font-weight: 550;
     }
 
-    section {
+    /* Content sections */
+    section.content {
       padding: clamp(54px, 7vw, 92px) clamp(18px, 5vw, 72px);
     }
 
@@ -208,10 +299,10 @@
 
     .section-head h2 {
       margin: 0 0 12px;
+      color: var(--green);
       font-size: clamp(30px, 4vw, 52px);
       line-height: 1.05;
       letter-spacing: -1px;
-      color: var(--green);
     }
 
     .section-head p {
@@ -229,9 +320,9 @@
     }
 
     .feature {
-      background: white;
-      border-radius: 22px;
       padding: 24px;
+      border-radius: 22px;
+      background: white;
       border: 1px solid rgba(7, 91, 24, 0.12);
       box-shadow: 0 12px 28px rgba(6, 35, 13, 0.07);
     }
@@ -250,8 +341,8 @@
 
     .feature h3 {
       margin: 0 0 9px;
+      color: var(--dark);
       font-size: 20px;
-      color: var(--deep);
     }
 
     .feature p {
@@ -272,8 +363,9 @@
       color: white;
     }
 
-    .dark .section-head p {
-      color: rgba(255,255,255,0.75);
+    .dark .section-head p,
+    .dark .feature p {
+      color: rgba(255, 255, 255, 0.75);
     }
 
     .dark .feature {
@@ -286,8 +378,8 @@
       color: white;
     }
 
-    .dark .feature p {
-      color: rgba(255,255,255,0.72);
+    .cta-wrap {
+      padding: 0 clamp(18px, 5vw, 72px) 64px;
     }
 
     .cta {
@@ -306,18 +398,24 @@
     .cta h2 {
       margin: 0 0 12px;
       font-size: clamp(30px, 4vw, 50px);
-      line-height: 1.05;
     }
 
     .cta p {
-      margin: 0 auto 24px;
       max-width: 780px;
+      margin: 0 auto 24px;
       color: rgba(255,255,255,0.84);
       line-height: 1.55;
       font-weight: 550;
     }
 
-    .footer {
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer {
       padding: 30px clamp(18px, 5vw, 72px);
       background: #041609;
       color: rgba(255,255,255,0.75);
@@ -333,7 +431,7 @@
       flex-wrap: wrap;
     }
 
-    .footer strong {
+    footer strong {
       color: white;
     }
 
@@ -344,786 +442,240 @@
       font-weight: 800;
     }
 
-    @media (min-aspect-ratio: 16/9) and (min-width: 900px) {
-      .hero-stage {
-        min-height: 100svh;
-        align-items: center;
-      }
-
-      .hero-canvas {
-        width: min(100%, calc(100svh * 1.777));
-      }
-    }
-
     @media (max-width: 1100px) {
-      .hero-stage {
-        min-height: auto;
-      }
-
-      .hero-canvas {
-        width: 100%;
-        aspect-ratio: 1672 / 941;
-      }
-
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .km-logo img {
+        width: 220px;
+      }
+
+      .km-nav {
+        gap: 28px;
+        font-size: 15px;
+      }
     }
 
-    @media (max-width: 760px) {
-      .hero-stage {
-        padding: 8px;
-        min-height: auto;
+    @media (max-width: 768px) {
+      html,
+      body {
+        scroll-padding-top: 84px;
       }
 
-      .hero-canvas {
-        border-radius: 16px;
-        box-shadow: 0 12px 28px rgba(6, 35, 13, 0.12);
-      }
-
-      .hotspot {
+      .desktop-hero {
         display: none;
       }
 
-      .mobile-content {
+      .mobile-home {
         display: block;
+      }
+
+      .km-header {
+        top: 10px;
+        left: 12px;
+        right: 12px;
+        height: 62px;
+        padding: 8px 12px;
+        border-radius: 18px;
+      }
+
+      .km-logo img {
+        width: 122px;
+      }
+
+      .km-nav {
+        display: none;
+      }
+
+      .km-login {
+        min-width: 76px;
+        height: 38px;
+        font-size: 14px;
+        border-radius: 12px;
+        gap: 7px;
+      }
+
+      .km-login-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+        border-width: 1.5px;
       }
 
       .grid {
         grid-template-columns: 1fr;
       }
 
-      section {
+      section.content {
         padding: 44px 16px;
       }
 
-      .footer-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .hero-stage {
-        padding: 6px;
-      }
-
-      .hero-canvas {
-        border-radius: 12px;
+      .cta-wrap {
+        padding: 0 16px 52px;
       }
     }
   </style>
-
-<style id="km-fixed-header-logo-polish">
-  /* Mobile real header */
-  @media (max-width: 768px) {
-    .mobile-home {
-      padding-top: 84px !important;
-    }
-
-    .mobile-topbar {
-      position: fixed !important;
-      top: 10px !important;
-      left: 14px !important;
-      right: 14px !important;
-      z-index: 9999 !important;
-      max-width: 680px !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
-    }
-
-    .mobile-topbar .logo {
-      width: 135px !important; /* 10% smaller from 150px */
-    }
-  }
-
-  @media (max-width: 420px) {
-    .mobile-topbar .logo {
-      width: 121px !important; /* 10% smaller from 134px */
-    }
-  }
-
-  /* If desktop HTML header exists in the active page version */
-  @media (min-width: 769px) {
-    .nav,
-    .nav-shell,
-    .site-header {
-      position: fixed !important;
-      top: 16px !important;
-      left: clamp(14px, 4vw, 56px) !important;
-      right: clamp(14px, 4vw, 56px) !important;
-      z-index: 9999 !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
-    }
-
-    .brand img,
-    .logo img,
-    .site-header img {
-      transform: scale(0.9) !important;
-      transform-origin: left center !important;
-    }
-
-    body {
-      scroll-padding-top: 110px !important;
-    }
-  }
-</style>
-
-<style id="km-real-fixed-header">
-  body {
-    scroll-padding-top: 120px !important;
-  }
-
-  .km-fixed-header {
-    position: fixed !important;
-    top: 16px !important;
-    left: clamp(18px, 4vw, 72px) !important;
-    right: clamp(18px, 4vw, 72px) !important;
-    z-index: 2147483647 !important;
-    height: 88px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 28px !important;
-    padding: 10px 28px !important;
-    border-radius: 24px !important;
-    background: rgba(255, 255, 255, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.78) !important;
-    box-shadow: 0 18px 44px rgba(6, 35, 13, 0.16) !important;
-    backdrop-filter: blur(18px) !important;
-    -webkit-backdrop-filter: blur(18px) !important;
-  }
-
-  .km-fixed-logo {
-    display: flex !important;
-    align-items: center !important;
-    flex: 0 0 auto !important;
-  }
-
-  .km-fixed-logo img {
-    width: 275px !important;
-    height: auto !important;
-    display: block !important;
-  }
-
-  .km-fixed-nav {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: clamp(28px, 4vw, 68px) !important;
-    font-size: 17px !important;
-    font-weight: 900 !important;
-    color: #0b3316 !important;
-  }
-
-  .km-fixed-nav a {
-    color: #0b3316 !important;
-    text-decoration: none !important;
-  }
-
-  .km-fixed-nav a:hover {
-    color: #f26522 !important;
-  }
-
-  .km-fixed-login {
-    min-width: 132px !important;
-    height: 54px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    border-radius: 14px !important;
-    background: linear-gradient(180deg, #197b2b, #08611c) !important;
-    color: #ffffff !important;
-    font-size: 17px !important;
-    font-weight: 900 !important;
-    text-decoration: none !important;
-    box-shadow: 0 12px 26px rgba(7, 91, 24, 0.28) !important;
-  }
-
-  .km-login-dot {
-    width: 28px !important;
-    height: 28px !important;
-    display: grid !important;
-    place-items: center !important;
-    border: 2px solid rgba(255,255,255,0.86) !important;
-    border-radius: 999px !important;
-    font-size: 14px !important;
-    line-height: 1 !important;
-  }
-
-  .desktop-hero-wrap {
-    padding-top: 112px !important;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      scroll-padding-top: 84px !important;
-    }
-
-    .km-fixed-header {
-      top: 10px !important;
-      left: 12px !important;
-      right: 12px !important;
-      height: 64px !important;
-      padding: 8px 12px !important;
-      border-radius: 18px !important;
-    }
-
-    .km-fixed-logo img {
-      width: 122px !important;
-    }
-
-    .km-fixed-nav {
-      display: none !important;
-    }
-
-    .km-fixed-login {
-      min-width: 78px !important;
-      height: 40px !important;
-      border-radius: 12px !important;
-      font-size: 14px !important;
-      gap: 7px !important;
-      padding: 0 12px !important;
-    }
-
-    .km-login-dot {
-      width: 22px !important;
-      height: 22px !important;
-      font-size: 11px !important;
-      border-width: 1.5px !important;
-    }
-
-    .mobile-home {
-      padding-top: 86px !important;
-    }
-
-    .mobile-topbar {
-      display: none !important;
-    }
-  }
-</style>
-
-<style id="km-fullscreen-responsive-fix">
-  html,
-  body {
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  /* Desktop full-screen hero */
-  @media (min-width: 769px) {
-    .desktop-hero-wrap {
-      width: 100vw !important;
-      max-width: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero {
-      width: 100vw !important;
-      max-width: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .desktop-hero img {
-      width: 100vw !important;
-      max-width: none !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-    }
-
-    /* Fixed header stays above full-screen hero */
-    .km-fixed-header {
-      top: 16px !important;
-      left: clamp(18px, 4vw, 72px) !important;
-      right: clamp(18px, 4vw, 72px) !important;
-      z-index: 2147483647 !important;
-    }
-
-    /* Slightly reduce header height so hero feels bigger */
-    .km-fixed-header {
-      height: 82px !important;
-      padding: 8px 26px !important;
-    }
-
-    .km-fixed-logo img {
-      width: 248px !important;
-    }
-
-    .km-fixed-nav {
-      font-size: 16px !important;
-      gap: clamp(28px, 4vw, 64px) !important;
-    }
-
-    .km-fixed-login {
-      height: 50px !important;
-      min-width: 124px !important;
-      font-size: 16px !important;
-    }
-
-    /* Section starts cleanly after hero */
-    .sections:first-of-type {
-      padding-top: 72px !important;
-    }
-  }
-
-  /* Tablet */
-  @media (min-width: 769px) and (max-width: 1180px) {
-    .km-fixed-logo img {
-      width: 220px !important;
-    }
-
-    .km-fixed-nav {
-      gap: 28px !important;
-      font-size: 15px !important;
-    }
-
-    .km-fixed-login {
-      min-width: 108px !important;
-    }
-  }
-
-  /* Mobile remains clean and not duplicated */
-  @media (max-width: 768px) {
-    .desktop-hero-wrap {
-      display: none !important;
-    }
-
-    .mobile-home {
-      display: block !important;
-      padding-top: 84px !important;
-    }
-
-    .km-fixed-header {
-      position: fixed !important;
-      top: 10px !important;
-      left: 12px !important;
-      right: 12px !important;
-      height: 62px !important;
-      padding: 8px 12px !important;
-      border-radius: 18px !important;
-      z-index: 2147483647 !important;
-    }
-
-    .km-fixed-logo img {
-      width: 122px !important;
-    }
-
-    .km-fixed-nav {
-      display: none !important;
-    }
-
-    .km-fixed-login {
-      min-width: 76px !important;
-      height: 38px !important;
-      font-size: 14px !important;
-      border-radius: 12px !important;
-    }
-  }
-</style>
-
-<style id="km-true-fullscreen-hero">
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  @media (min-width: 769px) {
-    .desktop-hero-wrap {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      margin-left: calc(50% - 50vw) !important;
-      padding: 0 !important;
-      padding-top: 0 !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .desktop-hero img {
-      width: 100vw !important;
-      max-width: none !important;
-      height: auto !important;
-      min-height: auto !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      display: block !important;
-      border-radius: 0 !important;
-    }
-
-    .hero-stage,
-    .hero-canvas,
-    .page,
-    main {
-      max-width: 100vw !important;
-    }
-
-    .km-fixed-header {
-      position: fixed !important;
-      top: 16px !important;
-      left: clamp(18px, 4vw, 72px) !important;
-      right: clamp(18px, 4vw, 72px) !important;
-      z-index: 2147483647 !important;
-    }
-
-    .sections:first-of-type {
-      padding-top: 72px !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .desktop-hero-wrap {
-      display: none !important;
-    }
-
-    .mobile-home {
-      display: block !important;
-      padding-top: 84px !important;
-    }
-
-    .km-fixed-header {
-      position: fixed !important;
-      top: 10px !important;
-      left: 12px !important;
-      right: 12px !important;
-      z-index: 2147483647 !important;
-    }
-  }
-</style>
-
-<style id="km-force-fullscreen-final">
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  @media (min-width: 769px) {
-    /* Fix old hero-stage / hero-canvas layout */
-    .hero-stage {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      min-height: auto !important;
-      display: block !important;
-      place-items: unset !important;
-      align-items: unset !important;
-      justify-items: unset !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .hero-canvas {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      margin-left: calc(50% - 50vw) !important;
-      padding: 0 !important;
-      aspect-ratio: 1672 / 941 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .hero-art {
-      width: 100% !important;
-      height: 100% !important;
-      max-width: none !important;
-      display: block !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      border-radius: 0 !important;
-    }
-
-    /* Fix newer desktop-hero layout too */
-    .desktop-hero-wrap {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      margin-left: calc(50% - 50vw) !important;
-      padding: 0 !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero {
-      width: 100vw !important;
-      max-width: 100vw !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .desktop-hero img {
-      width: 100% !important;
-      height: auto !important;
-      max-width: none !important;
-      display: block !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      border-radius: 0 !important;
-    }
-
-    /* Real fixed header */
-    .km-fixed-header {
-      position: fixed !important;
-      top: 14px !important;
-      left: clamp(18px, 4vw, 72px) !important;
-      right: clamp(18px, 4vw, 72px) !important;
-      z-index: 2147483647 !important;
-      height: 82px !important;
-      padding: 8px 26px !important;
-      border-radius: 22px !important;
-      background: rgba(255, 255, 255, 0.92) !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
-      box-shadow: 0 18px 44px rgba(6, 35, 13, 0.16) !important;
-    }
-
-    .km-fixed-logo img {
-      width: 248px !important;
-      height: auto !important;
-    }
-
-    .km-fixed-nav {
-      font-size: 16px !important;
-      gap: clamp(28px, 4vw, 64px) !important;
-    }
-
-    .km-fixed-login {
-      height: 50px !important;
-      min-width: 124px !important;
-      font-size: 16px !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .desktop-hero-wrap,
-    .hero-stage {
-      display: none !important;
-    }
-
-    .mobile-home {
-      display: block !important;
-      padding-top: 84px !important;
-    }
-
-    .km-fixed-header {
-      position: fixed !important;
-      top: 10px !important;
-      left: 12px !important;
-      right: 12px !important;
-      height: 62px !important;
-      z-index: 2147483647 !important;
-    }
-
-    .km-fixed-logo img {
-      width: 122px !important;
-    }
-
-    .km-fixed-nav {
-      display: none !important;
-    }
-  }
-</style>
 </head>
 
 <body>
-<header class="km-fixed-header">
-  <a class="km-fixed-logo" href="./index.html" aria-label="KisanMitraAI Home">
-    <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
-  </a>
+  <header class="km-header">
+    <a class="km-logo" href="./index.html" aria-label="KisanMitraAI Home">
+      <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
+    </a>
 
-  <nav class="km-fixed-nav" aria-label="Main navigation">
-    <a href="#farmers">Farmers</a>
-    <a href="#buyers">Buyers</a>
-    <a href="#engine">AI Engine</a>
-    <a href="#trust">Trust</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav class="km-nav" aria-label="Main navigation">
+      <a href="#farmers">Farmers</a>
+      <a href="#buyers">Buyers</a>
+      <a href="#engine">AI Engine</a>
+      <a href="#trust">Trust</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-  <a class="km-fixed-login" href="./login.html">
-    <span class="km-login-dot">◎</span>
-    Login
-  </a>
-</header>
+    <a class="km-login" href="./login.html">
+      <span class="km-login-icon">◎</span>
+      Login
+    </a>
+  </header>
 
-  <main class="hero-stage" aria-label="KisanMitraAI homepage hero">
-    <div class="hero-canvas">
-      <img class="hero-art" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
+  <main>
+    <section class="desktop-hero">
+      <div class="desktop-hero-inner">
+        <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
 
-      <a class="hotspot hs-logo" href="./index.html" aria-label="KisanMitraAI home"></a>
-      <a class="hotspot hs-farmers" href="#farmers" aria-label="Farmers"></a>
-      <a class="hotspot hs-buyers" href="#buyers" aria-label="Buyers"></a>
-      <a class="hotspot hs-engine" href="#engine" aria-label="AI Engine"></a>
-      <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
-      <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
-      <a class="hotspot hs-login" href="./login.html" aria-label="Login"></a>
+        <a class="hotspot hs-logo" href="./index.html" aria-label="Home"></a>
+        <a class="hotspot hs-farmers" href="#farmers" aria-label="Farmers"></a>
+        <a class="hotspot hs-buyers" href="#buyers" aria-label="Buyers"></a>
+        <a class="hotspot hs-engine" href="#engine" aria-label="AI Engine"></a>
+        <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
+        <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
+        <a class="hotspot hs-login" href="./login.html" aria-label="Login"></a>
 
-      <a class="hotspot hs-farmer-cta" href="#farmers" aria-label="I am a farmer"></a>
-      <a class="hotspot hs-buyer-cta" href="#buyers" aria-label="I am a buyer"></a>
-      <a class="hotspot hs-how" href="#engine" aria-label="See how it works"></a>
+        <a class="hotspot hs-farmer" href="#farmers" aria-label="I am a Farmer"></a>
+        <a class="hotspot hs-buyer" href="#buyers" aria-label="I am a Buyer"></a>
+        <a class="hotspot hs-how" href="#engine" aria-label="See How It Works"></a>
 
-      <a class="hotspot hs-card-farmers" href="#farmers" aria-label="Explore for farmers"></a>
-      <a class="hotspot hs-card-buyers" href="#buyers" aria-label="Explore for buyers"></a>
-      <a class="hotspot hs-card-engine" href="#engine" aria-label="Explore AI Engine"></a>
-      <a class="hotspot hs-card-trust" href="#trust" aria-label="Explore trust"></a>
-    </div>
+        <a class="hotspot hs-card-farmers" href="#farmers" aria-label="For Farmers"></a>
+        <a class="hotspot hs-card-buyers" href="#buyers" aria-label="For Buyers"></a>
+        <a class="hotspot hs-card-engine" href="#engine" aria-label="AI Engine"></a>
+        <a class="hotspot hs-card-trust" href="#trust" aria-label="Trust"></a>
+      </div>
+    </section>
+
+    <section class="mobile-home">
+      <div class="mobile-shell">
+        <div class="mobile-hero-card">
+          <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI homepage hero" />
+        </div>
+
+        <div class="mobile-intro">
+          <img class="mobile-brand" src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo" />
+
+          <h1 class="mobile-title">
+            Exact Information.<br>
+            <span>Precision Farming.</span><br>
+            Stronger Market Connection.
+          </h1>
+
+          <p class="mobile-desc">
+            KisanMitraAI empowers farmers with AI crop intelligence, account books, P&amp;L reports,
+            mandi advice, buyer trust, and verified farm-to-market support.
+          </p>
+
+          <div class="mobile-actions">
+            <a class="btn btn-primary" href="./login.html">Login to Web Tool</a>
+            <a class="btn btn-secondary" href="#farmers">I’m a Farmer</a>
+            <a class="btn btn-secondary" href="#buyers">I’m a Buyer</a>
+            <a class="btn btn-secondary" href="#engine">See How It Works</a>
+          </div>
+
+          <div class="mobile-grid">
+            <div class="mobile-card"><h3>For Farmers</h3><p>AI crop advisory, farmer P&amp;L, personal account books, crop calendar, mandi advice and value addition support.</p></div>
+            <div class="mobile-card"><h3>For Buyers</h3><p>Verified crop visibility, supplier confidence, demand matching and safer crop-to-market transactions.</p></div>
+            <div class="mobile-card"><h3>AI Engine</h3><p>Farm intelligence, image analysis, weather, soil estimates, market signals and trust-based recommendations.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="farmers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>AI tools for farmers</h2>
+          <p>Farm mapping, farmer P&amp;L reports, personal account books, day-to-day crop calendar, mandi-rate advice and more value-addition intelligence.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS farm boundary, area, satellite view, crop planning support and farm profile intelligence.</p></article>
+          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&amp;L Reports</h3><p>Crop-wise production cost, sale forecast, logistics, dues and profit/loss visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Books</h3><p>Farmer expense records, input purchase, labour, irrigation, loans and payments in one place.</p></article>
+          <article class="feature"><div class="feature-icon">🗓️</div><h3>Crop Calendar</h3><p>Day-to-day tasks, sowing, irrigation, fertilizer, crop stage tracking and harvest reminders.</p></article>
+          <article class="feature"><div class="feature-icon">🏪</div><h3>Mandi Advice</h3><p>Nearby and India-wide mandi rate intelligence with comparison and timing guidance.</p></article>
+          <article class="feature"><div class="feature-icon">📦</div><h3>More Value Addition</h3><p>Sorting, grading, packing, storage and value-add pathways to improve crop realization.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content dark" id="engine">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>KisanMitraAI engine</h2>
+          <p>An intelligent AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">AI</div><h3>Crop Intelligence</h3><p>Smart advisory based on crop stage, risk, weather and field information.</p></article>
+          <article class="feature"><div class="feature-icon">🛰️</div><h3>Satellite + GPS</h3><p>Farm visibility, crop mapping and field-level intelligence for better decisions.</p></article>
+          <article class="feature"><div class="feature-icon">🌦️</div><h3>Weather Layer</h3><p>Weather-linked crop support for planning irrigation, spray and field actions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="buyers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trusted tools for buyers</h2>
+          <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">🛒</div><h3>Verified Crop Visibility</h3><p>See crop type, expected supply, producer background and trust-supporting farm details.</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Matching</h3><p>Get relevant farmer-side opportunities based on location, crop, timing and requirements.</p></article>
+          <article class="feature"><div class="feature-icon">🛡️</div><h3>Safer Procurement</h3><p>Transparency, evidence-based sourcing and a stronger farm-to-buyer connection layer.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="trust">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trust & transparency</h2>
+          <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">✅</div><h3>Verified Data</h3><p>Clear farmer-side records, structured intelligence and support for traceable workflows.</p></article>
+          <article class="feature"><div class="feature-icon">🔍</div><h3>Transparency</h3><p>Better confidence through visible crop information, planning support and account-backed flow.</p></article>
+          <article class="feature"><div class="feature-icon">🌍</div><h3>Global Market Linkage</h3><p>A broader AI-powered system helping connect farmers and buyers more intelligently.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-wrap" id="contact">
+      <div class="cta">
+        <h2>Connect with KisanMitraAI</h2>
+        <p>For farmers, buyers, partners and organizations building a stronger AI-powered farm-to-market ecosystem.</p>
+        <div class="cta-actions">
+          <a class="btn btn-secondary" href="mailto:admin@kisanmitraai.com">admin@kisanmitraai.com</a>
+          <a class="btn btn-primary" href="./login.html">Open Web Tool</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section class="mobile-content">
-    <div class="mobile-inner">
-      <img class="mobile-logo" src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
-      <h1>Exact Information.<br /><span>Precision Farming.</span><br />Stronger Market Connection.</h1>
-      <p>
-        KisanMitraAI empowers farmers with AI crop intelligence, account books, P&L reports,
-        mandi advice, buyer trust, and verified farm-to-market support.
-      </p>
-
-      <div class="mobile-actions">
-        <a class="mobile-btn primary" href="./login.html">Login to Web Tool</a>
-        <a class="mobile-btn" href="#farmers">I’m a Farmer</a>
-        <a class="mobile-btn" href="#buyers">I’m a Buyer</a>
-      </div>
-
-      <div class="mobile-grid">
-        <div class="mobile-card">
-          <strong>For Farmers</strong>
-          <small>Crop advisory, farm passport, P&L, personal account book, crop calendar, mandi advice and value addition.</small>
-        </div>
-        <div class="mobile-card">
-          <strong>For Buyers</strong>
-          <small>Verified crop catalogue, demand matching, quality evidence, harvest window and safer deal flow.</small>
-        </div>
-        <div class="mobile-card">
-          <strong>AI Engine</strong>
-          <small>GPS, satellite, soil estimates, weather, mandi signals, crop photos and admin-reviewed trust scores.</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="farmers">
-    <div class="section-inner">
-      <div class="section-head">
-        <h2>AI tools for farmers</h2>
-        <p>Farm mapping, P&L reports, personal account books, day-to-day crop calendar, mandi-rate advice and value addition guidance.</p>
-      </div>
-
-      <div class="grid">
-        <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS boundary, area, satellite view, soil estimate, weather zone and crop suitability.</p></article>
-        <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise cost, expected production, sale value, pending payments and profit/loss range.</p></article>
-        <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Book</h3><p>Seed, fertilizer, labour, irrigation, transport, loan, advance and buyer payment records.</p></article>
-        <article class="feature"><div class="feature-icon">🗓️</div><h3>Day-to-Day Crop Calendar</h3><p>Daily crop tasks, watering, fertilizer, pest check, photo uploads and harvest planning.</p></article>
-        <article class="feature"><div class="feature-icon">🏪</div><h3>Best Mandi Rate Advice</h3><p>Nearby and India-wide mandi comparison, arrivals, logistics and selling-window guidance.</p></article>
-        <article class="feature"><div class="feature-icon">📦</div><h3>Value Addition Guidance</h3><p>Sorting, grading, packing, storage, drying, processing and aggregation for better value.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="engine" class="dark">
-    <div class="section-inner">
-      <div class="section-head">
-        <h2>AI farm intelligence engine</h2>
-        <p>KisanMitraAI connects boundary data, satellite evidence, weather, soil estimates, farmer books, mandi rates and buyer demand.</p>
-      </div>
-
-      <div class="grid">
-        <article class="feature"><div class="feature-icon">01</div><h3>Farm Identity</h3><p>Farmer profile, GPS, farm boundary, area and village context.</p></article>
-        <article class="feature"><div class="feature-icon">02</div><h3>Crop Plan</h3><p>Crop calendar, input plan, irrigation need, pest risk and harvest window.</p></article>
-        <article class="feature"><div class="feature-icon">03</div><h3>Finance Layer</h3><p>Account books, crop cost, P&L, advances, dues and payments.</p></article>
-        <article class="feature"><div class="feature-icon">04</div><h3>Market Signal</h3><p>Mandi rates, demand clusters, logistics estimate and value addition path.</p></article>
-        <article class="feature"><div class="feature-icon">05</div><h3>Trust Score</h3><p>Crop evidence, buyer confidence, deal terms and safety gates.</p></article>
-        <article class="feature"><div class="feature-icon">AI</div><h3>Admin Review</h3><p>Confidence-based guidance with safety checks before farmer and buyer release.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="buyers">
-    <div class="section-inner">
-      <div class="section-head">
-        <h2>Verified crop intelligence for buyers</h2>
-        <p>Buyers see crop origin, expected harvest, quality evidence, farmer history and safer trade flow.</p>
-      </div>
-
-      <div class="grid">
-        <article class="feature"><div class="feature-icon">✅</div><h3>Verified Crop Catalogue</h3><p>Crop, variety, quantity estimate, expected harvest, photos, quality score and crop-cycle records.</p></article>
-        <article class="feature"><div class="feature-icon">🔎</div><h3>Demand Matching</h3><p>Search by crop, region, quality, date, distance, price range and crop preference.</p></article>
-        <article class="feature"><div class="feature-icon">🛡️</div><h3>Safer Deal Flow</h3><p>Agreement draft, payment terms, pickup rules and dispute records for better confidence.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="trust">
-    <div class="section-inner">
-      <div class="section-head">
-        <h2>Trust-first, farmer-safe platform</h2>
-        <p>KisanMitraAI uses ranges, confidence, evidence and admin review. It does not promise guaranteed yield, price, buyer payment or profit.</p>
-      </div>
-
-      <div class="grid">
-        <article class="feature"><div class="feature-icon">🧪</div><h3>Estimate vs verified data</h3><p>Soil and satellite intelligence are marked clearly unless validated by lab or expert review.</p></article>
-        <article class="feature"><div class="feature-icon">📷</div><h3>Crop-cycle evidence</h3><p>Photos, GPS and stage records help improve buyer trust and reduce risk.</p></article>
-        <article class="feature"><div class="feature-icon">🏛️</div><h3>Scheme guidance</h3><p>Official source, eligibility, documents and last verified date should always be shown.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="cta">
-      <h2>Build the future of farm-to-market intelligence</h2>
-      <p>We are building for Indian farmers, verified buyers, FPOs and agri partners who need trusted crop intelligence, market visibility and safer coordination.</p>
-      <div class="mobile-actions" style="display:flex; justify-content:center; flex-wrap:wrap;">
-        <a class="mobile-btn" href="mailto:admin@kisanmitraai.com">admin@kisanmitraai.com</a>
-        <a class="mobile-btn primary" href="./login.html">Open Web Tool</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
+  <footer>
     <div class="footer-inner">
-      <div><strong>KisanMitraAI</strong><br />Exact Information. Precision Farming. Stronger Market Connection.</div>
+      <div><strong>KisanMitraAI</strong><br>Exact Information. Precision Farming. Stronger Market Connection.</div>
       <div class="footer-links">
         <a href="#farmers">Farmers</a>
         <a href="#buyers">Buyers</a>
@@ -1136,9 +688,3 @@
   </footer>
 </body>
 </html>
-
-
-
-
-
-
