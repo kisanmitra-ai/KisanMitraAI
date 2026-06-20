@@ -737,6 +737,91 @@
     }
   }
 </style>
+
+<style id="km-true-fullscreen-hero">
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    background: #eef5ef !important;
+  }
+
+  @media (min-width: 769px) {
+    .desktop-hero-wrap {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin: 0 !important;
+      margin-left: calc(50% - 50vw) !important;
+      padding: 0 !important;
+      padding-top: 0 !important;
+      background: #eef5ef !important;
+      overflow: hidden !important;
+    }
+
+    .desktop-hero {
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+    }
+
+    .desktop-hero img {
+      width: 100vw !important;
+      max-width: none !important;
+      height: auto !important;
+      min-height: auto !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
+      border-radius: 0 !important;
+    }
+
+    .hero-stage,
+    .hero-canvas,
+    .page,
+    main {
+      max-width: 100vw !important;
+    }
+
+    .km-fixed-header {
+      position: fixed !important;
+      top: 16px !important;
+      left: clamp(18px, 4vw, 72px) !important;
+      right: clamp(18px, 4vw, 72px) !important;
+      z-index: 2147483647 !important;
+    }
+
+    .sections:first-of-type {
+      padding-top: 72px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-hero-wrap {
+      display: none !important;
+    }
+
+    .mobile-home {
+      display: block !important;
+      padding-top: 84px !important;
+    }
+
+    .km-fixed-header {
+      position: fixed !important;
+      top: 10px !important;
+      left: 12px !important;
+      right: 12px !important;
+      z-index: 2147483647 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -906,6 +991,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
