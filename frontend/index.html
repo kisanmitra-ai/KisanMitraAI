@@ -571,6 +571,85 @@
     z-index: 99999 !important;
   }
 </style>
+<style id="km-final-natural-hero-no-cut">
+  @media (min-width: 769px) {
+    /* Do not force hero into 100vh. Let image keep natural ratio. */
+    .hero {
+      height: auto !important;
+      min-height: 0 !important;
+      padding-top: 96px !important;
+      display: block !important;
+      overflow: visible !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-image {
+      width: 100vw !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+      position: relative !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .hero-image img {
+      width: 100vw !important;
+      height: auto !important;
+      max-width: none !important;
+      display: block !important;
+
+      /* No stretch, no crop */
+      object-fit: contain !important;
+      object-position: center top !important;
+      transform: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .hero-strip {
+      height: 68px !important;
+      min-height: 68px !important;
+      background: #063d15 !important;
+      overflow: hidden !important;
+      position: relative !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .hero-card-row {
+      top: 8px !important;
+      left: clamp(70px, 7vw, 130px) !important;
+      right: clamp(70px, 7vw, 130px) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+    }
+
+    .hero-card {
+      height: 52px !important;
+      min-height: 52px !important;
+    }
+
+    .hero-stats,
+    .hero-stats *,
+    .km-clean-stats-row,
+    .km-clean-stats-row *,
+    .km-compact-stats,
+    .km-compact-stats *,
+    .km-green-stats,
+    .km-green-stats * {
+      display: none !important;
+    }
+
+    .km-header {
+      z-index: 999999 !important;
+      background: #ffffff !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -727,6 +806,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
