@@ -997,6 +997,68 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
+<style id="km-green-bottom-panel-height-fix">
+  @media (min-width: 769px) {
+    .km-green-bottom-panel {
+      height: 118px !important;
+      background: linear-gradient(
+        180deg,
+        rgba(7,61,22,0.94) 0%,
+        rgba(6,65,21,0.98) 50%,
+        rgba(4,45,15,1) 100%
+      ) !important;
+    }
+
+    .km-green-card-row {
+      top: 10px !important;
+      left: clamp(50px, 7vw, 112px) !important;
+      right: clamp(50px, 7vw, 112px) !important;
+      gap: 14px !important;
+    }
+
+    .km-green-card {
+      height: 60px !important;
+      grid-template-columns: 34px 1fr !important;
+      padding: 7px 10px !important;
+      border-radius: 14px !important;
+    }
+
+    .km-green-icon {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 15px !important;
+    }
+
+    .km-green-card strong {
+      font-size: 12.5px !important;
+      margin-bottom: 2px !important;
+    }
+
+    .km-green-card small {
+      font-size: 8.8px !important;
+      line-height: 1.15 !important;
+    }
+
+    .km-green-stats {
+      height: 40px !important;
+      padding: 4px clamp(70px, 14vw, 260px) !important;
+    }
+
+    .km-green-stats span {
+      width: 26px !important;
+      height: 26px !important;
+      font-size: 12px !important;
+    }
+
+    .km-green-stats strong {
+      font-size: 15px !important;
+    }
+
+    .km-green-stats small {
+      font-size: 9.5px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -1218,6 +1280,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
