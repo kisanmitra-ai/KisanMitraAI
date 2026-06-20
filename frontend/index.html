@@ -799,7 +799,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-<style id="km-green-bottom-panel-final">
+
+
+
+
+<style id="km-compact-bottom-panel-final">
   @media (min-width: 769px) {
     .desktop-hero {
       height: 100vh !important;
@@ -813,140 +817,142 @@ document.addEventListener("DOMContentLoaded", function () {
       min-height: 560px !important;
       position: relative !important;
       overflow: hidden !important;
-      background: #063d15 !important;
+      background: #032d10 !important;
     }
 
+    /* Crop image before old baked cards start */
     .desktop-hero-img {
       position: absolute !important;
       top: 0 !important;
       left: 0 !important;
       width: 100vw !important;
-      height: auto !important;
+      height: calc(100% - 104px) !important;
       max-width: none !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      transform: scale(1.06) !important;
+      transform-origin: top center !important;
       display: block !important;
       z-index: 1 !important;
     }
 
-    /* Solid green panel: no white patch, no blur patch */
-    .km-green-bottom-panel {
+    .km-compact-bottom-panel {
       position: absolute !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      height: 178px !important;
+      height: 104px !important;
       z-index: 300 !important;
       background: linear-gradient(
         180deg,
-        #0b4e1d 0%,
-        #073f17 48%,
-        #052f11 100%
+        #074918 0%,
+        #063d15 52%,
+        #02280e 100%
       ) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10) !important;
       overflow: hidden !important;
     }
 
-    .km-green-card-row {
+    .km-compact-card-row {
       position: absolute !important;
-      left: clamp(46px, 7vw, 112px) !important;
-      right: clamp(46px, 7vw, 112px) !important;
-      top: 18px !important;
+      left: clamp(58px, 7vw, 118px) !important;
+      right: clamp(58px, 7vw, 118px) !important;
+      top: 8px !important;
       display: grid !important;
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
       gap: 14px !important;
-      z-index: 2 !important;
     }
 
-    .km-green-card {
-      height: 74px !important;
+    .km-compact-card {
+      height: 54px !important;
       display: grid !important;
-      grid-template-columns: 40px 1fr !important;
+      grid-template-columns: 30px 1fr !important;
       align-items: center !important;
-      gap: 10px !important;
-      padding: 8px 12px !important;
-      border-radius: 15px !important;
+      gap: 9px !important;
+      padding: 6px 10px !important;
+      border-radius: 13px !important;
       background: rgba(255,255,255,0.94) !important;
       border: 1px solid rgba(255,255,255,0.78) !important;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18) !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15) !important;
       color: #102315 !important;
       text-decoration: none !important;
       overflow: hidden !important;
     }
 
-    .km-green-icon {
-      width: 38px !important;
-      height: 38px !important;
+    .km-compact-icon {
+      width: 28px !important;
+      height: 28px !important;
       display: grid !important;
       place-items: center !important;
       border-radius: 999px !important;
       color: #fff !important;
-      font-size: 18px !important;
+      font-size: 13px !important;
       background: linear-gradient(180deg, #2b8d22, #13691d) !important;
-      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.24) !important;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.22) !important;
     }
 
-    .km-green-icon.orange {
+    .km-compact-icon.orange {
       background: linear-gradient(180deg, #f39a14, #f27900) !important;
     }
 
-    .km-green-card strong {
+    .km-compact-card strong {
       display: block !important;
-      font-size: 13.5px !important;
+      font-size: 11.5px !important;
       line-height: 1.05 !important;
       font-weight: 650 !important;
-      margin-bottom: 3px !important;
+      margin-bottom: 2px !important;
     }
 
-    .km-green-card small {
+    .km-compact-card small {
       display: block !important;
-      font-size: 10px !important;
-      line-height: 1.18 !important;
+      font-size: 8px !important;
+      line-height: 1.12 !important;
       color: #4b594f !important;
       font-weight: 430 !important;
     }
 
-    .km-green-stats {
+    .km-compact-stats {
       position: absolute !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      height: 54px !important;
+      height: 34px !important;
       display: grid !important;
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
       align-items: center !important;
       gap: 10px !important;
-      padding: 6px clamp(70px, 14vw, 260px) !important;
+      padding: 3px clamp(80px, 15vw, 270px) !important;
       color: #fff !important;
-      background: #032d10 !important;
-      z-index: 3 !important;
+      background: #02280e !important;
     }
 
-    .km-green-stats div {
+    .km-compact-stats div {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
-      gap: 8px !important;
+      gap: 7px !important;
       min-width: 0 !important;
     }
 
-    .km-green-stats span {
-      width: 32px !important;
-      height: 32px !important;
+    .km-compact-stats span {
+      width: 22px !important;
+      height: 22px !important;
       display: grid !important;
       place-items: center !important;
       border-radius: 999px !important;
       background: rgba(255,255,255,0.13) !important;
       border: 1px solid rgba(255,255,255,0.18) !important;
-      font-size: 15px !important;
+      font-size: 10px !important;
     }
 
-    .km-green-stats strong {
-      font-size: 17px !important;
+    .km-compact-stats strong {
+      font-size: 13px !important;
       line-height: 1 !important;
       font-weight: 700 !important;
     }
 
-    .km-green-stats small {
-      font-size: 10.5px !important;
+    .km-compact-stats small {
+      font-size: 8.5px !important;
       color: rgba(255,255,255,0.86) !important;
       font-weight: 430 !important;
     }
@@ -959,284 +965,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  @media (min-width: 769px) and (max-width: 1180px) {
-    .km-green-card-row {
-      left: 20px !important;
-      right: 20px !important;
-      gap: 9px !important;
-    }
-
-    .km-green-card {
-      height: 68px !important;
-      grid-template-columns: 34px 1fr !important;
-      padding: 7px 8px !important;
-    }
-
-    .km-green-icon {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 16px !important;
-    }
-
-    .km-green-card strong {
-      font-size: 12px !important;
-    }
-
-    .km-green-card small {
-      font-size: 8.8px !important;
-    }
-
-    .km-green-stats {
-      padding: 6px 30px !important;
-    }
-  }
-
   @media (max-width: 768px) {
-    .km-green-bottom-panel {
+    .km-compact-bottom-panel {
       display: none !important;
-    }
-  }
-</style>
-<style id="km-green-bottom-panel-height-fix">
-  @media (min-width: 769px) {
-    .km-green-bottom-panel {
-      height: 118px !important;
-      background: linear-gradient(
-        180deg,
-        rgba(7,61,22,0.94) 0%,
-        rgba(6,65,21,0.98) 50%,
-        rgba(4,45,15,1) 100%
-      ) !important;
-    }
-
-    .km-green-card-row {
-      top: 10px !important;
-      left: clamp(50px, 7vw, 112px) !important;
-      right: clamp(50px, 7vw, 112px) !important;
-      gap: 14px !important;
-    }
-
-    .km-green-card {
-      height: 60px !important;
-      grid-template-columns: 34px 1fr !important;
-      padding: 7px 10px !important;
-      border-radius: 14px !important;
-    }
-
-    .km-green-icon {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 15px !important;
-    }
-
-    .km-green-card strong {
-      font-size: 12.5px !important;
-      margin-bottom: 2px !important;
-    }
-
-    .km-green-card small {
-      font-size: 8.8px !important;
-      line-height: 1.15 !important;
-    }
-
-    .km-green-stats {
-      height: 40px !important;
-      padding: 4px clamp(70px, 14vw, 260px) !important;
-    }
-
-    .km-green-stats span {
-      width: 26px !important;
-      height: 26px !important;
-      font-size: 12px !important;
-    }
-
-    .km-green-stats strong {
-      font-size: 15px !important;
-    }
-
-    .km-green-stats small {
-      font-size: 9.5px !important;
-    }
-  }
-</style>
-<style id="km-green-bottom-panel-final-polish">
-  @media (min-width: 769px) {
-    .km-green-bottom-panel {
-      height: 102px !important;
-      background: linear-gradient(
-        180deg,
-        #074918 0%,
-        #063d15 52%,
-        #032d10 100%
-      ) !important;
-    }
-
-    .desktop-hero-img {
-      height: calc(100% - 102px) !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-    }
-
-    .km-green-card-row {
-      top: 7px !important;
-      left: clamp(58px, 7vw, 118px) !important;
-      right: clamp(58px, 7vw, 118px) !important;
-      gap: 14px !important;
-    }
-
-    .km-green-card {
-      height: 52px !important;
-      grid-template-columns: 30px 1fr !important;
-      gap: 9px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-    }
-
-    .km-green-icon {
-      width: 28px !important;
-      height: 28px !important;
-      font-size: 13px !important;
-    }
-
-    .km-green-card strong {
-      font-size: 11.5px !important;
-      line-height: 1.05 !important;
-      margin-bottom: 2px !important;
-      font-weight: 650 !important;
-    }
-
-    .km-green-card small {
-      font-size: 8px !important;
-      line-height: 1.12 !important;
-    }
-
-    .km-green-stats {
-      height: 34px !important;
-      padding: 3px clamp(80px, 15vw, 270px) !important;
-      background: #02280e !important;
-    }
-
-    .km-green-stats span {
-      width: 22px !important;
-      height: 22px !important;
-      font-size: 10px !important;
-    }
-
-    .km-green-stats strong {
-      font-size: 13px !important;
-      line-height: 1 !important;
-    }
-
-    .km-green-stats small {
-      font-size: 8.5px !important;
-      line-height: 1 !important;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1180px) {
-    .km-green-card-row {
-      left: 22px !important;
-      right: 22px !important;
-      gap: 8px !important;
-    }
-
-    .km-green-card {
-      height: 50px !important;
-      grid-template-columns: 26px 1fr !important;
-      padding: 5px 7px !important;
-    }
-
-    .km-green-icon {
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 11px !important;
-    }
-
-    .km-green-card strong {
-      font-size: 10.5px !important;
-    }
-
-    .km-green-card small {
-      font-size: 7.3px !important;
-    }
-
-    .km-green-stats {
-      padding: 3px 28px !important;
-    }
-  }
-</style>
-<style id="km-hide-old-baked-cards-final">
-  @media (min-width: 769px) {
-    /* Cover old big cards completely */
-    .km-green-bottom-panel {
-      height: 168px !important;
-      background: linear-gradient(
-        180deg,
-        rgba(7,73,24,0.98) 0%,
-        #063d15 48%,
-        #032d10 100%
-      ) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10) !important;
-    }
-
-    /* Keep real image above panel */
-    .desktop-hero-img {
-      height: calc(100% - 168px) !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-    }
-
-    /* Slim cards placement */
-    .km-green-card-row {
-      top: 18px !important;
-      left: clamp(58px, 7vw, 118px) !important;
-      right: clamp(58px, 7vw, 118px) !important;
-      gap: 14px !important;
-    }
-
-    .km-green-card {
-      height: 58px !important;
-      grid-template-columns: 32px 1fr !important;
-      padding: 6px 10px !important;
-      border-radius: 14px !important;
-      background: rgba(255,255,255,0.94) !important;
-    }
-
-    .km-green-icon {
-      width: 30px !important;
-      height: 30px !important;
-      font-size: 14px !important;
-    }
-
-    .km-green-card strong {
-      font-size: 12px !important;
-      margin-bottom: 2px !important;
-    }
-
-    .km-green-card small {
-      font-size: 8.4px !important;
-      line-height: 1.14 !important;
-    }
-
-    /* Stats bar visible at bottom */
-    .km-green-stats {
-      height: 38px !important;
-      padding: 4px clamp(80px, 15vw, 270px) !important;
-      background: #02280e !important;
-    }
-
-    .km-green-stats span {
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 11px !important;
-    }
-
-    .km-green-stats strong {
-      font-size: 14px !important;
-    }
-
-    .km-green-stats small {
-      font-size: 9px !important;
     }
   }
 </style>
@@ -1267,34 +998,34 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="desktop-hero-inner">
         <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
 <!-- km-sleek-overlay-start -->
-<div class="km-green-bottom-panel">
-  <div class="km-green-card-row">
-    <a class="km-green-card" href="#farmers">
-      <span class="km-green-icon">👨‍🌾</span>
+<div class="km-compact-bottom-panel">
+  <div class="km-compact-card-row">
+    <a class="km-compact-card" href="#farmers">
+      <span class="km-compact-icon">👨‍🌾</span>
       <span>
         <strong>For Farmers</strong>
         <small>Crop advisory, P&L, account books and better yields.</small>
       </span>
     </a>
 
-    <a class="km-green-card" href="#buyers">
-      <span class="km-green-icon orange">🛒</span>
+    <a class="km-compact-card" href="#buyers">
+      <span class="km-compact-icon orange">🛒</span>
       <span>
         <strong>For Buyers</strong>
         <small>Verified suppliers, crop visibility and procurement.</small>
       </span>
     </a>
 
-    <a class="km-green-card" href="#engine">
-      <span class="km-green-icon">🧠</span>
+    <a class="km-compact-card" href="#engine">
+      <span class="km-compact-icon">🧠</span>
       <span>
         <strong>AI Engine</strong>
         <small>Crop intelligence, image analysis and smart advice.</small>
       </span>
     </a>
 
-    <a class="km-green-card" href="#trust">
-      <span class="km-green-icon">🛡</span>
+    <a class="km-compact-card" href="#trust">
+      <span class="km-compact-icon">🛡</span>
       <span>
         <strong>Trust</strong>
         <small>Verified data, safer flow and traceability.</small>
@@ -1302,7 +1033,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </a>
   </div>
 
-  <div class="km-green-stats">
+  <div class="km-compact-stats">
     <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
     <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
     <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
@@ -1310,6 +1041,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 <!-- km-sleek-overlay-end -->
+
 
 
 
@@ -1461,6 +1193,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
