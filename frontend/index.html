@@ -537,6 +537,82 @@
     content: none !important;
   }
 </style>
+<style id="km-hero-stretch-fix">
+  /* Hero image proportion fix */
+  .hero,
+  .hero-section,
+  .hero-banner,
+  .hero-shell {
+    overflow: hidden !important;
+    position: relative !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+
+  .hero img,
+  .hero-section img,
+  .hero-banner img,
+  .hero-shell img,
+  .hero-media img,
+  .hero-visual img,
+  .hero-bg img,
+  .hero-main-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    display: block !important;
+  }
+
+  .hero-media,
+  .hero-visual,
+  .hero-bg,
+  .hero-main-image,
+  .hero-image-wrap {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* Keep desktop hero balanced */
+  .hero,
+  .hero-section,
+  .hero-banner {
+    min-height: 620px !important;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .hero,
+    .hero-section,
+    .hero-banner {
+      min-height: 520px !important;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hero,
+    .hero-section,
+    .hero-banner {
+      min-height: auto !important;
+    }
+
+    .hero img,
+    .hero-section img,
+    .hero-banner img,
+    .hero-shell img,
+    .hero-media img,
+    .hero-visual img,
+    .hero-bg img,
+    .hero-main-image img {
+      height: auto !important;
+      min-height: 320px !important;
+      object-fit: cover !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -693,4 +769,5 @@
   </footer>
 </body>
 </html>
+
 
