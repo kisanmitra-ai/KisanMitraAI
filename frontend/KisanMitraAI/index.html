@@ -507,10 +507,41 @@
 
 
 
-<style id="km-remove-green-bottom-patch-only">
+
+<style id="km-clip-hero-remove-green-final">
   @media (min-width: 769px) {
-    /* Remove only the artificial green patch at bottom */
-    .reference-frame::after {
+    .desktop-reference-home {
+      background: #eef5ef !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .reference-frame {
+      position: relative !important;
+      width: 100% !important;
+      height: clamp(460px, 35.4vw, 610px) !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .reference-frame img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* remove green band / pseudo overlay completely */
+    body .reference-frame::after,
+    body .desktop-reference-home::after,
+    body .reference-frame::before,
+    body .desktop-reference-home::before {
       display: none !important;
       content: none !important;
       background: transparent !important;
@@ -520,9 +551,44 @@
       pointer-events: none !important;
     }
 
-    .reference-frame {
-      overflow: hidden !important;
-      background: #eef5ef !important;
+    /* keep all bottom cards removed */
+    .km-fpo-final-card-cover,
+    .km-fpo-final-card-row,
+    .km-fpo-card-cover,
+    .km-fpo-card-row,
+    .km-fpo-bottom-cards,
+    .km-bottom-cards-removal-cover,
+    .hotspot-farmer-card,
+    .hotspot-buyer-card,
+    .hotspot-engine-card,
+    .hotspot-trust-card {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* keep the FPO menu */
+    .km-fpo-final-menu-cover {
+      z-index: 900 !important;
+      display: block !important;
+      background: #ffffff !important;
+    }
+
+    .km-fpo-final-menu {
+      z-index: 950 !important;
+      display: flex !important;
+    }
+
+    .desktop-reference-home + .content,
+    .desktop-reference-home + section {
+      margin-top: 0 !important;
+      padding-top: 42px !important;
     }
   }
 </style>
@@ -716,6 +782,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
