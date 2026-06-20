@@ -4,35 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KisanMitraAI | Precision Farming & Market Intelligence</title>
-  <meta name="description" content="KisanMitraAI is an AI-powered precision farming, crop intelligence, farmer P&L, account books, mandi advice, buyer trust and farm-to-market platform." />
 
   <style>
     :root {
       --green: #075b18;
-      --green-dark: #032d10;
+      --dark: #032d10;
       --orange: #f26522;
       --bg: #eef5ef;
       --text: #102315;
       --muted: #53625a;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       width: 100%;
       overflow-x: hidden;
       background: var(--bg);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       color: var(--text);
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       scroll-behavior: smooth;
       scroll-padding-top: 112px;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     .km-header {
@@ -48,16 +50,12 @@
       gap: 28px;
       padding: 8px 26px;
       border-radius: 22px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(255,255,255,0.76);
-      box-shadow: 0 18px 44px rgba(6,35,13,0.16);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(6, 35, 13, 0.13);
     }
 
     .km-logo img {
       width: 238px;
-      height: auto;
       display: block;
       mix-blend-mode: multiply;
     }
@@ -84,101 +82,117 @@
       justify-content: center;
       gap: 10px;
       border-radius: 14px;
-      color: #fff;
       background: linear-gradient(180deg, #197b2b, #08611c);
+      color: #fff;
       font-size: 16px;
       font-weight: 650;
-      box-shadow: 0 12px 26px rgba(7,91,24,0.28);
+      box-shadow: 0 12px 26px rgba(7, 91, 24, 0.28);
     }
 
     .km-login span {
       width: 27px;
       height: 27px;
-      border: 2px solid rgba(255,255,255,0.86);
-      border-radius: 999px;
       display: grid;
       place-items: center;
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      border-radius: 50%;
       font-size: 13px;
     }
 
-    .desktop-hero {
-      min-height: 100vh;
+    .hero {
       height: 100vh;
+      min-height: 100vh;
       padding-top: 96px;
       display: grid;
-      grid-template-rows: minmax(0, 1fr) 104px;
-      overflow: hidden;
+      grid-template-rows: minmax(0, 1fr) 68px;
       background: var(--bg);
+      overflow: hidden;
     }
 
-    .hero-main {
+    .hero-image {
       position: relative;
-      min-height: 0;
       width: 100vw;
+      min-height: 0;
       overflow: hidden;
       background: var(--bg);
     }
 
-    .hero-main img {
+    .hero-image img {
       width: 100vw;
       height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: fill;
       object-position: center top;
+      transform: none;
     }
 
     .hero-click {
       position: absolute;
-      z-index: 5;
+      z-index: 8;
       display: block;
       border-radius: 14px;
     }
 
-    .hero-farmer { left: 7.2%; top: 67%; width: 10.8%; height: 10%; }
-    .hero-buyer  { left: 18.5%; top: 67%; width: 10.8%; height: 10%; }
-    .hero-how    { left: 30.2%; top: 67%; width: 14%; height: 10%; }
+    .hero-farmer {
+      left: 7.2%;
+      top: 69%;
+      width: 11%;
+      height: 11%;
+    }
 
-    .hero-bottom {
-      height: 104px;
-      background: linear-gradient(180deg, #074918 0%, #063d15 52%, #02280e 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
-      position: relative;
+    .hero-buyer {
+      left: 19%;
+      top: 69%;
+      width: 11%;
+      height: 11%;
+    }
+
+    .hero-how {
+      left: 31.2%;
+      top: 69%;
+      width: 15%;
+      height: 11%;
+    }
+
+    .hero-strip {
+      height: 68px;
+      background: #063d15;
       overflow: hidden;
+      position: relative;
     }
 
     .hero-card-row {
       position: absolute;
       top: 8px;
-      left: clamp(58px, 7vw, 118px);
-      right: clamp(58px, 7vw, 118px);
+      left: clamp(70px, 7vw, 130px);
+      right: clamp(70px, 7vw, 130px);
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
     .hero-card {
-      height: 54px;
+      height: 52px;
       display: grid;
-      grid-template-columns: 30px 1fr;
+      grid-template-columns: 26px 1fr;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       padding: 6px 10px;
       border-radius: 13px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(255,255,255,0.78);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
       overflow: hidden;
     }
 
     .hero-card-icon {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       display: grid;
       place-items: center;
-      border-radius: 999px;
-      color: #fff;
-      font-size: 13px;
+      border-radius: 50%;
       background: linear-gradient(180deg, #2b8d22, #13691d);
+      color: #fff;
+      font-size: 11px;
     }
 
     .hero-card-icon.orange {
@@ -187,68 +201,24 @@
 
     .hero-card strong {
       display: block;
-      font-size: 11.5px;
+      margin-bottom: 2px;
+      font-size: 10.8px;
       line-height: 1.05;
       font-weight: 650;
-      margin-bottom: 2px;
+      color: #102315;
     }
 
     .hero-card small {
       display: block;
-      font-size: 8px;
-      line-height: 1.12;
+      font-size: 7.4px;
+      line-height: 1.1;
       color: #4b594f;
-      font-weight: 430;
-    }
-
-    .hero-stats {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 34px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      align-items: center;
-      gap: 10px;
-      padding: 3px clamp(80px, 15vw, 270px);
-      color: #fff;
-      background: #02280e;
-    }
-
-    .hero-stats div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      min-width: 0;
-    }
-
-    .hero-stats span {
-      width: 22px;
-      height: 22px;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.13);
-      font-size: 10px;
-    }
-
-    .hero-stats strong {
-      font-size: 13px;
-      line-height: 1;
-      font-weight: 700;
-    }
-
-    .hero-stats small {
-      font-size: 8.5px;
-      color: rgba(255,255,255,0.86);
       font-weight: 430;
     }
 
     .mobile-home {
       display: none;
-      padding: 90px 16px 42px;
+      padding: 92px 16px 42px;
       text-align: center;
       background: linear-gradient(180deg, #eef5ef, #f8fbf8);
     }
@@ -307,7 +277,7 @@
     .btn-secondary {
       background: #fff;
       color: var(--green);
-      border: 1px solid rgba(7,91,24,0.14);
+      border: 1px solid rgba(7, 91, 24, 0.14);
     }
 
     section.content {
@@ -350,8 +320,8 @@
       padding: 24px;
       border-radius: 22px;
       background: #fff;
-      border: 1px solid rgba(7,91,24,0.12);
-      box-shadow: 0 12px 28px rgba(6,35,13,0.07);
+      border: 1px solid rgba(7, 91, 24, 0.12);
+      box-shadow: 0 12px 28px rgba(6, 35, 13, 0.07);
     }
 
     .feature-icon {
@@ -380,7 +350,9 @@
     }
 
     .dark {
-      background: radial-gradient(circle at 12% 14%, rgba(0,170,70,0.18), transparent 30%), linear-gradient(135deg, #041609, #082e14);
+      background:
+        radial-gradient(circle at 12% 14%, rgba(0,170,70,0.18), transparent 30%),
+        linear-gradient(135deg, #041609, #082e14);
       color: #fff;
     }
 
@@ -460,35 +432,6 @@
     }
 
     @media (max-width: 1100px) {
-      .hero-card-row {
-        left: 22px;
-        right: 22px;
-        gap: 8px;
-      }
-
-      .hero-card {
-        grid-template-columns: 26px 1fr;
-        padding: 5px 7px;
-      }
-
-      .hero-card-icon {
-        width: 24px;
-        height: 24px;
-        font-size: 11px;
-      }
-
-      .hero-card strong {
-        font-size: 10.5px;
-      }
-
-      .hero-card small {
-        font-size: 7.3px;
-      }
-
-      .hero-stats {
-        padding: 3px 28px;
-      }
-
       .km-logo img {
         width: 210px;
       }
@@ -497,10 +440,35 @@
         gap: 28px;
         font-size: 15px;
       }
+
+      .hero-card-row {
+        left: 22px;
+        right: 22px;
+        gap: 8px;
+      }
+
+      .hero-card {
+        grid-template-columns: 24px 1fr;
+        padding: 5px 7px;
+      }
+
+      .hero-card-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+      }
+
+      .hero-card strong {
+        font-size: 10px;
+      }
+
+      .hero-card small {
+        font-size: 7px;
+      }
     }
 
     @media (max-width: 768px) {
-      .desktop-hero {
+      .hero {
         display: none;
       }
 
@@ -543,551 +511,6 @@
       }
     }
   </style>
-
-
-
-<style id="km-force-final-clean-visible">
-  @media (min-width: 769px) {
-    /* Remove top second white layer / fake strip */
-    body,
-    main,
-    .desktop-hero,
-    .hero-main {
-      background: #eef5ef !important;
-    }
-
-    body::before,
-    body::after,
-    main::before,
-    main::after,
-    .desktop-hero::before,
-    .desktop-hero::after,
-    .hero-main::before,
-    .hero-main::after {
-      display: none !important;
-      content: none !important;
-      background: transparent !important;
-    }
-
-    /* Keep only one clean header */
-    .km-header {
-      position: fixed !important;
-      top: 14px !important;
-      left: 18px !important;
-      right: 18px !important;
-      height: 82px !important;
-      z-index: 999999 !important;
-      background: #ffffff !important;
-      box-shadow: 0 12px 30px rgba(6,35,13,0.12) !important;
-      border: 0 !important;
-    }
-
-    .km-header::before,
-    .km-header::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .km-logo img {
-      width: 238px !important;
-      mix-blend-mode: multiply !important;
-    }
-
-    .km-nav,
-    .km-nav a {
-      font-weight: 500 !important;
-    }
-
-    /* Hero should show full satellite image, not zoom/cut badly */
-    .desktop-hero {
-      height: 100vh !important;
-      min-height: 100vh !important;
-      padding-top: 96px !important;
-      display: grid !important;
-      grid-template-rows: minmax(0, 1fr) 72px !important;
-      overflow: hidden !important;
-    }
-
-    .hero-main {
-      position: relative !important;
-      width: 100vw !important;
-      min-height: 0 !important;
-      overflow: hidden !important;
-    }
-
-    .hero-main img {
-      width: 100vw !important;
-      height: 100% !important;
-      max-width: none !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      transform: none !important;
-      display: block !important;
-      background: #eef5ef !important;
-    }
-
-    /* Remove double white patch behind lower cards */
-    .hero-bottom {
-      height: 72px !important;
-      min-height: 72px !important;
-      background: #063d15 !important;
-      box-shadow: none !important;
-      border: 0 !important;
-      overflow: hidden !important;
-      position: relative !important;
-    }
-
-    .hero-bottom::before,
-    .hero-bottom::after {
-      display: none !important;
-      content: none !important;
-      background: transparent !important;
-    }
-
-    .hero-card-row {
-      position: absolute !important;
-      top: 8px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-      z-index: 10 !important;
-    }
-
-    .hero-card {
-      height: 52px !important;
-      min-height: 52px !important;
-      display: grid !important;
-      grid-template-columns: 28px 1fr !important;
-      align-items: center !important;
-      gap: 8px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-      background: rgba(255,255,255,0.95) !important;
-      border: 0 !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
-      overflow: hidden !important;
-    }
-
-    .hero-card-icon {
-      width: 26px !important;
-      height: 26px !important;
-      font-size: 12px !important;
-    }
-
-    .hero-card strong {
-      font-size: 11px !important;
-      line-height: 1.05 !important;
-      font-weight: 650 !important;
-      margin-bottom: 2px !important;
-    }
-
-    .hero-card small {
-      font-size: 7.7px !important;
-      line-height: 1.1 !important;
-    }
-
-    /* Remove bottom stats row completely */
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      max-height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden !important;
-    }
-
-    /* Push next section below hero, not inside first screen */
-    .desktop-hero + .content {
-      margin-top: 0 !important;
-      padding-top: 72px !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero-stats,
-    .km-clean-stats-row,
-    .km-compact-stats,
-    .km-green-stats {
-      display: none !important;
-    }
-  }
-</style>
-<style id="km-final-hero-visual-fix">
-  @media (min-width: 769px) {
-    /* hero full screen balance */
-    .desktop-hero {
-      height: 100vh !important;
-      min-height: 100vh !important;
-      padding-top: 96px !important;
-      display: grid !important;
-      grid-template-rows: minmax(0, 1fr) 64px !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    /* show more complete hero/satellite area */
-    .hero-main {
-      width: 100vw !important;
-      min-height: 0 !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    .hero-main img {
-      width: 100vw !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      transform: scale(0.94) !important;
-      transform-origin: center top !important;
-      background: #eef5ef !important;
-    }
-
-    /* clean bottom strip, no double white patch */
-    .hero-bottom {
-      height: 64px !important;
-      min-height: 64px !important;
-      background: #063d15 !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      position: relative !important;
-    }
-
-    .hero-bottom::before,
-    .hero-bottom::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-card-row {
-      top: 7px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      gap: 14px !important;
-    }
-
-    .hero-card {
-      height: 50px !important;
-      min-height: 50px !important;
-      grid-template-columns: 26px 1fr !important;
-      gap: 8px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-      background: rgba(255,255,255,0.96) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
-      border: 0 !important;
-    }
-
-    .hero-card-icon {
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 11px !important;
-    }
-
-    .hero-card strong {
-      font-size: 10.8px !important;
-      line-height: 1.05 !important;
-      font-weight: 650 !important;
-      margin-bottom: 2px !important;
-    }
-
-    .hero-card small {
-      font-size: 7.4px !important;
-      line-height: 1.1 !important;
-    }
-
-    /* remove all possible stats rows */
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden !important;
-    }
-
-    /* remove any extra top duplicate strip */
-    .hero-main::before,
-    .hero-main::after,
-    .desktop-hero::before,
-    .desktop-hero::after {
-      display: none !important;
-      content: none !important;
-    }
-  }
-</style>
-<style id="km-remove-white-gap-final">
-  @media (min-width: 769px) {
-    .desktop-hero {
-      height: 100vh !important;
-      min-height: 100vh !important;
-      padding-top: 96px !important;
-      display: grid !important;
-      grid-template-rows: calc(100vh - 160px) 64px !important;
-      overflow: hidden !important;
-      background: #063d15 !important;
-    }
-
-    .hero-main {
-      height: calc(100vh - 160px) !important;
-      min-height: 0 !important;
-      width: 100vw !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-      position: relative !important;
-    }
-
-    .hero-main img {
-      width: 100vw !important;
-      height: 100% !important;
-      max-width: none !important;
-      display: block !important;
-      object-fit: cover !important;
-      object-position: center top !important;
-      transform: none !important;
-      background: transparent !important;
-    }
-
-    .hero-main::before,
-    .hero-main::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-bottom {
-      height: 64px !important;
-      min-height: 64px !important;
-      background: #063d15 !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      position: relative !important;
-    }
-
-    .hero-bottom::before,
-    .hero-bottom::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-card-row {
-      position: absolute !important;
-      top: 7px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-      z-index: 10 !important;
-    }
-
-    .hero-card {
-      height: 50px !important;
-      min-height: 50px !important;
-      grid-template-columns: 26px 1fr !important;
-      gap: 8px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-      background: rgba(255,255,255,0.96) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
-      border: 0 !important;
-    }
-
-    .hero-card-icon {
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 11px !important;
-    }
-
-    .hero-card strong {
-      font-size: 10.8px !important;
-      line-height: 1.05 !important;
-      font-weight: 650 !important;
-      margin-bottom: 2px !important;
-    }
-
-    .hero-card small {
-      font-size: 7.4px !important;
-      line-height: 1.1 !important;
-    }
-
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      max-height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero + .content {
-      margin-top: 0 !important;
-      padding-top: 72px !important;
-    }
-  }
-</style>
-<style id="km-final-full-hero-no-crop">
-  @media (min-width: 769px) {
-    .desktop-hero {
-      height: 100vh !important;
-      min-height: 100vh !important;
-      padding-top: 96px !important;
-      display: grid !important;
-      grid-template-rows: calc(100vh - 160px) 64px !important;
-      overflow: hidden !important;
-      background: #063d15 !important;
-    }
-
-    .hero-main {
-      width: 100vw !important;
-      height: calc(100vh - 160px) !important;
-      min-height: 0 !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-      position: relative !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .hero-main img {
-      width: 100vw !important;
-      height: 100% !important;
-      max-width: none !important;
-      display: block !important;
-
-      /* IMPORTANT: show complete hero image, no left crop */
-      object-fit: fill !important;
-      object-position: center top !important;
-      transform: none !important;
-      transform-origin: center top !important;
-
-      margin: 0 !important;
-      padding: 0 !important;
-      background: transparent !important;
-    }
-
-    .hero-main::before,
-    .hero-main::after,
-    .desktop-hero::before,
-    .desktop-hero::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-bottom {
-      height: 64px !important;
-      min-height: 64px !important;
-      background: #063d15 !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      position: relative !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .hero-bottom::before,
-    .hero-bottom::after {
-      display: none !important;
-      content: none !important;
-    }
-
-    .hero-card-row {
-      position: absolute !important;
-      top: 7px !important;
-      left: clamp(70px, 7vw, 130px) !important;
-      right: clamp(70px, 7vw, 130px) !important;
-      display: grid !important;
-      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-      z-index: 10 !important;
-    }
-
-    .hero-card {
-      height: 50px !important;
-      min-height: 50px !important;
-      grid-template-columns: 26px 1fr !important;
-      gap: 8px !important;
-      padding: 6px 10px !important;
-      border-radius: 13px !important;
-      background: rgba(255,255,255,0.96) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
-      border: 0 !important;
-    }
-
-    .hero-card-icon {
-      width: 24px !important;
-      height: 24px !important;
-      font-size: 11px !important;
-    }
-
-    .hero-card strong {
-      font-size: 10.8px !important;
-      line-height: 1.05 !important;
-      font-weight: 650 !important;
-      margin-bottom: 2px !important;
-    }
-
-    .hero-card small {
-      font-size: 7.4px !important;
-      line-height: 1.1 !important;
-    }
-
-    .hero-stats,
-    .hero-stats *,
-    .km-clean-stats-row,
-    .km-clean-stats-row *,
-    .km-compact-stats,
-    .km-compact-stats *,
-    .km-green-stats,
-    .km-green-stats * {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      max-height: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      overflow: hidden !important;
-    }
-
-    .km-header {
-      z-index: 999999 !important;
-    }
-  }
-</style>
 </head>
 
 <body>
@@ -1096,7 +519,7 @@
       <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
     </a>
 
-    <nav class="km-nav" aria-label="Main navigation">
+    <nav class="km-nav">
       <a href="#farmers">Farmers</a>
       <a href="#buyers">Buyers</a>
       <a href="#engine">AI Engine</a>
@@ -1108,21 +531,36 @@
   </header>
 
   <main>
-    <section class="desktop-hero">
-      <div class="hero-main">
-        <img src="./home-assets/kisanmitra-hero-clean-main.png" alt="KisanMitraAI precision farming and market intelligence" />
+    <section class="hero">
+      <div class="hero-image">
+        <img src="./home-assets/kisanmitra-hero-clean-final.png" alt="KisanMitraAI precision farming and market intelligence" />
 
-        <a class="hero-click hero-farmer" href="#farmers" aria-label="I am a Farmer"></a>
-        <a class="hero-click hero-buyer" href="#buyers" aria-label="I am a Buyer"></a>
-        <a class="hero-click hero-how" href="#engine" aria-label="See How It Works"></a>
+        <a class="hero-click hero-farmer" href="#farmers"></a>
+        <a class="hero-click hero-buyer" href="#buyers"></a>
+        <a class="hero-click hero-how" href="#engine"></a>
       </div>
 
-      <div class="hero-bottom">
+      <div class="hero-strip">
         <div class="hero-card-row">
-          <a class="hero-card" href="#farmers"><span class="hero-card-icon">👨‍🌾</span><span><strong>For Farmers</strong><small>Crop advisory, P&L, account books and better yields.</small></span></a>
-          <a class="hero-card" href="#buyers"><span class="hero-card-icon orange">🛒</span><span><strong>For Buyers</strong><small>Verified suppliers, crop visibility and procurement.</small></span></a>
-          <a class="hero-card" href="#engine"><span class="hero-card-icon">🧠</span><span><strong>AI Engine</strong><small>Crop intelligence, image analysis and smart advice.</small></span></a>
-          <a class="hero-card" href="#trust"><span class="hero-card-icon">🛡</span><span><strong>Trust</strong><small>Verified data, safer flow and traceability.</small></span></a>
+          <a class="hero-card" href="#farmers">
+            <span class="hero-card-icon">👨‍🌾</span>
+            <span><strong>For Farmers</strong><small>Crop advisory, P&L, account books and better yields.</small></span>
+          </a>
+
+          <a class="hero-card" href="#buyers">
+            <span class="hero-card-icon orange">🛒</span>
+            <span><strong>For Buyers</strong><small>Verified suppliers, crop visibility and procurement.</small></span>
+          </a>
+
+          <a class="hero-card" href="#engine">
+            <span class="hero-card-icon">🧠</span>
+            <span><strong>AI Engine</strong><small>Crop intelligence, image analysis and smart advice.</small></span>
+          </a>
+
+          <a class="hero-card" href="#trust">
+            <span class="hero-card-icon">🛡</span>
+            <span><strong>Trust</strong><small>Verified data, safer flow and traceability.</small></span>
+          </a>
         </div>
       </div>
     </section>
@@ -1145,6 +583,7 @@
           <h2>AI tools for farmers</h2>
           <p>Farm mapping, farmer P&L reports, personal account books, day-to-day crop calendar, mandi-rate advice and value-addition intelligence.</p>
         </div>
+
         <div class="grid">
           <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS farm boundary, area, satellite view, crop planning support and farm profile intelligence.</p></article>
           <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise production cost, sale forecast, logistics, dues and profit/loss visibility.</p></article>
@@ -1162,6 +601,7 @@
           <h2>KisanMitraAI Engine</h2>
           <p>An intelligent AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
         </div>
+
         <div class="grid">
           <article class="feature"><div class="feature-icon">AI</div><h3>Crop Intelligence</h3><p>Smart advisory based on crop stage, risk, weather and field information.</p></article>
           <article class="feature"><div class="feature-icon">🛰️</div><h3>Satellite + GPS</h3><p>Farm visibility, crop mapping and field-level intelligence for better decisions.</p></article>
@@ -1176,6 +616,7 @@
           <h2>Trusted tools for buyers</h2>
           <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
         </div>
+
         <div class="grid">
           <article class="feature"><div class="feature-icon">🛒</div><h3>Verified Crop Visibility</h3><p>See crop type, expected supply, producer background and trust-supporting farm details.</p></article>
           <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Matching</h3><p>Get farmer-side opportunities based on location, crop, timing and requirements.</p></article>
@@ -1190,6 +631,7 @@
           <h2>Trust & transparency</h2>
           <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
         </div>
+
         <div class="grid">
           <article class="feature"><div class="feature-icon">✅</div><h3>Verified Data</h3><p>Structured farmer-side records and intelligence for traceable workflows.</p></article>
           <article class="feature"><div class="feature-icon">🔍</div><h3>Transparency</h3><p>Better confidence through visible crop information, planning support and account-backed flow.</p></article>
@@ -1223,13 +665,5 @@
       </div>
     </div>
   </footer>
-
 </body>
 </html>
-
-
-
-
-
-
-
