@@ -792,15 +792,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
-<style id="km-sleek-cards-visible-bar">
+
+<style id="km-final-sleek-hero-cards">
   @media (min-width: 769px) {
     .desktop-hero-inner {
       height: calc(100vh - 0px) !important;
-      min-height: 640px !important;
-      max-height: 820px !important;
+      min-height: 635px !important;
+      max-height: 780px !important;
       overflow: hidden !important;
       position: relative !important;
-      background: #eef5ef !important;
     }
 
     .desktop-hero-img {
@@ -810,149 +810,149 @@ document.addEventListener("DOMContentLoaded", function () {
       object-position: center top !important;
     }
 
-    /* Hide the large baked-in card row and reveal our sleek real cards */
-    .km-sleek-cover {
+    /* Cover the old large baked cards */
+    .km-card-mask {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 32%;
-      z-index: 30;
+      height: 29%;
+      z-index: 40;
       pointer-events: none;
       background:
         linear-gradient(
           180deg,
           rgba(255,255,255,0) 0%,
-          rgba(238,245,239,0.58) 18%,
-          rgba(238,245,239,0.92) 42%,
-          rgba(6,72,19,0.88) 100%
+          rgba(238,245,239,0.72) 18%,
+          rgba(238,245,239,0.96) 42%,
+          rgba(5,64,18,0.93) 100%
         );
     }
 
-    .km-sleek-card-row {
+    .km-real-card-row {
       position: absolute;
-      left: clamp(54px, 7vw, 118px);
-      right: clamp(54px, 7vw, 118px);
-      bottom: 76px;
-      z-index: 40;
+      left: clamp(48px, 7vw, 118px);
+      right: clamp(48px, 7vw, 118px);
+      bottom: 72px;
+      z-index: 50;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .km-sleek-card {
-      height: 106px;
+    .km-real-card {
+      height: 92px;
       display: grid;
-      grid-template-columns: 58px 1fr;
+      grid-template-columns: 48px 1fr;
       align-items: center;
       gap: 12px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.82);
+      padding: 10px 13px;
+      border-radius: 17px;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(255,255,255,0.86);
       box-shadow: 0 14px 28px rgba(5,35,14,0.14);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      color: #102315;
       text-decoration: none;
+      color: #102315;
       overflow: hidden;
     }
 
-    .km-sleek-card strong {
-      display: block;
-      font-size: 16px;
-      line-height: 1.05;
-      font-weight: 750;
-      margin-bottom: 5px;
-      color: #102315;
-    }
-
-    .km-sleek-card small {
-      display: block;
-      font-size: 11.5px;
-      line-height: 1.25;
-      color: #47564d;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .km-sleek-card em {
-      display: block;
-      font-style: normal;
-      font-size: 11.5px;
-      line-height: 1;
-      color: #075b18;
-      font-weight: 650;
-    }
-
-    .km-sleek-icon {
-      width: 54px;
-      height: 54px;
+    .km-real-icon {
+      width: 46px;
+      height: 46px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       color: #fff;
-      font-size: 26px;
-      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.24);
+      font-size: 23px;
       background: linear-gradient(180deg, #2b8d22, #13691d);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.24);
     }
 
-    .km-sleek-icon.buyer {
+    .km-real-icon.buyer {
       background: linear-gradient(180deg, #f39a14, #f27900);
     }
 
-    .km-sleek-stats {
+    .km-real-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #102315;
+      font-size: 15px;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .km-real-card small {
+      display: block;
+      margin-bottom: 5px;
+      color: #4b594f;
+      font-size: 10.8px;
+      line-height: 1.22;
+      font-weight: 450;
+    }
+
+    .km-real-card em {
+      display: block;
+      color: #075b18;
+      font-size: 10.8px;
+      line-height: 1;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .km-real-stats {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 74px;
-      z-index: 42;
+      height: 66px;
+      z-index: 55;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
       gap: 18px;
-      padding: 10px clamp(70px, 14vw, 260px);
-      background: rgba(5, 64, 18, 0.90);
+      padding: 8px clamp(60px, 14vw, 250px);
+      background: rgba(5, 64, 18, 0.94);
+      color: #fff;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      color: #fff;
     }
 
-    .km-sleek-stats div {
+    .km-real-stats div {
       display: grid;
-      grid-template-columns: 42px auto;
+      grid-template-columns: 38px auto;
       grid-template-rows: auto auto;
       column-gap: 10px;
       align-items: center;
       justify-content: center;
     }
 
-    .km-sleek-stats span {
+    .km-real-stats span {
       grid-row: 1 / span 2;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       display: grid;
       place-items: center;
       border-radius: 999px;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.13);
       border: 1px solid rgba(255,255,255,0.18);
-      font-size: 22px;
+      font-size: 20px;
     }
 
-    .km-sleek-stats strong {
-      font-size: 21px;
+    .km-real-stats strong {
+      font-size: 20px;
       line-height: 1;
-      font-weight: 850;
+      font-weight: 750;
     }
 
-    .km-sleek-stats small {
-      font-size: 11.5px;
+    .km-real-stats small {
       color: rgba(255,255,255,0.86);
-      font-weight: 500;
+      font-size: 11px;
+      line-height: 1.15;
+      font-weight: 450;
     }
 
-    /* Hide old clickable areas where baked cards were */
     .hs-card-farmers,
     .hs-card-buyers,
     .hs-card-engine,
@@ -962,41 +962,42 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   @media (min-width: 769px) and (max-width: 1180px) {
-    .km-sleek-card-row {
-      left: 28px;
-      right: 28px;
+    .km-real-card-row {
+      left: 24px;
+      right: 24px;
       gap: 10px;
     }
 
-    .km-sleek-card {
-      height: 100px;
-      grid-template-columns: 46px 1fr;
-      padding: 10px;
+    .km-real-card {
+      height: 86px;
+      grid-template-columns: 40px 1fr;
+      padding: 9px;
     }
 
-    .km-sleek-icon {
-      width: 44px;
-      height: 44px;
-      font-size: 21px;
+    .km-real-icon {
+      width: 38px;
+      height: 38px;
+      font-size: 19px;
     }
 
-    .km-sleek-card strong {
-      font-size: 14px;
+    .km-real-card strong {
+      font-size: 13.5px;
     }
 
-    .km-sleek-card small {
-      font-size: 10.5px;
+    .km-real-card small,
+    .km-real-card em {
+      font-size: 9.8px;
     }
 
-    .km-sleek-stats {
-      padding: 10px 44px;
+    .km-real-stats {
+      padding: 8px 40px;
     }
   }
 
   @media (max-width: 768px) {
-    .km-sleek-cover,
-    .km-sleek-card-row,
-    .km-sleek-stats {
+    .km-card-mask,
+    .km-real-card-row,
+    .km-real-stats {
       display: none !important;
     }
   }
@@ -1028,53 +1029,54 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="desktop-hero-inner">
         <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
 <!-- km-sleek-overlay-start -->
-<div class="km-sleek-cover" aria-hidden="true"></div>
+<div class="km-card-mask" aria-hidden="true"></div>
 
-<div class="km-sleek-card-row" aria-label="KisanMitraAI main sections">
-  <a class="km-sleek-card" href="#farmers">
-    <span class="km-sleek-icon farmer">👨‍🌾</span>
+<div class="km-real-card-row">
+  <a class="km-real-card" href="#farmers">
+    <span class="km-real-icon farmer">👨‍🌾</span>
     <span>
       <strong>For Farmers</strong>
-      <small>Crop advisory, weather, P&L, account books and better yields.</small>
+      <small>Crop advisory, P&L, account books and better yields.</small>
       <em>Explore for Farmers →</em>
     </span>
   </a>
 
-  <a class="km-sleek-card" href="#buyers">
-    <span class="km-sleek-icon buyer">🛒</span>
+  <a class="km-real-card" href="#buyers">
+    <span class="km-real-icon buyer">🛒</span>
     <span>
       <strong>For Buyers</strong>
-      <small>Verified suppliers, crop visibility and seamless procurement.</small>
+      <small>Verified suppliers, crop visibility and procurement support.</small>
       <em>Explore for Buyers →</em>
     </span>
   </a>
 
-  <a class="km-sleek-card" href="#engine">
-    <span class="km-sleek-icon engine">🧠</span>
+  <a class="km-real-card" href="#engine">
+    <span class="km-real-icon">🧠</span>
     <span>
       <strong>AI Engine</strong>
-      <small>Crop intelligence, image analysis and smart recommendations.</small>
+      <small>Crop intelligence, image analysis and smart advice.</small>
       <em>Explore AI Engine →</em>
     </span>
   </a>
 
-  <a class="km-sleek-card" href="#trust">
-    <span class="km-sleek-icon trust">🛡</span>
+  <a class="km-real-card" href="#trust">
+    <span class="km-real-icon">🛡</span>
     <span>
       <strong>Trust & Transparency</strong>
-      <small>Verified data, secure flow and complete traceability.</small>
+      <small>Verified data, safer flow and clear traceability.</small>
       <em>Explore Trust →</em>
     </span>
   </a>
 </div>
 
-<div class="km-sleek-stats" aria-label="KisanMitraAI platform stats">
+<div class="km-real-stats">
   <div><span>👥</span><strong>10L+</strong><small>Farmers Empowered</small></div>
   <div><span>🌿</span><strong>50+</strong><small>Crops Supported</small></div>
   <div><span>🌐</span><strong>25+</strong><small>Countries Connected</small></div>
   <div><span>🛡</span><strong>100%</strong><small>Trust & Transparency</small></div>
 </div>
 <!-- km-sleek-overlay-end -->
+
 
         <a class="hotspot hs-logo" href="./index.html" aria-label="Home"></a>
         <a class="hotspot hs-farmers" href="#farmers" aria-label="Farmers"></a>
@@ -1221,6 +1223,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
