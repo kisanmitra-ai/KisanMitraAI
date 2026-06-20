@@ -320,168 +320,179 @@
   </style>
 
 
-<style id="km-fpo-clean-overlay-v2">
+
+<style id="km-fpo-solid-clean-final">
   @media (min-width: 769px) {
     .reference-frame {
       position: relative !important;
     }
 
-    /* clean cover over old baked top menu */
-    .km-fpo-menu-cover {
+    /* remove old FPO overlay attempts */
+    .km-fpo-menu-cover,
+    .km-fpo-menu,
+    .km-fpo-card-cover,
+    .km-fpo-card-row,
+    .km-fpo-top-menu,
+    .km-fpo-bottom-cards {
+      display: none !important;
+    }
+
+    /* solid cover over old baked top menu */
+    .km-fpo-final-menu-cover {
       position: absolute;
-      left: 34.5%;
-      top: 4.7%;
+      left: 35.0%;
+      top: 4.9%;
       width: 45.8%;
-      height: 8.8%;
-      z-index: 80;
-      background: #fbfdfc;
-      border-radius: 14px;
+      height: 8.5%;
+      z-index: 200;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: none;
       pointer-events: none;
     }
 
-    .km-fpo-menu {
+    .km-fpo-final-menu {
       position: absolute;
-      left: 35.3%;
+      left: 35.7%;
       top: 7.15%;
-      width: 44.2%;
-      z-index: 90;
+      width: 44.4%;
+      z-index: 210;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       color: #0b3316;
-      font-size: clamp(13px, 1vw, 17px);
-      font-weight: 750;
+      font-size: clamp(13px, 0.95vw, 17px);
+      font-weight: 700;
       line-height: 1;
       white-space: nowrap;
     }
 
-    .km-fpo-menu a {
+    .km-fpo-final-menu a {
       color: #0b3316;
       text-decoration: none;
     }
 
-    .km-fpo-menu a:hover {
+    .km-fpo-final-menu a:hover {
       color: #f26522;
     }
 
-    /* clean cover over old baked 4-card row */
-    .km-fpo-card-cover {
+    /* solid cover over old baked 4 cards */
+    .km-fpo-final-card-cover {
       position: absolute;
-      left: 6.8%;
+      left: 7.2%;
       top: 66.0%;
-      width: 86.4%;
-      height: 19.4%;
-      z-index: 80;
-      background: rgba(244, 249, 246, 0.97);
-      border-radius: 20px;
+      width: 84.5%;
+      height: 19.7%;
+      z-index: 200;
+      background: #ffffff;
+      border-radius: 22px;
       pointer-events: none;
     }
 
-    .km-fpo-card-row {
+    .km-fpo-final-card-row {
       position: absolute;
-      left: 7.35%;
-      top: 67.2%;
-      width: 85.3%;
-      height: 16.7%;
-      z-index: 95;
+      left: 7.7%;
+      top: 67.4%;
+      width: 83.4%;
+      height: 16.6%;
+      z-index: 220;
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .km-fpo-card {
+    .km-fpo-final-card {
       display: grid;
       grid-template-columns: 42px 1fr;
       align-items: center;
       gap: 10px;
-      padding: 12px 12px;
+      padding: 12px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 16px 34px rgba(5, 35, 14, 0.14);
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(5,35,14,0.13);
       color: #102315;
       text-decoration: none;
       overflow: hidden;
     }
 
-    .km-fpo-icon {
+    .km-fpo-final-icon {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       color: #fff;
-      background: linear-gradient(180deg, #2b8d22, #13691d);
+      background: linear-gradient(180deg,#2b8d22,#13691d);
       font-size: 18px;
-      flex: 0 0 auto;
     }
 
-    .km-fpo-icon.orange {
-      background: linear-gradient(180deg, #f39a14, #f27900);
+    .km-fpo-final-icon.orange {
+      background: linear-gradient(180deg,#f39a14,#f27900);
     }
 
-    .km-fpo-card h3 {
+    .km-fpo-final-card h3 {
       margin: 0 0 5px;
-      font-size: clamp(11px, 0.95vw, 18px);
+      font-size: clamp(11px, 0.92vw, 17px);
       line-height: 1.05;
       font-weight: 850;
       color: #102315;
     }
 
-    .km-fpo-card p {
+    .km-fpo-final-card p {
       margin: 0;
-      font-size: clamp(7px, 0.56vw, 10.5px);
+      font-size: clamp(7px, 0.53vw, 10px);
       line-height: 1.22;
       color: #26352b;
       font-weight: 520;
     }
 
-    .km-fpo-card small {
+    .km-fpo-final-card small {
       display: block;
       margin-top: 6px;
-      font-size: clamp(7px, 0.56vw, 10.5px);
+      font-size: clamp(7px, 0.53vw, 10px);
       color: #075b18;
       font-weight: 850;
     }
   }
 
   @media (max-width: 1150px) and (min-width: 769px) {
-    .km-fpo-card-row {
+    .km-fpo-final-card-row {
       gap: 8px;
     }
 
-    .km-fpo-card {
+    .km-fpo-final-card {
       grid-template-columns: 30px 1fr;
       gap: 7px;
-      padding: 9px;
+      padding: 8px;
       border-radius: 14px;
     }
 
-    .km-fpo-icon {
+    .km-fpo-final-icon {
       width: 29px;
       height: 29px;
       font-size: 14px;
     }
 
-    .km-fpo-card h3 {
-      font-size: 11px;
+    .km-fpo-final-card h3 {
+      font-size: 10.5px;
       margin-bottom: 3px;
     }
 
-    .km-fpo-card p {
-      font-size: 7px;
+    .km-fpo-final-card p {
+      font-size: 6.8px;
     }
 
-    .km-fpo-card small {
+    .km-fpo-final-card small {
       display: none;
     }
   }
 
   @media (max-width: 768px) {
-    .km-fpo-menu-cover,
-    .km-fpo-menu,
-    .km-fpo-card-cover,
-    .km-fpo-card-row {
+    .km-fpo-final-menu-cover,
+    .km-fpo-final-menu,
+    .km-fpo-final-card-cover,
+    .km-fpo-final-card-row {
       display: none !important;
     }
   }
@@ -493,9 +504,9 @@
     <section class="desktop-reference-home">
       <div class="reference-frame">
         <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
-<!-- KM FPO CLEAN OVERLAY START -->
-<div class="km-fpo-menu-cover"></div>
-<nav class="km-fpo-menu" aria-label="KisanMitraAI menu">
+<!-- KM FPO SOLID CLEAN FINAL START -->
+<div class="km-fpo-final-menu-cover"></div>
+<nav class="km-fpo-final-menu" aria-label="KisanMitraAI menu">
   <a href="#farmers">Farmers</a>
   <a href="#fpo">FPO</a>
   <a href="#buyers">Buyers</a>
@@ -504,34 +515,35 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<div class="km-fpo-card-cover"></div>
-<div class="km-fpo-card-row" aria-label="KisanMitraAI solution cards">
-  <a class="km-fpo-card" href="#farmers">
-    <span class="km-fpo-icon">👨‍🌾</span>
+<div class="km-fpo-final-card-cover"></div>
+<div class="km-fpo-final-card-row" aria-label="KisanMitraAI cards">
+  <a class="km-fpo-final-card" href="#farmers">
+    <span class="km-fpo-final-icon">👨‍🌾</span>
     <span><h3>For Farmers</h3><p>AI advisory, weather updates and better yields.</p><small>Explore Farmers →</small></span>
   </a>
 
-  <a class="km-fpo-card" href="#fpo">
-    <span class="km-fpo-icon">🏢</span>
+  <a class="km-fpo-final-card" href="#fpo">
+    <span class="km-fpo-final-icon">🏢</span>
     <span><h3>For FPOs</h3><p>Aggregation, farmer groups and buyer linkage.</p><small>Explore FPO →</small></span>
   </a>
 
-  <a class="km-fpo-card" href="#buyers">
-    <span class="km-fpo-icon orange">🛒</span>
+  <a class="km-fpo-final-card" href="#buyers">
+    <span class="km-fpo-final-icon orange">🛒</span>
     <span><h3>For Buyers</h3><p>Verified suppliers and seamless procurement.</p><small>Explore Buyers →</small></span>
   </a>
 
-  <a class="km-fpo-card" href="#engine">
-    <span class="km-fpo-icon">🧠</span>
+  <a class="km-fpo-final-card" href="#engine">
+    <span class="km-fpo-final-icon">🧠</span>
     <span><h3>AI Engine</h3><p>Crop intelligence and smart recommendations.</p><small>Explore AI →</small></span>
   </a>
 
-  <a class="km-fpo-card" href="#trust">
-    <span class="km-fpo-icon">🛡</span>
+  <a class="km-fpo-final-card" href="#trust">
+    <span class="km-fpo-final-icon">🛡</span>
     <span><h3>Trust</h3><p>Verified data and complete traceability.</p><small>Explore Trust →</small></span>
   </a>
 </div>
-<!-- KM FPO CLEAN OVERLAY END -->
+<!-- KM FPO SOLID CLEAN FINAL END -->
+
 
 
 
@@ -584,6 +596,7 @@
     </section>
 
     
+
 
 <!-- KM FPO SECTION START -->
 <section class="content" id="fpo">
@@ -673,6 +686,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
