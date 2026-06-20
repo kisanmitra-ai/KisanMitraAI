@@ -650,6 +650,52 @@
     }
   }
 </style>
+<style id="km-remove-bottom-white-patches-only">
+  /* Remove only the white/light patch under hero and behind bottom cards */
+  .hero-strip,
+  .hero-card-row,
+  .hero-card-row-wrap,
+  .hero-cards-wrap,
+  .hero-cards,
+  .hero-bottom-strip,
+  .hero-bottom-overlay,
+  .hero-bottom-panel,
+  .hero-bottom-band {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .hero-strip::before,
+  .hero-strip::after,
+  .hero-card-row::before,
+  .hero-card-row::after,
+  .hero-card-row-wrap::before,
+  .hero-card-row-wrap::after,
+  .hero-cards-wrap::before,
+  .hero-cards-wrap::after,
+  .hero-cards::before,
+  .hero-cards::after,
+  .hero-bottom-strip::before,
+  .hero-bottom-strip::after,
+  .hero-bottom-overlay::before,
+  .hero-bottom-overlay::after,
+  .hero-bottom-panel::before,
+  .hero-bottom-panel::after,
+  .hero-bottom-band::before,
+  .hero-bottom-band::after {
+    display: none !important;
+    content: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* If a direct section below hero is creating the light patch */
+  .hero + section {
+    background: transparent !important;
+  }
+</style>
 </head>
 
 <body>
@@ -806,6 +852,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
