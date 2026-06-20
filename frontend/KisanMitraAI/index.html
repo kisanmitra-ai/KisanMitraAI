@@ -505,7 +505,8 @@
 
 
 
-<style id="km-final-remove-bottom-white-band">
+
+<style id="km-final-clean-no-bottom-cards">
   @media (min-width: 769px) {
     .desktop-reference-home,
     .reference-frame {
@@ -529,26 +530,26 @@
       object-position: center top !important;
     }
 
-    /* cover old bottom card area with green farm-style band */
+    /* Solid green cover over baked bottom cards — no stretch, no ghost */
     .reference-frame::after {
       content: "" !important;
       position: absolute !important;
       left: 0 !important;
       right: 0 !important;
       bottom: 0 !important;
-      height: 26.5% !important;
+      height: 33.5% !important;
       z-index: 700 !important;
-      background:
-        linear-gradient(
-          180deg,
-          rgba(6, 69, 20, 0.15) 0%,
-          rgba(6, 69, 20, 0.86) 46%,
-          rgba(5, 54, 17, 0.98) 100%
-        ) !important;
+      background: linear-gradient(
+        180deg,
+        #eef5ef 0%,
+        #0b4f1c 12%,
+        #073f16 55%,
+        #052e11 100%
+      ) !important;
       pointer-events: none !important;
     }
 
-    /* remove all overlay cards */
+    /* Hide every bottom card overlay/click area */
     .km-fpo-final-card-cover,
     .km-fpo-final-card-row,
     .km-fpo-card-cover,
@@ -564,10 +565,13 @@
       opacity: 0 !important;
       width: 0 !important;
       height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
       pointer-events: none !important;
     }
 
-    /* keep FPO top menu */
+    /* Keep one clean top menu with FPO */
     .km-fpo-final-menu-cover {
       position: absolute !important;
       left: 35.0% !important;
@@ -803,6 +807,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
