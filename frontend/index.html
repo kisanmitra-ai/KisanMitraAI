@@ -895,6 +895,16 @@
     }
   }
 </style>
+<style id="km-fix-left-hero-text-only">
+  @media (min-width: 769px) {
+    /* Keep everything same, only stop left headline from being cut */
+    .hero-image img {
+      object-fit: cover !important;
+      object-position: left top !important;
+      transform: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -1051,6 +1061,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
