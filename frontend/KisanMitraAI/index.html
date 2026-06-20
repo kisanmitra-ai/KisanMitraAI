@@ -506,114 +506,23 @@
 
 
 
-<style id="km-final-clean-no-bottom-cards">
+
+<style id="km-remove-green-bottom-patch-only">
   @media (min-width: 769px) {
-    .desktop-reference-home,
-    .reference-frame {
-      background: #eef5ef !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-    }
-
-    .reference-frame {
-      position: relative !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-
-    .reference-frame img {
-      width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-    }
-
-    /* Solid green cover over baked bottom cards — no stretch, no ghost */
+    /* Remove only the artificial green patch at bottom */
     .reference-frame::after {
-      content: "" !important;
-      position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
-      height: 33.5% !important;
-      z-index: 700 !important;
-      background: linear-gradient(
-        180deg,
-        #eef5ef 0%,
-        #0b4f1c 12%,
-        #073f16 55%,
-        #052e11 100%
-      ) !important;
-      pointer-events: none !important;
-    }
-
-    /* Hide every bottom card overlay/click area */
-    .km-fpo-final-card-cover,
-    .km-fpo-final-card-row,
-    .km-fpo-card-cover,
-    .km-fpo-card-row,
-    .km-fpo-bottom-cards,
-    .km-bottom-cards-removal-cover,
-    .hotspot-farmer-card,
-    .hotspot-buyer-card,
-    .hotspot-engine-card,
-    .hotspot-trust-card {
       display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      width: 0 !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      pointer-events: none !important;
-    }
-
-    /* Keep one clean top menu with FPO */
-    .km-fpo-final-menu-cover {
-      position: absolute !important;
-      left: 35.0% !important;
-      top: 4.9% !important;
-      width: 45.8% !important;
-      height: 8.5% !important;
-      z-index: 900 !important;
-      background: #ffffff !important;
-      border-radius: 16px !important;
-      display: block !important;
-      pointer-events: none !important;
-    }
-
-    .km-fpo-final-menu {
-      position: absolute !important;
-      left: 35.7% !important;
-      top: 7.15% !important;
-      width: 44.4% !important;
-      z-index: 950 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      gap: 14px !important;
+      content: none !important;
       background: transparent !important;
-      color: #0b3316 !important;
-      font-size: clamp(13px, 0.95vw, 17px) !important;
-      font-weight: 700 !important;
-      line-height: 1 !important;
-      white-space: nowrap !important;
-      box-shadow: none !important;
-      border: 0 !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
 
-    .km-fpo-final-menu a {
-      color: #0b3316 !important;
-      text-decoration: none !important;
-    }
-
-    .desktop-reference-home + .content,
-    .desktop-reference-home + section {
-      margin-top: 0 !important;
-      padding-top: 56px !important;
+    .reference-frame {
+      overflow: hidden !important;
+      background: #eef5ef !important;
     }
   }
 </style>
@@ -807,6 +716,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
