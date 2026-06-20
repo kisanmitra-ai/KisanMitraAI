@@ -589,6 +589,73 @@
     }
   }
 </style>
+<style id="km-fpo-menu-duplicate-fix-final">
+  @media (min-width: 769px) {
+    .reference-frame {
+      position: relative !important;
+    }
+
+    /* Hide old duplicate baked menu completely */
+    .km-fpo-final-menu-cover {
+      position: absolute !important;
+      left: 34.0% !important;
+      top: 4.2% !important;
+      width: 48.0% !important;
+      height: 14.2% !important;
+      z-index: 900 !important;
+      background: #ffffff !important;
+      border-radius: 16px !important;
+      display: block !important;
+      pointer-events: none !important;
+    }
+
+    /* Draw one clean menu only */
+    .km-fpo-final-menu {
+      position: absolute !important;
+      left: 35.2% !important;
+      top: 8.55% !important;
+      width: 45.4% !important;
+      z-index: 950 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 14px !important;
+      background: transparent !important;
+      color: #0b3316 !important;
+      font-size: clamp(13px, 0.95vw, 17px) !important;
+      font-weight: 700 !important;
+      line-height: 1 !important;
+      white-space: nowrap !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+
+    .km-fpo-final-menu a {
+      color: #0b3316 !important;
+      text-decoration: none !important;
+    }
+
+    .km-fpo-final-menu a:hover {
+      color: #f26522 !important;
+    }
+
+    /* keep bottom cards removed */
+    .km-fpo-final-card-cover,
+    .km-fpo-final-card-row,
+    .km-fpo-card-cover,
+    .km-fpo-card-row,
+    .km-fpo-bottom-cards,
+    .hotspot-farmer-card,
+    .hotspot-buyer-card,
+    .hotspot-engine-card,
+    .hotspot-trust-card {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -779,6 +846,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
