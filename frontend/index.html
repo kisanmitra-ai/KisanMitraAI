@@ -587,6 +587,45 @@
     }
   }
 </style>
+<style id="km-final-left-align-hero">
+  @media (min-width: 769px) {
+    .hero-main {
+      overflow: hidden !important;
+      position: relative !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-main img,
+    .desktop-hero .hero-main img,
+    main .desktop-hero .hero-main img {
+      width: 100vw !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: cover !important;
+      object-position: 0% 0% !important;
+      transform: translateX(0) scale(1) !important;
+      transform-origin: left top !important;
+      display: block !important;
+    }
+
+    /* cover tiny leftover duplicate strip under header */
+    .hero-main::before {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 12px !important;
+      z-index: 4 !important;
+      pointer-events: none !important;
+      background: #eef5ef !important;
+    }
+
+    .km-header {
+      z-index: 99999 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -731,4 +770,5 @@
   </footer>
 </body>
 </html>
+
 
