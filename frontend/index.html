@@ -803,67 +803,104 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-<style id="km-compact-bottom-panel-final">
+
+<style id="km-clean-final-homepage">
   @media (min-width: 769px) {
-    .desktop-hero {
+    .km-header {
+      position: fixed !important;
+      top: 14px !important;
+      left: 18px !important;
+      right: 18px !important;
+      height: 82px !important;
+      z-index: 99999 !important;
+      background: rgba(255,255,255,.94) !important;
+    }
+
+    .km-logo img {
+      width: 238px !important;
+      mix-blend-mode: multiply !important;
+    }
+
+    .km-nav,
+    .km-nav a {
+      font-weight: 500 !important;
+    }
+
+    .km-clean-home-hero {
       height: 100vh !important;
       padding-top: 96px !important;
+      display: flex !important;
+      flex-direction: column !important;
       overflow: hidden !important;
       background: #eef5ef !important;
     }
 
-    .desktop-hero-inner {
-      height: calc(100vh - 96px) !important;
-      min-height: 560px !important;
+    .km-clean-hero-image {
       position: relative !important;
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      width: 100vw !important;
       overflow: hidden !important;
-      background: #032d10 !important;
+      background: #eef5ef !important;
     }
 
-    /* Crop image before old baked cards start */
-    .desktop-hero-img {
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
+    .km-clean-hero-image img {
       width: 100vw !important;
-      height: calc(100% - 104px) !important;
-      max-width: none !important;
+      height: 100% !important;
       object-fit: cover !important;
       object-position: center top !important;
-      transform: scale(1.06) !important;
-      transform-origin: top center !important;
       display: block !important;
-      z-index: 1 !important;
     }
 
-    .km-compact-bottom-panel {
+    .km-hero-btn {
       position: absolute !important;
-      left: 0 !important;
-      right: 0 !important;
-      bottom: 0 !important;
+      z-index: 8 !important;
+      display: block !important;
+      border-radius: 12px !important;
+    }
+
+    .km-hero-farmer {
+      left: 7.2% !important;
+      top: 63% !important;
+      width: 10.5% !important;
+      height: 9% !important;
+    }
+
+    .km-hero-buyer {
+      left: 18.5% !important;
+      top: 63% !important;
+      width: 10.5% !important;
+      height: 9% !important;
+    }
+
+    .km-hero-how {
+      left: 30.2% !important;
+      top: 63% !important;
+      width: 14% !important;
+      height: 9% !important;
+    }
+
+    .km-clean-bottom-strip {
+      flex: 0 0 104px !important;
       height: 104px !important;
-      z-index: 300 !important;
-      background: linear-gradient(
-        180deg,
-        #074918 0%,
-        #063d15 52%,
-        #02280e 100%
-      ) !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10) !important;
+      width: 100vw !important;
+      background: linear-gradient(180deg, #074918 0%, #063d15 52%, #02280e 100%) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10) !important;
+      position: relative !important;
       overflow: hidden !important;
     }
 
-    .km-compact-card-row {
+    .km-clean-card-row {
       position: absolute !important;
+      top: 8px !important;
       left: clamp(58px, 7vw, 118px) !important;
       right: clamp(58px, 7vw, 118px) !important;
-      top: 8px !important;
       display: grid !important;
       grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
       gap: 14px !important;
     }
 
-    .km-compact-card {
+    .km-clean-card {
       height: 54px !important;
       display: grid !important;
       grid-template-columns: 30px 1fr !important;
@@ -871,15 +908,13 @@ document.addEventListener("DOMContentLoaded", function () {
       gap: 9px !important;
       padding: 6px 10px !important;
       border-radius: 13px !important;
-      background: rgba(255,255,255,0.94) !important;
-      border: 1px solid rgba(255,255,255,0.78) !important;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15) !important;
+      background: rgba(255,255,255,.94) !important;
       color: #102315 !important;
       text-decoration: none !important;
       overflow: hidden !important;
     }
 
-    .km-compact-icon {
+    .km-clean-icon {
       width: 28px !important;
       height: 28px !important;
       display: grid !important;
@@ -888,14 +923,13 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #fff !important;
       font-size: 13px !important;
       background: linear-gradient(180deg, #2b8d22, #13691d) !important;
-      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.22) !important;
     }
 
-    .km-compact-icon.orange {
+    .km-clean-icon.orange {
       background: linear-gradient(180deg, #f39a14, #f27900) !important;
     }
 
-    .km-compact-card strong {
+    .km-clean-card strong {
       display: block !important;
       font-size: 11.5px !important;
       line-height: 1.05 !important;
@@ -903,7 +937,7 @@ document.addEventListener("DOMContentLoaded", function () {
       margin-bottom: 2px !important;
     }
 
-    .km-compact-card small {
+    .km-clean-card small {
       display: block !important;
       font-size: 8px !important;
       line-height: 1.12 !important;
@@ -911,7 +945,7 @@ document.addEventListener("DOMContentLoaded", function () {
       font-weight: 430 !important;
     }
 
-    .km-compact-stats {
+    .km-clean-stats-row {
       position: absolute !important;
       left: 0 !important;
       right: 0 !important;
@@ -926,47 +960,38 @@ document.addEventListener("DOMContentLoaded", function () {
       background: #02280e !important;
     }
 
-    .km-compact-stats div {
+    .km-clean-stats-row div {
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 7px !important;
-      min-width: 0 !important;
     }
 
-    .km-compact-stats span {
+    .km-clean-stats-row span {
       width: 22px !important;
       height: 22px !important;
       display: grid !important;
       place-items: center !important;
       border-radius: 999px !important;
-      background: rgba(255,255,255,0.13) !important;
-      border: 1px solid rgba(255,255,255,0.18) !important;
+      background: rgba(255,255,255,.13) !important;
       font-size: 10px !important;
     }
 
-    .km-compact-stats strong {
+    .km-clean-stats-row strong {
       font-size: 13px !important;
       line-height: 1 !important;
       font-weight: 700 !important;
     }
 
-    .km-compact-stats small {
+    .km-clean-stats-row small {
       font-size: 8.5px !important;
-      color: rgba(255,255,255,0.86) !important;
+      color: rgba(255,255,255,.86) !important;
       font-weight: 430 !important;
-    }
-
-    .hs-card-farmers,
-    .hs-card-buyers,
-    .hs-card-engine,
-    .hs-card-trust {
-      display: none !important;
     }
   }
 
   @media (max-width: 768px) {
-    .km-compact-bottom-panel {
+    .km-clean-home-hero {
       display: none !important;
     }
   }
@@ -994,80 +1019,60 @@ document.addEventListener("DOMContentLoaded", function () {
   </header>
 
   <main>
-    <section class="desktop-hero">
-      <div class="desktop-hero-inner">
-        <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
-<!-- km-sleek-overlay-start -->
-<div class="km-compact-bottom-panel">
-  <div class="km-compact-card-row">
-    <a class="km-compact-card" href="#farmers">
-      <span class="km-compact-icon">👨‍🌾</span>
-      <span>
-        <strong>For Farmers</strong>
-        <small>Crop advisory, P&L, account books and better yields.</small>
-      </span>
-    </a>
+    <section class="desktop-hero km-clean-home-hero">
+  <div class="km-clean-hero-image">
+    <img src="./home-assets/kisanmitra-hero-main-crop.png" alt="KisanMitraAI precision farming and market intelligence" />
 
-    <a class="km-compact-card" href="#buyers">
-      <span class="km-compact-icon orange">🛒</span>
-      <span>
-        <strong>For Buyers</strong>
-        <small>Verified suppliers, crop visibility and procurement.</small>
-      </span>
-    </a>
-
-    <a class="km-compact-card" href="#engine">
-      <span class="km-compact-icon">🧠</span>
-      <span>
-        <strong>AI Engine</strong>
-        <small>Crop intelligence, image analysis and smart advice.</small>
-      </span>
-    </a>
-
-    <a class="km-compact-card" href="#trust">
-      <span class="km-compact-icon">🛡</span>
-      <span>
-        <strong>Trust</strong>
-        <small>Verified data, safer flow and traceability.</small>
-      </span>
-    </a>
+    <a class="km-hero-btn km-hero-farmer" href="#farmers" aria-label="I am a Farmer"></a>
+    <a class="km-hero-btn km-hero-buyer" href="#buyers" aria-label="I am a Buyer"></a>
+    <a class="km-hero-btn km-hero-how" href="#engine" aria-label="See How It Works"></a>
   </div>
 
-  <div class="km-compact-stats">
-    <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
-    <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
-    <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
-    <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
+  <div class="km-clean-bottom-strip">
+    <div class="km-clean-card-row">
+      <a class="km-clean-card" href="#farmers">
+        <span class="km-clean-icon">👨‍🌾</span>
+        <span>
+          <strong>For Farmers</strong>
+          <small>Crop advisory, P&L, account books and better yields.</small>
+        </span>
+      </a>
+
+      <a class="km-clean-card" href="#buyers">
+        <span class="km-clean-icon orange">🛒</span>
+        <span>
+          <strong>For Buyers</strong>
+          <small>Verified suppliers, crop visibility and procurement.</small>
+        </span>
+      </a>
+
+      <a class="km-clean-card" href="#engine">
+        <span class="km-clean-icon">🧠</span>
+        <span>
+          <strong>AI Engine</strong>
+          <small>Crop intelligence, image analysis and smart advice.</small>
+        </span>
+      </a>
+
+      <a class="km-clean-card" href="#trust">
+        <span class="km-clean-icon">🛡</span>
+        <span>
+          <strong>Trust</strong>
+          <small>Verified data, safer flow and traceability.</small>
+        </span>
+      </a>
+    </div>
+
+    <div class="km-clean-stats-row">
+      <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
+      <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
+      <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
+      <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
+    </div>
   </div>
-</div>
-<!-- km-sleek-overlay-end -->
+</section>
 
-
-
-
-
-
-
-        <a class="hotspot hs-logo" href="./index.html" aria-label="Home"></a>
-        <a class="hotspot hs-farmers" href="#farmers" aria-label="Farmers"></a>
-        <a class="hotspot hs-buyers" href="#buyers" aria-label="Buyers"></a>
-        <a class="hotspot hs-engine" href="#engine" aria-label="AI Engine"></a>
-        <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
-        <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
-        <a class="hotspot hs-login" href="./login.html" aria-label="Login"></a>
-
-        <a class="hotspot hs-farmer" href="#farmers" aria-label="I am a Farmer"></a>
-        <a class="hotspot hs-buyer" href="#buyers" aria-label="I am a Buyer"></a>
-        <a class="hotspot hs-how" href="#engine" aria-label="See How It Works"></a>
-
-        <a class="hotspot hs-card-farmers" href="#farmers" aria-label="For Farmers"></a>
-        <a class="hotspot hs-card-buyers" href="#buyers" aria-label="For Buyers"></a>
-        <a class="hotspot hs-card-engine" href="#engine" aria-label="AI Engine"></a>
-        <a class="hotspot hs-card-trust" href="#trust" aria-label="Trust"></a>
-      </div>
-    </section>
-
-    <section class="mobile-home">
+<section class="mobile-home">
       <div class="mobile-shell">
         <div class="mobile-hero-card">
           <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI homepage hero" />
@@ -1193,6 +1198,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
