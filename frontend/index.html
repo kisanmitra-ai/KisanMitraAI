@@ -914,6 +914,55 @@
     }
   }
 </style>
+<style id="km-hero-right-and-bottom-clean-v4">
+  @media (min-width: 769px) {
+    /* Keep layout same, only correct hero image framing */
+    .hero-image img {
+      object-fit: cover !important;
+      object-position: 43% top !important;
+      transform: none !important;
+    }
+
+    /* Cards float on image, no strip/patch behind them */
+    .hero-strip {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      bottom: 12px !important;
+      overflow: visible !important;
+    }
+
+    .hero-strip::before,
+    .hero-strip::after,
+    .hero-card-row::before,
+    .hero-card-row::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .hero-card-row {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+
+    /* Remove stats permanently */
+    .hero-stats,
+    .hero-stats *,
+    .km-clean-stats-row,
+    .km-clean-stats-row *,
+    .km-compact-stats,
+    .km-compact-stats *,
+    .km-green-stats,
+    .km-green-stats * {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -936,7 +985,7 @@
   <main>
     <section class="hero">
       <div class="hero-image">
-        <img src="./home-assets/kisanmitra-hero-natural-v2.png" alt="KisanMitraAI precision farming and market intelligence" />
+        <img src="./home-assets/kisanmitra-hero-clean-v4.png" alt="KisanMitraAI precision farming and market intelligence" />
 
         <a class="hero-click hero-farmer" href="#farmers"></a>
         <a class="hero-click hero-buyer" href="#buyers"></a>
@@ -1089,6 +1138,7 @@
 </script>
 </body>
 </html>
+
 
 
 
