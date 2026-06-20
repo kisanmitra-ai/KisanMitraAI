@@ -517,73 +517,22 @@
     }
   </style>
 
-<style id="km-remove-baked-hero-header">
-  /* Hide the header/nav that is baked inside the reference hero image */
+
+
+
+
+<style id="km-final-hero-balance">
   @media (min-width: 769px) {
-    .desktop-hero-inner,
-    .hero-canvas {
-      position: relative !important;
-      overflow: hidden !important;
-    }
-
-    .desktop-hero-inner::before,
-    .hero-canvas::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 17.5%;
-      z-index: 20;
-      pointer-events: none;
-      background:
-        linear-gradient(
-          180deg,
-          #eef5ef 0%,
-          rgba(238, 245, 239, 0.98) 72%,
-          rgba(238, 245, 239, 0) 100%
-        );
-    }
-
-    /* Real fixed header must stay above the cover layer */
-    .km-header,
-    .km-fixed-header {
-      z-index: 99999 !important;
-    }
-
-    /* Make the real fixed header visually clean */
-    .km-header,
-    .km-fixed-header {
-      top: 14px !important;
-      height: 78px !important;
-      border-radius: 22px !important;
-    }
-
-    .km-logo img,
-    .km-fixed-logo img {
-      width: 238px !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .mobile-hero-card {
-      display: none !important;
-    }
-
-    .mobile-home {
-      padding-top: 84px !important;
-    }
-  }
-</style>
-
-
-<style id="km-crop-baked-header-final">
-  @media (min-width: 769px) {
+    .desktop-hero,
     .desktop-hero-inner {
-      height: calc(100vw * 0.5628 - 82px) !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
       overflow: hidden !important;
-      position: relative !important;
       background: #eef5ef !important;
+      position: relative !important;
     }
 
     .desktop-hero-img {
@@ -591,11 +540,60 @@
       max-width: none !important;
       height: auto !important;
       display: block !important;
-      transform: translateY(-82px) !important;
-      transform-origin: top center !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      transform: none !important;
     }
 
-    /* hide old clickable header layer from the baked image */
+    /* Softly hide the header baked into the image without cropping farmer/turban/text */
+    .desktop-hero-inner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 126px;
+      z-index: 10;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        #eef5ef 0%,
+        rgba(238, 245, 239, 0.98) 72%,
+        rgba(238, 245, 239, 0) 100%
+      );
+    }
+
+    .km-header {
+      position: fixed !important;
+      top: 14px !important;
+      left: clamp(18px, 4vw, 72px) !important;
+      right: clamp(18px, 4vw, 72px) !important;
+      height: 82px !important;
+      padding: 8px 26px !important;
+      border-radius: 22px !important;
+      z-index: 2147483647 !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 18px 44px rgba(6, 35, 13, 0.16) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+    }
+
+    .km-logo img {
+      width: 248px !important;
+      height: auto !important;
+    }
+
+    .km-nav {
+      font-size: 16px !important;
+      gap: clamp(28px, 4vw, 64px) !important;
+    }
+
+    .km-login {
+      height: 50px !important;
+      min-width: 124px !important;
+      font-size: 16px !important;
+    }
+
     .hs-logo,
     .hs-farmers,
     .hs-buyers,
@@ -605,16 +603,38 @@
     .hs-login {
       display: none !important;
     }
-
-    /* keep real header above everything */
-    .km-header {
-      top: 14px !important;
-      z-index: 2147483647 !important;
-    }
   }
 
   @media (max-width: 768px) {
+    .desktop-hero {
+      display: none !important;
+    }
+
+    .mobile-home {
+      display: block !important;
+      padding-top: 84px !important;
+    }
+
     .mobile-hero-card {
+      display: none !important;
+    }
+
+    .km-header {
+      position: fixed !important;
+      top: 10px !important;
+      left: 12px !important;
+      right: 12px !important;
+      height: 62px !important;
+      padding: 8px 12px !important;
+      border-radius: 18px !important;
+      z-index: 2147483647 !important;
+    }
+
+    .km-logo img {
+      width: 122px !important;
+    }
+
+    .km-nav {
       display: none !important;
     }
   }
@@ -791,6 +811,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
