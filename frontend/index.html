@@ -696,6 +696,102 @@
     background: transparent !important;
   }
 </style>
+<style id="km-remove-bottom-patches-force-final">
+  @media (min-width: 769px) {
+    /* Make hero fill the visible first screen so no white area appears below */
+    .hero {
+      position: relative !important;
+      height: 100vh !important;
+      min-height: 100vh !important;
+      padding-top: 96px !important;
+      display: block !important;
+      overflow: hidden !important;
+      background: transparent !important;
+    }
+
+    /* Let image fill the full hero area behind the bottom cards */
+    .hero-image {
+      position: absolute !important;
+      top: 96px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: auto !important;
+      overflow: hidden !important;
+      background: transparent !important;
+      z-index: 1 !important;
+    }
+
+    .hero-image img {
+      width: 100vw !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      display: block !important;
+      transform: none !important;
+    }
+
+    /* Remove patch behind bottom cards */
+    .hero-strip {
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      height: 72px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      overflow: visible !important;
+      z-index: 5 !important;
+    }
+
+    .hero-strip::before,
+    .hero-strip::after,
+    .hero-card-row::before,
+    .hero-card-row::after {
+      display: none !important;
+      content: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .hero-card-row {
+      position: absolute !important;
+      top: 8px !important;
+      left: clamp(70px, 7vw, 130px) !important;
+      right: clamp(70px, 7vw, 130px) !important;
+      z-index: 10 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+    }
+
+    /* Remove any remaining stats/white block */
+    .hero-stats,
+    .hero-stats *,
+    .km-clean-stats-row,
+    .km-clean-stats-row *,
+    .km-compact-stats,
+    .km-compact-stats *,
+    .km-green-stats,
+    .km-green-stats * {
+      display: none !important;
+      height: 0 !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      overflow: hidden !important;
+    }
+
+    /* Push next section below the first screen */
+    .hero + section,
+    .hero + .mobile-home,
+    .hero + .content {
+      margin-top: 0 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -852,6 +948,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
