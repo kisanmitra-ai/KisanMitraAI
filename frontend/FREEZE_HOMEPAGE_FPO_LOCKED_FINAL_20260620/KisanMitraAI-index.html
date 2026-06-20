@@ -1,0 +1,591 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KisanMitraAI | Precision Farming</title>
+
+  <style>
+    :root {
+      --green: #075b18;
+      --dark: #06210d;
+      --orange: #f26522;
+      --soft: #eef5ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: var(--soft);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      background: var(--soft);
+    }
+
+    /* LOCKED TOP LOGO + MENU */
+    .locked-header {
+      position: fixed;
+      top: 18px;
+      left: clamp(18px, 2.7vw, 48px);
+      right: clamp(18px, 2.7vw, 48px);
+      height: clamp(74px, 5.4vw, 104px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 0 clamp(18px, 2.2vw, 34px);
+      background: rgba(255,255,255,0.96);
+      border-radius: clamp(16px, 1.3vw, 26px);
+      box-shadow: 0 18px 44px rgba(5,35,14,0.13);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 250px;
+    }
+
+    .brand img {
+      height: clamp(58px, 4.6vw, 86px);
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 10px rgba(5,35,14,0.08));
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(26px, 3.6vw, 58px);
+      color: #082e14;
+      font-size: clamp(14px, 1vw, 18px);
+      font-weight: 760;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .nav a {
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    .login {
+      min-width: clamp(96px, 8.4vw, 138px);
+      height: clamp(46px, 3.5vw, 62px);
+      border-radius: clamp(12px, .9vw, 18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(180deg, #157b27, #0b611c);
+      color: #fff;
+      font-size: clamp(15px, 1.05vw, 19px);
+      font-weight: 850;
+      box-shadow: 0 12px 26px rgba(7,91,24,0.25);
+    }
+
+    .login-icon {
+      width: 26px;
+      height: 26px;
+      border: 2px solid rgba(255,255,255,.95);
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--soft);
+    }
+
+    .hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center top;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* hide baked/old bottom card row with polished card layer */
+    .wide-card-row {
+      position: absolute;
+      left: clamp(46px, 5.4vw, 92px);
+      right: clamp(46px, 5.4vw, 92px);
+      bottom: clamp(22px, 2vw, 38px);
+      z-index: 40;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: clamp(12px, 1.1vw, 20px);
+    }
+
+    .wide-card {
+      min-height: clamp(126px, 10.4vw, 178px);
+      display: grid;
+      grid-template-columns: clamp(56px, 4.4vw, 78px) 1fr;
+      align-items: center;
+      gap: clamp(14px, 1.2vw, 22px);
+      padding: clamp(18px, 1.55vw, 28px);
+      border-radius: clamp(18px, 1.3vw, 26px);
+      background: rgba(255,255,255,0.97);
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 20px 46px rgba(5,35,14,0.16);
+      overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .wide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 60px rgba(5,35,14,0.22);
+    }
+
+    .card-icon {
+      width: clamp(54px, 4.1vw, 74px);
+      height: clamp(54px, 4.1vw, 74px);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: radial-gradient(circle at 35% 25%, #41ad3b, #166d20 72%);
+      font-size: clamp(24px, 2vw, 34px);
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.16);
+    }
+
+    .card-icon.orange {
+      background: radial-gradient(circle at 35% 25%, #ff9d1c, #f27800 72%);
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      color: #102315;
+      font-size: clamp(17px, 1.35vw, 24px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .card-text {
+      margin: 0;
+      color: #2e3d34;
+      font-size: clamp(10.5px, .78vw, 14px);
+      line-height: 1.45;
+      font-weight: 560;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--green);
+      font-size: clamp(11px, .82vw, 14px);
+      font-weight: 880;
+    }
+
+    .card-link.orange-text {
+      color: var(--orange);
+    }
+
+    section.content {
+      padding: 76px 6vw;
+      background: var(--soft);
+    }
+
+    .section-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      max-width: 900px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.05;
+      font-weight: 950;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: #53625a;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 560;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 24px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid rgba(7,91,24,0.12);
+      box-shadow: 0 12px 28px rgba(6,35,13,0.07);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: #e9f6ec;
+      color: var(--green);
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      margin: 0 0 9px;
+      color: #102315;
+      font-size: 20px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: #53625a;
+      line-height: 1.52;
+      font-weight: 540;
+    }
+
+    @media (max-width: 1100px) {
+      .wide-card-row {
+        left: 36px;
+        right: 36px;
+        gap: 10px;
+      }
+
+      .wide-card {
+        grid-template-columns: 42px 1fr;
+        padding: 12px;
+        min-height: 96px;
+      }
+
+      .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 19px;
+      }
+
+      .card-text {
+        font-size: 9px;
+      }
+
+      .card-link {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .locked-header {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        height: 66px;
+        padding: 0 14px;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand img {
+        height: 50px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .login {
+        min-width: 86px;
+        height: 42px;
+        font-size: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 84px;
+      }
+
+      .hero-img {
+        display: none;
+      }
+
+      .hero::before {
+        content: "Exact Information.\A Precision Farming.\A Stronger Market Connection.";
+        white-space: pre-line;
+        display: block;
+        padding: 54px 22px 18px;
+        color: var(--green);
+        font-size: clamp(36px, 10vw, 58px);
+        line-height: 1.06;
+        font-weight: 950;
+        text-align: center;
+      }
+
+      .wide-card-row {
+        position: relative;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .wide-card {
+        min-height: 96px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+<style id="km-remove-extra-card-overlay-final">
+  @media (min-width: 769px) {
+    /* remove the extra generated card overlay */
+    .wide-card-row,
+    .wide-card,
+    .card-icon,
+    .card-title,
+    .card-text,
+    .card-link {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* keep the hero image clean */
+    .hero {
+      position: relative !important;
+      min-height: auto !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* locked header polish */
+    .locked-header {
+      top: 18px !important;
+      left: clamp(18px, 2.7vw, 48px) !important;
+      right: clamp(18px, 2.7vw, 48px) !important;
+      height: clamp(74px, 5.4vw, 104px) !important;
+      z-index: 99999 !important;
+      background: rgba(255,255,255,0.96) !important;
+      border-radius: clamp(16px, 1.3vw, 26px) !important;
+      box-shadow: 0 18px 44px rgba(5,35,14,0.13) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+    }
+
+    .brand img {
+      height: clamp(62px, 4.8vw, 90px) !important;
+      width: auto !important;
+      object-fit: contain !important;
+    }
+
+    .nav {
+      gap: clamp(30px, 3.9vw, 64px) !important;
+      font-size: clamp(14px, 1vw, 18px) !important;
+      font-weight: 760 !important;
+    }
+
+    .login {
+      height: clamp(46px, 3.5vw, 62px) !important;
+      border-radius: clamp(12px, .9vw, 18px) !important;
+    }
+
+    section.content {
+      padding-top: 72px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wide-card-row {
+      display: none !important;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="locked-header">
+      <a class="brand" href="#">
+        <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo">
+      </a>
+
+      <nav class="nav" aria-label="Main menu">
+        <a href="#farmers">Farmers</a>
+        <a href="#fpo">FPO</a>
+        <a href="#buyers">Buyers</a>
+        <a href="#engine">AI Engine</a>
+        <a href="#trust">Trust</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="login" href="./login.html">
+        <span class="login-icon">◎</span>
+        <span>Login</span>
+      </a>
+    </header>
+
+    <section class="hero">
+      <img class="hero-img" src="./home-assets/kisanmitraai-exact-homepage-final.png" alt="KisanMitraAI precision farming homepage">
+
+      <div class="wide-card-row">
+        <a class="wide-card" href="#farmers">
+          <span class="card-icon">👨‍🌾</span>
+          <span>
+            <h3 class="card-title">For Farmers</h3>
+            <p class="card-text">AI advisory, weather updates, market insights and better yields.</p>
+            <span class="card-link">Explore for Farmers →</span>
+          </span>
+        </a>
+
+        <a class="wide-card" href="#fpo">
+          <span class="card-icon">👥</span>
+          <span>
+            <h3 class="card-title">FPO</h3>
+            <p class="card-text">Farmer groups, aggregation, market linkage and support services.</p>
+            <span class="card-link">Explore FPO →</span>
+          </span>
+        </a>
+
+        <a class="wide-card" href="#buyers">
+          <span class="card-icon orange">🛒</span>
+          <span>
+            <h3 class="card-title">For Buyers</h3>
+            <p class="card-text">Quality produce, verified suppliers and seamless procurement.</p>
+            <span class="card-link orange-text">Explore for Buyers →</span>
+          </span>
+        </a>
+
+        <a class="wide-card" href="#engine">
+          <span class="card-icon">🧠</span>
+          <span>
+            <h3 class="card-title">AI Engine</h3>
+            <p class="card-text">AI-backed soil, crop intelligence, image analysis and smart recommendations.</p>
+            <span class="card-link">Explore AI Engine →</span>
+          </span>
+        </a>
+
+        <a class="wide-card" href="#trust">
+          <span class="card-icon">🛡</span>
+          <span>
+            <h3 class="card-title">Trust & Transparency</h3>
+            <p class="card-text">Verified data, fair trade, secure transactions and traceability.</p>
+            <span class="card-link">Explore Trust →</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="content" id="farmers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>AI tools for farmers</h2>
+          <p>Farm mapping, farmer P&L reports, personal account books, crop calendar, mandi-rate advice and value-addition intelligence.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS boundary, satellite view, crop planning and farm profile intelligence.</p></article>
+          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise production cost, sales forecast, logistics, dues and profit/loss visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Book</h3><p>Seed, fertilizer, labour, irrigation, loan, advance and buyer payment records.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="fpo">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>AI tools for FPOs</h2>
+          <p>Manage farmer groups, aggregation, crop planning, buyer linkage, payments, logistics and trust-backed procurement.</p>
+        </div>
+
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">👥</div><h3>Farmer Group Management</h3><p>Maintain member records, farm profiles, crop plans and production visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📦</div><h3>Crop Aggregation</h3><p>Plan quantity, quality, grading, storage and lot-level crop movement.</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Linkage</h3><p>Connect FPO produce with buyers, processors, exporters and institutional demand.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="buyers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trusted tools for buyers</h2>
+          <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="engine">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>KisanMitraAI Engine</h2>
+          <p>AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="trust">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trust & transparency</h2>
+          <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
