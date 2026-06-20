@@ -318,53 +318,75 @@
       }
     }
   </style>
-<style id="km-fpo-visible-overlay-final">
+
+<style id="km-fpo-clean-overlay-v2">
   @media (min-width: 769px) {
     .reference-frame {
       position: relative !important;
     }
 
-    /* Cover old top menu only and redraw menu with FPO */
-    .km-fpo-top-menu {
+    /* clean cover over old baked top menu */
+    .km-fpo-menu-cover {
       position: absolute;
-      left: 36%;
-      top: 5.2%;
-      width: 43%;
-      height: 8%;
-      z-index: 50;
+      left: 34.5%;
+      top: 4.7%;
+      width: 45.8%;
+      height: 8.8%;
+      z-index: 80;
+      background: #fbfdfc;
+      border-radius: 14px;
+      pointer-events: none;
+    }
+
+    .km-fpo-menu {
+      position: absolute;
+      left: 35.3%;
+      top: 7.15%;
+      width: 44.2%;
+      z-index: 90;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 0 10px;
-      background: rgba(255,255,255,0.92);
+      gap: 16px;
       color: #0b3316;
-      font-size: clamp(14px, 1vw, 18px);
-      font-weight: 700;
-      border-radius: 14px;
-    }
-
-    .km-fpo-top-menu a {
-      color: #0b3316;
-      text-decoration: none;
+      font-size: clamp(13px, 1vw, 17px);
+      font-weight: 750;
+      line-height: 1;
       white-space: nowrap;
     }
 
-    .km-fpo-top-menu a:hover {
+    .km-fpo-menu a {
+      color: #0b3316;
+      text-decoration: none;
+    }
+
+    .km-fpo-menu a:hover {
       color: #f26522;
     }
 
-    /* Cover old 4-card row and redraw 5 cards including FPO */
-    .km-fpo-bottom-cards {
+    /* clean cover over old baked 4-card row */
+    .km-fpo-card-cover {
       position: absolute;
-      left: 8%;
-      top: 66.8%;
-      width: 82%;
-      height: 18%;
-      z-index: 55;
+      left: 6.8%;
+      top: 66.0%;
+      width: 86.4%;
+      height: 19.4%;
+      z-index: 80;
+      background: rgba(244, 249, 246, 0.97);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .km-fpo-card-row {
+      position: absolute;
+      left: 7.35%;
+      top: 67.2%;
+      width: 85.3%;
+      height: 16.7%;
+      z-index: 95;
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 1.1%;
+      gap: 12px;
     }
 
     .km-fpo-card {
@@ -372,10 +394,10 @@
       grid-template-columns: 42px 1fr;
       align-items: center;
       gap: 10px;
-      padding: 12px;
+      padding: 12px 12px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 16px 34px rgba(5,35,14,0.16);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 16px 34px rgba(5, 35, 14, 0.14);
       color: #102315;
       text-decoration: none;
       overflow: hidden;
@@ -388,17 +410,18 @@
       display: grid;
       place-items: center;
       color: #fff;
-      background: linear-gradient(180deg,#2b8d22,#13691d);
-      font-size: 19px;
+      background: linear-gradient(180deg, #2b8d22, #13691d);
+      font-size: 18px;
+      flex: 0 0 auto;
     }
 
     .km-fpo-icon.orange {
-      background: linear-gradient(180deg,#f39a14,#f27900);
+      background: linear-gradient(180deg, #f39a14, #f27900);
     }
 
     .km-fpo-card h3 {
-      margin: 0 0 4px;
-      font-size: clamp(12px, 1vw, 19px);
+      margin: 0 0 5px;
+      font-size: clamp(11px, 0.95vw, 18px);
       line-height: 1.05;
       font-weight: 850;
       color: #102315;
@@ -406,8 +429,8 @@
 
     .km-fpo-card p {
       margin: 0;
-      font-size: clamp(7px, .62vw, 11px);
-      line-height: 1.2;
+      font-size: clamp(7px, 0.56vw, 10.5px);
+      line-height: 1.22;
       color: #26352b;
       font-weight: 520;
     }
@@ -415,24 +438,37 @@
     .km-fpo-card small {
       display: block;
       margin-top: 6px;
-      font-size: clamp(7px, .62vw, 11px);
+      font-size: clamp(7px, 0.56vw, 10.5px);
       color: #075b18;
-      font-weight: 800;
+      font-weight: 850;
     }
   }
 
-  @media (max-width: 1100px) and (min-width: 769px) {
+  @media (max-width: 1150px) and (min-width: 769px) {
+    .km-fpo-card-row {
+      gap: 8px;
+    }
+
     .km-fpo-card {
       grid-template-columns: 30px 1fr;
       gap: 7px;
-      padding: 8px;
+      padding: 9px;
       border-radius: 14px;
     }
 
     .km-fpo-icon {
-      width: 28px;
-      height: 28px;
+      width: 29px;
+      height: 29px;
       font-size: 14px;
+    }
+
+    .km-fpo-card h3 {
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+
+    .km-fpo-card p {
+      font-size: 7px;
     }
 
     .km-fpo-card small {
@@ -441,8 +477,10 @@
   }
 
   @media (max-width: 768px) {
-    .km-fpo-top-menu,
-    .km-fpo-bottom-cards {
+    .km-fpo-menu-cover,
+    .km-fpo-menu,
+    .km-fpo-card-cover,
+    .km-fpo-card-row {
       display: none !important;
     }
   }
@@ -454,8 +492,9 @@
     <section class="desktop-reference-home">
       <div class="reference-frame">
         <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
-<!-- KM FPO VISIBLE OVERLAY START -->
-<nav class="km-fpo-top-menu">
+<!-- KM FPO CLEAN OVERLAY START -->
+<div class="km-fpo-menu-cover"></div>
+<nav class="km-fpo-menu" aria-label="KisanMitraAI menu">
   <a href="#farmers">Farmers</a>
   <a href="#fpo">FPO</a>
   <a href="#buyers">Buyers</a>
@@ -464,7 +503,8 @@
   <a href="#contact">Contact</a>
 </nav>
 
-<div class="km-fpo-bottom-cards">
+<div class="km-fpo-card-cover"></div>
+<div class="km-fpo-card-row" aria-label="KisanMitraAI solution cards">
   <a class="km-fpo-card" href="#farmers">
     <span class="km-fpo-icon">👨‍🌾</span>
     <span><h3>For Farmers</h3><p>AI advisory, weather updates and better yields.</p><small>Explore Farmers →</small></span>
@@ -490,7 +530,8 @@
     <span><h3>Trust</h3><p>Verified data and complete traceability.</p><small>Explore Trust →</small></span>
   </a>
 </div>
-<!-- KM FPO VISIBLE OVERLAY END -->
+<!-- KM FPO CLEAN OVERLAY END -->
+
 
         <a class="hotspot hotspot-farmers" href="#farmers" aria-label="Farmers"></a>
         <a class="hotspot hotspot-buyers" href="#buyers" aria-label="Buyers"></a>
@@ -540,7 +581,8 @@
       </div>
     </section>
 
-    <!-- KM FPO SECTION START -->
+    
+<!-- KM FPO SECTION START -->
 <section class="content" id="fpo">
   <div class="section-inner">
     <div class="section-head">
@@ -628,4 +670,5 @@
   </footer>
 </body>
 </html>
+
 
