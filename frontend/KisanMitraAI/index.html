@@ -480,6 +480,51 @@
     }
   }
 </style>
+<style id="km-clickable-hotspots-final">
+  .hero {
+    position: relative !important;
+  }
+
+  .hero-click {
+    position: absolute;
+    z-index: 9999;
+    display: block;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  /* Top menu clickable areas */
+  .click-farmers { left: 34.8%; top: 12.3%; width: 6.5%; height: 4.5%; }
+  .click-fpo     { left: 42.2%; top: 12.3%; width: 4.5%; height: 4.5%; }
+  .click-buyers  { left: 48.2%; top: 12.3%; width: 6.0%; height: 4.5%; }
+  .click-engine  { left: 56.2%; top: 12.3%; width: 8.8%; height: 4.5%; }
+  .click-trust   { left: 66.3%; top: 12.3%; width: 5.2%; height: 4.5%; }
+  .click-contact { left: 73.2%; top: 12.3%; width: 6.8%; height: 4.5%; }
+  .click-login   { left: 85.4%; top: 10.6%; width: 9.0%; height: 7.0%; }
+
+  /* Hero buttons */
+  .click-farmer-btn { left: 7.0%; top: 56.0%; width: 11.0%; height: 7.0%; }
+  .click-buyer-btn  { left: 19.0%; top: 56.0%; width: 10.0%; height: 7.0%; }
+  .click-video-btn  { left: 31.2%; top: 56.0%; width: 15.0%; height: 7.0%; }
+
+  /* Bottom cards */
+  .click-card-farmers { left: 7.0%; top: 68.0%; width: 17.0%; height: 22.0%; }
+  .click-card-fpo     { left: 24.8%; top: 68.0%; width: 17.0%; height: 22.0%; }
+  .click-card-buyers  { left: 42.8%; top: 68.0%; width: 17.0%; height: 22.0%; }
+  .click-card-engine  { left: 60.7%; top: 68.0%; width: 17.0%; height: 22.0%; }
+  .click-card-trust   { left: 78.2%; top: 68.0%; width: 17.0%; height: 22.0%; }
+
+  .hero-click:hover {
+    outline: 2px solid rgba(7, 91, 24, 0.25);
+    border-radius: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-click {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -506,6 +551,25 @@
 
     <section class="hero">
       <img class="hero-img" src="./home-assets/kisanmitraai-homepage-clean-final.png" alt="KisanMitraAI precision farming homepage">
+<!-- KM CLICKABLE HOTSPOTS START -->
+<a class="hero-click click-farmers" href="#farmers" aria-label="Farmers"></a>
+<a class="hero-click click-fpo" href="#fpo" aria-label="FPO"></a>
+<a class="hero-click click-buyers" href="#buyers" aria-label="Buyers"></a>
+<a class="hero-click click-engine" href="#engine" aria-label="AI Engine"></a>
+<a class="hero-click click-trust" href="#trust" aria-label="Trust"></a>
+<a class="hero-click click-contact" href="#contact" aria-label="Contact"></a>
+<a class="hero-click click-login" href="./login.html" aria-label="Login"></a>
+
+<a class="hero-click click-farmer-btn" href="#farmers" aria-label="I'm a Farmer"></a>
+<a class="hero-click click-buyer-btn" href="#buyers" aria-label="I'm a Buyer"></a>
+<a class="hero-click click-video-btn" href="#how-it-works" aria-label="See How It Works"></a>
+
+<a class="hero-click click-card-farmers" href="#farmers" aria-label="For Farmers"></a>
+<a class="hero-click click-card-fpo" href="#fpo" aria-label="FPO"></a>
+<a class="hero-click click-card-buyers" href="#buyers" aria-label="For Buyers"></a>
+<a class="hero-click click-card-engine" href="#engine" aria-label="AI Engine"></a>
+<a class="hero-click click-card-trust" href="#trust" aria-label="Trust"></a>
+<!-- KM CLICKABLE HOTSPOTS END -->
 
       <div class="wide-card-row">
         <a class="wide-card" href="#farmers">
@@ -614,6 +678,7 @@
   </main>
 </body>
 </html>
+
 
 
 
