@@ -748,6 +748,50 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
+<style id="km-final-header-logo-clean">
+  /* Remove visible patch behind header logo */
+  .km-header {
+    background: rgba(255, 255, 255, 0.90) !important;
+  }
+
+  .km-logo {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    overflow: visible !important;
+  }
+
+  .km-logo img {
+    width: 238px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+
+    /* This removes the light rectangle inside the logo image */
+    mix-blend-mode: multiply !important;
+    filter: saturate(1.08) contrast(1.05) !important;
+  }
+
+  /* Menu text less bold */
+  .km-nav,
+  .km-nav a {
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    text-shadow: none !important;
+  }
+
+  .km-login {
+    font-weight: 650 !important;
+  }
+
+  @media (max-width: 768px) {
+    .km-logo img {
+      width: 118px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -920,6 +964,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
