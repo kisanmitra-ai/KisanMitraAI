@@ -413,6 +413,64 @@
       }
     }
   </style>
+
+<style id="km-fixed-header-logo-polish">
+  /* Mobile real header */
+  @media (max-width: 768px) {
+    .mobile-home {
+      padding-top: 84px !important;
+    }
+
+    .mobile-topbar {
+      position: fixed !important;
+      top: 10px !important;
+      left: 14px !important;
+      right: 14px !important;
+      z-index: 9999 !important;
+      max-width: 680px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+    }
+
+    .mobile-topbar .logo {
+      width: 135px !important; /* 10% smaller from 150px */
+    }
+  }
+
+  @media (max-width: 420px) {
+    .mobile-topbar .logo {
+      width: 121px !important; /* 10% smaller from 134px */
+    }
+  }
+
+  /* If desktop HTML header exists in the active page version */
+  @media (min-width: 769px) {
+    .nav,
+    .nav-shell,
+    .site-header {
+      position: fixed !important;
+      top: 16px !important;
+      left: clamp(14px, 4vw, 56px) !important;
+      right: clamp(14px, 4vw, 56px) !important;
+      z-index: 9999 !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+    }
+
+    .brand img,
+    .logo img,
+    .site-header img {
+      transform: scale(0.9) !important;
+      transform-origin: left center !important;
+    }
+
+    body {
+      scroll-padding-top: 110px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -563,3 +621,4 @@
   </footer>
 </body>
 </html>
+
