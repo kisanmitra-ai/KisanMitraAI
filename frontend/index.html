@@ -895,13 +895,22 @@
     }
   }
 </style>
-<style id="km-fix-left-hero-text-only">
+
+<style id="km-force-left-hero-final">
   @media (min-width: 769px) {
-    /* Keep everything same, only stop left headline from being cut */
-    .hero-image img {
+    .hero-image,
+    .hero-main {
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    .hero-image img,
+    .hero-main img,
+    .hero img[alt*="KisanMitraAI"] {
       object-fit: cover !important;
       object-position: left top !important;
       transform: none !important;
+      transform-origin: left top !important;
     }
   }
 </style>
@@ -1059,8 +1068,28 @@
       </div>
     </div>
   </footer>
+<script id="km-force-left-hero-final-js">
+(function () {
+  function forceHeroLeft() {
+    var img = document.querySelector('.hero-image img, .hero-main img, .hero img[alt*="KisanMitraAI"]');
+    if (!img) return;
+
+    img.style.setProperty('object-fit', 'cover', 'important');
+    img.style.setProperty('object-position', 'left top', 'important');
+    img.style.setProperty('transform', 'none', 'important');
+    img.style.setProperty('transform-origin', 'left top', 'important');
+    img.style.setProperty('max-width', 'none', 'important');
+  }
+
+  forceHeroLeft();
+  window.addEventListener('load', forceHeroLeft);
+  setTimeout(forceHeroLeft, 500);
+  setTimeout(forceHeroLeft, 1500);
+})();
+</script>
 </body>
 </html>
+
 
 
 
