@@ -794,21 +794,20 @@ document.addEventListener("DOMContentLoaded", function () {
 </style>
 
 
+
 <style id="km-final-visible-slim-cards">
   @media (min-width: 769px) {
     .desktop-hero {
-      padding-top: 96px !important;
       height: 100vh !important;
+      padding-top: 96px !important;
       overflow: hidden !important;
     }
 
     .desktop-hero-inner {
       height: calc(100vh - 96px) !important;
       min-height: 560px !important;
-      max-height: none !important;
       overflow: hidden !important;
       position: relative !important;
-      background: #eef5ef !important;
     }
 
     .desktop-hero-img {
@@ -816,49 +815,47 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100% !important;
       object-fit: cover !important;
       object-position: center top !important;
-      display: block !important;
     }
 
-    /* Fully hide old baked big cards and old stats area */
-    .km-bottom-clean-mask {
+    /* Fully cover old large image cards */
+    .km-final-card-mask {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 37%;
-      z-index: 80;
+      height: 34%;
+      z-index: 500;
       pointer-events: none;
       background:
         linear-gradient(
           180deg,
-          rgba(238,245,239,0) 0%,
-          rgba(238,245,239,0.92) 20%,
-          rgba(238,245,239,0.98) 47%,
-          rgba(5,64,18,0.95) 100%
+          rgba(238,245,239,0.98) 0%,
+          rgba(238,245,239,0.98) 52%,
+          rgba(5,64,18,0.96) 100%
         );
     }
 
-    .km-slim-card-row {
+    .km-final-card-row {
       position: absolute;
       left: clamp(42px, 7vw, 112px);
       right: clamp(42px, 7vw, 112px);
-      bottom: 58px;
-      z-index: 90;
+      bottom: 64px;
+      z-index: 510;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .km-slim-card {
-      height: 78px;
+    .km-final-card {
+      height: 82px;
       display: grid;
       grid-template-columns: 42px 1fr;
       align-items: center;
       gap: 10px;
       padding: 9px 12px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255,255,255,0.9);
       box-shadow: 0 12px 24px rgba(5,35,14,0.14);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -867,7 +864,7 @@ document.addEventListener("DOMContentLoaded", function () {
       overflow: hidden;
     }
 
-    .km-slim-icon {
+    .km-final-icon {
       width: 40px;
       height: 40px;
       display: grid;
@@ -878,15 +875,15 @@ document.addEventListener("DOMContentLoaded", function () {
       box-shadow: inset 0 0 0 3px rgba(255,255,255,0.24);
     }
 
-    .km-slim-icon.green {
+    .km-final-icon.green {
       background: linear-gradient(180deg, #2b8d22, #13691d);
     }
 
-    .km-slim-icon.orange {
+    .km-final-icon.orange {
       background: linear-gradient(180deg, #f39a14, #f27900);
     }
 
-    .km-slim-card strong {
+    .km-final-card strong {
       display: block;
       font-size: 14px;
       line-height: 1.05;
@@ -895,7 +892,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color: #102315;
     }
 
-    .km-slim-card small {
+    .km-final-card small {
       display: block;
       font-size: 10.5px;
       line-height: 1.22;
@@ -903,13 +900,13 @@ document.addEventListener("DOMContentLoaded", function () {
       font-weight: 430;
     }
 
-    .km-visible-stats {
+    .km-final-stats {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
       height: 54px;
-      z-index: 95;
+      z-index: 520;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
@@ -921,15 +918,14 @@ document.addEventListener("DOMContentLoaded", function () {
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .km-visible-stats div {
+    .km-final-stats div {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      min-width: 0;
     }
 
-    .km-visible-stats span {
+    .km-final-stats span {
       width: 34px;
       height: 34px;
       display: grid;
@@ -938,17 +934,15 @@ document.addEventListener("DOMContentLoaded", function () {
       background: rgba(255,255,255,0.13);
       border: 1px solid rgba(255,255,255,0.18);
       font-size: 17px;
-      flex: 0 0 auto;
     }
 
-    .km-visible-stats strong {
+    .km-final-stats strong {
       font-size: 18px;
       line-height: 1;
       font-weight: 700;
-      margin-right: 2px;
     }
 
-    .km-visible-stats small {
+    .km-final-stats small {
       font-size: 11px;
       color: rgba(255,255,255,0.84);
       font-weight: 430;
@@ -962,42 +956,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  @media (min-width: 769px) and (max-width: 1180px) {
-    .km-slim-card-row {
-      left: 20px;
-      right: 20px;
-      gap: 9px;
-    }
-
-    .km-slim-card {
-      height: 74px;
-      grid-template-columns: 34px 1fr;
-      padding: 8px;
-    }
-
-    .km-slim-icon {
-      width: 34px;
-      height: 34px;
-      font-size: 17px;
-    }
-
-    .km-slim-card strong {
-      font-size: 12.5px;
-    }
-
-    .km-slim-card small {
-      font-size: 9.4px;
-    }
-
-    .km-visible-stats {
-      padding: 7px 32px;
-    }
-  }
-
   @media (max-width: 768px) {
-    .km-bottom-clean-mask,
-    .km-slim-card-row,
-    .km-visible-stats {
+    .km-final-card-mask,
+    .km-final-card-row,
+    .km-final-stats {
       display: none !important;
     }
   }
@@ -1029,49 +991,50 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="desktop-hero-inner">
         <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
 <!-- km-sleek-overlay-start -->
-<div class="km-bottom-clean-mask" aria-hidden="true"></div>
+<div class="km-final-card-mask" aria-hidden="true"></div>
 
-<div class="km-slim-card-row">
-  <a class="km-slim-card" href="#farmers">
-    <span class="km-slim-icon green">👨‍🌾</span>
+<div class="km-final-card-row">
+  <a class="km-final-card" href="#farmers">
+    <span class="km-final-icon green">👨‍🌾</span>
     <span>
       <strong>For Farmers</strong>
       <small>Crop advisory, P&L, account books and better yields.</small>
     </span>
   </a>
 
-  <a class="km-slim-card" href="#buyers">
-    <span class="km-slim-icon orange">🛒</span>
+  <a class="km-final-card" href="#buyers">
+    <span class="km-final-icon orange">🛒</span>
     <span>
       <strong>For Buyers</strong>
       <small>Verified suppliers, crop visibility and procurement.</small>
     </span>
   </a>
 
-  <a class="km-slim-card" href="#engine">
-    <span class="km-slim-icon green">🧠</span>
+  <a class="km-final-card" href="#engine">
+    <span class="km-final-icon green">🧠</span>
     <span>
       <strong>AI Engine</strong>
       <small>Crop intelligence, image analysis and smart advice.</small>
     </span>
   </a>
 
-  <a class="km-slim-card" href="#trust">
-    <span class="km-slim-icon green">🛡</span>
+  <a class="km-final-card" href="#trust">
+    <span class="km-final-icon green">🛡</span>
     <span>
-      <strong>Trust</strong>
-      <small>Verified data, safer flow and traceability.</small>
+      <strong>Trust & Transparency</strong>
+      <small>Verified data, safer flow and clear traceability.</small>
     </span>
   </a>
 </div>
 
-<div class="km-visible-stats">
+<div class="km-final-stats">
   <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
   <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
   <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
   <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
 </div>
 <!-- km-sleek-overlay-end -->
+
 
 
 
@@ -1220,6 +1183,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
