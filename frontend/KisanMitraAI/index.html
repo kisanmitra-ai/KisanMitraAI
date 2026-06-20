@@ -567,58 +567,15 @@
     }
   }
 </style>
-<style id="km-remove-bottom-white-patch">
-  @media (min-width: 769px) {
 
-    /* remove spacing below hero */
-    .reference-frame,
-    .reference-frame img,
-    .reference-frame picture {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
 
-    /* hide the empty section directly below the hero */
-    .reference-frame + section,
-    .reference-frame + .content,
-    .reference-frame + div,
-    .reference-wrapper + section,
-    .reference-wrapper + .content {
-      display: none !important;
-    }
-
-    /* remove any leftover bottom filler blocks */
-    .km-fpo-final-card-cover,
-    .km-fpo-final-card-row,
-    .km-fpo-card-cover,
-    .km-fpo-card-row,
-    .km-fpo-bottom-cards {
-      display: none !important;
-      height: 0 !important;
-      min-height: 0 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-    }
-
-    main,
-    .page-shell,
-    .home-shell,
-    body {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-  }
-</style>
-<style id="km-no-bottom-final-clean">
+<style id="km-remove-bottom-white-clean-v2">
   @media (min-width: 769px) {
     .desktop-reference-home,
     .reference-frame {
       background: #eef5ef !important;
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
       overflow: hidden !important;
     }
 
@@ -637,7 +594,7 @@
       object-position: center top !important;
     }
 
-    /* hide every old bottom-card overlay/cover */
+    /* remove all bottom-card overlays, covers, ghosts */
     .km-fpo-final-card-cover,
     .km-fpo-final-card-row,
     .km-fpo-card-cover,
@@ -651,27 +608,36 @@
       display: none !important;
       visibility: hidden !important;
       opacity: 0 !important;
+      width: 0 !important;
       height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
       pointer-events: none !important;
     }
 
-    /* keep single FPO top menu */
+    /* keep one clean FPO menu */
     .km-fpo-final-menu-cover {
-      top: 4.6% !important;
-      height: 14.2% !important;
+      top: 4.8% !important;
+      height: 15% !important;
       background: #ffffff !important;
       z-index: 900 !important;
     }
 
     .km-fpo-final-menu {
-      top: 8.8% !important;
+      top: 9.4% !important;
       z-index: 950 !important;
     }
 
+    /* remove big empty white area before next section */
     .desktop-reference-home + .content,
     .desktop-reference-home + section {
       margin-top: 0 !important;
-      padding-top: 56px !important;
+      padding-top: 28px !important;
+    }
+
+    .content:first-of-type {
+      padding-top: 28px !important;
     }
   }
 </style>
@@ -681,7 +647,7 @@
   <main>
     <section class="desktop-reference-home">
       <div class="reference-frame">
-        <img src="./home-assets/kisanmitra-reference-hero-no-bottom-final.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
+        <img src="./home-assets/kisanmitra-hero-no-bottom-clean-v2.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
 
 <!-- KM FPO SOLID CLEAN FINAL START -->
 <div class="km-fpo-final-menu-cover"></div>
@@ -865,6 +831,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
