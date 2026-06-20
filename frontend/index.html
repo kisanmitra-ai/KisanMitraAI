@@ -719,12 +719,41 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+<style id="km-header-logo-menu-polish">
+  .km-logo,
+  .km-logo img {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  .km-logo img {
+    width: 238px !important;
+    object-fit: contain !important;
+  }
+
+  .km-nav,
+  .km-nav a {
+    font-weight: 650 !important;
+    letter-spacing: 0 !important;
+  }
+
+  .km-login {
+    font-weight: 750 !important;
+  }
+
+  @media (max-width: 768px) {
+    .km-logo img {
+      width: 118px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
   <header class="km-header">
     <a class="km-logo" href="./index.html" aria-label="KisanMitraAI Home">
-      <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
+      <img src="./home-assets/kisanmitra-logo-header-transparent.png" alt="KisanMitraAI" />
     </a>
 
     <nav class="km-nav" aria-label="Main navigation">
@@ -891,6 +920,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
