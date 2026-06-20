@@ -471,9 +471,168 @@
     }
   }
 </style>
+<style id="km-real-fixed-header">
+  :root {
+    --km-green: #075b18;
+    --km-orange: #f26522;
+  }
+
+  body {
+    scroll-padding-top: 118px;
+  }
+
+  .km-fixed-header {
+    position: fixed;
+    top: 18px;
+    left: clamp(16px, 4vw, 70px);
+    right: clamp(16px, 4vw, 70px);
+    z-index: 99999;
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 12px 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    box-shadow: 0 18px 44px rgba(6, 35, 13, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .km-fixed-logo {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+  }
+
+  .km-fixed-logo img {
+    width: 306px; /* 10% reduced */
+    height: auto;
+    display: block;
+  }
+
+  .km-fixed-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(28px, 4vw, 68px);
+    font-size: 18px;
+    font-weight: 900;
+    color: #0b3316;
+  }
+
+  .km-fixed-nav a:hover {
+    color: var(--km-orange);
+  }
+
+  .km-fixed-login {
+    min-width: 136px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 900;
+    background: linear-gradient(180deg, #197b2b, #08611c);
+    box-shadow: 0 12px 26px rgba(7, 91, 24, 0.28);
+  }
+
+  .km-login-icon {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255,255,255,0.86);
+    border-radius: 999px;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  /* Desktop: push hero down slightly and hide the baked-in top header area better */
+  @media (min-width: 769px) {
+    .desktop-hero-wrap {
+      padding-top: 104px !important;
+    }
+
+    .desktop-hero {
+      border-radius: 20px !important;
+    }
+  }
+
+  /* Mobile header */
+  @media (max-width: 768px) {
+    body {
+      scroll-padding-top: 82px;
+    }
+
+    .km-fixed-header {
+      top: 10px;
+      left: 12px;
+      right: 12px;
+      height: 64px;
+      padding: 8px 12px;
+      border-radius: 18px;
+    }
+
+    .km-fixed-logo img {
+      width: 135px; /* mobile logo reduced */
+    }
+
+    .km-fixed-nav {
+      display: none;
+    }
+
+    .km-fixed-login {
+      min-width: 78px;
+      height: 40px;
+      border-radius: 12px;
+      font-size: 14px;
+      gap: 7px;
+      padding: 0 12px;
+    }
+
+    .km-login-icon {
+      width: 22px;
+      height: 22px;
+      font-size: 11px;
+      border-width: 1.5px;
+    }
+
+    .mobile-home {
+      padding-top: 86px !important;
+    }
+
+    .mobile-topbar {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
+<header class="km-fixed-header" aria-label="KisanMitraAI fixed header">
+  <a class="km-fixed-logo" href="./index.html">
+    <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI" />
+  </a>
+
+  <nav class="km-fixed-nav" aria-label="Main navigation">
+    <a href="#farmers">Farmers</a>
+    <a href="#buyers">Buyers</a>
+    <a href="#engine">AI Engine</a>
+    <a href="#trust">Trust</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a class="km-fixed-login" href="./login.html">
+    <span class="km-login-icon">◎</span>
+    Login
+  </a>
+</header>
   <main class="hero-stage" aria-label="KisanMitraAI homepage hero">
     <div class="hero-canvas">
       <img class="hero-art" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
@@ -621,4 +780,5 @@
   </footer>
 </body>
 </html>
+
 
