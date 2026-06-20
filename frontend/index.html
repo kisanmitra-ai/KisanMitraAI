@@ -516,6 +516,65 @@
       }
     }
   </style>
+
+<style id="km-remove-baked-hero-header">
+  /* Hide the header/nav that is baked inside the reference hero image */
+  @media (min-width: 769px) {
+    .desktop-hero-inner,
+    .hero-canvas {
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .desktop-hero-inner::before,
+    .hero-canvas::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 17.5%;
+      z-index: 20;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          180deg,
+          #eef5ef 0%,
+          rgba(238, 245, 239, 0.98) 72%,
+          rgba(238, 245, 239, 0) 100%
+        );
+    }
+
+    /* Real fixed header must stay above the cover layer */
+    .km-header,
+    .km-fixed-header {
+      z-index: 99999 !important;
+    }
+
+    /* Make the real fixed header visually clean */
+    .km-header,
+    .km-fixed-header {
+      top: 14px !important;
+      height: 78px !important;
+      border-radius: 22px !important;
+    }
+
+    .km-logo img,
+    .km-fixed-logo img {
+      width: 238px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-hero-card {
+      display: none !important;
+    }
+
+    .mobile-home {
+      padding-top: 84px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -688,3 +747,4 @@
   </footer>
 </body>
 </html>
+
