@@ -543,172 +543,185 @@
       }
     }
   </style>
-<style id="km-hero-left-crop-and-top-layer-fix">
+
+
+
+<style id="km-force-final-clean-visible">
   @media (min-width: 769px) {
+    /* Remove top second white layer / fake strip */
+    body,
+    main,
+    .desktop-hero,
     .hero-main {
-      position: relative !important;
-      overflow: hidden !important;
       background: #eef5ef !important;
     }
 
-    /* Remove the small old duplicate layer showing under the header */
-    .hero-main::before {
-      content: "" !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      height: 26px !important;
-      z-index: 4 !important;
-      pointer-events: none !important;
-      background: linear-gradient(
-        180deg,
-        #eef5ef 0%,
-        rgba(238,245,239,0.96) 70%,
-        rgba(238,245,239,0) 100%
-      ) !important;
+    body::before,
+    body::after,
+    main::before,
+    main::after,
+    .desktop-hero::before,
+    .desktop-hero::after,
+    .hero-main::before,
+    .hero-main::after {
+      display: none !important;
+      content: none !important;
+      background: transparent !important;
     }
 
-    /* Shift hero image focus to the left so headline is not cut */
-    .hero-main img {
-      object-fit: cover !important;
-      object-position: left top !important;
-      transform: none !important;
-    }
-
-    /* Keep hero buttons above image but below header */
-    .hero-click {
-      z-index: 8 !important;
-    }
-
-    /* Keep fixed header clean */
+    /* Keep only one clean header */
     .km-header {
-      z-index: 99999 !important;
-    }
-  }
-</style>
-<style id="km-final-left-align-hero">
-  @media (min-width: 769px) {
-    .hero-main {
-      overflow: hidden !important;
-      position: relative !important;
-      background: #eef5ef !important;
+      position: fixed !important;
+      top: 14px !important;
+      left: 18px !important;
+      right: 18px !important;
+      height: 82px !important;
+      z-index: 999999 !important;
+      background: #ffffff !important;
+      box-shadow: 0 12px 30px rgba(6,35,13,0.12) !important;
+      border: 0 !important;
     }
 
-    .hero-main img,
-    .desktop-hero .hero-main img,
-    main .desktop-hero .hero-main img {
+    .km-header::before,
+    .km-header::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .km-logo img {
+      width: 238px !important;
+      mix-blend-mode: multiply !important;
+    }
+
+    .km-nav,
+    .km-nav a {
+      font-weight: 500 !important;
+    }
+
+    /* Hero should show full satellite image, not zoom/cut badly */
+    .desktop-hero {
+      height: 100vh !important;
+      min-height: 100vh !important;
+      padding-top: 96px !important;
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) 72px !important;
+      overflow: hidden !important;
+    }
+
+    .hero-main {
+      position: relative !important;
+      width: 100vw !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .hero-main img {
       width: 100vw !important;
       height: 100% !important;
       max-width: none !important;
-      object-fit: cover !important;
-      object-position: 0% 0% !important;
-      transform: translateX(0) scale(1) !important;
-      transform-origin: left top !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      transform: none !important;
       display: block !important;
-    }
-
-    /* cover tiny leftover duplicate strip under header */
-    .hero-main::before {
-      content: "" !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      height: 12px !important;
-      z-index: 4 !important;
-      pointer-events: none !important;
       background: #eef5ef !important;
     }
 
-    .km-header {
-      z-index: 99999 !important;
+    /* Remove double white patch behind lower cards */
+    .hero-bottom {
+      height: 72px !important;
+      min-height: 72px !important;
+      background: #063d15 !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    .hero-bottom::before,
+    .hero-bottom::after {
+      display: none !important;
+      content: none !important;
+      background: transparent !important;
+    }
+
+    .hero-card-row {
+      position: absolute !important;
+      top: 8px !important;
+      left: clamp(70px, 7vw, 130px) !important;
+      right: clamp(70px, 7vw, 130px) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+      z-index: 10 !important;
+    }
+
+    .hero-card {
+      height: 52px !important;
+      min-height: 52px !important;
+      display: grid !important;
+      grid-template-columns: 28px 1fr !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 6px 10px !important;
+      border-radius: 13px !important;
+      background: rgba(255,255,255,0.95) !important;
+      border: 0 !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
+      overflow: hidden !important;
+    }
+
+    .hero-card-icon {
+      width: 26px !important;
+      height: 26px !important;
+      font-size: 12px !important;
+    }
+
+    .hero-card strong {
+      font-size: 11px !important;
+      line-height: 1.05 !important;
+      font-weight: 650 !important;
+      margin-bottom: 2px !important;
+    }
+
+    .hero-card small {
+      font-size: 7.7px !important;
+      line-height: 1.1 !important;
+    }
+
+    /* Remove bottom stats row completely */
+    .hero-stats,
+    .hero-stats *,
+    .km-clean-stats-row,
+    .km-clean-stats-row *,
+    .km-compact-stats,
+    .km-compact-stats *,
+    .km-green-stats,
+    .km-green-stats * {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Push next section below hero, not inside first screen */
+    .desktop-hero + .content {
+      margin-top: 0 !important;
+      padding-top: 72px !important;
     }
   }
-</style>
-<style id="km-home-cleanup-v4">
-  :root{
-    --km-bg:#eef4ef;
-    --km-white:#ffffff;
-  }
 
-  /* keep only one clean header bar */
-  .header-shell,
-  .top-header-shell,
-  .site-header-shell,
-  .nav-shell,
-  .km-header-shell,
-  .header-wrap-outer{
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    backdrop-filter: none !important;
-  }
-
-  .km-header,
-  .site-header,
-  header{
-    background: #fff !important;
-    box-shadow: 0 10px 28px rgba(12,42,20,.10) !important;
-    border: 0 !important;
-  }
-
-  /* hero image: show full composition including satellite */
-  .hero-main,
-  .desktop-hero .hero-main,
-  .homepage-hero,
-  .hero-stage,
-  .hero-banner{
-    overflow: hidden !important;
-    background: var(--km-bg) !important;
-    aspect-ratio: 1792 / 707 !important;
-  }
-
-  .hero-main img,
-  .desktop-hero .hero-main img,
-  .homepage-hero img,
-  .hero-stage img,
-  .hero-banner img{
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    display: block !important;
-    object-fit: contain !important;
-    object-position: center top !important;
-    transform: none !important;
-    background: var(--km-bg) !important;
-  }
-
-  /* remove white / frosted patch behind lower cards row */
-  .bottom-cards-strip,
-  .floating-feature-strip,
-  .feature-strip-shell,
-  .mini-cards-shell,
-  .tools-strip,
-  .km-bottom-cards-strip,
-  .bottom-feature-wrap{
-    background: transparent !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    backdrop-filter: none !important;
-  }
-
-  .bottom-cards-strip::before,
-  .bottom-cards-strip::after,
-  .floating-feature-strip::before,
-  .floating-feature-strip::after,
-  .feature-strip-shell::before,
-  .feature-strip-shell::after,
-  .mini-cards-shell::before,
-  .mini-cards-shell::after,
-  .tools-strip::before,
-  .tools-strip::after,
-  .km-bottom-cards-strip::before,
-  .km-bottom-cards-strip::after,
-  .bottom-feature-wrap::before,
-  .bottom-feature-wrap::after{
-    content: none !important;
-    display: none !important;
+  @media (max-width: 768px) {
+    .hero-stats,
+    .km-clean-stats-row,
+    .km-compact-stats,
+    .km-green-stats {
+      display: none !important;
+    }
   }
 </style>
 </head>
@@ -746,13 +759,6 @@
           <a class="hero-card" href="#buyers"><span class="hero-card-icon orange">🛒</span><span><strong>For Buyers</strong><small>Verified suppliers, crop visibility and procurement.</small></span></a>
           <a class="hero-card" href="#engine"><span class="hero-card-icon">🧠</span><span><strong>AI Engine</strong><small>Crop intelligence, image analysis and smart advice.</small></span></a>
           <a class="hero-card" href="#trust"><span class="hero-card-icon">🛡</span><span><strong>Trust</strong><small>Verified data, safer flow and traceability.</small></span></a>
-        </div>
-
-        <div class="hero-stats">
-          <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
-          <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
-          <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
-          <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
         </div>
       </div>
     </section>
@@ -853,103 +859,10 @@
       </div>
     </div>
   </footer>
-<script id="km-home-cleanup-js-v4">
-document.addEventListener("DOMContentLoaded", function () {
-  const transparent = (el) => {
-    if (!el) return;
-    el.style.background = "transparent";
-    el.style.boxShadow = "none";
-    el.style.border = "0";
-    el.style.backdropFilter = "none";
-  };
 
-  const whiteCard = (el) => {
-    if (!el) return;
-    el.style.background = "#ffffff";
-    el.style.boxShadow = "0 10px 24px rgba(0,0,0,.08)";
-    el.style.border = "0";
-    el.style.backdropFilter = "none";
-  };
-
-  /* remove second white layer above header */
-  const header = document.querySelector(".km-header, .site-header, header");
-  if (header) {
-    let p = header.parentElement;
-    let count = 0;
-    while (p && p !== document.body && count < 3) {
-      transparent(p);
-      p = p.parentElement;
-      count++;
-    }
-  }
-
-  /* show full satellite / full hero image */
-  const heroImg = document.querySelector(
-    ".hero-main img, .desktop-hero .hero-main img, .homepage-hero img, .hero-stage img, .hero-banner img"
-  );
-  if (heroImg) {
-    heroImg.style.width = "100%";
-    heroImg.style.height = "100%";
-    heroImg.style.objectFit = "contain";
-    heroImg.style.objectPosition = "center top";
-    heroImg.style.transform = "none";
-    heroImg.style.maxWidth = "none";
-  }
-
-  const heroBox = document.querySelector(
-    ".hero-main, .desktop-hero .hero-main, .homepage-hero, .hero-stage, .hero-banner"
-  );
-  if (heroBox) {
-    heroBox.style.background = "#eef4ef";
-    heroBox.style.overflow = "hidden";
-  }
-
-  /* remove double white patch behind lower floating cards */
-  const blocks = [...document.querySelectorAll("section,div")];
-  const bottomCardsGroup = blocks.filter(el => {
-    const t = (el.innerText || "").replace(/\s+/g, " ").trim();
-    return (
-      t.includes("For Farmers") &&
-      t.includes("For Buyers") &&
-      t.includes("AI Engine") &&
-      (t.includes("Trust") || t.includes("Trust & Transparency"))
-    );
-  });
-
-  if (bottomCardsGroup.length > 1) {
-    const lowerGroup = bottomCardsGroup[bottomCardsGroup.length - 1];
-    transparent(lowerGroup);
-    transparent(lowerGroup.parentElement);
-
-    [...lowerGroup.querySelectorAll("article, .card, .feature-card, .mini-card, .tool-card, li, > div")].forEach(card => {
-      const t = (card.innerText || "").replace(/\s+/g, " ").trim();
-      if (
-        t.includes("For Farmers") ||
-        t.includes("For Buyers") ||
-        t.includes("AI Engine") ||
-        t.includes("Trust")
-      ) {
-        whiteCard(card);
-      }
-    });
-  }
-
-  /* remove stats row: 10L+ / 50+ / 25+ / 100% */
-  [...document.querySelectorAll("section,div,ul")].forEach(el => {
-    const t = (el.innerText || "").replace(/\s+/g, " ").trim();
-    if (
-      t.includes("10L+") &&
-      t.includes("50+") &&
-      t.includes("25+") &&
-      t.includes("100%")
-    ) {
-      el.style.display = "none";
-    }
-  });
-});
-</script>
 </body>
 </html>
+
 
 
 
