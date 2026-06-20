@@ -579,9 +579,8 @@
 
 <style id="km-crop-baked-header-final">
   @media (min-width: 769px) {
-    /* Crop out the header that is inside the hero image */
     .desktop-hero-inner {
-      height: calc(100vw * 0.5628 - 118px) !important;
+      height: calc(100vw * 0.5628 - 82px) !important;
       overflow: hidden !important;
       position: relative !important;
       background: #eef5ef !important;
@@ -592,11 +591,11 @@
       max-width: none !important;
       height: auto !important;
       display: block !important;
-      transform: translateY(-118px) !important;
+      transform: translateY(-82px) !important;
       transform-origin: top center !important;
     }
 
-    /* Move clickable areas up after cropping */
+    /* hide old clickable header layer from the baked image */
     .hs-logo,
     .hs-farmers,
     .hs-buyers,
@@ -607,18 +606,7 @@
       display: none !important;
     }
 
-    .hs-farmer { top: 48.5% !important; }
-    .hs-buyer { top: 48.5% !important; }
-    .hs-how { top: 48.5% !important; }
-
-    .hs-card-farmers,
-    .hs-card-buyers,
-    .hs-card-engine,
-    .hs-card-trust {
-      top: 61.5% !important;
-    }
-
-    /* Keep the real fixed header clean and above everything */
+    /* keep real header above everything */
     .km-header {
       top: 14px !important;
       z-index: 2147483647 !important;
@@ -803,6 +791,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
