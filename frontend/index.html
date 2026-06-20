@@ -792,6 +792,109 @@
     }
   }
 </style>
+<style id="km-float-bottom-cards-on-hero-final">
+  @media (min-width: 769px) {
+    /* First screen becomes one hero image area, no separate white bottom block */
+    .hero {
+      position: relative !important;
+      height: calc(100vh - 0px) !important;
+      min-height: 620px !important;
+      padding-top: 96px !important;
+      display: block !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-image {
+      position: absolute !important;
+      top: 96px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100vw !important;
+      height: auto !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+      z-index: 1 !important;
+    }
+
+    .hero-image img {
+      width: 100vw !important;
+      height: 100% !important;
+      max-width: none !important;
+      display: block !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      transform: none !important;
+    }
+
+    /* Remove the separate patch and float cards on the image */
+    .hero-strip {
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 14px !important;
+      height: 64px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      overflow: visible !important;
+      z-index: 5 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .hero-strip::before,
+    .hero-strip::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .hero-card-row {
+      position: absolute !important;
+      top: 0 !important;
+      left: clamp(70px, 7vw, 130px) !important;
+      right: clamp(70px, 7vw, 130px) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      z-index: 10 !important;
+    }
+
+    .hero-card {
+      height: 52px !important;
+      min-height: 52px !important;
+      background: rgba(255,255,255,0.94) !important;
+      box-shadow: 0 10px 24px rgba(5,35,14,0.18) !important;
+      border: 0 !important;
+    }
+
+    /* No stats row, no lower white/green block */
+    .hero-stats,
+    .hero-stats *,
+    .km-clean-stats-row,
+    .km-clean-stats-row *,
+    .km-compact-stats,
+    .km-compact-stats *,
+    .km-green-stats,
+    .km-green-stats * {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Next section starts after first screen */
+    .hero + .content,
+    .hero + section {
+      margin-top: 0 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -948,6 +1051,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
