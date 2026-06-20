@@ -318,6 +318,135 @@
       }
     }
   </style>
+<style id="km-fpo-visible-overlay-final">
+  @media (min-width: 769px) {
+    .reference-frame {
+      position: relative !important;
+    }
+
+    /* Cover old top menu only and redraw menu with FPO */
+    .km-fpo-top-menu {
+      position: absolute;
+      left: 36%;
+      top: 5.2%;
+      width: 43%;
+      height: 8%;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 0 10px;
+      background: rgba(255,255,255,0.92);
+      color: #0b3316;
+      font-size: clamp(14px, 1vw, 18px);
+      font-weight: 700;
+      border-radius: 14px;
+    }
+
+    .km-fpo-top-menu a {
+      color: #0b3316;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .km-fpo-top-menu a:hover {
+      color: #f26522;
+    }
+
+    /* Cover old 4-card row and redraw 5 cards including FPO */
+    .km-fpo-bottom-cards {
+      position: absolute;
+      left: 8%;
+      top: 66.8%;
+      width: 82%;
+      height: 18%;
+      z-index: 55;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1.1%;
+    }
+
+    .km-fpo-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 16px 34px rgba(5,35,14,0.16);
+      color: #102315;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .km-fpo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(180deg,#2b8d22,#13691d);
+      font-size: 19px;
+    }
+
+    .km-fpo-icon.orange {
+      background: linear-gradient(180deg,#f39a14,#f27900);
+    }
+
+    .km-fpo-card h3 {
+      margin: 0 0 4px;
+      font-size: clamp(12px, 1vw, 19px);
+      line-height: 1.05;
+      font-weight: 850;
+      color: #102315;
+    }
+
+    .km-fpo-card p {
+      margin: 0;
+      font-size: clamp(7px, .62vw, 11px);
+      line-height: 1.2;
+      color: #26352b;
+      font-weight: 520;
+    }
+
+    .km-fpo-card small {
+      display: block;
+      margin-top: 6px;
+      font-size: clamp(7px, .62vw, 11px);
+      color: #075b18;
+      font-weight: 800;
+    }
+  }
+
+  @media (max-width: 1100px) and (min-width: 769px) {
+    .km-fpo-card {
+      grid-template-columns: 30px 1fr;
+      gap: 7px;
+      padding: 8px;
+      border-radius: 14px;
+    }
+
+    .km-fpo-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+    }
+
+    .km-fpo-card small {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .km-fpo-top-menu,
+    .km-fpo-bottom-cards {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -325,6 +454,43 @@
     <section class="desktop-reference-home">
       <div class="reference-frame">
         <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
+<!-- KM FPO VISIBLE OVERLAY START -->
+<nav class="km-fpo-top-menu">
+  <a href="#farmers">Farmers</a>
+  <a href="#fpo">FPO</a>
+  <a href="#buyers">Buyers</a>
+  <a href="#engine">AI Engine</a>
+  <a href="#trust">Trust</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="km-fpo-bottom-cards">
+  <a class="km-fpo-card" href="#farmers">
+    <span class="km-fpo-icon">👨‍🌾</span>
+    <span><h3>For Farmers</h3><p>AI advisory, weather updates and better yields.</p><small>Explore Farmers →</small></span>
+  </a>
+
+  <a class="km-fpo-card" href="#fpo">
+    <span class="km-fpo-icon">🏢</span>
+    <span><h3>For FPOs</h3><p>Aggregation, farmer groups and buyer linkage.</p><small>Explore FPO →</small></span>
+  </a>
+
+  <a class="km-fpo-card" href="#buyers">
+    <span class="km-fpo-icon orange">🛒</span>
+    <span><h3>For Buyers</h3><p>Verified suppliers and seamless procurement.</p><small>Explore Buyers →</small></span>
+  </a>
+
+  <a class="km-fpo-card" href="#engine">
+    <span class="km-fpo-icon">🧠</span>
+    <span><h3>AI Engine</h3><p>Crop intelligence and smart recommendations.</p><small>Explore AI →</small></span>
+  </a>
+
+  <a class="km-fpo-card" href="#trust">
+    <span class="km-fpo-icon">🛡</span>
+    <span><h3>Trust</h3><p>Verified data and complete traceability.</p><small>Explore Trust →</small></span>
+  </a>
+</div>
+<!-- KM FPO VISIBLE OVERLAY END -->
 
         <a class="hotspot hotspot-farmers" href="#farmers" aria-label="Farmers"></a>
         <a class="hotspot hotspot-buyers" href="#buyers" aria-label="Buyers"></a>
@@ -374,7 +540,23 @@
       </div>
     </section>
 
-    <section class="content dark" id="engine">
+    <!-- KM FPO SECTION START -->
+<section class="content" id="fpo">
+  <div class="section-inner">
+    <div class="section-head">
+      <h2>AI tools for FPOs</h2>
+      <p>Manage farmer groups, crop aggregation, village-level production planning, buyer demand, payments, logistics and trust-backed procurement.</p>
+    </div>
+
+    <div class="grid">
+      <article class="feature"><div class="feature-icon">👥</div><h3>Farmer Group Management</h3><p>Maintain member records, farm profiles, crop plans and production visibility.</p></article>
+      <article class="feature"><div class="feature-icon">📦</div><h3>Crop Aggregation</h3><p>Plan quantity, quality, grading, storage and lot-level crop movement.</p></article>
+      <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Linkage</h3><p>Connect FPO produce with buyers, processors, exporters and institutional demand.</p></article>
+    </div>
+  </div>
+</section>
+<!-- KM FPO SECTION END -->
+<section class="content dark" id="engine">
       <div class="section-inner">
         <div class="section-head">
           <h2>KisanMitraAI Engine</h2>
@@ -446,3 +628,4 @@
   </footer>
 </body>
 </html>
+
