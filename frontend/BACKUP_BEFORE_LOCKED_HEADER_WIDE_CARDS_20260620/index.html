@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KisanMitraAI | Precision Farming & Market Intelligence</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#eef5ef;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden;scroll-behavior:smooth}
+    a{text-decoration:none;color:inherit}
+    .exact-home{position:relative;width:100%;background:#eef5ef;overflow:hidden}
+    .exact-frame{position:relative;width:100%;max-width:100vw;margin:0 auto;background:#eef5ef;overflow:hidden}
+    .exact-frame img{width:100%;height:auto;display:block;object-fit:contain;object-position:center top}
+    .hotspot{position:absolute;z-index:20;display:block;background:transparent;border-radius:12px}
+    .hot-farmers{left:29.0%;top:6.5%;width:7.0%;height:7.5%}
+    .hot-fpo{left:37.0%;top:6.5%;width:5.0%;height:7.5%}
+    .hot-buyers{left:43.5%;top:6.5%;width:6.5%;height:7.5%}
+    .hot-engine{left:52.0%;top:6.5%;width:8.5%;height:7.5%}
+    .hot-trust{left:66.0%;top:6.5%;width:5.5%;height:7.5%}
+    .hot-contact{left:74.0%;top:6.5%;width:7.5%;height:7.5%}
+    .hot-login{left:84.2%;top:4.3%;width:8.6%;height:8.2%}
+    .hot-farmer-btn{left:7.0%;top:54.5%;width:11.0%;height:7.0%}
+    .hot-buyer-btn{left:19.0%;top:54.5%;width:10.0%;height:7.0%}
+    .hot-how{left:30.0%;top:54.5%;width:14.0%;height:7.0%}
+    .hot-farmer-card{left:6.8%;top:74.0%;width:16.7%;height:20.0%}
+    .hot-fpo-card{left:24.0%;top:74.0%;width:16.7%;height:20.0%}
+    .hot-buyer-card{left:41.0%;top:74.0%;width:16.7%;height:20.0%}
+    .hot-engine-card{left:58.0%;top:74.0%;width:16.7%;height:20.0%}
+    .hot-trust-card{left:75.5%;top:74.0%;width:16.7%;height:20.0%}
+    .mobile-home{display:none;min-height:100vh;padding:94px 18px 42px;text-align:center;background:linear-gradient(180deg,#eef5ef,#fff)}
+    .mobile-logo{width:min(250px,72vw);margin:0 auto 24px;display:block}
+    .mobile-title{margin:0;color:#075b18;font-size:clamp(36px,10vw,58px);line-height:1.04;font-weight:950;letter-spacing:-1px}
+    .mobile-title span{color:#f26522}
+    .mobile-desc{margin:18px auto 0;max-width:620px;color:#53625a;font-size:clamp(17px,4.8vw,24px);line-height:1.48;font-weight:600}
+    .mobile-actions{display:grid;gap:12px;margin-top:26px}
+    .mobile-actions a{min-height:54px;display:flex;align-items:center;justify-content:center;border-radius:15px;padding:0 18px;font-weight:850;font-size:17px}
+    .primary{background:linear-gradient(135deg,#075b18,#118331);color:#fff}
+    .secondary{background:#fff;color:#075b18;border:1px solid rgba(7,91,24,.14)}
+    section.content{padding:72px 6vw;background:#eef5ef}
+    .section-inner{max-width:1180px;margin:0 auto}
+    .section-head{max-width:900px;margin:0 auto 34px;text-align:center}
+    .section-head h2{margin:0 0 12px;color:#075b18;font-size:clamp(30px,4vw,52px);line-height:1.05}
+    .section-head p{margin:0;color:#53625a;font-size:17px;line-height:1.55;font-weight:550}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .feature{padding:24px;border-radius:22px;background:#fff;border:1px solid rgba(7,91,24,.12);box-shadow:0 12px 28px rgba(6,35,13,.07)}
+    .feature-icon{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:#e9f6ec;color:#075b18;font-size:26px;margin-bottom:16px}
+    .feature h3{margin:0 0 9px;color:#102315;font-size:20px}
+    .feature p{margin:0;color:#53625a;line-height:1.52;font-weight:540}
+    .dark{background:linear-gradient(135deg,#041609,#082e14);color:#fff}
+    .dark .section-head h2,.dark .feature h3{color:#fff}
+    .dark .section-head p,.dark .feature p{color:rgba(255,255,255,.75)}
+    .dark .feature{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.13);box-shadow:none}
+    footer{padding:30px 6vw;background:#041609;color:rgba(255,255,255,.75)}
+    .footer-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    footer strong{color:#fff}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;font-weight:800}
+    @media(max-width:768px){
+      .exact-home{display:none}
+      .mobile-home{display:block}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="exact-home">
+      <div class="exact-frame">
+        <img src="./home-assets/kisanmitraai-exact-homepage-final.png" alt="KisanMitraAI exact homepage" />
+        <a class="hotspot hot-farmers" href="#farmers" aria-label="Farmers"></a>
+        <a class="hotspot hot-fpo" href="#fpo" aria-label="FPO"></a>
+        <a class="hotspot hot-buyers" href="#buyers" aria-label="Buyers"></a>
+        <a class="hotspot hot-engine" href="#engine" aria-label="AI Engine"></a>
+        <a class="hotspot hot-trust" href="#trust" aria-label="Trust"></a>
+        <a class="hotspot hot-contact" href="#contact" aria-label="Contact"></a>
+        <a class="hotspot hot-login" href="./login.html" aria-label="Login"></a>
+        <a class="hotspot hot-farmer-btn" href="#farmers" aria-label="I am a farmer"></a>
+        <a class="hotspot hot-buyer-btn" href="#buyers" aria-label="I am a buyer"></a>
+        <a class="hotspot hot-how" href="#engine" aria-label="See how it works"></a>
+        <a class="hotspot hot-farmer-card" href="#farmers" aria-label="For farmers"></a>
+        <a class="hotspot hot-fpo-card" href="#fpo" aria-label="FPO"></a>
+        <a class="hotspot hot-buyer-card" href="#buyers" aria-label="For buyers"></a>
+        <a class="hotspot hot-engine-card" href="#engine" aria-label="AI Engine"></a>
+        <a class="hotspot hot-trust-card" href="#trust" aria-label="Trust"></a>
+      </div>
+    </section>
+
+    <section class="mobile-home">
+      <img class="mobile-logo" src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo" />
+      <h1 class="mobile-title">Exact Information.<br><span>Precision Farming.</span><br>Stronger Market Connection.</h1>
+      <p class="mobile-desc">KisanMitraAI empowers farmers with AI crop intelligence, account books, P&L reports, mandi advice, buyer trust, FPO support, and verified farm-to-market connection.</p>
+      <div class="mobile-actions">
+        <a class="primary" href="./login.html">Login to Web Tool</a>
+        <a class="secondary" href="#farmers">I’m a Farmer</a>
+        <a class="secondary" href="#fpo">FPO / Cooperatives</a>
+        <a class="secondary" href="#buyers">I’m a Buyer</a>
+      </div>
+    </section>
+
+    <section class="content" id="farmers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>AI tools for farmers</h2>
+          <p>Farm mapping, farmer P&L reports, personal account books, day-to-day crop calendar, mandi-rate advice and value-addition intelligence.</p>
+        </div>
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS farm boundary, area, satellite view, crop planning support and farm profile intelligence.</p></article>
+          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise production cost, sale forecast, logistics, dues and profit/loss visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Books</h3><p>Farmer expense records, input purchase, labour, irrigation, loans and payments in one place.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="fpo">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>AI tools for FPOs</h2>
+          <p>Manage farmer groups, crop aggregation, village-level production planning, buyer demand, payments, logistics and trust-backed procurement.</p>
+        </div>
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">👥</div><h3>Farmer Group Management</h3><p>Maintain member records, farm profiles, crop plans and production visibility.</p></article>
+          <article class="feature"><div class="feature-icon">📦</div><h3>Crop Aggregation</h3><p>Plan quantity, quality, grading, storage and lot-level crop movement.</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Linkage</h3><p>Connect FPO produce with buyers, processors, exporters and institutional demand.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content dark" id="engine">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>KisanMitraAI Engine</h2>
+          <p>An intelligent AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
+        </div>
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">AI</div><h3>Crop Intelligence</h3><p>Smart advisory based on crop stage, risk, weather and field information.</p></article>
+          <article class="feature"><div class="feature-icon">🛰️</div><h3>Satellite + GPS</h3><p>Farm visibility, crop mapping and field-level intelligence for better decisions.</p></article>
+          <article class="feature"><div class="feature-icon">🌦️</div><h3>Weather Layer</h3><p>Weather-linked crop support for irrigation, spray and field actions.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="buyers">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trusted tools for buyers</h2>
+          <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
+        </div>
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">🛒</div><h3>Verified Crop Visibility</h3><p>See crop type, expected supply, producer background and trust-supporting farm details.</p></article>
+          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Matching</h3><p>Get farmer-side opportunities based on location, crop, timing and requirements.</p></article>
+          <article class="feature"><div class="feature-icon">🛡️</div><h3>Safer Procurement</h3><p>Transparency, evidence-based sourcing and a stronger farm-to-buyer connection layer.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="trust">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>Trust & transparency</h2>
+          <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
+        </div>
+        <div class="grid">
+          <article class="feature"><div class="feature-icon">✅</div><h3>Verified Data</h3><p>Structured farmer-side records and intelligence for traceable workflows.</p></article>
+          <article class="feature"><div class="feature-icon">🔍</div><h3>Transparency</h3><p>Better confidence through visible crop information, planning support and account-backed flow.</p></article>
+          <article class="feature"><div class="feature-icon">🌍</div><h3>Market Linkage</h3><p>A broader AI-powered system helping connect farmers and buyers more intelligently.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="footer-inner">
+        <div><strong>KisanMitraAI</strong><br>Exact Information. Precision Farming. Stronger Market Connection.</div>
+        <div class="footer-links">
+          <a href="#farmers">Farmers</a><a href="#fpo">FPO</a><a href="#buyers">Buyers</a><a href="#engine">AI Engine</a><a href="#trust">Trust</a><a href="./login.html">Login</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
