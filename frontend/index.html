@@ -1165,6 +1165,81 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
+<style id="km-hide-old-baked-cards-final">
+  @media (min-width: 769px) {
+    /* Cover old big cards completely */
+    .km-green-bottom-panel {
+      height: 168px !important;
+      background: linear-gradient(
+        180deg,
+        rgba(7,73,24,0.98) 0%,
+        #063d15 48%,
+        #032d10 100%
+      ) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10) !important;
+    }
+
+    /* Keep real image above panel */
+    .desktop-hero-img {
+      height: calc(100% - 168px) !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+    }
+
+    /* Slim cards placement */
+    .km-green-card-row {
+      top: 18px !important;
+      left: clamp(58px, 7vw, 118px) !important;
+      right: clamp(58px, 7vw, 118px) !important;
+      gap: 14px !important;
+    }
+
+    .km-green-card {
+      height: 58px !important;
+      grid-template-columns: 32px 1fr !important;
+      padding: 6px 10px !important;
+      border-radius: 14px !important;
+      background: rgba(255,255,255,0.94) !important;
+    }
+
+    .km-green-icon {
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 14px !important;
+    }
+
+    .km-green-card strong {
+      font-size: 12px !important;
+      margin-bottom: 2px !important;
+    }
+
+    .km-green-card small {
+      font-size: 8.4px !important;
+      line-height: 1.14 !important;
+    }
+
+    /* Stats bar visible at bottom */
+    .km-green-stats {
+      height: 38px !important;
+      padding: 4px clamp(80px, 15vw, 270px) !important;
+      background: #02280e !important;
+    }
+
+    .km-green-stats span {
+      width: 24px !important;
+      height: 24px !important;
+      font-size: 11px !important;
+    }
+
+    .km-green-stats strong {
+      font-size: 14px !important;
+    }
+
+    .km-green-stats small {
+      font-size: 9px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -1386,6 +1461,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
