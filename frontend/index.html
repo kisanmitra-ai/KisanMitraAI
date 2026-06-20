@@ -651,6 +651,74 @@
     }
   }
 </style>
+<style id="km-remove-double-header">
+  /* keep only the real top header */
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .km-header {
+    position: fixed !important;
+    top: 14px !important;
+    left: 18px !important;
+    right: 18px !important;
+    z-index: 99999 !important;
+  }
+
+  /* remove/disable any extra header inside hero or duplicate wrappers */
+  .desktop-hero .km-header,
+  .desktop-hero header,
+  .desktop-hero .site-header,
+  .desktop-hero .top-header,
+  .desktop-hero .main-header,
+  .hero-header,
+  .hero-topbar,
+  .header-clone,
+  .header-duplicate,
+  .sticky-header-clone,
+  .floating-header-clone {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* avoid second spacing caused by duplicate sticky containers */
+  .header-spacer,
+  .sticky-spacer,
+  .topbar-spacer {
+    display: none !important;
+    height: 0 !important;
+  }
+</style>
+
+<script id="km-remove-double-header">
+document.addEventListener("DOMContentLoaded", function () {
+  const mainHeader = document.querySelector(".km-header");
+  const allHeaders = Array.from(document.querySelectorAll("header, .km-header, .site-header, .main-header, .top-header"));
+
+  let kept = false;
+  allHeaders.forEach((el) => {
+    if (!kept && el.classList.contains("km-header")) {
+      kept = true;
+      return;
+    }
+    if (mainHeader && el === mainHeader) return;
+
+    const insideHero = el.closest(".desktop-hero, .desktop-hero-inner, .hero, .hero-section");
+    const looksDuplicate =
+      el.classList.contains("km-header") ||
+      el.classList.contains("site-header") ||
+      el.classList.contains("main-header") ||
+      el.classList.contains("top-header") ||
+      insideHero;
+
+    if (looksDuplicate) {
+      el.remove();
+    }
+  });
+});
+</script>
 </head>
 
 <body>
@@ -823,6 +891,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
