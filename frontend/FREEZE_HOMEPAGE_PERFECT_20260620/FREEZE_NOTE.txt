@@ -1,0 +1,15 @@
+﻿KisanMitraAI Homepage Freeze
+Date: 2026-06-20
+Status: PERFECT HOMEPAGE APPROVED BY RANJAN
+
+Do not change:
+- Hero reference image layout
+- Header placement
+- Logo position
+- Menu placement
+- Login button placement
+- Farmer / Buyer / AI Engine / Trust cards
+- Hero image framing
+
+Approved live URL:
+https://kisanmitraai.com/KisanMitraAI
