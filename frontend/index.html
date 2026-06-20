@@ -454,6 +454,32 @@
     }
   }
 </style>
+<style id="km-remove-double-top-final">
+  @media (min-width: 769px) {
+    .hero {
+      padding-top: clamp(96px, 7.1vw, 128px) !important;
+      min-height: auto !important;
+      background: #eef5ef !important;
+      overflow: hidden !important;
+    }
+
+    .hero-img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .locked-header {
+      position: fixed !important;
+      top: 18px !important;
+      z-index: 99999 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -479,7 +505,7 @@
     </header>
 
     <section class="hero">
-      <img class="hero-img" src="./home-assets/kisanmitraai-exact-homepage-final.png" alt="KisanMitraAI precision farming homepage">
+      <img class="hero-img" src="./home-assets/kisanmitraai-exact-homepage-no-top-header.png" alt="KisanMitraAI precision farming homepage">
 
       <div class="wide-card-row">
         <a class="wide-card" href="#farmers">
@@ -588,4 +614,5 @@
   </main>
 </body>
 </html>
+
 
