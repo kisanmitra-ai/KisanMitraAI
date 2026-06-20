@@ -497,6 +497,48 @@
     }
   }
 </style>
+<style id="km-remove-all-bottom-cards-final">
+  @media (min-width: 769px) {
+    .reference-frame {
+      position: relative !important;
+    }
+
+    /* Hide all visible overlay card rows */
+    .km-fpo-final-card-row,
+    .km-fpo-card-row,
+    .km-fpo-bottom-cards,
+    .km-fpo-card-cover,
+    .km-fpo-final-card-cover {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* Cover baked bottom cards inside the reference image */
+    .km-bottom-cards-removal-cover {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 65.2%;
+      height: 22.5%;
+      z-index: 500;
+      background: linear-gradient(
+        180deg,
+        rgba(238,245,239,0.88) 0%,
+        rgba(238,245,239,0.98) 45%,
+        #eef5ef 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .km-bottom-cards-removal-cover {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -504,6 +546,9 @@
     <section class="desktop-reference-home">
       <div class="reference-frame">
         <img src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence homepage" />
+<!-- KM REMOVE BOTTOM CARDS COVER START -->
+<div class="km-bottom-cards-removal-cover"></div>
+<!-- KM REMOVE BOTTOM CARDS COVER END -->
 <!-- KM FPO SOLID CLEAN FINAL START -->
 <div class="km-fpo-final-menu-cover"></div>
 <nav class="km-fpo-final-menu" aria-label="KisanMitraAI menu">
@@ -686,6 +731,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
