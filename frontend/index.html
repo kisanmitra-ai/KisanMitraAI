@@ -511,106 +511,64 @@
       }
     }
   </style>
-<style id="km-final-top-bg-polish">
+
+
+<style id="km-hero-natural-ratio-final">
   html,
-  body,
-  main {
+  body {
     background: #eef5ef !important;
   }
 
   .hero {
+    height: auto !important;
+    min-height: 0 !important;
+    padding-top: 96px !important;
+    display: block !important;
+    overflow: visible !important;
     background: #eef5ef !important;
   }
 
-  .km-header {
-    top: 14px !important;
-    background: #ffffff !important;
+  .hero-image {
+    width: 100vw !important;
+    aspect-ratio: 1672 / 485 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: #eef5ef !important;
+    position: relative !important;
   }
 
-  body::before,
-  body::after,
-  main::before,
-  main::after,
-  .hero::before,
-  .hero::after {
-    display: none !important;
-    content: none !important;
+  .hero-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    transform: none !important;
   }
-</style>
-<style id="km-hero-stretch-fix">
-  /* Hero image proportion fix */
-  .hero,
-  .hero-section,
-  .hero-banner,
-  .hero-shell {
+
+  .hero-strip {
+    height: 68px !important;
+    background: #063d15 !important;
     overflow: hidden !important;
     position: relative !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
   }
 
-  .hero img,
-  .hero-section img,
-  .hero-banner img,
-  .hero-shell img,
-  .hero-media img,
-  .hero-visual img,
-  .hero-bg img,
-  .hero-main-image img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-    display: block !important;
+  .hero-card-row {
+    top: 8px !important;
   }
 
-  .hero-media,
-  .hero-visual,
-  .hero-bg,
-  .hero-main-image,
-  .hero-image-wrap {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
+  .hero-stats,
+  .km-clean-stats-row,
+  .km-compact-stats,
+  .km-green-stats {
+    display: none !important;
   }
 
-  /* Keep desktop hero balanced */
-  .hero,
-  .hero-section,
-  .hero-banner {
-    min-height: 620px !important;
-  }
-
-  /* Tablet */
-  @media (max-width: 1024px) {
-    .hero,
-    .hero-section,
-    .hero-banner {
-      min-height: 520px !important;
-    }
-  }
-
-  /* Mobile */
-  @media (max-width: 768px) {
-    .hero,
-    .hero-section,
-    .hero-banner {
-      min-height: auto !important;
-    }
-
-    .hero img,
-    .hero-section img,
-    .hero-banner img,
-    .hero-shell img,
-    .hero-media img,
-    .hero-visual img,
-    .hero-bg img,
-    .hero-main-image img {
-      height: auto !important;
-      min-height: 320px !important;
-      object-fit: cover !important;
-    }
+  .km-header {
+    background: #ffffff !important;
+    z-index: 99999 !important;
   }
 </style>
 </head>
@@ -635,7 +593,7 @@
   <main>
     <section class="hero">
       <div class="hero-image">
-        <img src="./home-assets/kisanmitra-hero-clean-final.png" alt="KisanMitraAI precision farming and market intelligence" />
+        <img src="./home-assets/kisanmitra-hero-natural-v2.png" alt="KisanMitraAI precision farming and market intelligence" />
 
         <a class="hero-click hero-farmer" href="#farmers"></a>
         <a class="hero-click hero-buyer" href="#buyers"></a>
@@ -769,5 +727,6 @@
   </footer>
 </body>
 </html>
+
 
 
