@@ -575,6 +575,61 @@
     }
   }
 </style>
+
+<style id="km-crop-baked-header-final">
+  @media (min-width: 769px) {
+    /* Crop out the header that is inside the hero image */
+    .desktop-hero-inner {
+      height: calc(100vw * 0.5628 - 118px) !important;
+      overflow: hidden !important;
+      position: relative !important;
+      background: #eef5ef !important;
+    }
+
+    .desktop-hero-img {
+      width: 100vw !important;
+      max-width: none !important;
+      height: auto !important;
+      display: block !important;
+      transform: translateY(-118px) !important;
+      transform-origin: top center !important;
+    }
+
+    /* Move clickable areas up after cropping */
+    .hs-logo,
+    .hs-farmers,
+    .hs-buyers,
+    .hs-engine,
+    .hs-trust,
+    .hs-contact,
+    .hs-login {
+      display: none !important;
+    }
+
+    .hs-farmer { top: 48.5% !important; }
+    .hs-buyer { top: 48.5% !important; }
+    .hs-how { top: 48.5% !important; }
+
+    .hs-card-farmers,
+    .hs-card-buyers,
+    .hs-card-engine,
+    .hs-card-trust {
+      top: 61.5% !important;
+    }
+
+    /* Keep the real fixed header clean and above everything */
+    .km-header {
+      top: 14px !important;
+      z-index: 2147483647 !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-hero-card {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -747,4 +802,5 @@
   </footer>
 </body>
 </html>
+
 
