@@ -606,6 +606,137 @@
     }
   }
 </style>
+
+<style id="km-fullscreen-responsive-fix">
+  html,
+  body {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: #eef5ef !important;
+  }
+
+  /* Desktop full-screen hero */
+  @media (min-width: 769px) {
+    .desktop-hero-wrap {
+      width: 100vw !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #eef5ef !important;
+      overflow: hidden !important;
+    }
+
+    .desktop-hero {
+      width: 100vw !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+    }
+
+    .desktop-hero img {
+      width: 100vw !important;
+      max-width: none !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+    }
+
+    /* Fixed header stays above full-screen hero */
+    .km-fixed-header {
+      top: 16px !important;
+      left: clamp(18px, 4vw, 72px) !important;
+      right: clamp(18px, 4vw, 72px) !important;
+      z-index: 2147483647 !important;
+    }
+
+    /* Slightly reduce header height so hero feels bigger */
+    .km-fixed-header {
+      height: 82px !important;
+      padding: 8px 26px !important;
+    }
+
+    .km-fixed-logo img {
+      width: 248px !important;
+    }
+
+    .km-fixed-nav {
+      font-size: 16px !important;
+      gap: clamp(28px, 4vw, 64px) !important;
+    }
+
+    .km-fixed-login {
+      height: 50px !important;
+      min-width: 124px !important;
+      font-size: 16px !important;
+    }
+
+    /* Section starts cleanly after hero */
+    .sections:first-of-type {
+      padding-top: 72px !important;
+    }
+  }
+
+  /* Tablet */
+  @media (min-width: 769px) and (max-width: 1180px) {
+    .km-fixed-logo img {
+      width: 220px !important;
+    }
+
+    .km-fixed-nav {
+      gap: 28px !important;
+      font-size: 15px !important;
+    }
+
+    .km-fixed-login {
+      min-width: 108px !important;
+    }
+  }
+
+  /* Mobile remains clean and not duplicated */
+  @media (max-width: 768px) {
+    .desktop-hero-wrap {
+      display: none !important;
+    }
+
+    .mobile-home {
+      display: block !important;
+      padding-top: 84px !important;
+    }
+
+    .km-fixed-header {
+      position: fixed !important;
+      top: 10px !important;
+      left: 12px !important;
+      right: 12px !important;
+      height: 62px !important;
+      padding: 8px 12px !important;
+      border-radius: 18px !important;
+      z-index: 2147483647 !important;
+    }
+
+    .km-fixed-logo img {
+      width: 122px !important;
+    }
+
+    .km-fixed-nav {
+      display: none !important;
+    }
+
+    .km-fixed-login {
+      min-width: 76px !important;
+      height: 38px !important;
+      font-size: 14px !important;
+      border-radius: 12px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -775,6 +906,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
