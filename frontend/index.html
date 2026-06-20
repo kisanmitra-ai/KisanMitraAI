@@ -793,14 +793,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 </style>
 
-<style id="km-final-sleek-hero-cards">
+
+<style id="km-final-visible-slim-cards">
   @media (min-width: 769px) {
+    .desktop-hero {
+      padding-top: 96px !important;
+      height: 100vh !important;
+      overflow: hidden !important;
+    }
+
     .desktop-hero-inner {
-      height: calc(100vh - 0px) !important;
-      min-height: 635px !important;
-      max-height: 780px !important;
+      height: calc(100vh - 96px) !important;
+      min-height: 560px !important;
+      max-height: none !important;
       overflow: hidden !important;
       position: relative !important;
+      background: #eef5ef !important;
     }
 
     .desktop-hero-img {
@@ -808,149 +816,142 @@ document.addEventListener("DOMContentLoaded", function () {
       height: 100% !important;
       object-fit: cover !important;
       object-position: center top !important;
+      display: block !important;
     }
 
-    /* Cover the old large baked cards */
-    .km-card-mask {
+    /* Fully hide old baked big cards and old stats area */
+    .km-bottom-clean-mask {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 29%;
-      z-index: 40;
+      height: 37%;
+      z-index: 80;
       pointer-events: none;
       background:
         linear-gradient(
           180deg,
-          rgba(255,255,255,0) 0%,
-          rgba(238,245,239,0.72) 18%,
-          rgba(238,245,239,0.96) 42%,
-          rgba(5,64,18,0.93) 100%
+          rgba(238,245,239,0) 0%,
+          rgba(238,245,239,0.92) 20%,
+          rgba(238,245,239,0.98) 47%,
+          rgba(5,64,18,0.95) 100%
         );
     }
 
-    .km-real-card-row {
+    .km-slim-card-row {
       position: absolute;
-      left: clamp(48px, 7vw, 118px);
-      right: clamp(48px, 7vw, 118px);
-      bottom: 72px;
-      z-index: 50;
+      left: clamp(42px, 7vw, 112px);
+      right: clamp(42px, 7vw, 112px);
+      bottom: 58px;
+      z-index: 90;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .km-real-card {
-      height: 92px;
+    .km-slim-card {
+      height: 78px;
       display: grid;
-      grid-template-columns: 48px 1fr;
+      grid-template-columns: 42px 1fr;
       align-items: center;
-      gap: 12px;
-      padding: 10px 13px;
-      border-radius: 17px;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 16px;
       background: rgba(255,255,255,0.94);
       border: 1px solid rgba(255,255,255,0.86);
-      box-shadow: 0 14px 28px rgba(5,35,14,0.14);
+      box-shadow: 0 12px 24px rgba(5,35,14,0.14);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      text-decoration: none;
       color: #102315;
+      text-decoration: none;
       overflow: hidden;
     }
 
-    .km-real-icon {
-      width: 46px;
-      height: 46px;
+    .km-slim-icon {
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       color: #fff;
-      font-size: 23px;
-      background: linear-gradient(180deg, #2b8d22, #13691d);
+      font-size: 20px;
       box-shadow: inset 0 0 0 3px rgba(255,255,255,0.24);
     }
 
-    .km-real-icon.buyer {
+    .km-slim-icon.green {
+      background: linear-gradient(180deg, #2b8d22, #13691d);
+    }
+
+    .km-slim-icon.orange {
       background: linear-gradient(180deg, #f39a14, #f27900);
     }
 
-    .km-real-card strong {
+    .km-slim-card strong {
       display: block;
+      font-size: 14px;
+      line-height: 1.05;
+      font-weight: 650;
       margin-bottom: 4px;
       color: #102315;
-      font-size: 15px;
-      line-height: 1.05;
-      font-weight: 700;
     }
 
-    .km-real-card small {
+    .km-slim-card small {
       display: block;
-      margin-bottom: 5px;
-      color: #4b594f;
-      font-size: 10.8px;
+      font-size: 10.5px;
       line-height: 1.22;
-      font-weight: 450;
+      color: #4b594f;
+      font-weight: 430;
     }
 
-    .km-real-card em {
-      display: block;
-      color: #075b18;
-      font-size: 10.8px;
-      line-height: 1;
-      font-style: normal;
-      font-weight: 600;
-    }
-
-    .km-real-stats {
+    .km-visible-stats {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      height: 66px;
-      z-index: 55;
+      height: 54px;
+      z-index: 95;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       align-items: center;
-      gap: 18px;
-      padding: 8px clamp(60px, 14vw, 250px);
-      background: rgba(5, 64, 18, 0.94);
+      gap: 12px;
+      padding: 7px clamp(70px, 14vw, 260px);
+      background: rgba(5,64,18,0.96);
       color: #fff;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .km-real-stats div {
-      display: grid;
-      grid-template-columns: 38px auto;
-      grid-template-rows: auto auto;
-      column-gap: 10px;
+    .km-visible-stats div {
+      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 9px;
+      min-width: 0;
     }
 
-    .km-real-stats span {
-      grid-row: 1 / span 2;
-      width: 38px;
-      height: 38px;
+    .km-visible-stats span {
+      width: 34px;
+      height: 34px;
       display: grid;
       place-items: center;
       border-radius: 999px;
       background: rgba(255,255,255,0.13);
       border: 1px solid rgba(255,255,255,0.18);
-      font-size: 20px;
+      font-size: 17px;
+      flex: 0 0 auto;
     }
 
-    .km-real-stats strong {
-      font-size: 20px;
+    .km-visible-stats strong {
+      font-size: 18px;
       line-height: 1;
-      font-weight: 750;
+      font-weight: 700;
+      margin-right: 2px;
     }
 
-    .km-real-stats small {
-      color: rgba(255,255,255,0.86);
+    .km-visible-stats small {
       font-size: 11px;
-      line-height: 1.15;
-      font-weight: 450;
+      color: rgba(255,255,255,0.84);
+      font-weight: 430;
     }
 
     .hs-card-farmers,
@@ -962,42 +963,41 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   @media (min-width: 769px) and (max-width: 1180px) {
-    .km-real-card-row {
-      left: 24px;
-      right: 24px;
-      gap: 10px;
+    .km-slim-card-row {
+      left: 20px;
+      right: 20px;
+      gap: 9px;
     }
 
-    .km-real-card {
-      height: 86px;
-      grid-template-columns: 40px 1fr;
-      padding: 9px;
+    .km-slim-card {
+      height: 74px;
+      grid-template-columns: 34px 1fr;
+      padding: 8px;
     }
 
-    .km-real-icon {
-      width: 38px;
-      height: 38px;
-      font-size: 19px;
+    .km-slim-icon {
+      width: 34px;
+      height: 34px;
+      font-size: 17px;
     }
 
-    .km-real-card strong {
-      font-size: 13.5px;
+    .km-slim-card strong {
+      font-size: 12.5px;
     }
 
-    .km-real-card small,
-    .km-real-card em {
-      font-size: 9.8px;
+    .km-slim-card small {
+      font-size: 9.4px;
     }
 
-    .km-real-stats {
-      padding: 8px 40px;
+    .km-visible-stats {
+      padding: 7px 32px;
     }
   }
 
   @media (max-width: 768px) {
-    .km-card-mask,
-    .km-real-card-row,
-    .km-real-stats {
+    .km-bottom-clean-mask,
+    .km-slim-card-row,
+    .km-visible-stats {
       display: none !important;
     }
   }
@@ -1029,53 +1029,50 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="desktop-hero-inner">
         <img class="desktop-hero-img" src="./home-assets/kisanmitra-reference-hero.png" alt="KisanMitraAI precision farming and market intelligence" />
 <!-- km-sleek-overlay-start -->
-<div class="km-card-mask" aria-hidden="true"></div>
+<div class="km-bottom-clean-mask" aria-hidden="true"></div>
 
-<div class="km-real-card-row">
-  <a class="km-real-card" href="#farmers">
-    <span class="km-real-icon farmer">👨‍🌾</span>
+<div class="km-slim-card-row">
+  <a class="km-slim-card" href="#farmers">
+    <span class="km-slim-icon green">👨‍🌾</span>
     <span>
       <strong>For Farmers</strong>
       <small>Crop advisory, P&L, account books and better yields.</small>
-      <em>Explore for Farmers →</em>
     </span>
   </a>
 
-  <a class="km-real-card" href="#buyers">
-    <span class="km-real-icon buyer">🛒</span>
+  <a class="km-slim-card" href="#buyers">
+    <span class="km-slim-icon orange">🛒</span>
     <span>
       <strong>For Buyers</strong>
-      <small>Verified suppliers, crop visibility and procurement support.</small>
-      <em>Explore for Buyers →</em>
+      <small>Verified suppliers, crop visibility and procurement.</small>
     </span>
   </a>
 
-  <a class="km-real-card" href="#engine">
-    <span class="km-real-icon">🧠</span>
+  <a class="km-slim-card" href="#engine">
+    <span class="km-slim-icon green">🧠</span>
     <span>
       <strong>AI Engine</strong>
       <small>Crop intelligence, image analysis and smart advice.</small>
-      <em>Explore AI Engine →</em>
     </span>
   </a>
 
-  <a class="km-real-card" href="#trust">
-    <span class="km-real-icon">🛡</span>
+  <a class="km-slim-card" href="#trust">
+    <span class="km-slim-icon green">🛡</span>
     <span>
-      <strong>Trust & Transparency</strong>
-      <small>Verified data, safer flow and clear traceability.</small>
-      <em>Explore Trust →</em>
+      <strong>Trust</strong>
+      <small>Verified data, safer flow and traceability.</small>
     </span>
   </a>
 </div>
 
-<div class="km-real-stats">
-  <div><span>👥</span><strong>10L+</strong><small>Farmers Empowered</small></div>
-  <div><span>🌿</span><strong>50+</strong><small>Crops Supported</small></div>
-  <div><span>🌐</span><strong>25+</strong><small>Countries Connected</small></div>
-  <div><span>🛡</span><strong>100%</strong><small>Trust & Transparency</small></div>
+<div class="km-visible-stats">
+  <div><span>👥</span><strong>10L+</strong><small>Farmers</small></div>
+  <div><span>🌿</span><strong>50+</strong><small>Crops</small></div>
+  <div><span>🌐</span><strong>25+</strong><small>Countries</small></div>
+  <div><span>🛡</span><strong>100%</strong><small>Trust</small></div>
 </div>
 <!-- km-sleek-overlay-end -->
+
 
 
         <a class="hotspot hs-logo" href="./index.html" aria-label="Home"></a>
@@ -1223,6 +1220,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
