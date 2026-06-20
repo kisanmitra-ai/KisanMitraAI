@@ -626,6 +626,91 @@
     }
   }
 </style>
+<style id="km-home-cleanup-v4">
+  :root{
+    --km-bg:#eef4ef;
+    --km-white:#ffffff;
+  }
+
+  /* keep only one clean header bar */
+  .header-shell,
+  .top-header-shell,
+  .site-header-shell,
+  .nav-shell,
+  .km-header-shell,
+  .header-wrap-outer{
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  .km-header,
+  .site-header,
+  header{
+    background: #fff !important;
+    box-shadow: 0 10px 28px rgba(12,42,20,.10) !important;
+    border: 0 !important;
+  }
+
+  /* hero image: show full composition including satellite */
+  .hero-main,
+  .desktop-hero .hero-main,
+  .homepage-hero,
+  .hero-stage,
+  .hero-banner{
+    overflow: hidden !important;
+    background: var(--km-bg) !important;
+    aspect-ratio: 1792 / 707 !important;
+  }
+
+  .hero-main img,
+  .desktop-hero .hero-main img,
+  .homepage-hero img,
+  .hero-stage img,
+  .hero-banner img{
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    display: block !important;
+    object-fit: contain !important;
+    object-position: center top !important;
+    transform: none !important;
+    background: var(--km-bg) !important;
+  }
+
+  /* remove white / frosted patch behind lower cards row */
+  .bottom-cards-strip,
+  .floating-feature-strip,
+  .feature-strip-shell,
+  .mini-cards-shell,
+  .tools-strip,
+  .km-bottom-cards-strip,
+  .bottom-feature-wrap{
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  .bottom-cards-strip::before,
+  .bottom-cards-strip::after,
+  .floating-feature-strip::before,
+  .floating-feature-strip::after,
+  .feature-strip-shell::before,
+  .feature-strip-shell::after,
+  .mini-cards-shell::before,
+  .mini-cards-shell::after,
+  .tools-strip::before,
+  .tools-strip::after,
+  .km-bottom-cards-strip::before,
+  .km-bottom-cards-strip::after,
+  .bottom-feature-wrap::before,
+  .bottom-feature-wrap::after{
+    content: none !important;
+    display: none !important;
+  }
+</style>
 </head>
 
 <body>
@@ -768,7 +853,103 @@
       </div>
     </div>
   </footer>
+<script id="km-home-cleanup-js-v4">
+document.addEventListener("DOMContentLoaded", function () {
+  const transparent = (el) => {
+    if (!el) return;
+    el.style.background = "transparent";
+    el.style.boxShadow = "none";
+    el.style.border = "0";
+    el.style.backdropFilter = "none";
+  };
+
+  const whiteCard = (el) => {
+    if (!el) return;
+    el.style.background = "#ffffff";
+    el.style.boxShadow = "0 10px 24px rgba(0,0,0,.08)";
+    el.style.border = "0";
+    el.style.backdropFilter = "none";
+  };
+
+  /* remove second white layer above header */
+  const header = document.querySelector(".km-header, .site-header, header");
+  if (header) {
+    let p = header.parentElement;
+    let count = 0;
+    while (p && p !== document.body && count < 3) {
+      transparent(p);
+      p = p.parentElement;
+      count++;
+    }
+  }
+
+  /* show full satellite / full hero image */
+  const heroImg = document.querySelector(
+    ".hero-main img, .desktop-hero .hero-main img, .homepage-hero img, .hero-stage img, .hero-banner img"
+  );
+  if (heroImg) {
+    heroImg.style.width = "100%";
+    heroImg.style.height = "100%";
+    heroImg.style.objectFit = "contain";
+    heroImg.style.objectPosition = "center top";
+    heroImg.style.transform = "none";
+    heroImg.style.maxWidth = "none";
+  }
+
+  const heroBox = document.querySelector(
+    ".hero-main, .desktop-hero .hero-main, .homepage-hero, .hero-stage, .hero-banner"
+  );
+  if (heroBox) {
+    heroBox.style.background = "#eef4ef";
+    heroBox.style.overflow = "hidden";
+  }
+
+  /* remove double white patch behind lower floating cards */
+  const blocks = [...document.querySelectorAll("section,div")];
+  const bottomCardsGroup = blocks.filter(el => {
+    const t = (el.innerText || "").replace(/\s+/g, " ").trim();
+    return (
+      t.includes("For Farmers") &&
+      t.includes("For Buyers") &&
+      t.includes("AI Engine") &&
+      (t.includes("Trust") || t.includes("Trust & Transparency"))
+    );
+  });
+
+  if (bottomCardsGroup.length > 1) {
+    const lowerGroup = bottomCardsGroup[bottomCardsGroup.length - 1];
+    transparent(lowerGroup);
+    transparent(lowerGroup.parentElement);
+
+    [...lowerGroup.querySelectorAll("article, .card, .feature-card, .mini-card, .tool-card, li, > div")].forEach(card => {
+      const t = (card.innerText || "").replace(/\s+/g, " ").trim();
+      if (
+        t.includes("For Farmers") ||
+        t.includes("For Buyers") ||
+        t.includes("AI Engine") ||
+        t.includes("Trust")
+      ) {
+        whiteCard(card);
+      }
+    });
+  }
+
+  /* remove stats row: 10L+ / 50+ / 25+ / 100% */
+  [...document.querySelectorAll("section,div,ul")].forEach(el => {
+    const t = (el.innerText || "").replace(/\s+/g, " ").trim();
+    if (
+      t.includes("10L+") &&
+      t.includes("50+") &&
+      t.includes("25+") &&
+      t.includes("100%")
+    ) {
+      el.style.display = "none";
+    }
+  });
+});
+</script>
 </body>
 </html>
+
 
 
