@@ -379,6 +379,81 @@
       }
     }
   </style>
+<style id="km-remove-extra-card-overlay-final">
+  @media (min-width: 769px) {
+    /* remove the extra generated card overlay */
+    .wide-card-row,
+    .wide-card,
+    .card-icon,
+    .card-title,
+    .card-text,
+    .card-link {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* keep the hero image clean */
+    .hero {
+      position: relative !important;
+      min-height: auto !important;
+      overflow: hidden !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* locked header polish */
+    .locked-header {
+      top: 18px !important;
+      left: clamp(18px, 2.7vw, 48px) !important;
+      right: clamp(18px, 2.7vw, 48px) !important;
+      height: clamp(74px, 5.4vw, 104px) !important;
+      z-index: 99999 !important;
+      background: rgba(255,255,255,0.96) !important;
+      border-radius: clamp(16px, 1.3vw, 26px) !important;
+      box-shadow: 0 18px 44px rgba(5,35,14,0.13) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+    }
+
+    .brand img {
+      height: clamp(62px, 4.8vw, 90px) !important;
+      width: auto !important;
+      object-fit: contain !important;
+    }
+
+    .nav {
+      gap: clamp(30px, 3.9vw, 64px) !important;
+      font-size: clamp(14px, 1vw, 18px) !important;
+      font-weight: 760 !important;
+    }
+
+    .login {
+      height: clamp(46px, 3.5vw, 62px) !important;
+      border-radius: clamp(12px, .9vw, 18px) !important;
+    }
+
+    section.content {
+      padding-top: 72px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wide-card-row {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -513,3 +588,4 @@
   </main>
 </body>
 </html>
+
