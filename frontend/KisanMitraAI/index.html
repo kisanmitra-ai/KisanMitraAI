@@ -656,6 +656,51 @@
     }
   }
 </style>
+<style id="km-remove-bottom-white-patch">
+  @media (min-width: 769px) {
+
+    /* remove spacing below hero */
+    .reference-frame,
+    .reference-frame img,
+    .reference-frame picture {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* hide the empty section directly below the hero */
+    .reference-frame + section,
+    .reference-frame + .content,
+    .reference-frame + div,
+    .reference-wrapper + section,
+    .reference-wrapper + .content {
+      display: none !important;
+    }
+
+    /* remove any leftover bottom filler blocks */
+    .km-fpo-final-card-cover,
+    .km-fpo-final-card-row,
+    .km-fpo-card-cover,
+    .km-fpo-card-row,
+    .km-fpo-bottom-cards {
+      display: none !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
+    main,
+    .page-shell,
+    .home-shell,
+    body {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -846,6 +891,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
