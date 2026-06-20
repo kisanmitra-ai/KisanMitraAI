@@ -964,6 +964,215 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
+<style id="km-final-card-mask-solid">
+  @media (min-width: 769px) {
+    /* Make hero fit the visible screen better */
+    .desktop-hero {
+      height: calc(100vh - 8px) !important;
+      padding-top: 96px !important;
+      overflow: hidden !important;
+    }
+
+    .desktop-hero-inner {
+      height: calc(100vh - 104px) !important;
+      min-height: 560px !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    .desktop-hero-img {
+      width: 100vw !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+    }
+
+    /* Fully hide the old large cards from the image */
+    .km-final-card-mask,
+    .km-bottom-clean-mask,
+    .km-card-mask {
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      height: 30% !important;
+      z-index: 500 !important;
+      pointer-events: none !important;
+      background: linear-gradient(
+        180deg,
+        rgba(238,245,239,0.96) 0%,
+        rgba(238,245,239,1) 28%,
+        rgba(238,245,239,1) 62%,
+        rgba(5,64,18,0.97) 100%
+      ) !important;
+    }
+
+    /* New sleek cards */
+    .km-final-card-row,
+    .km-slim-card-row,
+    .km-real-card-row {
+      position: absolute !important;
+      left: clamp(42px, 7vw, 112px) !important;
+      right: clamp(42px, 7vw, 112px) !important;
+      bottom: 72px !important;
+      z-index: 510 !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+    }
+
+    .km-final-card,
+    .km-slim-card,
+    .km-real-card {
+      height: 74px !important;
+      min-height: 74px !important;
+      display: grid !important;
+      grid-template-columns: 40px 1fr !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 8px 12px !important;
+      border-radius: 15px !important;
+      background: rgba(255,255,255,0.97) !important;
+      border: 1px solid rgba(255,255,255,0.92) !important;
+      box-shadow: 0 10px 22px rgba(5,35,14,0.13) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      overflow: hidden !important;
+    }
+
+    .km-final-icon,
+    .km-slim-icon,
+    .km-real-icon {
+      width: 38px !important;
+      height: 38px !important;
+      font-size: 18px !important;
+    }
+
+    .km-final-card strong,
+    .km-slim-card strong,
+    .km-real-card strong {
+      font-size: 13.5px !important;
+      line-height: 1.05 !important;
+      font-weight: 650 !important;
+      margin-bottom: 3px !important;
+    }
+
+    .km-final-card small,
+    .km-slim-card small,
+    .km-real-card small {
+      font-size: 10px !important;
+      line-height: 1.18 !important;
+      font-weight: 430 !important;
+    }
+
+    .km-final-card em,
+    .km-slim-card em,
+    .km-real-card em {
+      display: none !important;
+    }
+
+    /* Stats bar fully visible */
+    .km-final-stats,
+    .km-visible-stats,
+    .km-real-stats {
+      position: absolute !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      height: 58px !important;
+      z-index: 520 !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 7px clamp(70px, 14vw, 260px) !important;
+      background: rgba(5,64,18,0.98) !important;
+      color: #fff !important;
+    }
+
+    .km-final-stats div,
+    .km-visible-stats div,
+    .km-real-stats div {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 9px !important;
+    }
+
+    .km-final-stats span,
+    .km-visible-stats span,
+    .km-real-stats span {
+      width: 34px !important;
+      height: 34px !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: 999px !important;
+      background: rgba(255,255,255,0.13) !important;
+      border: 1px solid rgba(255,255,255,0.18) !important;
+      font-size: 17px !important;
+    }
+
+    .km-final-stats strong,
+    .km-visible-stats strong,
+    .km-real-stats strong {
+      font-size: 18px !important;
+      line-height: 1 !important;
+      font-weight: 700 !important;
+    }
+
+    .km-final-stats small,
+    .km-visible-stats small,
+    .km-real-stats small {
+      font-size: 11px !important;
+      color: rgba(255,255,255,0.86) !important;
+      font-weight: 430 !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1180px) {
+    .km-final-card-row,
+    .km-slim-card-row,
+    .km-real-card-row {
+      left: 20px !important;
+      right: 20px !important;
+      gap: 9px !important;
+    }
+
+    .km-final-card,
+    .km-slim-card,
+    .km-real-card {
+      height: 70px !important;
+      grid-template-columns: 34px 1fr !important;
+      padding: 7px 8px !important;
+    }
+
+    .km-final-icon,
+    .km-slim-icon,
+    .km-real-icon {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 16px !important;
+    }
+
+    .km-final-card strong,
+    .km-slim-card strong,
+    .km-real-card strong {
+      font-size: 12.5px !important;
+    }
+
+    .km-final-card small,
+    .km-slim-card small,
+    .km-real-card small {
+      font-size: 9.2px !important;
+    }
+
+    .km-final-stats,
+    .km-visible-stats,
+    .km-real-stats {
+      padding: 7px 30px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -1183,6 +1392,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </footer>
 </body>
 </html>
+
 
 
 
