@@ -629,90 +629,144 @@
     }
   }
 </style>
-<!-- KM HERO OVERLAP FIX START -->
-<style id="km-hero-overlap-fix">
-header,
-.topbar,
-.site-header,
-.navbar,
-.main-header {
-  position: relative !important;
-  z-index: 50 !important;
-}
 
-.hero,
-.hero-section,
-.hero-banner,
-.homepage-hero,
-.km-hero {
-  position: relative !important;
-  overflow: hidden !important;
-  background-position: center top !important;
-  padding-top: 24px !important;
-  padding-bottom: 230px !important;
-  min-height: 760px !important;
-}
+<style id="km-restore-visible-home-cards">
+  /* Remove bad generic overlap behavior */
+  .hero {
+    position: relative !important;
+    min-height: calc(100vh - 95px) !important;
+    height: calc(100vh - 95px) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    background: #eef5ef !important;
+  }
 
-.hero::before,
-.hero-section::before,
-.hero-banner::before,
-.homepage-hero::before,
-.km-hero::before {
-  background-position: center top !important;
-}
+  .hero-img {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
 
-.hero-content,
-.hero-inner,
-.hero-copy,
-.hero-left {
-  position: relative !important;
-  z-index: 8 !important;
-}
+  /* Bring real bottom cards back into the visible hero area */
+  .wide-card-row {
+    position: absolute !important;
+    left: 5.2% !important;
+    right: 5.2% !important;
+    bottom: 22px !important;
+    z-index: 90 !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
 
-.hero-actions,
-.hero-buttons,
-.cta-row,
-.hero-cta,
-.hero-ctas {
-  position: relative !important;
-  z-index: 12 !important;
-  margin-top: 24px !important;
-  margin-bottom: 56px !important;
-}
+  .wide-card {
+    display: grid !important;
+    grid-template-columns: 54px 1fr !important;
+    align-items: center !important;
+    min-height: 112px !important;
+    padding: 15px 16px !important;
+    gap: 13px !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,0.96) !important;
+    box-shadow: 0 18px 38px rgba(5,35,14,0.18) !important;
+    text-decoration: none !important;
+    color: #102315 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 
-.hero-actions a,
-.hero-buttons a,
-.cta-row a,
-.hero-cta a,
-.hero-ctas a,
-.hero-actions button,
-.hero-buttons button,
-.cta-row button,
-.hero-cta button,
-.hero-ctas button {
-  position: relative !important;
-  z-index: 13 !important;
-}
+  .card-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    color: #fff !important;
+    background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
+    font-size: 22px !important;
+  }
 
-.feature-cards,
-.feature-grid,
-.home-cards,
-.cards-row,
-.hero-cards,
-.service-cards,
-.homepage-cards {
-  position: relative !important;
-  z-index: 7 !important;
-  margin-top: -90px !important;
-}
+  .card-icon.orange {
+    background: radial-gradient(circle at 35% 25%, #ff9b1a, #f27800 72%) !important;
+  }
 
-.feature-card,
-.feature,
-.card {
-  position: relative !important;
-}
+  .card-title {
+    display: block !important;
+    margin: 0 0 5px !important;
+    font-size: 15px !important;
+    line-height: 1.1 !important;
+    font-weight: 900 !important;
+    color: #102315 !important;
+  }
+
+  .card-text {
+    display: block !important;
+    margin: 0 !important;
+    font-size: 9.2px !important;
+    line-height: 1.35 !important;
+    color: #2e3d34 !important;
+  }
+
+  .card-link {
+    display: inline-block !important;
+    margin-top: 7px !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+    color: #075b18 !important;
+  }
+
+  .card-link.orange-text {
+    color: #f26522 !important;
+  }
+
+  section.content {
+    padding-top: 60px !important;
+  }
+
+  @media (max-width: 1100px) {
+    .wide-card-row {
+      left: 18px !important;
+      right: 18px !important;
+      bottom: 12px !important;
+      gap: 8px !important;
+    }
+
+    .wide-card {
+      grid-template-columns: 36px 1fr !important;
+      min-height: 86px !important;
+      padding: 10px !important;
+    }
+
+    .card-icon {
+      width: 34px !important;
+      height: 34px !important;
+      font-size: 16px !important;
+    }
+
+    .card-title {
+      font-size: 12px !important;
+    }
+
+    .card-text {
+      font-size: 7.5px !important;
+    }
+
+    .card-link {
+      display: none !important;
+    }
+  }
 </style>
-<!-- KM HERO OVERLAP FIX END -->
 </head>
 
 <body>
@@ -856,6 +910,7 @@ header,
   </main>
 </body>
 </html>
+
 
 
 
