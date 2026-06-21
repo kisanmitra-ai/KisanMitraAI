@@ -551,6 +551,40 @@
     box-shadow: none !important;
   }
 </style>
+<style id="km-lift-bottom-cards-visible">
+  @media (min-width: 769px) {
+    /* Bring baked bottom cards slightly upward */
+    .hero {
+      position: relative !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding-top: 0 !important;
+      background: #eef5ef !important;
+    }
+
+    .hero-img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+
+      /* adjust this value if needed: -42px, -55px, -65px */
+      transform: translateY(-52px) !important;
+      margin-bottom: -52px !important;
+    }
+
+    .locked-header {
+      position: fixed !important;
+      z-index: 99999 !important;
+    }
+
+    section.content {
+      margin-top: 0 !important;
+      padding-top: 54px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -696,6 +730,7 @@
   </main>
 </body>
 </html>
+
 
 
 
