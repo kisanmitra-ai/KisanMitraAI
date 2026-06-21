@@ -525,6 +525,31 @@
     }
   }
 </style>
+<style id="km-hero-only-no-baked-header">
+  @media (min-width: 769px) {
+    .hero {
+      padding-top: clamp(96px, 7.1vw, 128px) !important;
+      background: #eef5ef !important;
+      overflow: hidden !important;
+      min-height: auto !important;
+    }
+
+    .hero-img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .locked-header {
+      position: fixed !important;
+      z-index: 99999 !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -550,7 +575,7 @@
     </header>
 
     <section class="hero">
-      <img class="hero-img" src="./home-assets/kisanmitraai-homepage-web-only.png" alt="KisanMitraAI precision farming homepage">
+      <img class="hero-img" src="./home-assets/kisanmitraai-homepage-hero-only.png" alt="KisanMitraAI precision farming homepage">
 <!-- KM CLICKABLE HOTSPOTS START -->
 <a class="hero-click click-farmers" href="#farmers" aria-label="Farmers"></a>
 <a class="hero-click click-fpo" href="#fpo" aria-label="FPO"></a>
@@ -678,6 +703,7 @@
   </main>
 </body>
 </html>
+
 
 
 
