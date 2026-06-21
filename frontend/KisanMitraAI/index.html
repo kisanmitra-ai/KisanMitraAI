@@ -862,225 +862,80 @@
     window.addEventListener("resize", applyCleanLayout);
   })();
 </script>
-<style id="km-hero-visual-down-final">
-  /* Final: move actual homepage visual image down so title is visible */
 
-  .hero {
-    position: relative !important;
-    height: calc(100vh - 7px) !important;
-    min-height: 650px !important;
-    max-height: 770px !important;
-    overflow: hidden !important;
-    background-position: center 76px !important;
-    background-size: 100% auto !important;
-    background-repeat: no-repeat !important;
-  }
 
-  /* Target any image inside hero, not only .hero-img */
-  .hero img,
-  .hero > img,
-  .hero picture img,
-  .hero .hero-img,
-  .hero [class*="hero"] img {
-    position: absolute !important;
-    top: 76px !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: none !important;
-    object-fit: contain !important;
-    object-position: center top !important;
-    transform: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 1 !important;
-  }
 
-  /* Keep top menu above hero */
-  .km-clean-navbar,
-  .locked-header,
-  header,
-  nav {
-    position: fixed !important;
-    top: 7px !important;
-    z-index: 999999 !important;
-  }
 
-  /* Keep bottom cards near bottom */
-  .wide-card-row {
-    position: absolute !important;
-    left: 5.2% !important;
-    right: 5.2% !important;
-    bottom: 7px !important;
-    transform: none !important;
-    margin: 0 !important;
-    z-index: 99999 !important;
+
+
+<style id="km-home-left-copy-down-final">
+  .km-home-left-copy-down {
+    transform: translateY(42px) !important;
+    transition: none !important;
   }
 </style>
 
-<script id="km-hero-visual-down-final-script">
+<script id="km-home-left-copy-down-final-script">
   (function () {
-    function forceHeroImageDown() {
-      var hero = document.querySelector(".hero");
-      if (!hero) return;
+    function textOf(el) {
+      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+    }
 
-      hero.style.setProperty("position", "relative", "important");
-      hero.style.setProperty("overflow", "hidden", "important");
-      hero.style.setProperty("height", "calc(100vh - 7px)", "important");
-      hero.style.setProperty("min-height", "650px", "important");
-      hero.style.setProperty("max-height", "770px", "important");
-      hero.style.setProperty("background-position", "center 76px", "important");
-      hero.style.setProperty("background-size", "100% auto", "important");
-      hero.style.setProperty("background-repeat", "no-repeat", "important");
+    function findLeftHeroCopy() {
+      var all = Array.from(document.querySelectorAll("div, section, article"));
 
-      hero.querySelectorAll("img").forEach(function (img) {
-        img.style.setProperty("position", "absolute", "important");
-        img.style.setProperty("top", "76px", "important");
-        img.style.setProperty("left", "0", "important");
-        img.style.setProperty("width", "100%", "important");
-        img.style.setProperty("height", "auto", "important");
-        img.style.setProperty("max-width", "none", "important");
-        img.style.setProperty("object-fit", "contain", "important");
-        img.style.setProperty("object-position", "center top", "important");
-        img.style.setProperty("transform", "none", "important");
-        img.style.setProperty("z-index", "1", "important");
+      var matches = all.filter(function (el) {
+        var text = textOf(el);
+        var r = el.getBoundingClientRect();
+
+        return (
+          text.includes("Exact Information") &&
+          text.includes("Precision Farming") &&
+          text.includes("Stronger Market Connection") &&
+          r.width > 300 &&
+          r.width < window.innerWidth * 0.70 &&
+          r.height > 160 &&
+          r.height < 520 &&
+          r.top < window.innerHeight * 0.55
+        );
       });
 
-      document.querySelectorAll(".wide-card-row").forEach(function (row) {
-        row.style.setProperty("position", "absolute", "important");
-        row.style.setProperty("left", "5.2%", "important");
-        row.style.setProperty("right", "5.2%", "important");
-        row.style.setProperty("bottom", "7px", "important");
-        row.style.setProperty("transform", "none", "important");
-        row.style.setProperty("z-index", "99999", "important");
+      if (!matches.length) return null;
+
+      matches.sort(function (a, b) {
+        var ar = a.getBoundingClientRect();
+        var br = b.getBoundingClientRect();
+
+        /* choose smallest useful text block, not whole page */
+        return (ar.width * ar.height) - (br.width * br.height);
       });
+
+      return matches[0];
+    }
+
+    function moveLeftCopyDown() {
+      var copy = findLeftHeroCopy();
+      if (!copy) return;
+
+      copy.classList.add("km-home-left-copy-down");
+      copy.style.setProperty("transform", "translateY(42px)", "important");
+      copy.style.setProperty("transition", "none", "important");
+      copy.style.setProperty("z-index", "20", "important");
     }
 
     window.addEventListener("load", function () {
-      forceHeroImageDown();
-      setTimeout(forceHeroImageDown, 300);
-      setTimeout(forceHeroImageDown, 900);
-      setTimeout(forceHeroImageDown, 1600);
+      moveLeftCopyDown();
+      setTimeout(moveLeftCopyDown, 300);
+      setTimeout(moveLeftCopyDown, 900);
+      setTimeout(moveLeftCopyDown, 1600);
     });
 
-    window.addEventListener("resize", forceHeroImageDown);
-  })();
-</script>
-<style id="km-force-any-home-visual-down">
-  /* Move actual homepage visual down, even if it is not .hero-img */
-
-  img[src*="homepage"],
-  img[src*="home-assets"],
-  img[src*="exact"],
-  img[src*="hero"],
-  .hero img,
-  .home img,
-  .homepage img,
-  .hero-section img,
-  .home-hero img,
-  .homepage-hero img {
-    transform: translateY(54px) !important;
-  }
-
-  [style*="homepage"],
-  [style*="home-assets"],
-  [style*="hero"],
-  [style*="background-image"] {
-    background-position: center 54px !important;
-  }
-
-  .hero,
-  .home,
-  .homepage,
-  .hero-section,
-  .home-hero,
-  .homepage-hero {
-    background-position: center 54px !important;
-    overflow: hidden !important;
-  }
-
-  /* Keep navbar locked above */
-  .km-clean-navbar,
-  .locked-header,
-  header,
-  nav {
-    position: fixed !important;
-    top: 7px !important;
-    z-index: 999999 !important;
-  }
-
-  /* Keep cards at bottom */
-  .wide-card-row {
-    position: absolute !important;
-    left: 5.2% !important;
-    right: 5.2% !important;
-    bottom: 7px !important;
-    transform: none !important;
-    z-index: 99999 !important;
-  }
-</style>
-
-<script id="km-force-any-home-visual-down-script">
-  (function () {
-    function forceHomeVisualDown() {
-      var moved = false;
-
-      document.querySelectorAll("img").forEach(function (img) {
-        var src = (img.getAttribute("src") || "").toLowerCase();
-        var rect = img.getBoundingClientRect();
-
-        if (
-          rect.width > window.innerWidth * 0.65 ||
-          src.includes("homepage") ||
-          src.includes("home-assets") ||
-          src.includes("exact") ||
-          src.includes("hero")
-        ) {
-          img.style.setProperty("transform", "translateY(54px)", "important");
-          img.style.setProperty("z-index", "1", "important");
-          moved = true;
-        }
-      });
-
-      document.querySelectorAll("body *").forEach(function (el) {
-        var bg = window.getComputedStyle(el).backgroundImage || "";
-        var rect = el.getBoundingClientRect();
-
-        if (
-          bg !== "none" &&
-          rect.width > window.innerWidth * 0.65 &&
-          rect.height > window.innerHeight * 0.45
-        ) {
-          el.style.setProperty("background-position", "center 54px", "important");
-          el.style.setProperty("background-repeat", "no-repeat", "important");
-          moved = true;
-        }
-      });
-
-      document.querySelectorAll(".wide-card-row").forEach(function (row) {
-        row.style.setProperty("position", "absolute", "important");
-        row.style.setProperty("left", "5.2%", "important");
-        row.style.setProperty("right", "5.2%", "important");
-        row.style.setProperty("bottom", "7px", "important");
-        row.style.setProperty("transform", "none", "important");
-        row.style.setProperty("z-index", "99999", "important");
-      });
-
-      console.log("KisanMitraAI hero visual moved:", moved);
-    }
-
-    window.addEventListener("load", function () {
-      forceHomeVisualDown();
-      setTimeout(forceHomeVisualDown, 300);
-      setTimeout(forceHomeVisualDown, 900);
-      setTimeout(forceHomeVisualDown, 1600);
-    });
-
-    window.addEventListener("resize", forceHomeVisualDown);
+    window.addEventListener("resize", moveLeftCopyDown);
   })();
 </script>
 </body>
 </html>
+
 
 
 
