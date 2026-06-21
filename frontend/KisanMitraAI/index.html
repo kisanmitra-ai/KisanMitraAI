@@ -772,68 +772,7 @@
 
 
 
-<style id="km-farmers-no-overlap-final">
-  html {
-    scroll-behavior: smooth !important;
-  }
 
-  .locked-header {
-    position: fixed !important;
-    top: 18px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 99999 !important;
-  }
-
-  .hero {
-    position: relative !important;
-    overflow: hidden !important;
-    margin-top: clamp(108px, 7.6vw, 136px) !important;
-    z-index: 1 !important;
-  }
-
-  .wide-card-row {
-    z-index: 90 !important;
-  }
-
-  #farmers {
-    position: relative !important;
-    z-index: 20 !important;
-    clear: both !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    scroll-margin-top: 118px !important;
-    background: #ffffff !important;
-  }
-
-  .km-farmers-page,
-  .farmers-page,
-  .farmers-section,
-  .farmers-image-section,
-  .km-farmers-image-section {
-    position: relative !important;
-    z-index: 20 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    background: #ffffff !important;
-  }
-
-  #farmers img,
-  .km-farmers-page img,
-  .farmers-page img,
-  .farmers-image-section img,
-  .km-farmers-image-section img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  section[id="farmers"] {
-    transform: none !important;
-  }
-</style>
 
 
 
@@ -874,40 +813,16 @@
 </style>
 
 
-<style id="km-farmers-perfect-scroll-target">
-  #farmers {
-    scroll-margin-top: 20px !important;
-  }
-
-  .locked-header {
-    position: fixed !important;
-    top: 18px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 99999 !important;
-  }
-
-  .farmers-image-section,
-  .km-farmers-image-section,
-  .farmers-page,
-  .km-farmers-page {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    background: #ffffff !important;
-  }
-
-  #farmers img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-</style>
 
 
 
 
 
-<style id="km-farmers-scroll-perfect-clean-final">
+
+
+
+
+<style id="km-farmers-top-final-fix">
   .locked-header {
     position: fixed !important;
     top: 18px !important;
@@ -920,37 +835,80 @@
     scroll-margin-top: 0 !important;
     background: #ffffff !important;
   }
+
+  /* When Farmers is active, do not show homepage bottom cards */
+  body.km-farmers-active .hero .wide-card-row,
+  body.km-farmers-active .wide-card-row {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 </style>
 
-<script id="km-farmers-scroll-perfect-clean-script">
+<script id="km-farmers-top-final-script">
   (function () {
-    function getFarmersTarget() {
-      var farmers = document.getElementById("farmers");
-      if (!farmers) return null;
-      return farmers.querySelector("img") || farmers;
+    function setFarmersMode(on) {
+      document.body.classList.toggle("km-farmers-active", !!on);
     }
 
-    function scrollToFarmers(instant) {
-      var target = getFarmersTarget();
+    function getFarmersImageTarget() {
+      var farmers = document.getElementById("farmers");
+      if (!farmers) return null;
+
+      return (
+        farmers.querySelector(".farmers-image-section img") ||
+        farmers.querySelector(".km-farmers-image-section img") ||
+        farmers.querySelector(".farmers-page-image") ||
+        farmers.querySelector(".km-farmers-page-image") ||
+        farmers.querySelector("img") ||
+        farmers
+      );
+    }
+
+    function scrollFarmersToTop(instant) {
+      var target = getFarmersImageTarget();
+      var header = document.querySelector(".locked-header");
       if (!target) return;
 
-      var header = document.querySelector(".locked-header");
-      var headerHeight = header ? header.offsetHeight : 100;
+      setFarmersMode(true);
 
-      /* Correct final position: image starts just below fixed header */
-      var y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 8;
+      var headerBottom = header ? header.getBoundingClientRect().bottom : 118;
+      var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+
+      /* Farmers image starts just below fixed menu */
+      var y = targetTop - headerBottom - 8;
 
       window.scrollTo({
         top: y,
         behavior: instant ? "auto" : "smooth"
       });
+
+      /* One correction after layout settles */
+      setTimeout(function () {
+        var headerBottom2 = header ? header.getBoundingClientRect().bottom : 118;
+        var targetTop2 = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: targetTop2 - headerBottom2 - 8,
+          behavior: "auto"
+        });
+      }, instant ? 120 : 520);
     }
 
     window.addEventListener("load", function () {
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
-          scrollToFarmers(true);
-        }, 450);
+          scrollFarmersToTop(true);
+        }, 350);
+      } else {
+        setFarmersMode(false);
+      }
+    });
+
+    window.addEventListener("hashchange", function () {
+      if (window.location.hash === "#farmers") {
+        scrollFarmersToTop(false);
+      } else {
+        setFarmersMode(false);
       }
     });
 
@@ -960,8 +918,8 @@
 
       event.preventDefault();
       history.pushState(null, "", "#farmers");
-      scrollToFarmers(false);
-    });
+      scrollFarmersToTop(false);
+    }, true);
   })();
 </script>
 </head>
@@ -1170,6 +1128,7 @@
   </main>
 </body>
 </html>
+
 
 
 
