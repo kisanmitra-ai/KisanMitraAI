@@ -379,107 +379,8 @@
       }
     }
   </style>
-<style id="km-remove-extra-card-overlay-final">
-  @media (min-width: 769px) {
-    /* remove the extra generated card overlay */
-    .wide-card-row,
-    .wide-card,
-    .card-icon,
-    .card-title,
-    .card-text,
-    .card-link {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
 
-    /* keep the hero image clean */
-    .hero {
-      position: relative !important;
-      min-height: auto !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
 
-    .hero-img {
-      width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    /* locked header polish */
-    .locked-header {
-      top: 18px !important;
-      left: clamp(18px, 2.7vw, 48px) !important;
-      right: clamp(18px, 2.7vw, 48px) !important;
-      height: clamp(74px, 5.4vw, 104px) !important;
-      z-index: 99999 !important;
-      background: rgba(255,255,255,0.96) !important;
-      border-radius: clamp(16px, 1.3vw, 26px) !important;
-      box-shadow: 0 18px 44px rgba(5,35,14,0.13) !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-    }
-
-    .brand img {
-      height: clamp(62px, 4.8vw, 90px) !important;
-      width: auto !important;
-      object-fit: contain !important;
-    }
-
-    .nav {
-      gap: clamp(30px, 3.9vw, 64px) !important;
-      font-size: clamp(14px, 1vw, 18px) !important;
-      font-weight: 760 !important;
-    }
-
-    .login {
-      height: clamp(46px, 3.5vw, 62px) !important;
-      border-radius: clamp(12px, .9vw, 18px) !important;
-    }
-
-    section.content {
-      padding-top: 72px !important;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .wide-card-row {
-      display: none !important;
-    }
-  }
-</style>
-<style id="km-remove-double-top-final">
-  @media (min-width: 769px) {
-    .hero {
-      padding-top: clamp(96px, 7.1vw, 128px) !important;
-      min-height: auto !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-    }
-
-    .hero-img {
-      width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    .locked-header {
-      position: fixed !important;
-      top: 18px !important;
-      z-index: 99999 !important;
-    }
-  }
-</style>
 <style id="km-clickable-hotspots-final">
   .hero {
     position: relative !important;
@@ -525,29 +426,105 @@
     }
   }
 </style>
-<style id="km-hero-only-no-baked-header">
-  @media (min-width: 769px) {
-    .hero {
-      padding-top: clamp(96px, 7.1vw, 128px) !important;
-      background: #eef5ef !important;
-      overflow: hidden !important;
-      min-height: auto !important;
-    }
 
-    .hero-img {
-      width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
+<style id="km-final-remove-double-scroll-top-gap">
+  html,
+  body {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background: #eef5ef !important;
+  }
 
-    .locked-header {
-      position: fixed !important;
-      z-index: 99999 !important;
-    }
+  body {
+    position: relative !important;
+  }
+
+  .page,
+  main,
+  .home-shell,
+  .page-shell {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #eef5ef !important;
+  }
+
+  /* Only one real locked header */
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  /* Remove white patch / top spacer */
+  .hero {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    overflow: visible !important;
+    background: #eef5ef !important;
+  }
+
+  .hero-img {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    object-position: center top !important;
+  }
+
+  /* Remove duplicate generated card overlay if present */
+  .wide-card-row,
+  .wide-card,
+  .card-icon,
+  .card-title,
+  .card-text,
+  .card-link {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Kill any nested scrolling containers */
+  .desktop-reference-home,
+  .reference-frame,
+  .reference-wrapper {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .desktop-reference-home::before,
+  .desktop-reference-home::after,
+  .reference-frame::before,
+  .reference-frame::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  section.content {
+    margin-top: 0 !important;
+    padding-top: 64px !important;
   }
 </style>
 </head>
@@ -575,7 +552,7 @@
     </header>
 
     <section class="hero">
-      <img class="hero-img" src="./home-assets/kisanmitraai-homepage-hero-only.png" alt="KisanMitraAI precision farming homepage">
+      <img class="hero-img" src="./home-assets/kisanmitraai-homepage-clean-final.png" alt="KisanMitraAI precision farming homepage">
 <!-- KM CLICKABLE HOTSPOTS START -->
 <a class="hero-click click-farmers" href="#farmers" aria-label="Farmers"></a>
 <a class="hero-click click-fpo" href="#fpo" aria-label="FPO"></a>
@@ -703,6 +680,7 @@
   </main>
 </body>
 </html>
+
 
 
 
