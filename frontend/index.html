@@ -825,7 +825,13 @@
 
 
 
-<style id="km-farmers-topmost-clean-final">
+
+
+
+
+
+
+<style id="km-farmers-image-fit-polish-final">
   .locked-header {
     position: fixed !important;
     top: 18px !important;
@@ -834,30 +840,6 @@
     z-index: 99999 !important;
   }
 
-  #farmers {
-    scroll-margin-top: 0 !important;
-    background: #ffffff !important;
-  }
-
-  body.km-farmers-active .wide-card-row,
-  body.km-farmers-active .hero .wide-card-row {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-</style>
-
-
-<style id="km-farmers-viewport-fit-final">
-  .locked-header {
-    position: fixed !important;
-    top: 18px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 99999 !important;
-  }
-
-  /* Hide homepage/index cards when Farmers section is active */
   body.km-farmers-active .wide-card-row,
   body.km-farmers-active .hero .wide-card-row {
     opacity: 0 !important;
@@ -868,9 +850,9 @@
   #farmers {
     background: #ffffff !important;
     scroll-margin-top: 0 !important;
+    overflow: hidden !important;
   }
 
-  /* Fit Farmers image/page better in visible browser area */
   #farmers .farmers-image-section,
   #farmers .km-farmers-image-section,
   #farmers .farmers-page,
@@ -881,32 +863,55 @@
     overflow: hidden !important;
   }
 
+  /*
+    Final polish:
+    - slightly scales the Farmers image down vertically
+    - keeps full width
+    - moves content a little down
+    - helps bottom cards appear more on screen
+  */
   #farmers img,
   #farmers .farmers-page-image,
   #farmers .km-farmers-page-image,
   #farmers .farmers-image-section img,
   #farmers .km-farmers-image-section img {
     display: block !important;
-    width: 100% !important;
+    width: 108.8% !important;
+    max-width: none !important;
     height: auto !important;
-    max-height: calc(100vh - 74px) !important;
-    object-fit: cover !important;
-    object-position: center 42% !important;
-    margin: 0 !important;
+    margin-left: -4.4% !important;
+    margin-top: 18px !important;
+    margin-bottom: -54px !important;
     padding: 0 !important;
+    transform: scale(0.92) !important;
+    transform-origin: top center !important;
   }
 
-  /* Reduce visible white breathing area under Farmers hero */
-  #farmers + section,
-  #farmers .after-farmers,
-  #farmers .farmers-bottom,
-  #farmers .km-farmers-bottom {
-    margin-top: -28px !important;
-    padding-top: 12px !important;
+  /* Reduce the visual bottom white breathing space after Farmers hero */
+  #farmers .farmers-tools,
+  #farmers .km-farmers-tools,
+  #farmers .farmers-card-grid,
+  #farmers .km-farmers-grid,
+  #farmers .km-section-head {
+    margin-top: -18px !important;
+  }
+
+  @media (max-width: 1100px) {
+    #farmers img,
+    #farmers .farmers-page-image,
+    #farmers .km-farmers-page-image,
+    #farmers .farmers-image-section img,
+    #farmers .km-farmers-image-section img {
+      width: 111% !important;
+      margin-left: -5.5% !important;
+      margin-top: 14px !important;
+      margin-bottom: -46px !important;
+      transform: scale(0.90) !important;
+    }
   }
 </style>
 
-<script id="km-farmers-viewport-fit-script">
+<script id="km-farmers-image-fit-polish-script">
   (function () {
     function setFarmersActive(on) {
       document.body.classList.toggle("km-farmers-active", !!on);
@@ -926,14 +931,17 @@
       );
     }
 
-    function scrollFarmersFit(instant) {
+    function scrollFarmersPolished(instant) {
       var target = getFarmersTarget();
       if (!target) return;
 
       setFarmersActive(true);
 
-      /* Shift Farmers page slightly more upward so bottom cards/content are visible */
-      var y = target.getBoundingClientRect().top + window.pageYOffset - 34;
+      /*
+        Start Farmers image near top of viewport.
+        Fixed menu floats over the top sky area, while content sits lower.
+      */
+      var y = target.getBoundingClientRect().top + window.pageYOffset - 6;
 
       window.scrollTo({
         top: y,
@@ -941,12 +949,12 @@
       });
 
       setTimeout(function () {
-        var y2 = target.getBoundingClientRect().top + window.pageYOffset - 34;
+        var y2 = target.getBoundingClientRect().top + window.pageYOffset - 6;
         window.scrollTo({
           top: y2,
           behavior: "auto"
         });
-      }, instant ? 150 : 550);
+      }, instant ? 180 : 560);
     }
 
     function updateFarmersActive() {
@@ -954,14 +962,14 @@
       if (!target) return;
 
       var top = target.getBoundingClientRect().top + window.pageYOffset;
-      setFarmersActive(window.pageYOffset >= top - 80);
+      setFarmersActive(window.pageYOffset >= top - 60);
     }
 
     window.addEventListener("load", function () {
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
-          scrollFarmersFit(true);
-        }, 400);
+          scrollFarmersPolished(true);
+        }, 450);
       } else {
         updateFarmersActive();
       }
@@ -975,7 +983,7 @@
 
       event.preventDefault();
       history.pushState(null, "", "#farmers");
-      scrollFarmersFit(false);
+      scrollFarmersPolished(false);
     }, true);
   })();
 </script>
@@ -1185,6 +1193,7 @@
   </main>
 </body>
 </html>
+
 
 
 
