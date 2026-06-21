@@ -390,7 +390,14 @@
 
 
 
-<style id="km-final-sticky-header-real-cards">
+
+
+
+
+
+
+
+<style id="km-final-homepage-layout-clean">
   html,
   body {
     margin: 0 !important;
@@ -408,7 +415,7 @@
     overflow: visible !important;
   }
 
-  /* Sticky = locked, but does NOT cover the hero */
+  /* Real header: locked but not covering hero */
   .locked-header {
     position: sticky !important;
     top: 12px !important;
@@ -425,20 +432,24 @@
     -webkit-backdrop-filter: blur(16px) !important;
   }
 
+  /* Shorter visible hero so cards fit on screen */
   .hero {
     position: relative !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
+    height: calc(100vh - 120px) !important;
+    min-height: 520px !important;
+    max-height: 610px !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
     background: #eef5ef !important;
   }
 
+  /* Natural ratio, shifted upward. No vertical stretch. */
   .hero-img {
-    position: relative !important;
-    inset: auto !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: -155px !important;
     width: 100% !important;
     height: auto !important;
     max-width: none !important;
@@ -450,47 +461,48 @@
     padding: 0 !important;
   }
 
+  /* Real clickable bottom cards */
   .wide-card-row {
     position: absolute !important;
-    left: clamp(42px, 5vw, 82px) !important;
-    right: clamp(42px, 5vw, 82px) !important;
-    bottom: clamp(14px, 1.7vw, 28px) !important;
-    z-index: 60 !important;
+    left: 5.2% !important;
+    right: 5.2% !important;
+    bottom: 20px !important;
+    z-index: 90 !important;
     display: grid !important;
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: clamp(12px, 1.15vw, 20px) !important;
-    visibility: visible !important;
+    gap: 14px !important;
     opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto !important;
   }
 
   .wide-card {
-    min-height: clamp(102px, 8.2vw, 138px) !important;
     display: grid !important;
-    grid-template-columns: clamp(46px, 3.7vw, 64px) 1fr !important;
+    grid-template-columns: 54px 1fr !important;
     align-items: center !important;
-    gap: clamp(10px, 1vw, 18px) !important;
-    padding: clamp(13px, 1.15vw, 20px) !important;
-    border-radius: clamp(16px, 1.2vw, 24px) !important;
-    background: rgba(255,255,255,0.97) !important;
-    box-shadow: 0 18px 42px rgba(5,35,14,0.18) !important;
-    border: 1px solid rgba(255,255,255,0.9) !important;
-    color: #102315 !important;
+    min-height: 106px !important;
+    padding: 14px 16px !important;
+    gap: 13px !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,0.96) !important;
+    box-shadow: 0 18px 38px rgba(5,35,14,0.18) !important;
+    border: 1px solid rgba(255,255,255,0.85) !important;
     text-decoration: none !important;
-    visibility: visible !important;
+    color: #102315 !important;
     opacity: 1 !important;
+    visibility: visible !important;
     pointer-events: auto !important;
   }
 
   .card-icon {
-    width: clamp(44px, 3.5vw, 60px) !important;
-    height: clamp(44px, 3.5vw, 60px) !important;
+    width: 48px !important;
+    height: 48px !important;
     border-radius: 50% !important;
     display: grid !important;
     place-items: center !important;
     color: #fff !important;
     background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
-    font-size: clamp(19px, 1.55vw, 27px) !important;
+    font-size: 22px !important;
   }
 
   .card-icon.orange {
@@ -499,32 +511,66 @@
 
   .card-title {
     display: block !important;
-    margin: 0 0 6px !important;
-    color: #102315 !important;
-    font-size: clamp(14px, 1.02vw, 19px) !important;
+    margin: 0 0 5px !important;
+    font-size: 15px !important;
     line-height: 1.08 !important;
     font-weight: 900 !important;
+    color: #102315 !important;
   }
 
   .card-text {
     display: block !important;
     margin: 0 !important;
+    font-size: 9px !important;
+    line-height: 1.32 !important;
     color: #2e3d34 !important;
-    font-size: clamp(8.6px, .66vw, 11.6px) !important;
-    line-height: 1.36 !important;
-    font-weight: 560 !important;
   }
 
   .card-link {
     display: inline-block !important;
     margin-top: 7px !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
     color: #075b18 !important;
-    font-size: clamp(8.8px, .66vw, 11.6px) !important;
-    font-weight: 880 !important;
   }
 
   .card-link.orange-text {
     color: #f26522 !important;
+  }
+
+  /* Re-align invisible CTA clicks with shifted image buttons */
+  .hero-cta-click {
+    position: absolute !important;
+    z-index: 120 !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .click-hero-farmer {
+    left: 7.4% !important;
+    top: 52.3% !important;
+    width: 10.5% !important;
+    height: 7% !important;
+  }
+
+  .click-hero-buyer {
+    left: 18.8% !important;
+    top: 52.3% !important;
+    width: 9.7% !important;
+    height: 7% !important;
+  }
+
+  .click-hero-video {
+    left: 29.4% !important;
+    top: 52.3% !important;
+    width: 15.5% !important;
+    height: 7% !important;
+  }
+
+  .hero-cta-click:hover {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .hero-click,
@@ -547,194 +593,15 @@
   }
 
   @media (max-width: 1100px) {
-    .wide-card-row {
-      left: 18px !important;
-      right: 18px !important;
-      bottom: 10px !important;
-      gap: 8px !important;
+    .hero {
+      height: calc(100vh - 110px) !important;
+      min-height: 510px !important;
     }
 
-    .wide-card {
-      min-height: 88px !important;
-      padding: 10px !important;
-      grid-template-columns: 36px 1fr !important;
+    .hero-img {
+      top: -140px !important;
     }
 
-    .card-icon {
-      width: 34px !important;
-      height: 34px !important;
-      font-size: 16px !important;
-    }
-
-    .card-title {
-      font-size: 12.5px !important;
-    }
-
-    .card-text {
-      font-size: 7.8px !important;
-      line-height: 1.28 !important;
-    }
-
-    .card-link {
-      display: none !important;
-    }
-  }
-</style>
-<style id="km-hero-cta-clicks-only">
-  .hero {
-    position: relative !important;
-  }
-
-  .hero-cta-click {
-    position: absolute;
-    z-index: 80;
-    display: block;
-    background: transparent;
-    text-decoration: none;
-    border: none;
-    outline: none;
-  }
-
-  .hero-cta-click:hover {
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  /* CTA buttons inside hero image only */
-  .click-hero-farmer {
-    left: 7.4%;
-    top: 68.0%;
-    width: 10.5%;
-    height: 7.0%;
-  }
-
-  .click-hero-buyer {
-    left: 18.8%;
-    top: 68.0%;
-    width: 9.7%;
-    height: 7.0%;
-  }
-
-  .click-hero-video {
-    left: 29.4%;
-    top: 68.0%;
-    width: 15.5%;
-    height: 7.0%;
-  }
-
-  @media (max-width: 768px) {
-    .hero-cta-click {
-      display: none !important;
-    }
-  }
-</style>
-
-<style id="km-restore-visible-home-cards">
-  /* Remove bad generic overlap behavior */
-  .hero {
-    position: relative !important;
-    min-height: calc(100vh - 95px) !important;
-    height: calc(100vh - 95px) !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  .hero-img {
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    transform: none !important;
-  }
-
-  /* Bring real bottom cards back into the visible hero area */
-  .wide-card-row {
-    position: absolute !important;
-    left: 5.2% !important;
-    right: 5.2% !important;
-    bottom: 22px !important;
-    z-index: 90 !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-
-  .wide-card {
-    display: grid !important;
-    grid-template-columns: 54px 1fr !important;
-    align-items: center !important;
-    min-height: 112px !important;
-    padding: 15px 16px !important;
-    gap: 13px !important;
-    border-radius: 18px !important;
-    background: rgba(255,255,255,0.96) !important;
-    box-shadow: 0 18px 38px rgba(5,35,14,0.18) !important;
-    text-decoration: none !important;
-    color: #102315 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  .card-icon {
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 50% !important;
-    display: grid !important;
-    place-items: center !important;
-    color: #fff !important;
-    background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
-    font-size: 22px !important;
-  }
-
-  .card-icon.orange {
-    background: radial-gradient(circle at 35% 25%, #ff9b1a, #f27800 72%) !important;
-  }
-
-  .card-title {
-    display: block !important;
-    margin: 0 0 5px !important;
-    font-size: 15px !important;
-    line-height: 1.1 !important;
-    font-weight: 900 !important;
-    color: #102315 !important;
-  }
-
-  .card-text {
-    display: block !important;
-    margin: 0 !important;
-    font-size: 9.2px !important;
-    line-height: 1.35 !important;
-    color: #2e3d34 !important;
-  }
-
-  .card-link {
-    display: inline-block !important;
-    margin-top: 7px !important;
-    font-size: 9.5px !important;
-    font-weight: 800 !important;
-    color: #075b18 !important;
-  }
-
-  .card-link.orange-text {
-    color: #f26522 !important;
-  }
-
-  section.content {
-    padding-top: 60px !important;
-  }
-
-  @media (max-width: 1100px) {
     .wide-card-row {
       left: 18px !important;
       right: 18px !important;
@@ -744,7 +611,7 @@
 
     .wide-card {
       grid-template-columns: 36px 1fr !important;
-      min-height: 86px !important;
+      min-height: 84px !important;
       padding: 10px !important;
     }
 
@@ -764,84 +631,6 @@
 
     .card-link {
       display: none !important;
-    }
-  }
-</style>
-
-
-<style id="km-fix-hero-natural-ratio-shift-up">
-  @media (min-width: 769px) {
-    .hero {
-      position: relative !important;
-      height: calc(100vh - 95px) !important;
-      min-height: 640px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      background: #eef5ef !important;
-    }
-
-    /* Natural image ratio: no vertical stretch */
-    .hero-img {
-      position: absolute !important;
-      left: 0 !important;
-      top: -125px !important;
-      width: 100% !important;
-      height: auto !important;
-      max-width: none !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-      transform: none !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-
-    /* Keep cards visible and not too high */
-    .wide-card-row {
-      position: absolute !important;
-      left: 5.2% !important;
-      right: 5.2% !important;
-      bottom: 16px !important;
-      z-index: 90 !important;
-      display: grid !important;
-      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-      gap: 14px !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      pointer-events: auto !important;
-    }
-
-    /* Re-align invisible CTA click zones with shifted buttons */
-    .click-hero-farmer {
-      left: 7.4% !important;
-      top: 53.8% !important;
-      width: 10.5% !important;
-      height: 7% !important;
-    }
-
-    .click-hero-buyer {
-      left: 18.8% !important;
-      top: 53.8% !important;
-      width: 9.7% !important;
-      height: 7% !important;
-    }
-
-    .click-hero-video {
-      left: 29.4% !important;
-      top: 53.8% !important;
-      width: 15.5% !important;
-      height: 7% !important;
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .hero-img {
-      top: -112px !important;
-    }
-
-    .wide-card-row {
-      bottom: 12px !important;
     }
   }
 </style>
@@ -988,6 +777,7 @@
   </main>
 </body>
 </html>
+
 
 
 
