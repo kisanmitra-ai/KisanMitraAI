@@ -873,15 +873,59 @@
   }
 </style>
 
-<script id="km-farmers-scroll-lower-tune">
-  (function () {
-    function scrollFarmersLower(instant) {
-      var farmers = document.getElementById("farmers");
-      var header = document.querySelector(".locked-header");
-      if (!farmers) return;
 
-      var offset = header ? header.offsetHeight + 92 : 185;
-      var y = farmers.getBoundingClientRect().top + window.pageYOffset - offset;
+<style id="km-farmers-perfect-scroll-target">
+  #farmers {
+    scroll-margin-top: 20px !important;
+  }
+
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  .farmers-image-section,
+  .km-farmers-image-section,
+  .farmers-page,
+  .km-farmers-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background: #ffffff !important;
+  }
+
+  #farmers img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+</style>
+
+<script id="km-farmers-perfect-scroll-script">
+  (function () {
+    function farmersTarget() {
+      var farmers = document.getElementById("farmers");
+      if (!farmers) return null;
+
+      return (
+        farmers.querySelector(".farmers-image-section img") ||
+        farmers.querySelector(".km-farmers-image-section img") ||
+        farmers.querySelector(".farmers-page-image") ||
+        farmers.querySelector(".km-farmers-page-image") ||
+        farmers.querySelector("img") ||
+        farmers
+      );
+    }
+
+    function scrollToFarmers(instant) {
+      var target = farmersTarget();
+      var header = document.querySelector(".locked-header");
+      if (!target) return;
+
+      var headerBottom = header ? header.getBoundingClientRect().bottom : 110;
+      var y = target.getBoundingClientRect().top + window.pageYOffset - headerBottom - 10;
 
       window.scrollTo({
         top: y,
@@ -892,18 +936,18 @@
     window.addEventListener("load", function () {
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
-          scrollFarmersLower(true);
-        }, 250);
+          scrollToFarmers(true);
+        }, 350);
       }
     });
 
-    document.addEventListener("click", function (e) {
-      var link = e.target.closest('a[href="#farmers"]');
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest('a[href="#farmers"]');
       if (!link) return;
 
-      e.preventDefault();
+      event.preventDefault();
       history.pushState(null, "", "#farmers");
-      scrollFarmersLower(false);
+      scrollToFarmers(false);
     });
   })();
 </script>
@@ -1113,6 +1157,7 @@
   </main>
 </body>
 </html>
+
 
 
 
