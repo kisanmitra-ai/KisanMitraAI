@@ -767,6 +767,51 @@
     }
   }
 </style>
+<style id="km-shift-hero-image-up-for-buttons">
+  @media (min-width: 769px) {
+    .hero {
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    /* Move only the hero image upward so CTA buttons are not hidden behind cards */
+    .hero-img {
+      top: -72px !important;
+      height: calc(100% + 72px) !important;
+      object-fit: cover !important;
+      object-position: center top !important;
+      transform: none !important;
+    }
+
+    /* Keep real cards visible at bottom */
+    .wide-card-row {
+      bottom: 16px !important;
+      z-index: 90 !important;
+    }
+
+    /* Re-align invisible click areas with shifted visual buttons */
+    .click-hero-farmer {
+      left: 7.4% !important;
+      top: 60.5% !important;
+      width: 10.5% !important;
+      height: 7% !important;
+    }
+
+    .click-hero-buyer {
+      left: 18.8% !important;
+      top: 60.5% !important;
+      width: 9.7% !important;
+      height: 7% !important;
+    }
+
+    .click-hero-video {
+      left: 29.4% !important;
+      top: 60.5% !important;
+      width: 15.5% !important;
+      height: 7% !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -910,6 +955,7 @@
   </main>
 </body>
 </html>
+
 
 
 
