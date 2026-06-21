@@ -835,14 +835,49 @@
   }
 </style>
 
-<script id="km-farmers-clean-scroll-final">
+
+<style id="km-farmers-image-down-tune">
+  /* Farmers page should open lower, so header does not cover the title */
+  #farmers {
+    scroll-margin-top: 165px !important;
+    background: #ffffff !important;
+  }
+
+  /* Shift only Farmers image/page content down slightly */
+  #farmers .farmers-image-wrap,
+  #farmers .km-farmers-image-wrap,
+  #farmers .farmers-image-section,
+  #farmers .km-farmers-image-section {
+    padding-top: 58px !important;
+    background: #ffffff !important;
+  }
+
+  #farmers > img,
+  #farmers picture,
+  #farmers .farmers-page-image,
+  #farmers .km-farmers-page-image,
+  #farmers .farmers-image-section img,
+  #farmers .km-farmers-image-section img {
+    margin-top: 58px !important;
+  }
+
+  /* Do not shift the cards section below Farmers image */
+  #farmers .km-farmers-grid,
+  #farmers .farmers-card-grid,
+  #farmers .farmers-tools,
+  #farmers .km-section-head {
+    margin-top: 0 !important;
+  }
+</style>
+
+<script id="km-farmers-scroll-lower-tune">
   (function () {
-    function goFarmers(instant) {
+    function scrollFarmersLower(instant) {
       var farmers = document.getElementById("farmers");
       var header = document.querySelector(".locked-header");
       if (!farmers) return;
 
-      var offset = header ? header.offsetHeight + 30 : 118;
+      var offset = header ? header.offsetHeight + 92 : 185;
       var y = farmers.getBoundingClientRect().top + window.pageYOffset - offset;
 
       window.scrollTo({
@@ -854,7 +889,7 @@
     window.addEventListener("load", function () {
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
-          goFarmers(true);
+          scrollFarmersLower(true);
         }, 250);
       }
     });
@@ -865,7 +900,7 @@
 
       e.preventDefault();
       history.pushState(null, "", "#farmers");
-      goFarmers(false);
+      scrollFarmersLower(false);
     });
   })();
 </script>
@@ -1075,6 +1110,7 @@
   </main>
 </body>
 </html>
+
 
 
 
