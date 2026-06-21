@@ -1147,6 +1147,67 @@
     }
   }
 </style>
+<style id="km-final-farmers-anchor-scroll-fix">
+  html {
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  .hero {
+    margin-top: clamp(108px, 7.6vw, 136px) !important;
+  }
+
+  #farmers {
+    scroll-margin-top: 0 !important;
+  }
+
+  .km-farmers-page {
+    position: relative !important;
+    z-index: 20 !important;
+    margin-top: 0 !important;
+    padding-top: clamp(132px, 9vw, 162px) !important;
+    background: #ffffff !important;
+  }
+</style>
+
+<script id="km-final-farmers-anchor-scroll-script">
+  (function () {
+    function scrollToFarmers(clean) {
+      var farmers = document.getElementById("farmers");
+      if (!farmers) return;
+
+      window.scrollTo({
+        top: farmers.offsetTop,
+        behavior: clean ? "auto" : "smooth"
+      });
+    }
+
+    window.addEventListener("load", function () {
+      if (window.location.hash === "#farmers") {
+        setTimeout(function () {
+          scrollToFarmers(true);
+        }, 120);
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest('a[href="#farmers"]');
+      if (!link) return;
+
+      event.preventDefault();
+      history.pushState(null, "", "#farmers");
+      scrollToFarmers(false);
+    });
+  })();
+</script>
 </head>
 
 <body>
@@ -1542,6 +1603,7 @@
   </main>
 </body>
 </html>
+
 
 
 
