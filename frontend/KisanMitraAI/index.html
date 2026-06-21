@@ -689,54 +689,41 @@
     bottom: 6px !important;
   }
 </style>
-<style id="km-farmers-section-style">
+
+<style id="km-farmers-final-section-style">
   html {
     scroll-behavior: smooth !important;
   }
 
   #farmers {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 120px !important;
   }
 
-  .km-section {
-    background: #ffffff;
-    padding: clamp(64px, 6vw, 96px) clamp(24px, 6vw, 92px);
-    font-family: inherit;
+  .km-farmers-page {
+    background: #ffffff !important;
+    padding: clamp(68px, 6vw, 96px) clamp(24px, 6vw, 92px) !important;
   }
 
-  .km-farmers-hero {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: clamp(28px, 5vw, 80px);
+  .km-farmers-banner {
+    position: relative;
     min-height: 560px;
     border-radius: 34px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
     background:
-      linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.86) 42%, rgba(255,255,255,0.12) 78%),
-      radial-gradient(circle at 75% 20%, rgba(255,255,255,0.62), transparent 34%),
-      linear-gradient(135deg, #f7fff7, #dff0df);
-    box-shadow: 0 28px 80px rgba(5, 35, 14, 0.12);
-    position: relative;
-  }
-
-  .km-farmers-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0)),
+      linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 45%, rgba(255,255,255,0.24) 78%),
       url("./home-assets/kisanmitraai-hero-bg-clean-top.png");
     background-size: cover;
     background-position: center center;
-    opacity: 0.24;
-    z-index: 0;
+    box-shadow: 0 28px 80px rgba(5,35,14,0.12);
   }
 
   .km-farmers-copy {
     position: relative;
     z-index: 2;
-    padding: clamp(36px, 5vw, 78px);
+    padding: clamp(40px, 5vw, 78px);
   }
 
   .km-eyebrow {
@@ -748,7 +735,7 @@
     border: 1px solid rgba(11,107,33,0.14);
     padding: 9px 14px;
     border-radius: 999px;
-    font-weight: 800;
+    font-weight: 900;
     font-size: 13px;
     margin-bottom: 22px;
   }
@@ -756,7 +743,7 @@
   .km-farmers-title {
     margin: 0;
     color: #112117;
-    font-size: clamp(42px, 4.5vw, 76px);
+    font-size: clamp(42px, 4.5vw, 74px);
     line-height: 1.04;
     letter-spacing: -0.045em;
     font-weight: 950;
@@ -764,7 +751,6 @@
 
   .km-farmers-title strong {
     color: #f26522;
-    font-weight: 950;
   }
 
   .km-farmers-text {
@@ -772,139 +758,71 @@
     margin: 22px 0 0;
     color: #25372b;
     font-size: clamp(17px, 1.35vw, 23px);
-    line-height: 1.6;
+    line-height: 1.58;
     font-weight: 560;
   }
 
-  .km-farmers-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 30px;
+  .km-farmers-benefits {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 34px;
+    max-width: 760px;
   }
 
-  .km-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 22px;
+  .km-benefit {
+    min-height: 112px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(7,91,24,0.10);
+    box-shadow: 0 14px 34px rgba(5,35,14,0.08);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 16px;
+    color: #183821;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 850;
+  }
+
+  .km-benefit span {
+    width: 46px;
+    height: 46px;
     border-radius: 16px;
-    text-decoration: none;
-    font-weight: 900;
-    font-size: 15px;
-    transition: transform .18s ease, box-shadow .18s ease;
-  }
-
-  .km-btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .km-btn-primary {
-    background: #08751f;
-    color: #ffffff;
-    box-shadow: 0 14px 30px rgba(8,117,31,0.24);
-  }
-
-  .km-btn-soft {
-    background: #ffffff;
-    color: #0a4f18;
-    border: 1px solid rgba(7,91,24,0.18);
-    box-shadow: 0 12px 26px rgba(5,35,14,0.08);
+    display: grid;
+    place-items: center;
+    margin-bottom: 10px;
+    background: #f1fbf1;
+    color: #0b6b21;
+    font-size: 24px;
   }
 
   .km-farmers-visual {
+    min-height: 560px;
     position: relative;
     z-index: 2;
-    min-height: 520px;
-    align-self: stretch;
+  }
+
+  .km-farmers-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(circle at 42% 28%, rgba(255,255,255,0.72), transparent 26%),
-      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(8,82,23,0.10));
-    display: grid;
-    place-items: center;
-    padding: 34px;
-  }
-
-  .km-device-card {
-    width: min(420px, 92%);
-    border-radius: 30px;
-    background: rgba(255,255,255,0.9);
-    border: 1px solid rgba(255,255,255,0.78);
-    box-shadow: 0 28px 80px rgba(5,35,14,0.18);
-    padding: 28px;
-    backdrop-filter: blur(18px);
-  }
-
-  .km-device-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-
-  .km-device-avatar {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(circle at 35% 25%, #39b54a, #08751f 72%);
-    color: #fff;
-    font-size: 30px;
-    box-shadow: inset 0 0 0 6px rgba(255,255,255,0.18);
-  }
-
-  .km-device-top h3 {
-    margin: 0;
-    font-size: 22px;
-    color: #102315;
-    line-height: 1.15;
-  }
-
-  .km-device-top p {
-    margin: 5px 0 0;
-    color: #526359;
-    font-weight: 650;
-  }
-
-  .km-metric-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .km-metric {
-    border-radius: 18px;
-    background: #f4faf4;
-    border: 1px solid rgba(7,91,24,0.08);
-    padding: 16px;
-  }
-
-  .km-metric span {
-    display: block;
-    color: #617267;
-    font-size: 12px;
-    font-weight: 800;
-    margin-bottom: 7px;
-  }
-
-  .km-metric strong {
-    color: #0c5f1e;
-    font-size: 22px;
-    line-height: 1;
+      radial-gradient(circle at 54% 32%, rgba(255,255,255,0.5), transparent 24%),
+      linear-gradient(180deg, rgba(255,255,255,0), rgba(8,82,23,0.08));
   }
 
   .km-section-head {
     max-width: 900px;
-    margin: clamp(60px, 6vw, 92px) auto 34px;
+    margin: clamp(58px, 5.5vw, 86px) auto 34px;
     text-align: center;
   }
 
   .km-section-head h2 {
     margin: 0;
     color: #075b18;
-    font-size: clamp(34px, 3.2vw, 56px);
+    font-size: clamp(34px, 3.2vw, 54px);
     line-height: 1.08;
     letter-spacing: -0.035em;
     font-weight: 950;
@@ -912,23 +830,23 @@
 
   .km-section-head p {
     margin: 16px auto 0;
-    max-width: 800px;
+    max-width: 820px;
     color: #3d5145;
     font-size: 18px;
     line-height: 1.6;
     font-weight: 560;
   }
 
-  .km-feature-grid {
+  .km-farmers-grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: clamp(14px, 1.45vw, 24px);
   }
 
-  .km-feature-card {
+  .km-farmer-card {
     min-height: 230px;
     border-radius: 24px;
-    background: rgba(255,255,255,0.96);
+    background: #ffffff;
     border: 1px solid rgba(7,91,24,0.10);
     box-shadow: 0 18px 44px rgba(5,35,14,0.08);
     padding: 28px 24px;
@@ -937,34 +855,25 @@
     transition: transform .18s ease, box-shadow .18s ease;
   }
 
-  .km-feature-card:hover {
+  .km-farmer-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 26px 60px rgba(5,35,14,0.14);
   }
 
-  .km-feature-icon {
+  .km-farmer-icon {
     width: 54px;
     height: 54px;
     border-radius: 18px;
     display: grid;
     place-items: center;
     margin-bottom: 20px;
-    background: radial-gradient(circle at 35% 25%, #e8ffe8, #ffffff 72%);
+    background: #f1fbf1;
     border: 1px solid rgba(7,91,24,0.14);
     color: #0a6b1e;
+    font-size: 26px;
   }
 
-  .km-feature-icon svg {
-    width: 30px;
-    height: 30px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2.2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .km-feature-card h3 {
+  .km-farmer-card h3 {
     margin: 0 0 12px;
     color: #17311f;
     font-size: 20px;
@@ -972,7 +881,7 @@
     font-weight: 950;
   }
 
-  .km-feature-card p {
+  .km-farmer-card p {
     margin: 0;
     color: #40534a;
     font-size: 15px;
@@ -989,30 +898,35 @@
   }
 
   @media (max-width: 1100px) {
-    .km-farmers-hero {
+    .km-farmers-banner {
       grid-template-columns: 1fr;
     }
 
     .km-farmers-visual {
-      min-height: 360px;
+      min-height: 260px;
     }
 
-    .km-feature-grid {
+    .km-farmers-benefits {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .km-farmers-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (max-width: 720px) {
-    .km-section {
-      padding: 56px 18px;
-    }
-
-    .km-feature-grid {
-      grid-template-columns: 1fr;
+    .km-farmers-page {
+      padding: 56px 18px !important;
     }
 
     .km-farmers-copy {
       padding: 34px 24px;
+    }
+
+    .km-farmers-grid,
+    .km-farmers-benefits {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -1156,307 +1070,19 @@
       </section>
 
     
-<!-- KM FARMERS SECTION START -->
-<section id="farmers" class="km-section">
-  <div class="km-farmers-hero">
-    <div class="km-farmers-copy">
-      <div class="km-eyebrow">🌱 Farmers Intelligence</div>
 
-      <h1 class="km-farmers-title">
-        Empowering Farmers with <strong>AI-Powered</strong> Solutions
-      </h1>
 
-      <p class="km-farmers-text">
-        Smart tools, real-time insights, and expert guidance to help farmers increase productivity, reduce risk and improve profitability.
-      </p>
-
-      <div class="km-farmers-actions">
-        <a class="km-btn km-btn-primary" href="#farmers-tools">Explore Farmer Tools</a>
-        <a class="km-btn km-btn-soft" href="#contact">Register as Farmer</a>
-      </div>
-    </div>
-
-    <div class="km-farmers-visual">
-      <div class="km-device-card">
-        <div class="km-device-top">
-          <div class="km-device-avatar">👨‍🌾</div>
-          <div>
-            <h3>Farmer AI Dashboard</h3>
-            <p>Daily crop, weather and market guidance</p>
-          </div>
-        </div>
-
-        <div class="km-metric-grid">
-          <div class="km-metric">
-            <span>Crop Health</span>
-            <strong>Good</strong>
-          </div>
-          <div class="km-metric">
-            <span>Weather Risk</span>
-            <strong>Low</strong>
-          </div>
-          <div class="km-metric">
-            <span>Market Signal</span>
-            <strong>Positive</strong>
-          </div>
-          <div class="km-metric">
-            <span>Advisory</span>
-            <strong>Ready</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="farmers-tools" class="km-section-head">
-    <h2>Everything farmers need for smarter farming</h2>
-    <p>
-      Crop advisory, weather alerts, mandi-rate guidance, farm records and easy learning tools in one connected system.
-    </p>
-  </div>
-
-  <div class="km-feature-grid">
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 38V18"/>
-          <path d="M24 18c-8 0-13 5-14 12 7 1 14-2 14-12z"/>
-          <path d="M24 20c8 0 13 5 14 12-7 1-14-2-14-12z"/>
-          <path d="M18 40h12"/>
-        </svg>
-      </div>
-      <h3>Crop Advisory</h3>
-      <p>AI-based crop recommendations for better yield, disease prevention and day-to-day decisions.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M16 31h21a8 8 0 0 0-2-15 11 11 0 0 0-21-2 8 8 0 0 0 2 17z"/>
-          <path d="M17 38h18"/>
-          <path d="M21 42h10"/>
-        </svg>
-      </div>
-      <h3>Weather Alerts</h3>
-      <p>Real-time weather updates, rain alerts and risk signals to plan farm work better.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M8 38h32"/>
-          <path d="M12 34l8-9 7 5 10-15"/>
-          <path d="M34 15h6v6"/>
-        </svg>
-      </div>
-      <h3>Market Prices</h3>
-      <p>Stay updated with mandi rates, buyer demand and better selling opportunities near you.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M10 12h12a6 6 0 0 1 6 6v20H16a6 6 0 0 0-6 6V12z"/>
-          <path d="M38 12H28a6 6 0 0 0-6 6"/>
-          <path d="M38 12v32a6 6 0 0 0-6-6H22"/>
-          <path d="M15 20h8"/>
-          <path d="M15 27h8"/>
-        </svg>
-      </div>
-      <h3>Farming Guides</h3>
-      <p>Simple expert guides, crop calendars and regional-language learning support.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="6"/>
-          <circle cx="13" cy="25" r="5"/>
-          <circle cx="35" cy="25" r="5"/>
-          <path d="M14 39c2-8 18-8 20 0"/>
-          <path d="M4 38c1-6 12-6 14-1"/>
-          <path d="M30 37c2-5 13-5 14 1"/>
-        </svg>
-      </div>
-      <h3>Community Support</h3>
-      <p>Connect farmers, experts, FPOs and buyers for stronger local support and learning.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-  </div>
-</section>
-<!-- KM FARMERS SECTION END -->
-<section class="content" id="farmers">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>AI tools for farmers</h2>
-          <p>Farm mapping, farmer P&L reports, personal account books, crop calendar, mandi-rate advice and value-addition intelligence.</p>
-        </div>
-
-        <div class="grid">
-          <article class="feature"><div class="feature-icon">📍</div><h3>Farm Mapping & Passport</h3><p>GPS boundary, satellite view, crop planning and farm profile intelligence.</p></article>
-          <article class="feature"><div class="feature-icon">📊</div><h3>Farmer P&L Reports</h3><p>Crop-wise production cost, sales forecast, logistics, dues and profit/loss visibility.</p></article>
-          <article class="feature"><div class="feature-icon">📒</div><h3>Personal Account Book</h3><p>Seed, fertilizer, labour, irrigation, loan, advance and buyer payment records.</p></article>
-        </div>
-      </div>
-    </section>
 
     
-<!-- KM FARMERS SECTION START -->
-<section id="farmers" class="km-section">
-  <div class="km-farmers-hero">
-    <div class="km-farmers-copy">
-      <div class="km-eyebrow">🌱 Farmers Intelligence</div>
 
-      <h1 class="km-farmers-title">
-        Empowering Farmers with <strong>AI-Powered</strong> Solutions
-      </h1>
 
-      <p class="km-farmers-text">
-        Smart tools, real-time insights, and expert guidance to help farmers increase productivity, reduce risk and improve profitability.
-      </p>
-
-      <div class="km-farmers-actions">
-        <a class="km-btn km-btn-primary" href="#farmers-tools">Explore Farmer Tools</a>
-        <a class="km-btn km-btn-soft" href="#contact">Register as Farmer</a>
-      </div>
-    </div>
-
-    <div class="km-farmers-visual">
-      <div class="km-device-card">
-        <div class="km-device-top">
-          <div class="km-device-avatar">👨‍🌾</div>
-          <div>
-            <h3>Farmer AI Dashboard</h3>
-            <p>Daily crop, weather and market guidance</p>
-          </div>
-        </div>
-
-        <div class="km-metric-grid">
-          <div class="km-metric">
-            <span>Crop Health</span>
-            <strong>Good</strong>
-          </div>
-          <div class="km-metric">
-            <span>Weather Risk</span>
-            <strong>Low</strong>
-          </div>
-          <div class="km-metric">
-            <span>Market Signal</span>
-            <strong>Positive</strong>
-          </div>
-          <div class="km-metric">
-            <span>Advisory</span>
-            <strong>Ready</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="farmers-tools" class="km-section-head">
-    <h2>Everything farmers need for smarter farming</h2>
-    <p>
-      Crop advisory, weather alerts, mandi-rate guidance, farm records and easy learning tools in one connected system.
-    </p>
-  </div>
-
-  <div class="km-feature-grid">
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 38V18"/>
-          <path d="M24 18c-8 0-13 5-14 12 7 1 14-2 14-12z"/>
-          <path d="M24 20c8 0 13 5 14 12-7 1-14-2-14-12z"/>
-          <path d="M18 40h12"/>
-        </svg>
-      </div>
-      <h3>Crop Advisory</h3>
-      <p>AI-based crop recommendations for better yield, disease prevention and day-to-day decisions.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M16 31h21a8 8 0 0 0-2-15 11 11 0 0 0-21-2 8 8 0 0 0 2 17z"/>
-          <path d="M17 38h18"/>
-          <path d="M21 42h10"/>
-        </svg>
-      </div>
-      <h3>Weather Alerts</h3>
-      <p>Real-time weather updates, rain alerts and risk signals to plan farm work better.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M8 38h32"/>
-          <path d="M12 34l8-9 7 5 10-15"/>
-          <path d="M34 15h6v6"/>
-        </svg>
-      </div>
-      <h3>Market Prices</h3>
-      <p>Stay updated with mandi rates, buyer demand and better selling opportunities near you.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M10 12h12a6 6 0 0 1 6 6v20H16a6 6 0 0 0-6 6V12z"/>
-          <path d="M38 12H28a6 6 0 0 0-6 6"/>
-          <path d="M38 12v32a6 6 0 0 0-6-6H22"/>
-          <path d="M15 20h8"/>
-          <path d="M15 27h8"/>
-        </svg>
-      </div>
-      <h3>Farming Guides</h3>
-      <p>Simple expert guides, crop calendars and regional-language learning support.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="6"/>
-          <circle cx="13" cy="25" r="5"/>
-          <circle cx="35" cy="25" r="5"/>
-          <path d="M14 39c2-8 18-8 20 0"/>
-          <path d="M4 38c1-6 12-6 14-1"/>
-          <path d="M30 37c2-5 13-5 14 1"/>
-        </svg>
-      </div>
-      <h3>Community Support</h3>
-      <p>Connect farmers, experts, FPOs and buyers for stronger local support and learning.</p>
-      <span class="km-learn">Learn More →</span>
-    </a>
-  </div>
-</section>
-<!-- KM FARMERS SECTION END -->
-<section class="content" id="fpo">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>AI tools for FPOs</h2>
-          <p>Manage farmer groups, aggregation, crop planning, buyer linkage, payments, logistics and trust-backed procurement.</p>
-        </div>
-
-        <div class="grid">
-          <article class="feature"><div class="feature-icon">👥</div><h3>Farmer Group Management</h3><p>Maintain member records, farm profiles, crop plans and production visibility.</p></article>
-          <article class="feature"><div class="feature-icon">📦</div><h3>Crop Aggregation</h3><p>Plan quantity, quality, grading, storage and lot-level crop movement.</p></article>
-          <article class="feature"><div class="feature-icon">🤝</div><h3>Buyer Linkage</h3><p>Connect FPO produce with buyers, processors, exporters and institutional demand.</p></article>
-        </div>
-      </div>
-    </section>
 
     
-<!-- KM FARMERS SECTION START -->
-<section id="farmers" class="km-section">
-  <div class="km-farmers-hero">
+
+
+<!-- KM FARMERS FINAL SECTION START -->
+<section id="farmers" class="km-farmers-page">
+  <div class="km-farmers-banner">
     <div class="km-farmers-copy">
       <div class="km-eyebrow">🌱 Farmers Intelligence</div>
 
@@ -1468,125 +1094,62 @@
         Smart tools, real-time insights, and expert guidance to help farmers increase productivity, reduce risk and improve profitability.
       </p>
 
-      <div class="km-farmers-actions">
-        <a class="km-btn km-btn-primary" href="#farmers-tools">Explore Farmer Tools</a>
-        <a class="km-btn km-btn-soft" href="#contact">Register as Farmer</a>
+      <div class="km-farmers-benefits">
+        <div class="km-benefit"><span>🌿</span>Smart Farming Solutions</div>
+        <div class="km-benefit"><span>⛅</span>Real-time Weather Updates</div>
+        <div class="km-benefit"><span>📋</span>Crop Health Monitoring</div>
+        <div class="km-benefit"><span>₹</span>Market Price Insights</div>
       </div>
     </div>
 
-    <div class="km-farmers-visual">
-      <div class="km-device-card">
-        <div class="km-device-top">
-          <div class="km-device-avatar">👨‍🌾</div>
-          <div>
-            <h3>Farmer AI Dashboard</h3>
-            <p>Daily crop, weather and market guidance</p>
-          </div>
-        </div>
-
-        <div class="km-metric-grid">
-          <div class="km-metric">
-            <span>Crop Health</span>
-            <strong>Good</strong>
-          </div>
-          <div class="km-metric">
-            <span>Weather Risk</span>
-            <strong>Low</strong>
-          </div>
-          <div class="km-metric">
-            <span>Market Signal</span>
-            <strong>Positive</strong>
-          </div>
-          <div class="km-metric">
-            <span>Advisory</span>
-            <strong>Ready</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="km-farmers-visual"></div>
   </div>
 
-  <div id="farmers-tools" class="km-section-head">
-    <h2>Everything farmers need for smarter farming</h2>
+  <div class="km-section-head">
+    <h2>Everything You Need for Smarter Farming</h2>
     <p>
-      Crop advisory, weather alerts, mandi-rate guidance, farm records and easy learning tools in one connected system.
+      Crop advisory, weather alerts, mandi-rate guidance, farming guides and farmer community support in one connected platform.
     </p>
   </div>
 
-  <div class="km-feature-grid">
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 38V18"/>
-          <path d="M24 18c-8 0-13 5-14 12 7 1 14-2 14-12z"/>
-          <path d="M24 20c8 0 13 5 14 12-7 1-14-2-14-12z"/>
-          <path d="M18 40h12"/>
-        </svg>
-      </div>
+  <div class="km-farmers-grid">
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">🌱</div>
       <h3>Crop Advisory</h3>
-      <p>AI-based crop recommendations for better yield, disease prevention and day-to-day decisions.</p>
+      <p>Get AI-based recommendations for better yield, disease prevention and daily crop decisions.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M16 31h21a8 8 0 0 0-2-15 11 11 0 0 0-21-2 8 8 0 0 0 2 17z"/>
-          <path d="M17 38h18"/>
-          <path d="M21 42h10"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">⛅</div>
       <h3>Weather Alerts</h3>
-      <p>Real-time weather updates, rain alerts and risk signals to plan farm work better.</p>
+      <p>Receive accurate weather updates, rain alerts and risk signals to plan farming better.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M8 38h32"/>
-          <path d="M12 34l8-9 7 5 10-15"/>
-          <path d="M34 15h6v6"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📈</div>
       <h3>Market Prices</h3>
-      <p>Stay updated with mandi rates, buyer demand and better selling opportunities near you.</p>
+      <p>Stay updated with real-time market prices, mandi trends and nearby buyer demand.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M10 12h12a6 6 0 0 1 6 6v20H16a6 6 0 0 0-6 6V12z"/>
-          <path d="M38 12H28a6 6 0 0 0-6 6"/>
-          <path d="M38 12v32a6 6 0 0 0-6-6H22"/>
-          <path d="M15 20h8"/>
-          <path d="M15 27h8"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📖</div>
       <h3>Farming Guides</h3>
-      <p>Simple expert guides, crop calendars and regional-language learning support.</p>
+      <p>Access expert guides, crop calendars, videos and regional-language learning support.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="6"/>
-          <circle cx="13" cy="25" r="5"/>
-          <circle cx="35" cy="25" r="5"/>
-          <path d="M14 39c2-8 18-8 20 0"/>
-          <path d="M4 38c1-6 12-6 14-1"/>
-          <path d="M30 37c2-5 13-5 14 1"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">👥</div>
       <h3>Community Support</h3>
-      <p>Connect farmers, experts, FPOs and buyers for stronger local support and learning.</p>
+      <p>Connect with farmers, experts, FPOs and buyers to share, learn and grow together.</p>
       <span class="km-learn">Learn More →</span>
     </a>
   </div>
 </section>
-<!-- KM FARMERS SECTION END -->
+<!-- KM FARMERS FINAL SECTION END -->
 <section class="content" id="buyers">
       <div class="section-inner">
         <div class="section-head">
@@ -1597,9 +1160,11 @@
     </section>
 
     
-<!-- KM FARMERS SECTION START -->
-<section id="farmers" class="km-section">
-  <div class="km-farmers-hero">
+
+
+<!-- KM FARMERS FINAL SECTION START -->
+<section id="farmers" class="km-farmers-page">
+  <div class="km-farmers-banner">
     <div class="km-farmers-copy">
       <div class="km-eyebrow">🌱 Farmers Intelligence</div>
 
@@ -1611,125 +1176,62 @@
         Smart tools, real-time insights, and expert guidance to help farmers increase productivity, reduce risk and improve profitability.
       </p>
 
-      <div class="km-farmers-actions">
-        <a class="km-btn km-btn-primary" href="#farmers-tools">Explore Farmer Tools</a>
-        <a class="km-btn km-btn-soft" href="#contact">Register as Farmer</a>
+      <div class="km-farmers-benefits">
+        <div class="km-benefit"><span>🌿</span>Smart Farming Solutions</div>
+        <div class="km-benefit"><span>⛅</span>Real-time Weather Updates</div>
+        <div class="km-benefit"><span>📋</span>Crop Health Monitoring</div>
+        <div class="km-benefit"><span>₹</span>Market Price Insights</div>
       </div>
     </div>
 
-    <div class="km-farmers-visual">
-      <div class="km-device-card">
-        <div class="km-device-top">
-          <div class="km-device-avatar">👨‍🌾</div>
-          <div>
-            <h3>Farmer AI Dashboard</h3>
-            <p>Daily crop, weather and market guidance</p>
-          </div>
-        </div>
-
-        <div class="km-metric-grid">
-          <div class="km-metric">
-            <span>Crop Health</span>
-            <strong>Good</strong>
-          </div>
-          <div class="km-metric">
-            <span>Weather Risk</span>
-            <strong>Low</strong>
-          </div>
-          <div class="km-metric">
-            <span>Market Signal</span>
-            <strong>Positive</strong>
-          </div>
-          <div class="km-metric">
-            <span>Advisory</span>
-            <strong>Ready</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="km-farmers-visual"></div>
   </div>
 
-  <div id="farmers-tools" class="km-section-head">
-    <h2>Everything farmers need for smarter farming</h2>
+  <div class="km-section-head">
+    <h2>Everything You Need for Smarter Farming</h2>
     <p>
-      Crop advisory, weather alerts, mandi-rate guidance, farm records and easy learning tools in one connected system.
+      Crop advisory, weather alerts, mandi-rate guidance, farming guides and farmer community support in one connected platform.
     </p>
   </div>
 
-  <div class="km-feature-grid">
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 38V18"/>
-          <path d="M24 18c-8 0-13 5-14 12 7 1 14-2 14-12z"/>
-          <path d="M24 20c8 0 13 5 14 12-7 1-14-2-14-12z"/>
-          <path d="M18 40h12"/>
-        </svg>
-      </div>
+  <div class="km-farmers-grid">
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">🌱</div>
       <h3>Crop Advisory</h3>
-      <p>AI-based crop recommendations for better yield, disease prevention and day-to-day decisions.</p>
+      <p>Get AI-based recommendations for better yield, disease prevention and daily crop decisions.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M16 31h21a8 8 0 0 0-2-15 11 11 0 0 0-21-2 8 8 0 0 0 2 17z"/>
-          <path d="M17 38h18"/>
-          <path d="M21 42h10"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">⛅</div>
       <h3>Weather Alerts</h3>
-      <p>Real-time weather updates, rain alerts and risk signals to plan farm work better.</p>
+      <p>Receive accurate weather updates, rain alerts and risk signals to plan farming better.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M8 38h32"/>
-          <path d="M12 34l8-9 7 5 10-15"/>
-          <path d="M34 15h6v6"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📈</div>
       <h3>Market Prices</h3>
-      <p>Stay updated with mandi rates, buyer demand and better selling opportunities near you.</p>
+      <p>Stay updated with real-time market prices, mandi trends and nearby buyer demand.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M10 12h12a6 6 0 0 1 6 6v20H16a6 6 0 0 0-6 6V12z"/>
-          <path d="M38 12H28a6 6 0 0 0-6 6"/>
-          <path d="M38 12v32a6 6 0 0 0-6-6H22"/>
-          <path d="M15 20h8"/>
-          <path d="M15 27h8"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📖</div>
       <h3>Farming Guides</h3>
-      <p>Simple expert guides, crop calendars and regional-language learning support.</p>
+      <p>Access expert guides, crop calendars, videos and regional-language learning support.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="6"/>
-          <circle cx="13" cy="25" r="5"/>
-          <circle cx="35" cy="25" r="5"/>
-          <path d="M14 39c2-8 18-8 20 0"/>
-          <path d="M4 38c1-6 12-6 14-1"/>
-          <path d="M30 37c2-5 13-5 14 1"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">👥</div>
       <h3>Community Support</h3>
-      <p>Connect farmers, experts, FPOs and buyers for stronger local support and learning.</p>
+      <p>Connect with farmers, experts, FPOs and buyers to share, learn and grow together.</p>
       <span class="km-learn">Learn More →</span>
     </a>
   </div>
 </section>
-<!-- KM FARMERS SECTION END -->
+<!-- KM FARMERS FINAL SECTION END -->
 <section class="content" id="engine">
       <div class="section-inner">
         <div class="section-head">
@@ -1740,9 +1242,11 @@
     </section>
 
     
-<!-- KM FARMERS SECTION START -->
-<section id="farmers" class="km-section">
-  <div class="km-farmers-hero">
+
+
+<!-- KM FARMERS FINAL SECTION START -->
+<section id="farmers" class="km-farmers-page">
+  <div class="km-farmers-banner">
     <div class="km-farmers-copy">
       <div class="km-eyebrow">🌱 Farmers Intelligence</div>
 
@@ -1754,125 +1258,62 @@
         Smart tools, real-time insights, and expert guidance to help farmers increase productivity, reduce risk and improve profitability.
       </p>
 
-      <div class="km-farmers-actions">
-        <a class="km-btn km-btn-primary" href="#farmers-tools">Explore Farmer Tools</a>
-        <a class="km-btn km-btn-soft" href="#contact">Register as Farmer</a>
+      <div class="km-farmers-benefits">
+        <div class="km-benefit"><span>🌿</span>Smart Farming Solutions</div>
+        <div class="km-benefit"><span>⛅</span>Real-time Weather Updates</div>
+        <div class="km-benefit"><span>📋</span>Crop Health Monitoring</div>
+        <div class="km-benefit"><span>₹</span>Market Price Insights</div>
       </div>
     </div>
 
-    <div class="km-farmers-visual">
-      <div class="km-device-card">
-        <div class="km-device-top">
-          <div class="km-device-avatar">👨‍🌾</div>
-          <div>
-            <h3>Farmer AI Dashboard</h3>
-            <p>Daily crop, weather and market guidance</p>
-          </div>
-        </div>
-
-        <div class="km-metric-grid">
-          <div class="km-metric">
-            <span>Crop Health</span>
-            <strong>Good</strong>
-          </div>
-          <div class="km-metric">
-            <span>Weather Risk</span>
-            <strong>Low</strong>
-          </div>
-          <div class="km-metric">
-            <span>Market Signal</span>
-            <strong>Positive</strong>
-          </div>
-          <div class="km-metric">
-            <span>Advisory</span>
-            <strong>Ready</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="km-farmers-visual"></div>
   </div>
 
-  <div id="farmers-tools" class="km-section-head">
-    <h2>Everything farmers need for smarter farming</h2>
+  <div class="km-section-head">
+    <h2>Everything You Need for Smarter Farming</h2>
     <p>
-      Crop advisory, weather alerts, mandi-rate guidance, farm records and easy learning tools in one connected system.
+      Crop advisory, weather alerts, mandi-rate guidance, farming guides and farmer community support in one connected platform.
     </p>
   </div>
 
-  <div class="km-feature-grid">
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M24 38V18"/>
-          <path d="M24 18c-8 0-13 5-14 12 7 1 14-2 14-12z"/>
-          <path d="M24 20c8 0 13 5 14 12-7 1-14-2-14-12z"/>
-          <path d="M18 40h12"/>
-        </svg>
-      </div>
+  <div class="km-farmers-grid">
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">🌱</div>
       <h3>Crop Advisory</h3>
-      <p>AI-based crop recommendations for better yield, disease prevention and day-to-day decisions.</p>
+      <p>Get AI-based recommendations for better yield, disease prevention and daily crop decisions.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M16 31h21a8 8 0 0 0-2-15 11 11 0 0 0-21-2 8 8 0 0 0 2 17z"/>
-          <path d="M17 38h18"/>
-          <path d="M21 42h10"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">⛅</div>
       <h3>Weather Alerts</h3>
-      <p>Real-time weather updates, rain alerts and risk signals to plan farm work better.</p>
+      <p>Receive accurate weather updates, rain alerts and risk signals to plan farming better.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M8 38h32"/>
-          <path d="M12 34l8-9 7 5 10-15"/>
-          <path d="M34 15h6v6"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📈</div>
       <h3>Market Prices</h3>
-      <p>Stay updated with mandi rates, buyer demand and better selling opportunities near you.</p>
+      <p>Stay updated with real-time market prices, mandi trends and nearby buyer demand.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <path d="M10 12h12a6 6 0 0 1 6 6v20H16a6 6 0 0 0-6 6V12z"/>
-          <path d="M38 12H28a6 6 0 0 0-6 6"/>
-          <path d="M38 12v32a6 6 0 0 0-6-6H22"/>
-          <path d="M15 20h8"/>
-          <path d="M15 27h8"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">📖</div>
       <h3>Farming Guides</h3>
-      <p>Simple expert guides, crop calendars and regional-language learning support.</p>
+      <p>Access expert guides, crop calendars, videos and regional-language learning support.</p>
       <span class="km-learn">Learn More →</span>
     </a>
 
-    <a class="km-feature-card" href="#contact">
-      <div class="km-feature-icon">
-        <svg viewBox="0 0 48 48">
-          <circle cx="24" cy="16" r="6"/>
-          <circle cx="13" cy="25" r="5"/>
-          <circle cx="35" cy="25" r="5"/>
-          <path d="M14 39c2-8 18-8 20 0"/>
-          <path d="M4 38c1-6 12-6 14-1"/>
-          <path d="M30 37c2-5 13-5 14 1"/>
-        </svg>
-      </div>
+    <a class="km-farmer-card" href="#contact">
+      <div class="km-farmer-icon">👥</div>
       <h3>Community Support</h3>
-      <p>Connect farmers, experts, FPOs and buyers for stronger local support and learning.</p>
+      <p>Connect with farmers, experts, FPOs and buyers to share, learn and grow together.</p>
       <span class="km-learn">Learn More →</span>
     </a>
   </div>
 </section>
-<!-- KM FARMERS SECTION END -->
+<!-- KM FARMERS FINAL SECTION END -->
 <section class="content" id="trust">
       <div class="section-inner">
         <div class="section-head">
@@ -1884,6 +1325,7 @@
   </main>
 </body>
 </html>
+
 
 
 
