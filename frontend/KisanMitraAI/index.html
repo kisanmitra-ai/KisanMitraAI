@@ -1328,25 +1328,78 @@
 
 
 
-<style id="km-shift-home-cards-down-final">
-  /* Shift only homepage bottom cards down */
-  .wide-card-row {
-    position: absolute !important;
+
+<style id="km-force-home-cards-screen-bottom-7">
+  body.km-home-cards-fixed .wide-card-row {
+    position: fixed !important;
     left: 5.2% !important;
     right: 5.2% !important;
-    bottom: 5px !important;
-    transform: translateY(58px) !important;
-    z-index: 99999 !important;
+    bottom: 7px !important;
     margin: 0 !important;
-  }
-
-  /* Keep cards visible while shifted down */
-  .hero {
-    overflow: hidden !important;
+    transform: none !important;
+    z-index: 999999 !important;
   }
 </style>
+
+<script id="km-force-home-cards-screen-bottom-7-script">
+  (function () {
+    function findHomepageCards() {
+      var direct = document.querySelector(".wide-card-row");
+      if (direct) return direct;
+
+      return Array.from(document.querySelectorAll("div, section")).find(function (el) {
+        var text = (el.innerText || "").replace(/\s+/g, " ");
+        var r = el.getBoundingClientRect();
+
+        return (
+          text.includes("For Farmers") &&
+          text.includes("FPO") &&
+          text.includes("For Buyers") &&
+          text.includes("AI Engine") &&
+          text.includes("Trust") &&
+          r.width > window.innerWidth * 0.65 &&
+          r.height > 80 &&
+          r.height < 260
+        );
+      });
+    }
+
+    function applyCardsBottom() {
+      var row = findHomepageCards();
+      if (!row) return;
+
+      document.body.classList.add("km-home-cards-fixed");
+
+      row.style.setProperty("position", "fixed", "important");
+      row.style.setProperty("left", "5.2%", "important");
+      row.style.setProperty("right", "5.2%", "important");
+      row.style.setProperty("bottom", "7px", "important");
+      row.style.setProperty("margin", "0", "important");
+      row.style.setProperty("transform", "none", "important");
+      row.style.setProperty("z-index", "999999", "important");
+      row.style.setProperty("opacity", "1", "important");
+      row.style.setProperty("visibility", "visible", "important");
+      row.style.setProperty("pointer-events", "auto", "important");
+    }
+
+    window.addEventListener("load", function () {
+      applyCardsBottom();
+
+      var i = 0;
+      var timer = setInterval(function () {
+        applyCardsBottom();
+        i++;
+        if (i > 40) clearInterval(timer);
+      }, 100);
+    });
+
+    window.addEventListener("resize", applyCardsBottom);
+    window.addEventListener("scroll", applyCardsBottom, { passive: true });
+  })();
+</script>
 </body>
 </html>
+
 
 
 
