@@ -580,6 +580,55 @@
     }
   }
 </style>
+<style id="km-hero-cta-clicks-only">
+  .hero {
+    position: relative !important;
+  }
+
+  .hero-cta-click {
+    position: absolute;
+    z-index: 80;
+    display: block;
+    background: transparent;
+    text-decoration: none;
+    border: none;
+    outline: none;
+  }
+
+  .hero-cta-click:hover {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* CTA buttons inside hero image only */
+  .click-hero-farmer {
+    left: 7.4%;
+    top: 68.0%;
+    width: 10.5%;
+    height: 7.0%;
+  }
+
+  .click-hero-buyer {
+    left: 18.8%;
+    top: 68.0%;
+    width: 9.7%;
+    height: 7.0%;
+  }
+
+  .click-hero-video {
+    left: 29.4%;
+    top: 68.0%;
+    width: 15.5%;
+    height: 7.0%;
+  }
+
+  @media (max-width: 768px) {
+    .hero-cta-click {
+      display: none !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -606,6 +655,11 @@
 
     <section class="hero">
       <img class="hero-img" src="./home-assets/kisanmitraai-hero-bg-clean-top.png" alt="KisanMitraAI precision farming homepage">
+<!-- KM HERO CTA CLICKS START -->
+<a class="hero-cta-click click-hero-farmer" href="#farmers" aria-label="I'm a Farmer"></a>
+<a class="hero-cta-click click-hero-buyer" href="#buyers" aria-label="I'm a Buyer"></a>
+<a class="hero-cta-click click-hero-video" href="#how-it-works" aria-label="See How It Works"></a>
+<!-- KM HERO CTA CLICKS END -->
 <!-- KM REAL CARDS START -->
 <div class="wide-card-row">
   <a class="wide-card" href="#farmers">
@@ -718,6 +772,7 @@
   </main>
 </body>
 </html>
+
 
 
 
