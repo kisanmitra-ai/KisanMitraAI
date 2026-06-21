@@ -398,595 +398,50 @@
 
 
 
-<style id="km-homepage-final-balanced-layout">
-  html,
-  body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    background: #eef5ef !important;
-  }
-
-  .page {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #eef5ef !important;
-    overflow: visible !important;
-  }
-
-  /* Header stays locked but does not cover hero */
-  .locked-header {
-    position: sticky !important;
-    top: 12px !important;
-    left: auto !important;
-    right: auto !important;
-    width: auto !important;
-    height: clamp(74px, 5.4vw, 104px) !important;
-    margin: 18px clamp(18px, 2.7vw, 48px) 0 !important;
-    z-index: 99999 !important;
-    background: rgba(255,255,255,0.97) !important;
-    border-radius: clamp(16px, 1.3vw, 26px) !important;
-    box-shadow: 0 18px 44px rgba(5,35,14,0.13) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-  }
-
-  /* Balanced hero height */
-  .hero {
-    position: relative !important;
-    width: 100% !important;
-    height: calc(100vh - 118px) !important;
-    min-height: 560px !important;
-    max-height: 650px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  /* Natural ratio, only slight upward shift */
-  .hero-img {
-    position: absolute !important;
-    left: 0 !important;
-    top: -72px !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: none !important;
-    display: block !important;
-    object-fit: contain !important;
-    object-position: center top !important;
-    transform: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Bottom cards visible, not covering CTA buttons */
-  .wide-card-row {
-    position: absolute !important;
-    left: 5.2% !important;
-    right: 5.2% !important;
-    bottom: 18px !important;
-    z-index: 90 !important;
-    display: grid !important;
-    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-    gap: 14px !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-
-  .wide-card {
-    display: grid !important;
-    grid-template-columns: 54px 1fr !important;
-    align-items: center !important;
-    min-height: 106px !important;
-    padding: 14px 16px !important;
-    gap: 13px !important;
-    border-radius: 18px !important;
-    background: rgba(255,255,255,0.96) !important;
-    box-shadow: 0 18px 38px rgba(5,35,14,0.18) !important;
-    border: 1px solid rgba(255,255,255,0.85) !important;
-    text-decoration: none !important;
-    color: #102315 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-  }
-
-  .card-icon {
-    width: 48px !important;
-    height: 48px !important;
-    border-radius: 50% !important;
-    display: grid !important;
-    place-items: center !important;
-    color: #fff !important;
-    background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
-    font-size: 22px !important;
-  }
-
-  .card-icon.orange {
-    background: radial-gradient(circle at 35% 25%, #ff9b1a, #f27800 72%) !important;
-  }
-
-  .card-title {
-    display: block !important;
-    margin: 0 0 5px !important;
-    font-size: 15px !important;
-    line-height: 1.08 !important;
-    font-weight: 900 !important;
-    color: #102315 !important;
-  }
-
-  .card-text {
-    display: block !important;
-    margin: 0 !important;
-    font-size: 9px !important;
-    line-height: 1.32 !important;
-    color: #2e3d34 !important;
-  }
-
-  .card-link {
-    display: inline-block !important;
-    margin-top: 7px !important;
-    font-size: 9.5px !important;
-    font-weight: 800 !important;
-    color: #075b18 !important;
-  }
-
-  .card-link.orange-text {
-    color: #f26522 !important;
-  }
-
-  /* CTA click areas aligned with visible hero buttons */
-  .hero-cta-click {
-    position: absolute !important;
-    z-index: 120 !important;
-    background: transparent !important;
-    display: block !important;
-  }
-
-  .click-hero-farmer {
-    left: 7.4% !important;
-    top: 60.5% !important;
-    width: 10.5% !important;
-    height: 7% !important;
-  }
-
-  .click-hero-buyer {
-    left: 18.8% !important;
-    top: 60.5% !important;
-    width: 9.7% !important;
-    height: 7% !important;
-  }
-
-  .click-hero-video {
-    left: 29.4% !important;
-    top: 60.5% !important;
-    width: 15.5% !important;
-    height: 7% !important;
-  }
-
-  .hero-cta-click:hover {
-    outline: none !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  .hero-click,
-  .click-farmers,
-  .click-fpo,
-  .click-buyers,
-  .click-engine,
-  .click-trust,
-  .click-contact,
-  .click-login {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  section.content {
-    margin-top: 5px !important;
-    padding-top: 54px !important;
-  }
-
-  @media (max-width: 1100px) {
-    .hero {
-      height: calc(100vh - 110px) !important;
-      min-height: 540px !important;
-      max-height: 620px !important;
-    }
-
-    .hero-img {
-      top: -60px !important;
-    }
-
-    .wide-card-row {
-      left: 18px !important;
-      right: 18px !important;
-      bottom: 12px !important;
-      gap: 8px !important;
-    }
-
-    .wide-card {
-      grid-template-columns: 36px 1fr !important;
-      min-height: 84px !important;
-      padding: 10px !important;
-    }
-
-    .card-icon {
-      width: 34px !important;
-      height: 34px !important;
-      font-size: 16px !important;
-    }
-
-    .card-title {
-      font-size: 12px !important;
-    }
-
-    .card-text {
-      font-size: 7.5px !important;
-    }
-
-    .card-link {
-      display: none !important;
-    }
-  }
-</style>
-<style id="km-polished-bottom-card-icons">
-  .card-icon svg {
-    width: 66% !important;
-    height: 66% !important;
-    display: block !important;
-    stroke: #ffffff !important;
-    fill: none !important;
-    stroke-width: 2.4 !important;
-    stroke-linecap: round !important;
-    stroke-linejoin: round !important;
-  }
-
-  .card-icon svg .fill-white {
-    fill: #ffffff !important;
-    stroke: none !important;
-  }
-
-  .card-icon svg .soft-fill {
-    fill: rgba(255,255,255,0.18) !important;
-    stroke: none !important;
-  }
-</style>
-<style id="km-fix-hero-ratio-final-tune">
-  .hero-image,
-  .hero-media,
-  .hero-visual {
-    overflow: hidden !important;
-  }
-
-  .hero-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center top !important;
-    transform: none !important;
-  }
-
-  @media (min-width: 1101px) {
-    .hero-img {
-      top: -72px !important;
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .hero-img {
-      top: -58px !important;
-    }
-  }
-
-  .wide-card-row {
-    bottom: 6px !important;
-  }
-</style>
-
-
-
-
-
-
-
-<style id="km-farmers-image-section-style">
-  html {
-    scroll-behavior: smooth !important;
-  }
-
-  #farmers {
-    scroll-margin-top: 118px !important;
-  }
-
-  .km-farmers-image-section {
-    position: relative !important;
-    z-index: 30 !important;
-    background: #ffffff !important;
-    padding: clamp(96px, 8vw, 130px) 0 clamp(72px, 6vw, 100px) !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-  }
-
-  .km-farmers-image-wrap {
-    position: relative !important;
-    width: min(1647px, 100%) !important;
-    margin: 0 auto !important;
-    overflow: hidden !important;
-    background: #ffffff !important;
-  }
-
-  .km-farmers-image-wrap img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-  }
-
-  .km-farmers-img-click {
-    position: absolute !important;
-    z-index: 20 !important;
-    display: block !important;
-    background: transparent !important;
-    border: 0 !important;
-    outline: 0 !important;
-    text-decoration: none !important;
-  }
-
-  .km-farmers-img-click:hover {
-    background: rgba(7, 91, 24, 0.035) !important;
-    border-radius: 18px !important;
-  }
-
-  /* Bottom card clickable zones, based on the 1647x955 Farmers page image */
-  .km-click-crop-advisory { left: 5.1%; top: 68.7%; width: 16.7%; height: 21.2%; }
-  .km-click-weather-alerts { left: 23.1%; top: 68.7%; width: 16.2%; height: 21.2%; }
-  .km-click-market-prices { left: 40.4%; top: 68.7%; width: 16.3%; height: 21.2%; }
-  .km-click-farming-guides { left: 58.0%; top: 68.7%; width: 16.3%; height: 21.2%; }
-  .km-click-community-support { left: 75.7%; top: 68.7%; width: 16.4%; height: 21.2%; }
-
-  /* Top feature clickable zones */
-  .km-click-smart-farming { left: 3.7%; top: 38.0%; width: 10.8%; height: 12.5%; }
-  .km-click-weather-top { left: 13.2%; top: 38.0%; width: 10.6%; height: 12.5%; }
-  .km-click-crop-health { left: 24.7%; top: 38.0%; width: 10.8%; height: 12.5%; }
-  .km-click-market-top { left: 34.7%; top: 38.0%; width: 10.6%; height: 12.5%; }
-
-  @media (max-width: 900px) {
-    .km-farmers-image-section {
-      padding-top: 92px !important;
-    }
-
-    .km-farmers-img-click {
-      display: none !important;
-    }
-  }
-</style>
-
-
-
-
-
-
-
-
-
-<style id="km-farmers-image-down-tune">
-  /* Farmers page should open lower, so header does not cover the title */
-  #farmers {
-    scroll-margin-top: 165px !important;
-    background: #ffffff !important;
-  }
-
-  /* Shift only Farmers image/page content down slightly */
-  #farmers .farmers-image-wrap,
-  #farmers .km-farmers-image-wrap,
-  #farmers .farmers-image-section,
-  #farmers .km-farmers-image-section {
-    padding-top: 58px !important;
-    background: #ffffff !important;
-  }
-
-  #farmers > img,
-  #farmers picture,
-  #farmers .farmers-page-image,
-  #farmers .km-farmers-page-image,
-  #farmers .farmers-image-section img,
-  #farmers .km-farmers-image-section img {
-    margin-top: 58px !important;
-  }
-
-  /* Do not shift the cards section below Farmers image */
-  #farmers .km-farmers-grid,
-  #farmers .farmers-card-grid,
-  #farmers .farmers-tools,
-  #farmers .km-section-head {
-    margin-top: 5px !important;
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style id="km-farmers-image-fit-polish-final">
-  .locked-header {
-    position: fixed !important;
-    top: 18px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 99999 !important;
-  }
-
-  body.km-farmers-active .wide-card-row,
-  body.km-farmers-active .hero .wide-card-row {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  #farmers {
-    background: #ffffff !important;
-    scroll-margin-top: 5px !important;
-    overflow: hidden !important;
-  }
-
-  #farmers .farmers-image-section,
-  #farmers .km-farmers-image-section,
-  #farmers .farmers-page,
-  #farmers .km-farmers-page {
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    overflow: hidden !important;
-  }
-
-  /*
-    Final polish:
-    - slightly scales the Farmers image down vertically
-    - keeps full width
-    - moves content a little down
-    - helps bottom cards appear more on screen
-  */
-  #farmers img,
-  #farmers .farmers-page-image,
-  #farmers .km-farmers-page-image,
-  #farmers .farmers-image-section img,
-  #farmers .km-farmers-image-section img {
-    display: block !important;
-    width: 108.8% !important;
-    max-width: none !important;
-    height: auto !important;
-    margin-left: -4.4% !important;
-    margin-top: 18px !important;
-    margin-bottom: -54px !important;
-    padding: 0 !important;
-    transform: scale(0.92) !important;
-    transform-origin: top center !important;
-  }
-
-  /* Reduce the visual bottom white breathing space after Farmers hero */
-  #farmers .farmers-tools,
-  #farmers .km-farmers-tools,
-  #farmers .farmers-card-grid,
-  #farmers .km-farmers-grid,
-  #farmers .km-section-head {
-    margin-top: -18px !important;
-  }
-
-  @media (max-width: 1100px) {
-    #farmers img,
-    #farmers .farmers-page-image,
-    #farmers .km-farmers-page-image,
-    #farmers .farmers-image-section img,
-    #farmers .km-farmers-image-section img {
-      width: 111% !important;
-      margin-left: -5.5% !important;
-      margin-top: 14px !important;
-      margin-bottom: -46px !important;
-      transform: scale(0.90) !important;
-    }
-  }
-</style>
-
-<script id="km-farmers-image-fit-polish-script">
-  (function () {
-    function setFarmersActive(on) {
-      document.body.classList.toggle("km-farmers-active", !!on);
-    }
-
-    function getFarmersTarget() {
-      var farmers = document.getElementById("farmers");
-      if (!farmers) return null;
-
-      return (
-        farmers.querySelector(".farmers-image-section img") ||
-        farmers.querySelector(".km-farmers-image-section img") ||
-        farmers.querySelector(".farmers-page-image") ||
-        farmers.querySelector(".km-farmers-page-image") ||
-        farmers.querySelector("img") ||
-        farmers
-      );
-    }
-
-    function scrollFarmersPolished(instant) {
-      var target = getFarmersTarget();
-      if (!target) return;
-
-      setFarmersActive(true);
-
-      /*
-        Start Farmers image near top of viewport.
-        Fixed menu floats over the top sky area, while content sits lower.
-      */
-      var y = target.getBoundingClientRect().top + window.pageYOffset - 6;
-
-      window.scrollTo({
-        top: y,
-        behavior: instant ? "auto" : "smooth"
-      });
-
-      setTimeout(function () {
-        var y2 = target.getBoundingClientRect().top + window.pageYOffset - 6;
-        window.scrollTo({
-          top: y2,
-          behavior: "auto"
-        });
-      }, instant ? 180 : 560);
-    }
-
-    function updateFarmersActive() {
-      var target = getFarmersTarget();
-      if (!target) return;
-
-      var top = target.getBoundingClientRect().top + window.pageYOffset;
-      setFarmersActive(window.pageYOffset >= top - 60);
-    }
-
-    window.addEventListener("load", function () {
-      if (window.location.hash === "#farmers") {
-        setTimeout(function () {
-          scrollFarmersPolished(true);
-        }, 450);
-      } else {
-        updateFarmersActive();
-      }
-    });
-
-    window.addEventListener("scroll", updateFarmersActive, { passive: true });
-
-    document.addEventListener("click", function (event) {
-      var link = event.target.closest('a[href="#farmers"]');
-      if (!link) return;
-
-      event.preventDefault();
-      history.pushState(null, "", "#farmers");
-      scrollFarmersPolished(false);
-    }, true);
-  })();
-</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1203,240 +658,213 @@
 
 
 
-<style id="km-force-real-navbar-top-7px">
-  /* keep page clean */
-  html, body {
+
+
+
+
+
+
+
+
+
+
+
+<style id="km-clean-layout-v1">
+  html,
+  body {
     margin: 0 !important;
     padding: 0 !important;
+    overflow-x: hidden !important;
   }
 
-  /* once JS finds real navbar, this class locks it */
-  .km-real-navbar-top-7 {
-    position: fixed !important;
-    top: 7px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    margin-top: 0 !important;
-    transform: none !important;
-    z-index: 9999999 !important;
-  }
-</style>
-
-<script id="km-force-real-navbar-top-7px-script">
-  (function () {
-    function textOf(el) {
-      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
-    }
-
-    function looksLikeNavbar(el) {
-      var t = textOf(el);
-      var r = el.getBoundingClientRect();
-      var cs = window.getComputedStyle(el);
-      var bg = cs.backgroundColor || "";
-
-      return (
-        r.width >= window.innerWidth * 0.70 &&
-        r.height >= 55 &&
-        r.height <= 135 &&
-        t.includes("Farmers") &&
-        t.includes("FPO") &&
-        t.includes("Buyers") &&
-        t.includes("Login") &&
-        (
-          bg.includes("255") ||
-          bg.includes("rgba(255") ||
-          bg.includes("rgb(255")
-        )
-      );
-    }
-
-    function findNavbar() {
-      var all = Array.from(document.querySelectorAll("body *"));
-      var matches = all.filter(looksLikeNavbar);
-
-      if (matches.length) {
-        matches.sort(function (a, b) {
-          var ar = a.getBoundingClientRect();
-          var br = b.getBoundingClientRect();
-
-          /* choose the widest rounded white shell */
-          return (br.width * br.height) - (ar.width * ar.height);
-        });
-
-        return matches[0];
-      }
-
-      /* fallback: find Login and climb up */
-      var login = Array.from(document.querySelectorAll("a, button, div, span"))
-        .find(function (el) {
-          return textOf(el).trim() === "Login" || textOf(el).includes("Login");
-        });
-
-      if (!login) return null;
-
-      var node = login;
-      while (node && node !== document.body) {
-        var r = node.getBoundingClientRect();
-        var t = textOf(node);
-
-        if (
-          r.width >= window.innerWidth * 0.70 &&
-          r.height >= 55 &&
-          r.height <= 150 &&
-          t.includes("Farmers") &&
-          t.includes("Login")
-        ) {
-          return node;
-        }
-
-        node = node.parentElement;
-      }
-
-      return null;
-    }
-
-    function forceNavbarTop() {
-      var nav = findNavbar();
-      if (!nav) return;
-
-      nav.classList.add("km-real-navbar-top-7");
-
-      nav.style.setProperty("position", "fixed", "important");
-      nav.style.setProperty("top", "7px", "important");
-      nav.style.setProperty("left", "clamp(18px, 2.7vw, 48px)", "important");
-      nav.style.setProperty("right", "clamp(18px, 2.7vw, 48px)", "important");
-      nav.style.setProperty("margin-top", "0", "important");
-      nav.style.setProperty("transform", "none", "important");
-      nav.style.setProperty("z-index", "9999999", "important");
-    }
-
-    window.addEventListener("load", function () {
-      forceNavbarTop();
-
-      var count = 0;
-      var timer = setInterval(function () {
-        forceNavbarTop();
-        count++;
-        if (count > 30) clearInterval(timer);
-      }, 100);
-    });
-
-    window.addEventListener("resize", forceNavbarTop);
-    window.addEventListener("scroll", forceNavbarTop, { passive: true });
-  })();
-</script>
-
-
-
-
-<style id="km-force-home-cards-screen-bottom-7">
-  body.km-home-cards-fixed .wide-card-row {
-    position: fixed !important;
-    left: 5.2% !important;
-    right: 5.2% !important;
-    bottom: 7px !important;
-    margin: 0 !important;
-    transform: none !important;
-    z-index: 999999 !important;
-  }
-</style>
-
-<script id="km-force-home-cards-screen-bottom-7-script">
-  (function () {
-    function findHomepageCards() {
-      var direct = document.querySelector(".wide-card-row");
-      if (direct) return direct;
-
-      return Array.from(document.querySelectorAll("div, section")).find(function (el) {
-        var text = (el.innerText || "").replace(/\s+/g, " ");
-        var r = el.getBoundingClientRect();
-
-        return (
-          text.includes("For Farmers") &&
-          text.includes("FPO") &&
-          text.includes("For Buyers") &&
-          text.includes("AI Engine") &&
-          text.includes("Trust") &&
-          r.width > window.innerWidth * 0.65 &&
-          r.height > 80 &&
-          r.height < 260
-        );
-      });
-    }
-
-    function applyCardsBottom() {
-      var row = findHomepageCards();
-      if (!row) return;
-
-      document.body.classList.add("km-home-cards-fixed");
-
-      row.style.setProperty("position", "fixed", "important");
-      row.style.setProperty("left", "5.2%", "important");
-      row.style.setProperty("right", "5.2%", "important");
-      row.style.setProperty("bottom", "7px", "important");
-      row.style.setProperty("margin", "0", "important");
-      row.style.setProperty("transform", "none", "important");
-      row.style.setProperty("z-index", "999999", "important");
-      row.style.setProperty("opacity", "1", "important");
-      row.style.setProperty("visibility", "visible", "important");
-      row.style.setProperty("pointer-events", "auto", "important");
-    }
-
-    window.addEventListener("load", function () {
-      applyCardsBottom();
-
-      var i = 0;
-      var timer = setInterval(function () {
-        applyCardsBottom();
-        i++;
-        if (i > 40) clearInterval(timer);
-      }, 100);
-    });
-
-    window.addEventListener("resize", applyCardsBottom);
-    window.addEventListener("scroll", applyCardsBottom, { passive: true });
-  })();
-</script>
-<style id="km-hero-image-content-down-final">
-  /* Move only the homepage hero image content down */
+  /* Clean homepage hero frame */
   .hero {
     position: relative !important;
+    width: 100% !important;
+    height: calc(100vh - 7px) !important;
+    min-height: 640px !important;
+    max-height: 760px !important;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: hidden !important;
+    background: #eef5ef !important;
   }
 
+  /* Move hero image content down so title is visible below menu */
   .hero-img {
     position: absolute !important;
-    top: 38px !important;
+    top: 42px !important;
     left: 0 !important;
     width: 100% !important;
     height: auto !important;
     max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
     object-fit: contain !important;
     object-position: center top !important;
     transform: none !important;
     z-index: 1 !important;
   }
 
-  /* Keep bottom cards at the bottom */
+  /* Final fixed top menu */
+  .km-clean-navbar {
+    position: fixed !important;
+    top: 7px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    margin: 0 !important;
+    transform: none !important;
+    z-index: 999999 !important;
+  }
+
+  /* Bottom cards: 7px above bottom of hero screen */
   .wide-card-row {
     position: absolute !important;
     left: 5.2% !important;
     right: 5.2% !important;
     bottom: 7px !important;
-    z-index: 99999 !important;
     margin: 0 !important;
+    padding: 0 !important;
     transform: none !important;
+    z-index: 99999 !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
 
-  /* Keep navbar above everything */
-  .locked-header,
-  header,
-  nav {
-    z-index: 999999 !important;
+  .wide-card {
+    min-height: 104px !important;
+    padding: 14px 16px !important;
+    border-radius: 18px !important;
+  }
+
+  .hero + section,
+  section.content {
+    margin-top: 0 !important;
+    padding-top: 12px !important;
+  }
+
+  @media (max-width: 1100px) {
+    .hero {
+      min-height: 630px !important;
+      height: calc(100vh - 7px) !important;
+    }
+
+    .hero-img {
+      top: 44px !important;
+    }
+
+    .wide-card-row {
+      left: 18px !important;
+      right: 18px !important;
+      bottom: 7px !important;
+      gap: 8px !important;
+    }
+
+    .wide-card {
+      min-height: 104px !important;
+      padding: 12px 14px !important;
+    }
   }
 </style>
+
+<script id="km-clean-layout-v1-script">
+  (function () {
+    function getText(el) {
+      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+    }
+
+    function findNavbar() {
+      var all = Array.from(document.querySelectorAll("header, nav, div, section"));
+      var matches = all.filter(function (el) {
+        var text = getText(el);
+        var rect = el.getBoundingClientRect();
+
+        return (
+          text.includes("Farmers") &&
+          text.includes("FPO") &&
+          text.includes("Buyers") &&
+          text.includes("AI Engine") &&
+          text.includes("Login") &&
+          rect.width > window.innerWidth * 0.65 &&
+          rect.height >= 55 &&
+          rect.height <= 140
+        );
+      });
+
+      if (!matches.length) return null;
+
+      matches.sort(function (a, b) {
+        var ar = a.getBoundingClientRect();
+        var br = b.getBoundingClientRect();
+        return (br.width * br.height) - (ar.width * ar.height);
+      });
+
+      return matches[0];
+    }
+
+    function applyCleanLayout() {
+      var nav = findNavbar();
+      if (nav) {
+        nav.classList.add("km-clean-navbar");
+        nav.style.setProperty("position", "fixed", "important");
+        nav.style.setProperty("top", "7px", "important");
+        nav.style.setProperty("left", "clamp(18px, 2.7vw, 48px)", "important");
+        nav.style.setProperty("right", "clamp(18px, 2.7vw, 48px)", "important");
+        nav.style.setProperty("margin", "0", "important");
+        nav.style.setProperty("transform", "none", "important");
+        nav.style.setProperty("z-index", "999999", "important");
+      }
+
+      var hero = document.querySelector(".hero");
+      if (hero) {
+        hero.style.setProperty("position", "relative", "important");
+        hero.style.setProperty("height", "calc(100vh - 7px)", "important");
+        hero.style.setProperty("min-height", "640px", "important");
+        hero.style.setProperty("max-height", "760px", "important");
+        hero.style.setProperty("margin", "0", "important");
+        hero.style.setProperty("padding", "0", "important");
+        hero.style.setProperty("overflow", "hidden", "important");
+      }
+
+      var heroImg = document.querySelector(".hero-img");
+      if (heroImg) {
+        heroImg.style.setProperty("position", "absolute", "important");
+        heroImg.style.setProperty("top", "42px", "important");
+        heroImg.style.setProperty("left", "0", "important");
+        heroImg.style.setProperty("width", "100%", "important");
+        heroImg.style.setProperty("height", "auto", "important");
+        heroImg.style.setProperty("transform", "none", "important");
+        heroImg.style.setProperty("z-index", "1", "important");
+      }
+
+      document.querySelectorAll(".wide-card-row").forEach(function (row) {
+        row.style.setProperty("position", "absolute", "important");
+        row.style.setProperty("left", "5.2%", "important");
+        row.style.setProperty("right", "5.2%", "important");
+        row.style.setProperty("bottom", "7px", "important");
+        row.style.setProperty("margin", "0", "important");
+        row.style.setProperty("transform", "none", "important");
+        row.style.setProperty("z-index", "99999", "important");
+      });
+    }
+
+    window.addEventListener("load", function () {
+      applyCleanLayout();
+      setTimeout(applyCleanLayout, 250);
+      setTimeout(applyCleanLayout, 800);
+      setTimeout(applyCleanLayout, 1600);
+    });
+
+    window.addEventListener("resize", applyCleanLayout);
+  })();
+</script>
 </body>
 </html>
+
 
 
 
