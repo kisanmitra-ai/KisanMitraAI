@@ -1268,8 +1268,83 @@
       </div>
     </section>
   </main>
+<style id="km-exact-5px-visual-final">
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .hero {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .wide-card-row {
+    position: absolute !important;
+    bottom: 5px !important;
+    margin-bottom: 0 !important;
+    transform: none !important;
+    z-index: 99998 !important;
+  }
+</style>
+
+<script id="km-exact-5px-visual-final-script">
+  (function () {
+    function findRealHeader() {
+      var candidates = Array.from(document.querySelectorAll("header, nav, div, section"));
+
+      return candidates.find(function (el) {
+        var text = (el.innerText || "").trim();
+        var rect = el.getBoundingClientRect();
+
+        return (
+          rect.width > window.innerWidth * 0.70 &&
+          rect.height >= 50 &&
+          rect.height <= 130 &&
+          text.includes("Farmers") &&
+          text.includes("FPO") &&
+          text.includes("Buyers") &&
+          text.includes("Login")
+        );
+      });
+    }
+
+    function forceExactPositions() {
+      var header = findRealHeader();
+
+      if (header) {
+        header.style.setProperty("position", "fixed", "important");
+        header.style.setProperty("top", "5px", "important");
+        header.style.setProperty("left", "clamp(18px, 2.7vw, 48px)", "important");
+        header.style.setProperty("right", "clamp(18px, 2.7vw, 48px)", "important");
+        header.style.setProperty("margin-top", "0", "important");
+        header.style.setProperty("transform", "none", "important");
+        header.style.setProperty("z-index", "999999", "important");
+      }
+
+      document.querySelectorAll(".wide-card-row").forEach(function (row) {
+        row.style.setProperty("position", "absolute", "important");
+        row.style.setProperty("bottom", "5px", "important");
+        row.style.setProperty("margin-bottom", "0", "important");
+        row.style.setProperty("transform", "none", "important");
+        row.style.setProperty("z-index", "99998", "important");
+      });
+    }
+
+    window.addEventListener("load", function () {
+      forceExactPositions();
+      setTimeout(forceExactPositions, 250);
+      setTimeout(forceExactPositions, 800);
+      setTimeout(forceExactPositions, 1600);
+    });
+
+    window.addEventListener("resize", forceExactPositions);
+  })();
+</script>
 </body>
 </html>
+
 
 
 
