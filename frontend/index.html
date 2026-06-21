@@ -388,7 +388,8 @@
 
 
 
-<style id="km-fix-hero-scale-visible-cards-final">
+
+<style id="km-final-header-hero-spacing-fix">
   html,
   body {
     margin: 0 !important;
@@ -411,15 +412,22 @@
     top: 18px !important;
     left: clamp(18px, 2.7vw, 48px) !important;
     right: clamp(18px, 2.7vw, 48px) !important;
+    height: clamp(74px, 5.4vw, 104px) !important;
     z-index: 99999 !important;
+    background: rgba(255,255,255,0.97) !important;
+    border-radius: clamp(16px, 1.3vw, 26px) !important;
+    box-shadow: 0 18px 44px rgba(5,35,14,0.13) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
   }
 
-  /* Do not zoom/crop the hero. Show full width. */
   .hero {
+    --header-space: clamp(98px, 7.3vw, 132px);
+
     position: relative !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
+    height: 100vh !important;
+    min-height: 690px !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden !important;
@@ -427,10 +435,10 @@
   }
 
   .hero-img {
-    position: relative !important;
-    inset: auto !important;
+    position: absolute !important;
+    top: var(--header-space) !important;
+    left: 0 !important;
     width: 100% !important;
-    max-width: none !important;
     height: auto !important;
     display: block !important;
     object-fit: contain !important;
@@ -440,12 +448,11 @@
     padding: 0 !important;
   }
 
-  /* Keep real cards visible, above bottom edge */
   .wide-card-row {
     position: absolute !important;
     left: clamp(42px, 5vw, 82px) !important;
     right: clamp(42px, 5vw, 82px) !important;
-    bottom: clamp(18px, 2vw, 34px) !important;
+    bottom: clamp(16px, 1.8vw, 30px) !important;
     z-index: 60 !important;
     display: grid !important;
     grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
@@ -482,7 +489,6 @@
     color: #fff !important;
     background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
     font-size: clamp(20px, 1.6vw, 28px) !important;
-    box-shadow: inset 0 0 0 5px rgba(255,255,255,0.16) !important;
   }
 
   .card-icon.orange {
@@ -519,7 +525,6 @@
     color: #f26522 !important;
   }
 
-  /* remove invisible/old hotspots */
   .hero-click,
   .click-farmers,
   .click-fpo,
@@ -540,6 +545,11 @@
   }
 
   @media (max-width: 1100px) {
+    .hero {
+      --header-space: 92px;
+      min-height: 650px !important;
+    }
+
     .wide-card-row {
       left: 18px !important;
       right: 18px !important;
@@ -710,6 +720,7 @@
   </main>
 </body>
 </html>
+
 
 
 
