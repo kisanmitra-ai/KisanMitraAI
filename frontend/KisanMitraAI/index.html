@@ -658,6 +658,37 @@
     stroke: none !important;
   }
 </style>
+<style id="km-fix-hero-ratio-final-tune">
+  .hero-image,
+  .hero-media,
+  .hero-visual {
+    overflow: hidden !important;
+  }
+
+  .hero-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    transform: none !important;
+  }
+
+  @media (min-width: 1101px) {
+    .hero-img {
+      top: -72px !important;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .hero-img {
+      top: -58px !important;
+    }
+  }
+
+  .wide-card-row {
+    bottom: 6px !important;
+  }
+</style>
 </head>
 
 <body>
@@ -856,6 +887,7 @@
   </main>
 </body>
 </html>
+
 
 
 
