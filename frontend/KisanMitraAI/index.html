@@ -527,6 +527,30 @@
     padding-top: 64px !important;
   }
 </style>
+<style id="km-remove-hidden-top-menu-hotspots">
+  /* Remove hidden duplicate menu click zones on top of hero */
+  .click-farmers,
+  .click-fpo,
+  .click-buyers,
+  .click-engine,
+  .click-trust,
+  .click-contact,
+  .click-login {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  /* Remove hover outline from invisible hotspots */
+  .hero-click:hover {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+</style>
 </head>
 
 <body>
@@ -554,14 +578,6 @@
     <section class="hero">
       <img class="hero-img" src="./home-assets/kisanmitraai-homepage-clean-final.png" alt="KisanMitraAI precision farming homepage">
 <!-- KM CLICKABLE HOTSPOTS START -->
-<a class="hero-click click-farmers" href="#farmers" aria-label="Farmers"></a>
-<a class="hero-click click-fpo" href="#fpo" aria-label="FPO"></a>
-<a class="hero-click click-buyers" href="#buyers" aria-label="Buyers"></a>
-<a class="hero-click click-engine" href="#engine" aria-label="AI Engine"></a>
-<a class="hero-click click-trust" href="#trust" aria-label="Trust"></a>
-<a class="hero-click click-contact" href="#contact" aria-label="Contact"></a>
-<a class="hero-click click-login" href="./login.html" aria-label="Login"></a>
-
 <a class="hero-click click-farmer-btn" href="#farmers" aria-label="I'm a Farmer"></a>
 <a class="hero-click click-buyer-btn" href="#buyers" aria-label="I'm a Buyer"></a>
 <a class="hero-click click-video-btn" href="#how-it-works" aria-label="See How It Works"></a>
@@ -680,6 +696,7 @@
   </main>
 </body>
 </html>
+
 
 
 
