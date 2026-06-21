@@ -1051,6 +1051,102 @@
     }
   }
 </style>
+<style id="km-fix-farmers-scroll-and-visual">
+  /* Fixed top menu for all scroll sections */
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  /* Homepage needs top room because header is fixed */
+  .hero {
+    margin-top: clamp(108px, 7.6vw, 136px) !important;
+  }
+
+  /* Farmers section should start cleanly below fixed menu */
+  #farmers {
+    scroll-margin-top: 0 !important;
+  }
+
+  .km-farmers-page {
+    padding-top: clamp(128px, 9vw, 156px) !important;
+    margin-top: 0 !important;
+    background: #ffffff !important;
+    position: relative !important;
+    z-index: 5 !important;
+  }
+
+  /* Remove the big blank gap before Farmers banner */
+  .km-farmers-page::before {
+    display: none !important;
+    content: none !important;
+  }
+
+  .km-farmers-banner {
+    min-height: 560px !important;
+    background:
+      linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.90) 46%, rgba(255,255,255,0.22) 78%),
+      radial-gradient(circle at 76% 18%, rgba(180,225,255,0.55), transparent 34%),
+      radial-gradient(circle at 82% 82%, rgba(25,122,41,0.20), transparent 34%),
+      linear-gradient(135deg, #f8fff8 0%, #e9f6eb 52%, #d8efdd 100%) !important;
+  }
+
+  .km-farmers-visual {
+    min-height: 560px !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 36px !important;
+  }
+
+  .km-farmers-visual::before {
+    content: "";
+    width: min(430px, 78%);
+    height: min(430px, 78%);
+    border-radius: 38px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.36)),
+      url("./home-assets/kisanmitraai-hero-bg-clean-top.png");
+    background-size: 230%;
+    background-position: 63% 22%;
+    box-shadow: 0 30px 82px rgba(5,35,14,0.16);
+    border: 1px solid rgba(255,255,255,0.92);
+  }
+
+  .km-farmers-visual::after {
+    content: "AI Farm Insights\A Crop Health  Good\A Weather Risk  Low\A Market Signal  Positive";
+    white-space: pre;
+    position: absolute;
+    right: clamp(30px, 5vw, 84px);
+    bottom: clamp(34px, 4vw, 78px);
+    width: min(270px, 60%);
+    border-radius: 24px;
+    padding: 20px 22px;
+    background: rgba(255,255,255,0.90);
+    border: 1px solid rgba(255,255,255,0.88);
+    box-shadow: 0 22px 54px rgba(5,35,14,0.14);
+    color: #12331b;
+    font-weight: 850;
+    line-height: 1.8;
+    font-size: 14px;
+  }
+
+  @media (max-width: 1100px) {
+    .hero {
+      margin-top: 100px !important;
+    }
+
+    .km-farmers-page {
+      padding-top: 120px !important;
+    }
+
+    .km-farmers-visual {
+      min-height: 340px !important;
+    }
+  }
+</style>
 </head>
 
 <body>
@@ -1446,6 +1542,7 @@
   </main>
 </body>
 </html>
+
 
 
 
