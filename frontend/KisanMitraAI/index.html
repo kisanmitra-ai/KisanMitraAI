@@ -966,8 +966,122 @@
     window.addEventListener("resize", forceHeroImageDown);
   })();
 </script>
+<style id="km-force-any-home-visual-down">
+  /* Move actual homepage visual down, even if it is not .hero-img */
+
+  img[src*="homepage"],
+  img[src*="home-assets"],
+  img[src*="exact"],
+  img[src*="hero"],
+  .hero img,
+  .home img,
+  .homepage img,
+  .hero-section img,
+  .home-hero img,
+  .homepage-hero img {
+    transform: translateY(54px) !important;
+  }
+
+  [style*="homepage"],
+  [style*="home-assets"],
+  [style*="hero"],
+  [style*="background-image"] {
+    background-position: center 54px !important;
+  }
+
+  .hero,
+  .home,
+  .homepage,
+  .hero-section,
+  .home-hero,
+  .homepage-hero {
+    background-position: center 54px !important;
+    overflow: hidden !important;
+  }
+
+  /* Keep navbar locked above */
+  .km-clean-navbar,
+  .locked-header,
+  header,
+  nav {
+    position: fixed !important;
+    top: 7px !important;
+    z-index: 999999 !important;
+  }
+
+  /* Keep cards at bottom */
+  .wide-card-row {
+    position: absolute !important;
+    left: 5.2% !important;
+    right: 5.2% !important;
+    bottom: 7px !important;
+    transform: none !important;
+    z-index: 99999 !important;
+  }
+</style>
+
+<script id="km-force-any-home-visual-down-script">
+  (function () {
+    function forceHomeVisualDown() {
+      var moved = false;
+
+      document.querySelectorAll("img").forEach(function (img) {
+        var src = (img.getAttribute("src") || "").toLowerCase();
+        var rect = img.getBoundingClientRect();
+
+        if (
+          rect.width > window.innerWidth * 0.65 ||
+          src.includes("homepage") ||
+          src.includes("home-assets") ||
+          src.includes("exact") ||
+          src.includes("hero")
+        ) {
+          img.style.setProperty("transform", "translateY(54px)", "important");
+          img.style.setProperty("z-index", "1", "important");
+          moved = true;
+        }
+      });
+
+      document.querySelectorAll("body *").forEach(function (el) {
+        var bg = window.getComputedStyle(el).backgroundImage || "";
+        var rect = el.getBoundingClientRect();
+
+        if (
+          bg !== "none" &&
+          rect.width > window.innerWidth * 0.65 &&
+          rect.height > window.innerHeight * 0.45
+        ) {
+          el.style.setProperty("background-position", "center 54px", "important");
+          el.style.setProperty("background-repeat", "no-repeat", "important");
+          moved = true;
+        }
+      });
+
+      document.querySelectorAll(".wide-card-row").forEach(function (row) {
+        row.style.setProperty("position", "absolute", "important");
+        row.style.setProperty("left", "5.2%", "important");
+        row.style.setProperty("right", "5.2%", "important");
+        row.style.setProperty("bottom", "7px", "important");
+        row.style.setProperty("transform", "none", "important");
+        row.style.setProperty("z-index", "99999", "important");
+      });
+
+      console.log("KisanMitraAI hero visual moved:", moved);
+    }
+
+    window.addEventListener("load", function () {
+      forceHomeVisualDown();
+      setTimeout(forceHomeVisualDown, 300);
+      setTimeout(forceHomeVisualDown, 900);
+      setTimeout(forceHomeVisualDown, 1600);
+    });
+
+    window.addEventListener("resize", forceHomeVisualDown);
+  })();
+</script>
 </body>
 </html>
+
 
 
 
