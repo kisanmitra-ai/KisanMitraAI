@@ -903,29 +903,48 @@
   }
 </style>
 
-<script id="km-farmers-perfect-scroll-script">
+
+<style id="km-farmers-final-scroll-lower-clean">
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  #farmers {
+    scroll-margin-top: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .km-farmers-page,
+  .farmers-page,
+  .farmers-image-section,
+  .km-farmers-image-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    background: #ffffff !important;
+  }
+</style>
+
+<script id="km-farmers-final-scroll-lower-script">
   (function () {
-    function farmersTarget() {
+    function getFarmersTarget() {
       var farmers = document.getElementById("farmers");
       if (!farmers) return null;
-
-      return (
-        farmers.querySelector(".farmers-image-section img") ||
-        farmers.querySelector(".km-farmers-image-section img") ||
-        farmers.querySelector(".farmers-page-image") ||
-        farmers.querySelector(".km-farmers-page-image") ||
-        farmers.querySelector("img") ||
-        farmers
-      );
+      return farmers.querySelector("img") || farmers;
     }
 
     function scrollToFarmers(instant) {
-      var target = farmersTarget();
-      var header = document.querySelector(".locked-header");
+      var target = getFarmersTarget();
       if (!target) return;
 
-      var headerBottom = header ? header.getBoundingClientRect().bottom : 110;
-      var y = target.getBoundingClientRect().top + window.pageYOffset - headerBottom - 10;
+      var header = document.querySelector(".locked-header");
+      var headerHeight = header ? header.offsetHeight : 100;
+
+      /* Extra 210px pushes past homepage cards/white gap */
+      var y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 210;
 
       window.scrollTo({
         top: y,
@@ -937,7 +956,7 @@
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
           scrollToFarmers(true);
-        }, 350);
+        }, 450);
       }
     });
 
@@ -1157,6 +1176,7 @@
   </main>
 </body>
 </html>
+
 
 
 
