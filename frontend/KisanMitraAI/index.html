@@ -768,48 +768,80 @@
   }
 </style>
 
-<style id="km-shift-hero-image-up-for-buttons">
+
+<style id="km-fix-hero-natural-ratio-shift-up">
   @media (min-width: 769px) {
     .hero {
       position: relative !important;
+      height: calc(100vh - 95px) !important;
+      min-height: 640px !important;
+      margin: 0 !important;
+      padding: 0 !important;
       overflow: hidden !important;
+      background: #eef5ef !important;
     }
 
-    /* Shift hero image little more upward so CTA buttons are visible above cards */
+    /* Natural image ratio: no vertical stretch */
     .hero-img {
-      top: -105px !important;
-      height: calc(100% + 105px) !important;
-      object-fit: cover !important;
+      position: absolute !important;
+      left: 0 !important;
+      top: -125px !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: none !important;
+      display: block !important;
+      object-fit: contain !important;
       object-position: center top !important;
       transform: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
     }
 
-    /* Keep real cards at bottom */
+    /* Keep cards visible and not too high */
     .wide-card-row {
+      position: absolute !important;
+      left: 5.2% !important;
+      right: 5.2% !important;
       bottom: 16px !important;
       z-index: 90 !important;
+      display: grid !important;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      gap: 14px !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
     }
 
-    /* Re-align invisible click areas with shifted CTA buttons */
+    /* Re-align invisible CTA click zones with shifted buttons */
     .click-hero-farmer {
       left: 7.4% !important;
-      top: 56.5% !important;
+      top: 53.8% !important;
       width: 10.5% !important;
       height: 7% !important;
     }
 
     .click-hero-buyer {
       left: 18.8% !important;
-      top: 56.5% !important;
+      top: 53.8% !important;
       width: 9.7% !important;
       height: 7% !important;
     }
 
     .click-hero-video {
       left: 29.4% !important;
-      top: 56.5% !important;
+      top: 53.8% !important;
       width: 15.5% !important;
       height: 7% !important;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .hero-img {
+      top: -112px !important;
+    }
+
+    .wide-card-row {
+      bottom: 12px !important;
     }
   }
 </style>
@@ -956,6 +988,7 @@
   </main>
 </body>
 </html>
+
 
 
 
