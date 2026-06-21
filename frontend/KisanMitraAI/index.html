@@ -1397,8 +1397,47 @@
     window.addEventListener("scroll", applyCardsBottom, { passive: true });
   })();
 </script>
+<style id="km-hero-image-content-down-final">
+  /* Move only the homepage hero image content down */
+  .hero {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .hero-img {
+    position: absolute !important;
+    top: 38px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    object-fit: contain !important;
+    object-position: center top !important;
+    transform: none !important;
+    z-index: 1 !important;
+  }
+
+  /* Keep bottom cards at the bottom */
+  .wide-card-row {
+    position: absolute !important;
+    left: 5.2% !important;
+    right: 5.2% !important;
+    bottom: 7px !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  /* Keep navbar above everything */
+  .locked-header,
+  header,
+  nav {
+    z-index: 999999 !important;
+  }
+</style>
 </body>
 </html>
+
 
 
 
