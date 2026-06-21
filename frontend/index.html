@@ -822,7 +822,10 @@
 
 
 
-<style id="km-farmers-top-final-fix">
+
+
+
+<style id="km-farmers-topmost-clean-final">
   .locked-header {
     position: fixed !important;
     top: 18px !important;
@@ -836,22 +839,21 @@
     background: #ffffff !important;
   }
 
-  /* When Farmers is active, do not show homepage bottom cards */
-  body.km-farmers-active .hero .wide-card-row,
-  body.km-farmers-active .wide-card-row {
+  body.km-farmers-active .wide-card-row,
+  body.km-farmers-active .hero .wide-card-row {
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
   }
 </style>
 
-<script id="km-farmers-top-final-script">
+<script id="km-farmers-topmost-clean-script">
   (function () {
-    function setFarmersMode(on) {
+    function setFarmersActive(on) {
       document.body.classList.toggle("km-farmers-active", !!on);
     }
 
-    function getFarmersImageTarget() {
+    function getFarmersTarget() {
       var farmers = document.getElementById("farmers");
       if (!farmers) return null;
 
@@ -865,52 +867,47 @@
       );
     }
 
-    function scrollFarmersToTop(instant) {
-      var target = getFarmersImageTarget();
-      var header = document.querySelector(".locked-header");
+    function scrollFarmersTop(instant) {
+      var target = getFarmersTarget();
       if (!target) return;
 
-      setFarmersMode(true);
+      setFarmersActive(true);
 
-      var headerBottom = header ? header.getBoundingClientRect().bottom : 118;
-      var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-
-      /* Farmers image starts just below fixed menu */
-      var y = targetTop - headerBottom - 8;
+      var y = target.getBoundingClientRect().top + window.pageYOffset - 2;
 
       window.scrollTo({
         top: y,
         behavior: instant ? "auto" : "smooth"
       });
 
-      /* One correction after layout settles */
       setTimeout(function () {
-        var headerBottom2 = header ? header.getBoundingClientRect().bottom : 118;
-        var targetTop2 = target.getBoundingClientRect().top + window.pageYOffset;
+        var y2 = target.getBoundingClientRect().top + window.pageYOffset - 2;
         window.scrollTo({
-          top: targetTop2 - headerBottom2 - 8,
+          top: y2,
           behavior: "auto"
         });
-      }, instant ? 120 : 520);
+      }, instant ? 150 : 550);
+    }
+
+    function updateActiveByScroll() {
+      var target = getFarmersTarget();
+      if (!target) return;
+
+      var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      setFarmersActive(window.pageYOffset >= targetTop - 20);
     }
 
     window.addEventListener("load", function () {
       if (window.location.hash === "#farmers") {
         setTimeout(function () {
-          scrollFarmersToTop(true);
-        }, 350);
+          scrollFarmersTop(true);
+        }, 400);
       } else {
-        setFarmersMode(false);
+        updateActiveByScroll();
       }
     });
 
-    window.addEventListener("hashchange", function () {
-      if (window.location.hash === "#farmers") {
-        scrollFarmersToTop(false);
-      } else {
-        setFarmersMode(false);
-      }
-    });
+    window.addEventListener("scroll", updateActiveByScroll, { passive: true });
 
     document.addEventListener("click", function (event) {
       var link = event.target.closest('a[href="#farmers"]');
@@ -918,7 +915,7 @@
 
       event.preventDefault();
       history.pushState(null, "", "#farmers");
-      scrollFarmersToTop(false);
+      scrollFarmersTop(false);
     }, true);
   })();
 </script>
@@ -1128,6 +1125,7 @@
   </main>
 </body>
 </html>
+
 
 
 
