@@ -427,106 +427,7 @@
   }
 </style>
 
-<style id="km-final-remove-double-scroll-top-gap">
-  html,
-  body {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    background: #eef5ef !important;
-  }
 
-  body {
-    position: relative !important;
-  }
-
-  .page,
-  main,
-  .home-shell,
-  .page-shell {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #eef5ef !important;
-  }
-
-  /* Only one real locked header */
-  .locked-header {
-    position: fixed !important;
-    top: 18px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 99999 !important;
-  }
-
-  /* Remove white patch / top spacer */
-  .hero {
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    padding-top: 0 !important;
-    overflow: visible !important;
-    background: #eef5ef !important;
-  }
-
-  .hero-img {
-    width: 100% !important;
-    max-width: none !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    object-fit: contain !important;
-    object-position: center top !important;
-  }
-
-  /* Remove duplicate generated card overlay if present */
-  .wide-card-row,
-  .wide-card,
-  .card-icon,
-  .card-title,
-  .card-text,
-  .card-link {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* Kill any nested scrolling containers */
-  .desktop-reference-home,
-  .reference-frame,
-  .reference-wrapper {
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .desktop-reference-home::before,
-  .desktop-reference-home::after,
-  .reference-frame::before,
-  .reference-frame::after {
-    display: none !important;
-    content: none !important;
-  }
-
-  section.content {
-    margin-top: 0 !important;
-    padding-top: 64px !important;
-  }
-</style>
 <style id="km-remove-hidden-top-menu-hotspots">
   /* Remove hidden duplicate menu click zones on top of hero */
   .click-farmers,
@@ -551,37 +452,197 @@
     box-shadow: none !important;
   }
 </style>
-<style id="km-lift-bottom-cards-visible">
-  @media (min-width: 769px) {
-    /* Bring baked bottom cards slightly upward */
-    .hero {
-      position: relative !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding-top: 0 !important;
-      background: #eef5ef !important;
+
+<style id="km-real-cards-final-layout">
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    background: #eef5ef !important;
+  }
+
+  .page {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #eef5ef !important;
+    overflow: visible !important;
+  }
+
+  .locked-header {
+    position: fixed !important;
+    top: 18px !important;
+    left: clamp(18px, 2.7vw, 48px) !important;
+    right: clamp(18px, 2.7vw, 48px) !important;
+    z-index: 99999 !important;
+  }
+
+  .hero {
+    position: relative !important;
+    width: 100% !important;
+    height: calc(100vh - 8px) !important;
+    min-height: 620px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #eef5ef !important;
+  }
+
+  .hero-img {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: clamp(98px, 7vw, 128px) !important;
+    width: 100% !important;
+    height: calc(100% - clamp(98px, 7vw, 128px)) !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    display: block !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .wide-card-row {
+    position: absolute !important;
+    left: clamp(34px, 3.5vw, 58px) !important;
+    right: clamp(34px, 3.5vw, 58px) !important;
+    bottom: clamp(14px, 1.5vw, 26px) !important;
+    z-index: 40 !important;
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: clamp(10px, 1vw, 18px) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .wide-card {
+    min-height: clamp(106px, 8.4vw, 145px) !important;
+    display: grid !important;
+    grid-template-columns: clamp(46px, 3.8vw, 66px) 1fr !important;
+    align-items: center !important;
+    gap: clamp(10px, 1vw, 18px) !important;
+    padding: clamp(14px, 1.25vw, 22px) !important;
+    border-radius: clamp(15px, 1.2vw, 22px) !important;
+    background: rgba(255,255,255,0.96) !important;
+    box-shadow: 0 16px 36px rgba(5,35,14,0.16) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .wide-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 22px 48px rgba(5,35,14,0.22) !important;
+  }
+
+  .card-icon {
+    width: clamp(46px, 3.7vw, 64px) !important;
+    height: clamp(46px, 3.7vw, 64px) !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    color: #fff !important;
+    background: radial-gradient(circle at 35% 25%, #3aae38, #146d20 72%) !important;
+    font-size: clamp(20px, 1.7vw, 30px) !important;
+    box-shadow: inset 0 0 0 5px rgba(255,255,255,0.16) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .card-icon.orange {
+    background: radial-gradient(circle at 35% 25%, #ff9b1a, #f27800 72%) !important;
+  }
+
+  .card-title {
+    margin: 0 0 6px !important;
+    color: #102315 !important;
+    font-size: clamp(15px, 1.12vw, 21px) !important;
+    line-height: 1.08 !important;
+    font-weight: 900 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .card-text {
+    margin: 0 !important;
+    color: #2e3d34 !important;
+    font-size: clamp(9.2px, .68vw, 12.4px) !important;
+    line-height: 1.42 !important;
+    font-weight: 560 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .card-link {
+    display: inline-block !important;
+    margin-top: 10px !important;
+    color: #075b18 !important;
+    font-size: clamp(9.5px, .72vw, 12.6px) !important;
+    font-weight: 880 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .card-link.orange-text {
+    color: #f26522 !important;
+  }
+
+  .hero-click:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .click-farmers,
+  .click-fpo,
+  .click-buyers,
+  .click-engine,
+  .click-trust,
+  .click-contact,
+  .click-login {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  section.content {
+    margin-top: 0 !important;
+    padding-top: 64px !important;
+  }
+
+  @media (max-width: 1100px) {
+    .wide-card-row {
+      left: 18px !important;
+      right: 18px !important;
+      gap: 8px !important;
     }
 
-    .hero-img {
-      width: 100% !important;
-      height: auto !important;
-      display: block !important;
-      object-fit: contain !important;
-      object-position: center top !important;
-
-      /* adjust this value if needed: -42px, -55px, -65px */
-      transform: translateY(-52px) !important;
-      margin-bottom: -52px !important;
+    .wide-card {
+      min-height: 96px !important;
+      padding: 11px !important;
+      grid-template-columns: 40px 1fr !important;
     }
 
-    .locked-header {
-      position: fixed !important;
-      z-index: 99999 !important;
+    .card-icon {
+      width: 38px !important;
+      height: 38px !important;
+      font-size: 18px !important;
     }
 
-    section.content {
-      margin-top: 0 !important;
-      padding-top: 54px !important;
+    .card-text {
+      font-size: 8.5px !important;
+    }
+
+    .card-link {
+      display: none !important;
     }
   }
 </style>
@@ -610,7 +671,7 @@
     </header>
 
     <section class="hero">
-      <img class="hero-img" src="./home-assets/kisanmitraai-homepage-clean-final.png" alt="KisanMitraAI precision farming homepage">
+      <img class="hero-img" src="./home-assets/kisanmitraai-hero-bg-no-cards.png" alt="KisanMitraAI precision farming homepage">
 <!-- KM CLICKABLE HOTSPOTS START -->
 <a class="hero-click click-farmer-btn" href="#farmers" aria-label="I'm a Farmer"></a>
 <a class="hero-click click-buyer-btn" href="#buyers" aria-label="I'm a Buyer"></a>
@@ -624,52 +685,52 @@
 <!-- KM CLICKABLE HOTSPOTS END -->
 
       <div class="wide-card-row">
-        <a class="wide-card" href="#farmers">
-          <span class="card-icon">👨‍🌾</span>
-          <span>
-            <h3 class="card-title">For Farmers</h3>
-            <p class="card-text">AI advisory, weather updates, market insights and better yields.</p>
-            <span class="card-link">Explore for Farmers →</span>
-          </span>
-        </a>
+  <a class="wide-card" href="#farmers">
+    <span class="card-icon">👨‍🌾</span>
+    <span>
+      <h3 class="card-title">For Farmers</h3>
+      <p class="card-text">AI advisory, weather updates, market insights and better yields.</p>
+      <span class="card-link">Explore for Farmers →</span>
+    </span>
+  </a>
 
-        <a class="wide-card" href="#fpo">
-          <span class="card-icon">👥</span>
-          <span>
-            <h3 class="card-title">FPO</h3>
-            <p class="card-text">Farmer groups, aggregation, market linkage and support services.</p>
-            <span class="card-link">Explore FPO →</span>
-          </span>
-        </a>
+  <a class="wide-card" href="#fpo">
+    <span class="card-icon">👥</span>
+    <span>
+      <h3 class="card-title">FPO</h3>
+      <p class="card-text">Farmer groups, aggregation, market linkage and support services.</p>
+      <span class="card-link">Explore FPO →</span>
+    </span>
+  </a>
 
-        <a class="wide-card" href="#buyers">
-          <span class="card-icon orange">🛒</span>
-          <span>
-            <h3 class="card-title">For Buyers</h3>
-            <p class="card-text">Quality produce, verified suppliers and seamless procurement.</p>
-            <span class="card-link orange-text">Explore for Buyers →</span>
-          </span>
-        </a>
+  <a class="wide-card" href="#buyers">
+    <span class="card-icon orange">🛒</span>
+    <span>
+      <h3 class="card-title">For Buyers</h3>
+      <p class="card-text">Quality produce, verified suppliers and seamless procurement.</p>
+      <span class="card-link orange-text">Explore for Buyers →</span>
+    </span>
+  </a>
 
-        <a class="wide-card" href="#engine">
-          <span class="card-icon">🧠</span>
-          <span>
-            <h3 class="card-title">AI Engine</h3>
-            <p class="card-text">AI-backed soil, crop intelligence, image analysis and smart recommendations.</p>
-            <span class="card-link">Explore AI Engine →</span>
-          </span>
-        </a>
+  <a class="wide-card" href="#engine">
+    <span class="card-icon">🧠</span>
+    <span>
+      <h3 class="card-title">AI Engine</h3>
+      <p class="card-text">AI-backed soil, crop intelligence, image analysis and smart recommendations.</p>
+      <span class="card-link">Explore AI Engine →</span>
+    </span>
+  </a>
 
-        <a class="wide-card" href="#trust">
-          <span class="card-icon">🛡</span>
-          <span>
-            <h3 class="card-title">Trust & Transparency</h3>
-            <p class="card-text">Verified data, fair trade, secure transactions and traceability.</p>
-            <span class="card-link">Explore Trust →</span>
-          </span>
-        </a>
-      </div>
-    </section>
+  <a class="wide-card" href="#trust">
+    <span class="card-icon">🛡</span>
+    <span>
+      <h3 class="card-title">Trust & Transparency</h3>
+      <p class="card-text">Verified data, fair trade, secure transactions and traceability.</p>
+      <span class="card-link">Explore Trust →</span>
+    </span>
+  </a>
+</div>
+</section>
 
     <section class="content" id="farmers">
       <div class="section-inner">
@@ -730,6 +791,7 @@
   </main>
 </body>
 </html>
+
 
 
 
