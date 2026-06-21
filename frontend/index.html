@@ -629,6 +629,90 @@
     }
   }
 </style>
+<!-- KM HERO OVERLAP FIX START -->
+<style id="km-hero-overlap-fix">
+header,
+.topbar,
+.site-header,
+.navbar,
+.main-header {
+  position: relative !important;
+  z-index: 50 !important;
+}
+
+.hero,
+.hero-section,
+.hero-banner,
+.homepage-hero,
+.km-hero {
+  position: relative !important;
+  overflow: hidden !important;
+  background-position: center top !important;
+  padding-top: 24px !important;
+  padding-bottom: 230px !important;
+  min-height: 760px !important;
+}
+
+.hero::before,
+.hero-section::before,
+.hero-banner::before,
+.homepage-hero::before,
+.km-hero::before {
+  background-position: center top !important;
+}
+
+.hero-content,
+.hero-inner,
+.hero-copy,
+.hero-left {
+  position: relative !important;
+  z-index: 8 !important;
+}
+
+.hero-actions,
+.hero-buttons,
+.cta-row,
+.hero-cta,
+.hero-ctas {
+  position: relative !important;
+  z-index: 12 !important;
+  margin-top: 24px !important;
+  margin-bottom: 56px !important;
+}
+
+.hero-actions a,
+.hero-buttons a,
+.cta-row a,
+.hero-cta a,
+.hero-ctas a,
+.hero-actions button,
+.hero-buttons button,
+.cta-row button,
+.hero-cta button,
+.hero-ctas button {
+  position: relative !important;
+  z-index: 13 !important;
+}
+
+.feature-cards,
+.feature-grid,
+.home-cards,
+.cards-row,
+.hero-cards,
+.service-cards,
+.homepage-cards {
+  position: relative !important;
+  z-index: 7 !important;
+  margin-top: -90px !important;
+}
+
+.feature-card,
+.feature,
+.card {
+  position: relative !important;
+}
+</style>
+<!-- KM HERO OVERLAP FIX END -->
 </head>
 
 <body>
@@ -772,6 +856,7 @@
   </main>
 </body>
 </html>
+
 
 
 
