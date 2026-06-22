@@ -77,26 +77,11 @@ body{
 .hs-login     { left: 90.5%; top: 3.8%; width: 7.6%;  height: 8.8%; }
 
 /* Hero center buttons - enlarged clickable areas */
-.hs-farmer-btn{
-  left: 3.2% !important;
-  top: 67.2% !important;
-  width: 16.2% !important;
-  height: 9.2% !important;
-}
 
-.hs-buyer-btn{
-  left: 19.1% !important;
-  top: 67.2% !important;
-  width: 18.8% !important;
-  height: 9.2% !important;
-}
 
-.hs-how-btn{
-  left: 38.0% !important;
-  top: 67.2% !important;
-  width: 15.0% !important;
-  height: 9.2% !important;
-}
+
+
+
 
 /* Scroll sections */
 .page-section{
@@ -147,4 +132,38 @@ body{
   .page-section{
     width: 100%;
   }
+}
+
+
+/* Fixed hero button click areas */
+.hs-farmer-btn{
+  left: 3.2% !important;
+  top: 66.0% !important;
+  width: 16.5% !important;
+  height: 10.2% !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.hs-buyer-btn{
+  left: 18.8% !important;
+  top: 66.0% !important;
+  width: 19.0% !important;
+  height: 10.2% !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.hs-how-btn{
+  left: 37.5% !important;
+  top: 66.0% !important;
+  width: 16.0% !important;
+  height: 10.2% !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.hotspot{
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
