@@ -183,3 +183,14 @@ body{
   width: 14.0% !important;
   height: 7.4% !important;
 }
+
+
+/* Remove default button style from invisible CTA buttons */
+button.hotspot {
+  border: 0 !important;
+  outline: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
