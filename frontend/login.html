@@ -31,6 +31,25 @@ input:focus{border-color:#075b18;box-shadow:0 0 0 4px rgba(7,91,24,.10)}
 .signup{margin-top:16px;border:1.5px solid #f26522;color:#f26522;background:rgba(255,255,255,.72)}
 .back{display:block;margin-top:20px;text-align:center;color:#075b18;font-weight:800;font-size:14px}
 @media(max-width:768px){.locked-header{top:12px;left:12px;right:12px;height:66px;padding:0 14px}.brand{min-width:0}.brand img{height:50px}.nav{display:none}.login{min-width:86px;height:42px;font-size:14px}.login-page{padding-top:100px}.roles{grid-template-columns:repeat(2,1fr)}}
+
+/* Hide baked logo in login background */
+.login-page::before {
+  content: "";
+  position: fixed;
+  top: 162px;
+  left: 36px;
+  width: 285px;
+  height: 105px;
+  background: rgba(238,245,239,0.92);
+  border-radius: 0 0 26px 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wrap {
+  position: relative;
+  z-index: 10;
+}
 </style>
 </head>
 <body>
@@ -61,4 +80,5 @@ document.querySelectorAll(".role").forEach(role=>{role.addEventListener("click",
 </script>
 </body>
 </html>
+
 
