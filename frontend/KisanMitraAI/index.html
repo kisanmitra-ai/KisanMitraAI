@@ -939,8 +939,144 @@
     window.addEventListener("resize", centerNavbarText);
   })();
 </script>
+<style id="km-final-home-click-zones">
+  .hero {
+    position: relative !important;
+  }
+
+  .km-hero-click-zone {
+    position: absolute !important;
+    z-index: 99998 !important;
+    display: block !important;
+    cursor: pointer !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,0) !important;
+    text-decoration: none !important;
+  }
+
+  .km-hero-click-zone:hover {
+    background: rgba(255,255,255,0.10) !important;
+    outline: 2px solid rgba(18, 110, 38, 0.18) !important;
+  }
+
+  /* Top hero buttons */
+  .km-zone-farmer-btn {
+    left: 4.8% !important;
+    top: 65.8% !important;
+    width: 12.7% !important;
+    height: 7.2% !important;
+  }
+
+  .km-zone-buyer-btn {
+    left: 18.0% !important;
+    top: 65.8% !important;
+    width: 12.8% !important;
+    height: 7.2% !important;
+  }
+
+  .km-zone-how-btn {
+    left: 31.7% !important;
+    top: 65.8% !important;
+    width: 16.5% !important;
+    height: 7.2% !important;
+  }
+
+  /* Bottom cards */
+  .km-zone-card-1 {
+    left: 4.8% !important;
+    top: 78.2% !important;
+    width: 23.0% !important;
+    height: 17.8% !important;
+  }
+
+  .km-zone-card-2 {
+    left: 29.0% !important;
+    top: 78.2% !important;
+    width: 23.0% !important;
+    height: 17.8% !important;
+  }
+
+  .km-zone-card-3 {
+    left: 53.3% !important;
+    top: 78.2% !important;
+    width: 23.0% !important;
+    height: 17.8% !important;
+  }
+
+  .km-zone-card-4 {
+    left: 77.2% !important;
+    top: 78.2% !important;
+    width: 20.8% !important;
+    height: 17.8% !important;
+  }
+</style>
+
+<script id="km-final-home-click-zones-script">
+  (function () {
+    function ensureClickZones() {
+      var hero = document.querySelector(".hero");
+      if (!hero) return;
+
+      if (hero.querySelector(".km-hero-click-zone")) return;
+
+      var zones = [
+        {
+          cls: "km-zone-farmer-btn",
+          href: "#farmers",
+          label: "Open Farmers page"
+        },
+        {
+          cls: "km-zone-buyer-btn",
+          href: "#buyers",
+          label: "Open Buyers page"
+        },
+        {
+          cls: "km-zone-how-btn",
+          href: "#how-it-works",
+          label: "See how it works"
+        },
+        {
+          cls: "km-zone-card-1",
+          href: "#farmers",
+          label: "Open AI-powered insights for farmers"
+        },
+        {
+          cls: "km-zone-card-2",
+          href: "#trust",
+          label: "Open Trust and Transparency"
+        },
+        {
+          cls: "km-zone-card-3",
+          href: "#buyers",
+          label: "Open Global Market Linkage"
+        },
+        {
+          cls: "km-zone-card-4",
+          href: "#ai-engine",
+          label: "Open Sustainable Farming and AI Engine"
+        }
+      ];
+
+      zones.forEach(function (zone) {
+        var a = document.createElement("a");
+        a.className = "km-hero-click-zone " + zone.cls;
+        a.href = zone.href;
+        a.setAttribute("aria-label", zone.label);
+        a.setAttribute("title", zone.label);
+        hero.appendChild(a);
+      });
+    }
+
+    window.addEventListener("load", function () {
+      ensureClickZones();
+      setTimeout(ensureClickZones, 300);
+      setTimeout(ensureClickZones, 1000);
+    });
+  })();
+</script>
 </body>
 </html>
+
 
 
 
