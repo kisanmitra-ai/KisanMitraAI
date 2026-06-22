@@ -151,6 +151,37 @@
   height: 7.2% !important;
 }
 /* CLICK AREA FIX END */
+
+/* CORRECT LOGO PATCH START */
+.real-logo-wrap {
+  position: absolute !important;
+  left: 3.4% !important;
+  top: 3.45% !important;
+  width: 16.3% !important;
+  height: 7.15% !important;
+  z-index: 99998 !important;
+  background: #ffffff !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.real-logo-wrap img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  display: block !important;
+}
+
+.home-master-img {
+  pointer-events: none !important;
+}
+/* CORRECT LOGO PATCH END */
 </style>
 </head>
 
@@ -159,6 +190,9 @@
     <section class="km-section" id="home">
       <div class="home-master-wrap">
         <img class="home-master-img" src="./assets/home-master-reference.png?v=final-home-1" alt="KisanMitraAI Home" />
+        <a class="real-logo-wrap" href="#home" aria-label="KisanMitraAI Home">
+          <img src="./assets/kisanmitra-logo.png?v=correct-logo-final" alt="KisanMitraAI" />
+        </a>
 
         <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
         <a class="hotspot hs-farmer" href="#farmer" aria-label="Farmers"></a>
@@ -245,4 +279,5 @@
   </script>
 </body>
 </html>
+
 
