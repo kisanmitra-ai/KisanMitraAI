@@ -1,1223 +1,332 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KisanMitraAI | Precision Farming</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KisanMitraAI</title>
 
   <style>
-    :root {
-      --green: #075b18;
-      --dark: #06210d;
-      --orange: #f26522;
-      --soft: #eef5ef;
-    }
-
     * {
       box-sizing: border-box;
-    }
-
-    html,
-    body {
       margin: 0;
       padding: 0;
+    }
+
+    html, body {
       width: 100%;
       min-height: 100%;
-      background: var(--soft);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
+    body {
       min-height: 100vh;
-      background: var(--soft);
     }
 
-    /* LOCKED TOP LOGO + MENU */
-    .locked-header {
-      position: fixed;
-      top: 18px;
-      left: clamp(18px, 2.7vw, 48px);
-      right: clamp(18px, 2.7vw, 48px);
-      height: clamp(74px, 5.4vw, 104px);
-      z-index: 99999;
+    .page-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: 10px 8px 0;
+      background: #ffffff;
+    }
+
+    .km-topbar {
+      width: min(1280px, calc(100% - 24px));
+      min-height: 72px;
+      margin: 0 auto;
+      padding: 10px 18px 10px 22px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.10);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 28px;
-      padding: 0 clamp(18px, 2.2vw, 34px);
-      background: rgba(255,255,255,0.96);
-      border-radius: clamp(16px, 1.3vw, 26px);
-      box-shadow: 0 18px 44px rgba(5,35,14,0.13);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      gap: 20px;
     }
 
-    .brand {
+    .km-brand {
       display: flex;
       align-items: center;
-      min-width: 250px;
+      text-decoration: none;
+      flex: 0 0 auto;
     }
 
-    .brand img {
-      height: clamp(58px, 4.6vw, 86px);
-      width: auto;
-      display: block;
+    .km-brand img {
+      width: 200px;
+      height: 56px;
       object-fit: contain;
-      filter: drop-shadow(0 6px 10px rgba(5,35,14,0.08));
+      object-position: left center;
+      display: block;
     }
 
-    .nav {
+    .km-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: clamp(26px, 3.6vw, 58px);
-      color: #082e14;
-      font-size: clamp(14px, 1vw, 18px);
-      font-weight: 760;
-      white-space: nowrap;
+      justify-content: flex-end;
+      gap: 38px;
       flex: 1;
+      min-width: 0;
     }
 
-    .nav a {
-      transition: color .2s ease, transform .2s ease;
+    .km-nav a {
+      text-decoration: none;
+      color: #14351f;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
-    .nav a:hover {
-      color: var(--orange);
-      transform: translateY(-1px);
-    }
-
-    .login {
-      min-width: clamp(96px, 8.4vw, 138px);
-      height: clamp(46px, 3.5vw, 62px);
-      border-radius: clamp(12px, .9vw, 18px);
-      display: flex;
+    .km-login-btn {
+      min-width: 122px;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+      color: #ffffff !important;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: linear-gradient(180deg, #157b27, #0b611c);
-      color: #fff;
-      font-size: clamp(15px, 1.05vw, 19px);
-      font-weight: 850;
-      box-shadow: 0 12px 26px rgba(7,91,24,0.25);
-    }
-
-    .login-icon {
-      width: 26px;
-      height: 26px;
-      border: 2px solid rgba(255,255,255,.95);
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      font-size: 14px;
-      line-height: 1;
-    }
-
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-      background: var(--soft);
-    }
-
-    .hero-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-      object-position: center top;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* hide baked/old bottom card row with polished card layer */
-    .wide-card-row {
-      position: absolute;
-      left: clamp(46px, 5.4vw, 92px);
-      right: clamp(46px, 5.4vw, 92px);
-      bottom: clamp(22px, 2vw, 38px);
-      z-index: 40;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: clamp(12px, 1.1vw, 20px);
-    }
-
-    .wide-card {
-      min-height: clamp(126px, 10.4vw, 178px);
-      display: grid;
-      grid-template-columns: clamp(56px, 4.4vw, 78px) 1fr;
-      align-items: center;
-      gap: clamp(14px, 1.2vw, 22px);
-      padding: clamp(18px, 1.55vw, 28px);
-      border-radius: clamp(18px, 1.3vw, 26px);
-      background: rgba(255,255,255,0.97);
-      border: 1px solid rgba(255,255,255,0.9);
-      box-shadow: 0 20px 46px rgba(5,35,14,0.16);
-      overflow: hidden;
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-
-    .wide-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 28px 60px rgba(5,35,14,0.22);
-    }
-
-    .card-icon {
-      width: clamp(54px, 4.1vw, 74px);
-      height: clamp(54px, 4.1vw, 74px);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #fff;
-      background: radial-gradient(circle at 35% 25%, #41ad3b, #166d20 72%);
-      font-size: clamp(24px, 2vw, 34px);
-      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.16);
-    }
-
-    .card-icon.orange {
-      background: radial-gradient(circle at 35% 25%, #ff9d1c, #f27800 72%);
-    }
-
-    .card-title {
-      margin: 0 0 8px;
-      color: #102315;
-      font-size: clamp(17px, 1.35vw, 24px);
-      line-height: 1.05;
+      font-size: 15px;
       font-weight: 900;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.1px;
+      box-shadow:
+        0 16px 30px rgba(6, 101, 29, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
 
-    .card-text {
-      margin: 0;
-      color: #2e3d34;
-      font-size: clamp(10.5px, .78vw, 14px);
-      line-height: 1.45;
-      font-weight: 560;
+    .km-login-btn:hover {
+      transform: translateY(-1px);
+      background: linear-gradient(180deg, #0d8d2d 0%, #06651d 100%);
+      box-shadow:
+        0 20px 36px rgba(6, 101, 29, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
-    .card-link {
-      display: inline-block;
-      margin-top: 14px;
-      color: var(--green);
-      font-size: clamp(11px, .82vw, 14px);
-      font-weight: 880;
+    .km-login-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.92);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex: 0 0 auto;
     }
 
-    .card-link.orange-text {
-      color: var(--orange);
+    .km-login-icon::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ffffff;
+      position: absolute;
+      top: 5px;
     }
 
-    section.content {
-      padding: 76px 6vw;
-      background: var(--soft);
+    .km-login-icon::after {
+      content: "";
+      width: 12px;
+      height: 6px;
+      border-radius: 10px 10px 4px 4px;
+      border: 2px solid #ffffff;
+      border-bottom: 0;
+      position: absolute;
+      bottom: 5px;
     }
 
-    .section-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-
-    .section-head {
-      max-width: 900px;
-      margin: 0 auto 34px;
-      text-align: center;
-    }
-
-    .section-head h2 {
-      margin: 0 0 12px;
-      color: var(--green);
-      font-size: clamp(32px, 4vw, 54px);
-      line-height: 1.05;
-      font-weight: 950;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: #53625a;
-      font-size: 17px;
-      line-height: 1.55;
-      font-weight: 560;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .feature {
-      padding: 24px;
-      border-radius: 22px;
-      background: #fff;
-      border: 1px solid rgba(7,91,24,0.12);
-      box-shadow: 0 12px 28px rgba(6,35,13,0.07);
-    }
-
-    .feature-icon {
-      width: 52px;
-      height: 52px;
-      display: grid;
-      place-items: center;
-      border-radius: 16px;
-      background: #e9f6ec;
-      color: var(--green);
-      font-size: 26px;
-      margin-bottom: 16px;
-    }
-
-    .feature h3 {
-      margin: 0 0 9px;
-      color: #102315;
-      font-size: 20px;
-    }
-
-    .feature p {
-      margin: 0;
-      color: #53625a;
-      line-height: 1.52;
-      font-weight: 540;
+    .km-mobile-header,
+    .km-mobile-menu {
+      display: none;
     }
 
     @media (max-width: 1100px) {
-      .wide-card-row {
-        left: 36px;
-        right: 36px;
-        gap: 10px;
+      .km-topbar {
+        width: calc(100% - 16px);
+        padding: 10px 14px 10px 16px;
       }
 
-      .wide-card {
-        grid-template-columns: 42px 1fr;
-        padding: 12px;
-        min-height: 96px;
+      .km-brand img {
+        width: 170px;
+        height: 48px;
       }
 
-      .card-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 19px;
+      .km-nav {
+        gap: 18px;
+        overflow-x: auto;
       }
 
-      .card-text {
-        font-size: 9px;
+      .km-nav a {
+        font-size: 13px;
       }
 
-      .card-link {
-        display: none;
+      .km-login-btn {
+        min-width: 104px;
+        height: 44px;
+        padding: 0 18px;
+        border-radius: 14px;
+        font-size: 14px;
+      }
+
+      .km-login-icon {
+        width: 22px;
+        height: 22px;
       }
     }
 
     @media (max-width: 768px) {
-      .locked-header {
-        top: 12px;
-        left: 12px;
-        right: 12px;
-        height: 66px;
-        padding: 0 14px;
-      }
-
-      .brand {
-        min-width: 0;
-      }
-
-      .brand img {
-        height: 50px;
-      }
-
-      .nav {
+      .km-topbar {
         display: none;
       }
 
-      .login {
-        min-width: 86px;
-        height: 42px;
-        font-size: 14px;
+      .km-mobile-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 10px 0;
       }
 
-      .hero {
-        min-height: auto;
-        padding-top: 84px;
+      .km-menu-btn {
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
       }
 
-      .hero-img {
-        display: none;
-      }
-
-      .hero::before {
-        content: "Exact Information.\A Precision Farming.\A Stronger Market Connection.";
-        white-space: pre-line;
+      .km-menu-btn span {
+        width: 20px;
+        height: 2px;
+        border-radius: 999px;
+        background: #14351f;
         display: block;
-        padding: 54px 22px 18px;
-        color: var(--green);
-        font-size: clamp(36px, 10vw, 58px);
-        line-height: 1.06;
-        font-weight: 950;
-        text-align: center;
       }
 
-      .wide-card-row {
-        position: relative;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        grid-template-columns: 1fr;
-        padding: 18px;
+      .km-mobile-logo {
+        height: 44px;
+        padding: 0 12px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        display: flex;
+        align-items: center;
       }
 
-      .wide-card {
-        min-height: 96px;
+      .km-mobile-logo img {
+        width: 132px;
+        height: 34px;
+        object-fit: contain;
+        display: block;
       }
 
-      .grid {
-        grid-template-columns: 1fr;
+      .km-mobile-menu {
+        position: fixed;
+        top: 62px;
+        left: 10px;
+        width: 220px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.98);
+        border-radius: 16px;
+        box-shadow: 0 14px 36px rgba(15,23,42,0.14);
+        padding: 10px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .km-mobile-menu.open {
+        display: flex;
+      }
+
+      .km-mobile-menu a {
+        text-decoration: none;
+        color: #14351f;
+        font-size: 14px;
+        font-weight: 800;
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+
+      .km-mobile-menu a:last-child {
+        background: #0a7a23;
+        color: #ffffff;
       }
     }
   </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
 
 <body>
-  <main class="page">
-    <header class="locked-header">
-      <a class="brand" href="#">
-        <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI logo">
+  <div class="page-shell">
+    <header class="km-topbar">
+      <a class="km-brand" href="./index.html">
+        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
       </a>
 
-      <nav class="nav" aria-label="Main menu">
-        <a href="#farmers">Farmers</a>
-        <a href="#fpo">FPO</a>
-        <a href="#buyers">Buyers</a>
-        <a href="#engine">AI Engine</a>
-        <a href="#trust">Trust</a>
-        <a href="#contact">Contact</a>
+      <nav class="km-nav">
+        <a href="./index.html">Home</a>
+        <a href="./farmer-dashboard.html">Farmers</a>
+        <a href="./fpo-dashboard.html">FPO</a>
+        <a href="./buyer-dashboard.html">Buyer</a>
+        <a href="./ai-engine.html">AI Engine</a>
+        <a href="./trust.html">Trust</a>
+        <a href="./contact.html">Contact</a>
+        <a class="km-login-btn" href="./login.html">
+          <span class="km-login-icon"></span>
+          Login
+        </a>
       </nav>
+    </header>
 
-      <a class="login" href="./login.html">
-        <span class="login-icon">◎</span>
-        <span>Login</span>
+    <header class="km-mobile-header">
+      <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a class="km-mobile-logo" href="./index.html">
+        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
       </a>
     </header>
 
-    <section class="hero">
-      <img class="hero-img" src="./home-assets/kisanmitraai-hero-bg-clean-top.png" alt="KisanMitraAI precision farming homepage">
-<!-- KM HERO CTA CLICKS START -->
-<a class="hero-cta-click click-hero-farmer" href="#farmers" aria-label="I'm a Farmer"></a>
-<a class="hero-cta-click click-hero-buyer" href="#buyers" aria-label="I'm a Buyer"></a>
-<a class="hero-cta-click click-hero-video" href="#how-it-works" aria-label="See How It Works"></a>
-<!-- KM HERO CTA CLICKS END -->
-<!-- KM REAL CARDS START -->
-<div class="wide-card-row">
-  <a class="wide-card" href="#farmers">
-    <span class="card-icon" aria-hidden="true">
-  <svg viewBox="0 0 48 48">
-    <circle class="soft-fill" cx="24" cy="24" r="17"/>
-    <path d="M15 19c3-5 15-5 18 0"/>
-    <path d="M17 18l2-6h10l2 6"/>
-    <path d="M18 25c0 4 3 7 6 7s6-3 6-7"/>
-    <path d="M18 38c1.5-5 10.5-5 12 0"/>
-    <path d="M10 35c4-7 8-8 14-8s10 1 14 8"/>
-    <path d="M34 18c3-2 6-3 8-3-1 3-3 5-7 6"/>
-    <path d="M14 18c-3-2-6-3-8-3 1 3 3 5 7 6"/>
-  </svg>
-</span>
-    <span>
-      <h3 class="card-title">For Farmers</h3>
-      <p class="card-text">AI advisory, weather updates, market insights and better yields.</p>
-      <span class="card-link">Explore for Farmers →</span>
-    </span>
-  </a>
-
-  <a class="wide-card" href="#fpo">
-    <span class="card-icon" aria-hidden="true">
-  <svg viewBox="0 0 48 48">
-    <circle class="soft-fill" cx="24" cy="24" r="17"/>
-    <circle cx="24" cy="17" r="5"/>
-    <circle cx="14" cy="23" r="4"/>
-    <circle cx="34" cy="23" r="4"/>
-    <path d="M16 37c1-6 15-6 16 0"/>
-    <path d="M7 36c.8-5 10-5 11 0"/>
-    <path d="M30 36c1-5 10-5 11 0"/>
-    <path d="M24 22v6"/>
-    <path d="M17 27l-3 3"/>
-    <path d="M31 27l3 3"/>
-  </svg>
-</span>
-    <span>
-      <h3 class="card-title">FPO</h3>
-      <p class="card-text">Farmer groups, aggregation, market linkage and support services.</p>
-      <span class="card-link">Explore FPO →</span>
-    </span>
-  </a>
-
-  <a class="wide-card" href="#buyers">
-    <span class="card-icon orange" aria-hidden="true">
-  <svg viewBox="0 0 48 48">
-    <circle class="soft-fill" cx="24" cy="24" r="17"/>
-    <path d="M11 13h5l3 17h16l4-12H18"/>
-    <path d="M20 36a2.5 2.5 0 1 0 0 .1"/>
-    <path d="M34 36a2.5 2.5 0 1 0 0 .1"/>
-    <path d="M21 23h13"/>
-    <path d="M23 18v10"/>
-    <path d="M31 18v10"/>
-  </svg>
-</span>
-    <span>
-      <h3 class="card-title">For Buyers</h3>
-      <p class="card-text">Quality produce, verified suppliers and seamless procurement.</p>
-      <span class="card-link orange-text">Explore for Buyers →</span>
-    </span>
-  </a>
-
-  <a class="wide-card" href="#engine">
-    <span class="card-icon" aria-hidden="true">
-  <svg viewBox="0 0 48 48">
-    <circle class="soft-fill" cx="24" cy="24" r="17"/>
-    <path d="M19 10c-4 1-6 4-6 8 0 2 1 4 3 5-2 1-4 3-4 7 0 5 4 8 9 8"/>
-    <path d="M29 10c4 1 6 4 6 8 0 2-1 4-3 5 2 1 4 3 4 7 0 5-4 8-9 8"/>
-    <path d="M24 11v26"/>
-    <path d="M18 19h-5"/>
-    <path d="M35 19h-5"/>
-    <path d="M18 30h-5"/>
-    <path d="M35 30h-5"/>
-    <circle class="fill-white" cx="13" cy="19" r="1.8"/>
-    <circle class="fill-white" cx="35" cy="19" r="1.8"/>
-    <circle class="fill-white" cx="13" cy="30" r="1.8"/>
-    <circle class="fill-white" cx="35" cy="30" r="1.8"/>
-  </svg>
-</span>
-    <span>
-      <h3 class="card-title">AI Engine</h3>
-      <p class="card-text">AI-backed soil, crop intelligence, image analysis and smart recommendations.</p>
-      <span class="card-link">Explore AI Engine →</span>
-    </span>
-  </a>
-
-  <a class="wide-card" href="#trust">
-    <span class="card-icon" aria-hidden="true">
-  <svg viewBox="0 0 48 48">
-    <circle class="soft-fill" cx="24" cy="24" r="17"/>
-    <path d="M24 8l14 6v9c0 9-6 15-14 18-8-3-14-9-14-18v-9l14-6z"/>
-    <path d="M17 24l5 5 10-11"/>
-  </svg>
-</span>
-    <span>
-      <h3 class="card-title">Trust & Transparency</h3>
-      <p class="card-text">Verified data, fair trade, secure transactions and traceability.</p>
-      <span class="card-link">Explore Trust →</span>
-    </span>
-  </a>
-</div>
-<!-- KM REAL CARDS END -->
-
-
-
-      </section>
-<!-- KM FARMERS IMAGE SECTION START -->
-<section id="farmers" class="km-farmers-image-section" aria-label="Farmers">
-  <div class="km-farmers-image-wrap">
-    <img src="./home-assets/kisanmitraai-farmers-page-perfect.png" alt="KisanMitraAI Farmers AI-powered solutions page" loading="lazy">
-
-    <a class="km-farmers-img-click km-click-smart-farming" href="#contact" aria-label="Smart Farming Solutions"></a>
-    <a class="km-farmers-img-click km-click-weather-top" href="#contact" aria-label="Real-time Weather Updates"></a>
-    <a class="km-farmers-img-click km-click-crop-health" href="#contact" aria-label="Crop Health Monitoring"></a>
-    <a class="km-farmers-img-click km-click-market-top" href="#contact" aria-label="Market Price Insights"></a>
-
-    <a class="km-farmers-img-click km-click-crop-advisory" href="#contact" aria-label="Crop Advisory"></a>
-    <a class="km-farmers-img-click km-click-weather-alerts" href="#contact" aria-label="Weather Alerts"></a>
-    <a class="km-farmers-img-click km-click-market-prices" href="#contact" aria-label="Market Prices"></a>
-    <a class="km-farmers-img-click km-click-farming-guides" href="#contact" aria-label="Farming Guides"></a>
-    <a class="km-farmers-img-click km-click-community-support" href="#contact" aria-label="Community Support"></a>
+    <div class="km-mobile-menu" id="kmMobileMenu">
+      <a href="./index.html">Home</a>
+      <a href="./farmer-dashboard.html">Farmers</a>
+      <a href="./fpo-dashboard.html">FPO</a>
+      <a href="./buyer-dashboard.html">Buyer</a>
+      <a href="./ai-engine.html">AI Engine</a>
+      <a href="./trust.html">Trust</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html">Login</a>
+    </div>
   </div>
-</section>
-<!-- KM FARMERS IMAGE SECTION END -->
 
-    
+  <script>
+    const kmMenuBtn = document.getElementById("kmMenuBtn");
+    const kmMobileMenu = document.getElementById("kmMobileMenu");
 
-
-
-    
-
-
-
-    
-
-
-
-<section class="content" id="buyers">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>Trusted tools for buyers</h2>
-          <p>Better crop sourcing with visibility, trust, quantity expectation and procurement intelligence.</p>
-        </div>
-      </div>
-    </section>
-
-    
-
-
-
-<section class="content" id="engine">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>KisanMitraAI Engine</h2>
-          <p>AI layer connecting farms, crop signals, weather, accounts, mandi rates, buyers and trust systems.</p>
-        </div>
-      </div>
-    </section>
-
-    
-
-
-
-<section class="content" id="trust">
-      <div class="section-inner">
-        <div class="section-head">
-          <h2>Trust & transparency</h2>
-          <p>Verified data, transparent flow, better record keeping and safer crop-to-market interactions.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style id="km-final-clean-image-homepage">
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow-x: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  .hero {
-    position: relative !important;
-    width: 100% !important;
-    height: calc(100vh - 6px) !important;
-    min-height: 650px !important;
-    max-height: 820px !important;
-    overflow: hidden !important;
-    background: #eef5ef !important;
-  }
-
-  .hero::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: url("home-assets/kisanmitraai-homepage-final-clean.png?v=v2-clean-20260622") !important;
-    background-size: cover !important;
-    background-position: center top !important;
-    background-repeat: no-repeat !important;
-    z-index: 1 !important;
-  }
-
-  .hero > img,
-  .hero img,
-  .hero .hero-img,
-  .hero .hero-copy,
-  .hero .hero-content,
-  .hero .hero-text,
-  .hero .cta-row,
-  .hero .wide-card-row {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
-
-  .km-clean-navbar,
-  .locked-header,
-  header,
-  nav {
-    position: fixed !important;
-    top: 7px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 999999 !important;
-  }
-</style>
-
-
-
-
-
-<style id="km-remove-white-hero-mask-final">
-  /* Remove the white layer covering the hero image */
-  .hero::after {
-    display: none !important;
-    content: none !important;
-    background: transparent !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  /* Keep final hero image visible and fitted */
-  .hero::before {
-    content: "" !important;
-    position: absolute !important;
-    inset: 0 !important;
-    background-image: url("home-assets/kisanmitraai-homepage-final-clean.png?v=final-clean-real-20260622") !important;
-    background-size: 100% auto !important;
-    background-position: center -78px !important;
-    background-repeat: no-repeat !important;
-    z-index: 1 !important;
-  }
-
-  .hero {
-    position: relative !important;
-    overflow: hidden !important;
-    height: calc(100vh - 6px) !important;
-    min-height: 650px !important;
-    background: #eef5ef !important;
-  }
-
-  /* Real clickable top navbar only */
-  .km-clean-navbar,
-  .locked-header,
-  header,
-  nav {
-    position: fixed !important;
-    top: 7px !important;
-    left: clamp(18px, 2.7vw, 48px) !important;
-    right: clamp(18px, 2.7vw, 48px) !important;
-    z-index: 999999 !important;
-  }
-</style>
-<style id="km-navbar-text-middle-final">
-  /* Center menu text vertically inside top navbar */
-  .km-clean-navbar,
-  .locked-header,
-  header,
-  nav {
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  .km-clean-navbar a,
-  .km-clean-navbar button,
-  .locked-header a,
-  .locked-header button,
-  header a,
-  header button,
-  nav a,
-  nav button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1 !important;
-    vertical-align: middle !important;
-  }
-
-  /* Menu text group */
-  .km-clean-navbar ul,
-  .km-clean-navbar .menu,
-  .km-clean-navbar .nav,
-  .km-clean-navbar .nav-links,
-  .locked-header ul,
-  .locked-header .menu,
-  .locked-header .nav,
-  .locked-header .nav-links,
-  header ul,
-  header .menu,
-  header .nav,
-  header .nav-links,
-  nav ul,
-  nav .menu,
-  nav .nav,
-  nav .nav-links {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 100% !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  /* Individual menu items */
-  .km-clean-navbar li,
-  .locked-header li,
-  header li,
-  nav li {
-    display: flex !important;
-    align-items: center !important;
-    height: 100% !important;
-  }
-
-  /* Login button also vertically centered */
-  .km-clean-navbar .login,
-  .km-clean-navbar [class*="login"],
-  .locked-header .login,
-  .locked-header [class*="login"],
-  header .login,
-  header [class*="login"],
-  nav .login,
-  nav [class*="login"] {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 1 !important;
-  }
-</style>
-
-<script id="km-navbar-text-middle-final-script">
-  (function () {
-    function textOf(el) {
-      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
-    }
-
-    function findTopNavbar() {
-      var all = Array.from(document.querySelectorAll("header, nav, div, section"));
-      var matches = all.filter(function (el) {
-        var text = textOf(el);
-        var r = el.getBoundingClientRect();
-
-        return (
-          text.includes("Farmers") &&
-          text.includes("FPO") &&
-          text.includes("Buyers") &&
-          text.includes("AI Engine") &&
-          text.includes("Login") &&
-          r.width > window.innerWidth * 0.65 &&
-          r.height >= 55 &&
-          r.height <= 130
-        );
+    if (kmMenuBtn && kmMobileMenu) {
+      kmMenuBtn.addEventListener("click", function () {
+        kmMobileMenu.classList.toggle("open");
       });
 
-      if (!matches.length) return null;
-
-      matches.sort(function (a, b) {
-        var ar = a.getBoundingClientRect();
-        var br = b.getBoundingClientRect();
-        return (br.width * br.height) - (ar.width * ar.height);
-      });
-
-      return matches[0];
-    }
-
-    function centerNavbarText() {
-      var nav = findTopNavbar();
-      if (!nav) return;
-
-      nav.classList.add("km-clean-navbar");
-
-      nav.style.setProperty("display", "flex", "important");
-      nav.style.setProperty("align-items", "center", "important");
-
-      nav.querySelectorAll("a, button, li, ul, div").forEach(function (el) {
-        var text = textOf(el);
-
-        if (
-          text === "Farmers" ||
-          text === "FPO" ||
-          text === "Buyers" ||
-          text === "AI Engine" ||
-          text === "Trust" ||
-          text === "Contact" ||
-          text.includes("Login")
-        ) {
-          el.style.setProperty("display", "inline-flex", "important");
-          el.style.setProperty("align-items", "center", "important");
-          el.style.setProperty("justify-content", "center", "important");
-          el.style.setProperty("line-height", "1", "important");
-          el.style.setProperty("margin-top", "0", "important");
-          el.style.setProperty("margin-bottom", "0", "important");
-          el.style.setProperty("padding-top", "0", "important");
-          el.style.setProperty("padding-bottom", "0", "important");
+      document.addEventListener("click", function (e) {
+        if (!kmMenuBtn.contains(e.target) && !kmMobileMenu.contains(e.target)) {
+          kmMobileMenu.classList.remove("open");
         }
       });
     }
-
-    window.addEventListener("load", function () {
-      centerNavbarText();
-      setTimeout(centerNavbarText, 300);
-      setTimeout(centerNavbarText, 900);
-      setTimeout(centerNavbarText, 1600);
-    });
-
-    window.addEventListener("resize", centerNavbarText);
-  })();
-</script>
-
-
-
-
-
-
-<style id="km-final-home-click-zones">
-  .hero {
-    position: relative !important;
-  }
-
-  .km-hero-click-zone {
-    position: absolute !important;
-    z-index: 99998 !important;
-    display: block !important;
-    cursor: pointer !important;
-    border-radius: 16px !important;
-    background: rgba(255,255,255,0) !important;
-    text-decoration: none !important;
-  }
-
-  .km-hero-click-zone:hover {
-    background: rgba(255,255,255,0.08) !important;
-    outline: 2px solid rgba(18, 110, 38, 0.22) !important;
-  }
-
-  /* Hero buttons — shifted down and tightened */
-  .km-zone-farmer-btn {
-    left: 4.8% !important;
-    top: 61.7% !important;
-    width: 11.7% !important;
-    height: 6.7% !important;
-  }
-
-  .km-zone-buyer-btn {
-    left: 18.2% !important;
-    top: 61.7% !important;
-    width: 11.8% !important;
-    height: 6.7% !important;
-  }
-
-  .km-zone-how-btn {
-    left: 31.8% !important;
-    top: 61.7% !important;
-    width: 14.8% !important;
-    height: 6.7% !important;
-  }
-
-  /* Bottom cards — slightly lower and tighter */
-  .km-zone-card-1 {
-    left: 4.8% !important;
-    top: 73.8% !important;
-    width: 22.8% !important;
-    height: 18.8% !important;
-  }
-
-  .km-zone-card-2 {
-    left: 28.3% !important;
-    top: 73.8% !important;
-    width: 21.8% !important;
-    height: 18.8% !important;
-  }
-
-  .km-zone-card-3 {
-    left: 51.2% !important;
-    top: 73.8% !important;
-    width: 22.0% !important;
-    height: 18.8% !important;
-  }
-
-  .km-zone-card-4 {
-    left: 74.0% !important;
-    top: 73.8% !important;
-    width: 22.0% !important;
-    height: 18.8% !important;
-  }
-</style>
-
-<script id="km-final-home-click-zones-script">
-  (function () {
-    function ensureClickZones() {
-      var hero = document.querySelector(".hero");
-      if (!hero) return;
-
-      hero.querySelectorAll(".km-hero-click-zone").forEach(function (el) {
-        el.remove();
-      });
-
-      var zones = [
-        { cls: "km-zone-farmer-btn", href: "#farmers", label: "Open Farmers page" },
-        { cls: "km-zone-buyer-btn", href: "#buyers", label: "Open Buyers page" },
-        { cls: "km-zone-how-btn", href: "#how-it-works", label: "See how it works" },
-
-        { cls: "km-zone-card-1", href: "#farmers", label: "Open AI Powered Insights" },
-        { cls: "km-zone-card-2", href: "#trust", label: "Open Trust and Transparency" },
-        { cls: "km-zone-card-3", href: "#buyers", label: "Open Global Market Linkage" },
-        { cls: "km-zone-card-4", href: "#ai-engine", label: "Open Sustainable Farming" }
-      ];
-
-      zones.forEach(function (zone) {
-        var a = document.createElement("a");
-        a.className = "km-hero-click-zone " + zone.cls;
-        a.href = zone.href;
-        a.setAttribute("aria-label", zone.label);
-        a.setAttribute("title", zone.label);
-        hero.appendChild(a);
-      });
-    }
-
-    window.addEventListener("load", function () {
-      ensureClickZones();
-      setTimeout(ensureClickZones, 300);
-      setTimeout(ensureClickZones, 1000);
-      setTimeout(ensureClickZones, 1800);
-    });
-
-    window.addEventListener("resize", ensureClickZones);
-  })();
-</script>
-<style id="km-login-click-final">
-  /* Keep Login button above all hero click zones */
-  .km-login-click-target,
-  .km-login-click-zone {
-    cursor: pointer !important;
-    pointer-events: auto !important;
-  }
-
-  .km-login-click-zone {
-    position: fixed !important;
-    top: 18px !important;
-    right: clamp(42px, 4.5vw, 72px) !important;
-    width: 122px !important;
-    height: 54px !important;
-    z-index: 1000005 !important;
-    display: block !important;
-    background: rgba(255,255,255,0) !important;
-    border-radius: 18px !important;
-    text-decoration: none !important;
-  }
-
-  .km-login-click-zone:hover {
-    outline: 2px solid rgba(18, 110, 38, 0.18) !important;
-    background: rgba(255,255,255,0.06) !important;
-  }
-</style>
-
-<script id="km-login-click-final-script">
-  (function () {
-    function goLogin(e) {
-      if (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-
-      window.location.href = "/KisanMitraAI/login.html";
-    }
-
-    function textOf(el) {
-      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
-    }
-
-    function makeLoginClickable() {
-      var all = Array.from(document.querySelectorAll("a, button, div, span"));
-      var loginEls = all.filter(function (el) {
-        var text = textOf(el);
-        var r = el.getBoundingClientRect();
-
-        return (
-          text.includes("Login") &&
-          r.top < 120 &&
-          r.right > window.innerWidth * 0.70
-        );
-      });
-
-      loginEls.forEach(function (el) {
-        el.classList.add("km-login-click-target");
-        el.style.setProperty("cursor", "pointer", "important");
-        el.style.setProperty("pointer-events", "auto", "important");
-        el.style.setProperty("z-index", "1000006", "important");
-
-        if (el.tagName.toLowerCase() === "a") {
-          el.setAttribute("href", "/KisanMitraAI/login.html");
-        }
-
-        el.onclick = goLogin;
-      });
-
-      if (!document.querySelector(".km-login-click-zone")) {
-        var zone = document.createElement("a");
-        zone.className = "km-login-click-zone";
-        zone.href = "/KisanMitraAI/login.html";
-        zone.setAttribute("aria-label", "Open Login page");
-        zone.setAttribute("title", "Open Login page");
-        zone.addEventListener("click", goLogin);
-        document.body.appendChild(zone);
-      }
-    }
-
-    window.addEventListener("load", function () {
-      makeLoginClickable();
-      setTimeout(makeLoginClickable, 300);
-      setTimeout(makeLoginClickable, 1000);
-      setTimeout(makeLoginClickable, 1800);
-    });
-
-    window.addEventListener("resize", makeLoginClickable);
-  })();
-</script>
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
