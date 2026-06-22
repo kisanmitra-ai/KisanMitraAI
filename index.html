@@ -1,236 +1,79 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KisanMitraAI</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KisanMitraAI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{width:100%;min-height:100vh;overflow-x:hidden;background:#fff;font-family:Arial,sans-serif}
+.km-section{width:100%;position:relative;overflow:visible;background:#fff}
+.home-master-wrap{width:100%;position:relative;overflow:visible;background:#fff}
+.home-master-img{width:100%;height:auto;display:block;pointer-events:none;user-select:none}
+.hotspot{position:absolute;display:block;z-index:99999;background:transparent;text-decoration:none;cursor:pointer}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+/* Header click areas */
+.hs-home{left:25.6%;top:4.3%;width:5.7%;height:7.5%}
+.hs-farmer{left:31.7%;top:4.3%;width:6.4%;height:7.5%}
+.hs-fpo{left:38.5%;top:4.3%;width:5.4%;height:7.5%}
+.hs-buyer{left:44.2%;top:4.3%;width:5.8%;height:7.5%}
+.hs-ai{left:49.9%;top:4.3%;width:7.5%;height:7.5%}
+.hs-trust{left:57.3%;top:4.3%;width:5.7%;height:7.5%}
+.hs-contact{left:63.1%;top:4.3%;width:6.6%;height:7.5%}
+.hs-language{left:67.8%;top:4.9%;width:9.3%;height:5.8%}
+.hs-voice{left:78.1%;top:4.5%;width:10%;height:6.3%}
+.hs-login{left:90%;top:4.5%;width:7.5%;height:6.3%}
 
-    html {
-      scroll-behavior: smooth;
-    }
+/* Hero CTA click areas */
+.hs-cta-farmer{left:3.3%;top:56%;width:15%;height:6.4%}
+.hs-cta-buyer{left:19.2%;top:56%;width:15%;height:6.4%}
+.hs-cta-video{left:34.9%;top:56%;width:13.8%;height:6.4%}
 
-    body {
-      width: 100%;
-      min-height: 100vh;
-      overflow-x: hidden;
-      background: #ffffff;
-      font-family: Arial, sans-serif;
-    }
-
-    .km-section {
-      width: 100%;
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .home-master-wrap {
-      width: 100%;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    .home-master-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center top;
-      display: block;
-      pointer-events: none;
-      background: #ffffff;
-    }
-
-    /* Full white cover over wrong embedded logo */
-    .logo-cover {
-      position: absolute;
-      left: 3.15%;
-      top: 3.0%;
-      width: 18.7%;
-      height: 7.9%;
-      z-index: 99990;
-      background: #ffffff;
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-    /* Correct real logo */
-    .real-logo-wrap {
-      position: absolute;
-      left: 3.35%;
-      top: 3.18%;
-      width: 16.2%;
-      height: 7.45%;
-      z-index: 99998;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: hidden;
-      pointer-events: auto;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .real-logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
-    }
-
-    .hotspot {
-      position: absolute;
-      display: block;
-      z-index: 99999;
-      background: transparent;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .hs-home     { left: 25.8%; top: 4.4%; width: 5.8%; height: 7.4%; }
-    .hs-farmer   { left: 32.0%; top: 4.4%; width: 6.4%; height: 7.4%; }
-    .hs-fpo      { left: 38.7%; top: 4.4%; width: 5.5%; height: 7.4%; }
-    .hs-buyer    { left: 44.4%; top: 4.4%; width: 5.7%; height: 7.4%; }
-    .hs-ai       { left: 50.1%; top: 4.4%; width: 7.2%; height: 7.4%; }
-    .hs-trust    { left: 57.3%; top: 4.4%; width: 5.8%; height: 7.4%; }
-    .hs-contact  { left: 63.2%; top: 4.4%; width: 6.6%; height: 7.4%; }
-    .hs-language { left: 67.8%; top: 4.8%; width: 9.2%; height: 5.8%; }
-    .hs-voice    { left: 78.1%; top: 4.5%; width: 10.0%; height: 6.4%; }
-    .hs-login    { left: 90.0%; top: 4.5%; width: 7.5%; height: 6.4%; }
-
-    .hs-cta-farmer { left: 3.45%; top: 56.35%; width: 15.0%; height: 6.5%; }
-    .hs-cta-buyer  { left: 19.2%; top: 56.35%; width: 15.0%; height: 6.5%; }
-    .hs-cta-video  { left: 34.85%; top: 56.35%; width: 13.7%; height: 6.5%; }
-
-    .placeholder-section {
-      min-height: 100vh;
-      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 18px;
-    }
-
-    .page-name {
-      font-size: clamp(40px, 6vw, 82px);
-      color: #075c1c;
-      font-weight: 950;
-      letter-spacing: -1.8px;
-    }
-
-    .page-subtitle {
-      margin-top: 16px;
-      font-size: clamp(15px, 2vw, 21px);
-      color: #34463b;
-      font-weight: 650;
-    }
-  </style>
+.placeholder-section{min-height:100vh;background:linear-gradient(180deg,#fff 0%,#eef8f1 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 18px}
+.page-name{font-size:clamp(40px,6vw,82px);color:#075c1c;font-weight:950;letter-spacing:-1.8px}
+.page-subtitle{margin-top:16px;font-size:clamp(15px,2vw,21px);color:#34463b;font-weight:650}
+</style>
 </head>
-
 <body>
-  <main>
-    <section class="km-section" id="home">
-      <div class="home-master-wrap">
-        <img class="home-master-img" src="./assets/home-master-reference.png?v=home-final-fit-1" alt="KisanMitraAI Home" />
+<main>
+<section class="km-section" id="home">
+  <div class="home-master-wrap">
+    <img class="home-master-img" src="./assets/home-master-reference.png?v=clean-master-1" alt="KisanMitraAI Home" />
 
-        <div class="logo-cover"></div>
+    <a class="hotspot hs-home" href="#home"></a>
+    <a class="hotspot hs-farmer" href="#farmer"></a>
+    <a class="hotspot hs-fpo" href="#fpo"></a>
+    <a class="hotspot hs-buyer" href="#buyer"></a>
+    <a class="hotspot hs-ai" href="#ai-engine"></a>
+    <a class="hotspot hs-trust" href="#trust"></a>
+    <a class="hotspot hs-contact" href="#contact"></a>
+    <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')"></a>
+    <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()"></a>
+    <a class="hotspot hs-login" href="#login"></a>
 
-        <a class="real-logo-wrap" href="#home" aria-label="KisanMitraAI Home">
-          <img src="./assets/kisanmitra-logo.png?v=logo-final-fit-1" alt="KisanMitraAI" />
-        </a>
+    <a class="hotspot hs-cta-farmer" href="#farmer"></a>
+    <a class="hotspot hs-cta-buyer" href="#buyer"></a>
+    <a class="hotspot hs-cta-video" href="#ai-engine"></a>
+  </div>
+</section>
 
-        <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
-        <a class="hotspot hs-farmer" href="#farmer" aria-label="Farmers"></a>
-        <a class="hotspot hs-fpo" href="#fpo" aria-label="FPO"></a>
-        <a class="hotspot hs-buyer" href="#buyer" aria-label="Buyer"></a>
-        <a class="hotspot hs-ai" href="#ai-engine" aria-label="AI Engine"></a>
-        <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
-        <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
-        <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')" aria-label="Language"></a>
-        <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()" aria-label="Talk to AI"></a>
-        <a class="hotspot hs-login" href="#login" aria-label="Login"></a>
+<section class="km-section placeholder-section" id="farmer"><div><h1 class="page-name">Farmer Page</h1><p class="page-subtitle">Farmer section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="fpo"><div><h1 class="page-name">FPO Page</h1><p class="page-subtitle">FPO section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="buyer"><div><h1 class="page-name">Buyer Page</h1><p class="page-subtitle">Buyer section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="ai-engine"><div><h1 class="page-name">AI Engine Page</h1><p class="page-subtitle">AI Engine section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="trust"><div><h1 class="page-name">Trust Page</h1><p class="page-subtitle">Trust section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="contact"><div><h1 class="page-name">Contact Page</h1><p class="page-subtitle">Contact section inside index page</p></div></section>
+<section class="km-section placeholder-section" id="login"><div><h1 class="page-name">Login Page</h1><p class="page-subtitle">Login section inside index page</p></div></section>
+</main>
 
-        <a class="hotspot hs-cta-farmer" href="#farmer" aria-label="I am a Farmer"></a>
-        <a class="hotspot hs-cta-buyer" href="#buyer" aria-label="I am a Buyer"></a>
-        <a class="hotspot hs-cta-video" href="#ai-engine" aria-label="See How It Works"></a>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="farmer">
-      <div>
-        <h1 class="page-name">Farmer Page</h1>
-        <p class="page-subtitle">Farmer section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="fpo">
-      <div>
-        <h1 class="page-name">FPO Page</h1>
-        <p class="page-subtitle">FPO section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="buyer">
-      <div>
-        <h1 class="page-name">Buyer Page</h1>
-        <p class="page-subtitle">Buyer section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="ai-engine">
-      <div>
-        <h1 class="page-name">AI Engine Page</h1>
-        <p class="page-subtitle">AI Engine section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="trust">
-      <div>
-        <h1 class="page-name">Trust Page</h1>
-        <p class="page-subtitle">Trust section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="contact">
-      <div>
-        <h1 class="page-name">Contact Page</h1>
-        <p class="page-subtitle">Contact section inside index page</p>
-      </div>
-    </section>
-
-    <section class="km-section placeholder-section" id="login">
-      <div>
-        <h1 class="page-name">Login Page</h1>
-        <p class="page-subtitle">Login section inside index page</p>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    function speakHome() {
-      if (!("speechSynthesis" in window)) {
-        alert("Voice is not supported in this browser.");
-        return;
-      }
-
-      speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(
-        "Welcome to KisanMitraAI. Precision farming and stronger market connection for farmers, FPOs and buyers."
-      );
-      utterance.lang = "en-IN";
-      utterance.rate = 0.9;
-      speechSynthesis.speak(utterance);
-    }
-  </script>
+<script>
+function speakHome(){
+  if(!("speechSynthesis" in window)){alert("Voice is not supported in this browser.");return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance("Welcome to KisanMitraAI. Precision farming and stronger market connection for farmers, FPOs and buyers.");
+  u.lang="en-IN";u.rate=0.9;speechSynthesis.speak(u);
+}
+</script>
 </body>
 </html>
