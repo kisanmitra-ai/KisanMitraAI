@@ -194,3 +194,301 @@ button.hotspot {
   appearance: none !important;
   -webkit-appearance: none !important;
 }
+/* FARMERS PAGE OVERLAY */
+.farmers-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.farmers-stage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.farmers-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Header */
+.farmers-logo-text {
+  position: absolute;
+  left: 2.2%;
+  top: 2.0%;
+  width: 18.2%;
+  height: 10.2%;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+.farmers-logo-text img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.farmers-nav {
+  position: absolute;
+  left: 26%;
+  top: 3.6%;
+  width: 39%;
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+}
+
+.farmers-nav a {
+  color: #101820;
+  text-decoration: none;
+  font-size: clamp(10px, 0.85vw, 14px);
+  font-weight: 800;
+}
+
+.farmers-nav a.active {
+  color: #08751f;
+}
+
+.farmers-lang {
+  position: absolute;
+  left: 71.8%;
+  top: 3.9%;
+  width: 10.4%;
+  height: 6.8%;
+}
+
+.farmers-talk {
+  position: absolute;
+  left: 83.2%;
+  top: 3.9%;
+  width: 9.8%;
+  height: 6.8%;
+}
+
+.farmers-login {
+  position: absolute;
+  left: 93.6%;
+  top: 3.9%;
+  width: 5.6%;
+  height: 6.8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: clamp(10px, 0.9vw, 14px);
+}
+
+.farmers-lang,
+.farmers-talk {
+  border: 0;
+  background: transparent;
+  font-size: clamp(10px, 0.9vw, 14px);
+  font-weight: 900;
+  color: #102218;
+  cursor: pointer;
+}
+
+/* Hero */
+.farmers-breadcrumb {
+  position: absolute;
+  left: 3.5%;
+  top: 16.4%;
+  display: flex;
+  gap: 12px;
+  color: #063f17;
+  font-size: clamp(12px, 1vw, 16px);
+  font-weight: 700;
+}
+
+.farmers-title {
+  position: absolute;
+  left: 3.4%;
+  top: 22.4%;
+  width: 43%;
+  color: #06651d;
+  font-size: clamp(38px, 4.2vw, 68px);
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -1.5px;
+}
+
+.farmers-subtitle {
+  position: absolute;
+  left: 3.5%;
+  top: 32.1%;
+  width: 48%;
+  color: #091225;
+  font-size: clamp(18px, 2vw, 34px);
+  line-height: 1.12;
+  font-weight: 950;
+}
+
+.farmers-description {
+  position: absolute;
+  left: 3.5%;
+  top: 39.5%;
+  width: 38%;
+  color: #091225;
+  font-size: clamp(13px, 1.25vw, 21px);
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.farmers-primary-btn,
+.farmers-whatsapp-btn,
+.farmers-voice-btn {
+  position: absolute;
+  top: 52.0%;
+  height: 6.8%;
+  z-index: 30;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: clamp(12px, 1.1vw, 18px);
+  font-weight: 950;
+}
+
+.farmers-primary-btn {
+  left: 3.2%;
+  width: 15.4%;
+  color: #ffffff;
+}
+
+.farmers-whatsapp-btn {
+  left: 20.4%;
+  width: 15.4%;
+  color: #08751f;
+}
+
+.farmers-voice-btn {
+  left: 37.2%;
+  width: 12.5%;
+  border: 0;
+  background: transparent;
+  color: #08751f;
+  cursor: pointer;
+}
+
+/* Right cards */
+.farmers-right-card {
+  position: absolute;
+  left: 81.8%;
+  width: 15.4%;
+  z-index: 20;
+  color: #101820;
+}
+
+.farmers-right-card h3 {
+  font-size: clamp(12px, 1vw, 17px);
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.farmers-right-card p {
+  font-size: clamp(10px, 0.85vw, 14px);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.farmers-right-card strong {
+  font-size: clamp(16px, 1.6vw, 28px);
+  font-weight: 950;
+}
+
+.card-ai { top: 17.0%; }
+.card-weather { top: 34.8%; }
+.card-market { top: 51.4%; }
+
+/* Tool cards */
+.farmers-tool {
+  position: absolute;
+  top: 68.0%;
+  width: 14.2%;
+  color: #111827;
+  z-index: 20;
+}
+
+.farmers-tool h3 {
+  font-size: clamp(11px, 0.95vw, 16px);
+  font-weight: 950;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.farmers-tool p {
+  font-size: clamp(9px, 0.78vw, 13px);
+  line-height: 1.35;
+  font-weight: 600;
+  color: #172b1d;
+}
+
+.farmers-tool span {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: clamp(10px, 0.85vw, 14px);
+  font-weight: 950;
+  color: #08751f;
+}
+
+.tool-1 { left: 8.0%; }
+.tool-2 { left: 23.5%; }
+.tool-3 { left: 39.8%; }
+.tool-4 { left: 55.6%; }
+.tool-5 { left: 71.0%; }
+.tool-6 { left: 86.0%; }
+
+/* Bottom feature strip */
+.farmers-bottom {
+  position: absolute;
+  top: 87.2%;
+  width: 17%;
+  color: #111827;
+  z-index: 20;
+}
+
+.farmers-bottom h3 {
+  font-size: clamp(13px, 1.1vw, 19px);
+  font-weight: 950;
+  margin-bottom: 6px;
+}
+
+.farmers-bottom p {
+  font-size: clamp(10px, 0.9vw, 15px);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.bottom-1 { left: 9.4%; }
+.bottom-2 { left: 34.4%; }
+.bottom-3 { left: 58.4%; }
+.bottom-4 { left: 82.0%; }
+
+/* Mobile fallback */
+@media (max-width: 768px) {
+  .farmers-stage {
+    height: 100vh;
+  }
+
+  .farmers-bg {
+    object-fit: cover;
+    object-position: center top;
+  }
+}
