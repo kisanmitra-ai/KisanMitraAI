@@ -738,8 +738,15 @@
 
 
 
-<style id="km-final-image-balanced-v3">
-  /* Balanced final homepage image framing */
+
+<style id="km-final-homepage-screen-fit-v4">
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: #eef5ef !important;
+  }
 
   .hero {
     position: relative !important;
@@ -751,36 +758,32 @@
     background: #eef5ef !important;
   }
 
+  /* Final homepage image: shifted up so bottom cards are visible */
   .hero::before {
     content: "" !important;
     position: absolute !important;
     inset: 0 !important;
-    background-image: url("home-assets/kisanmitraai-homepage-final-clean.png?v=v2-clean-20260622") !important;
+    background-image: url("home-assets/kisanmitraai-homepage-final-clean.png?v=final-20260622-2") !important;
     background-size: 100% auto !important;
-    background-position: center -26px !important;
+    background-position: center -78px !important;
     background-repeat: no-repeat !important;
     z-index: 1 !important;
   }
 
-  /* Mask only the duplicate menu/logo inside the image, not the main heading */
+  /* Hide only the duplicate navbar/logo inside the image */
   .hero::after {
     content: "" !important;
     position: absolute !important;
     left: 0 !important;
     right: 0 !important;
-    top: 70px !important;
-    height: 62px !important;
+    top: 78px !important;
+    height: 96px !important;
     z-index: 2 !important;
     pointer-events: none !important;
-    background: linear-gradient(
-      180deg,
-      rgba(232, 246, 252, 0.96) 0%,
-      rgba(232, 246, 252, 0.72) 55%,
-      rgba(232, 246, 252, 0.00) 100%
-    ) !important;
+    background: #eef8fa !important;
   }
 
-  /* Hide old broken homepage layers */
+  /* Hide old live layers below final image */
   .hero > img,
   .hero img,
   .hero .hero-img,
@@ -794,7 +797,7 @@
     pointer-events: none !important;
   }
 
-  /* Keep real clickable navbar */
+  /* Keep real clickable navbar only */
   .km-clean-navbar,
   .locked-header,
   header,
@@ -808,6 +811,7 @@
 </style>
 </body>
 </html>
+
 
 
 
