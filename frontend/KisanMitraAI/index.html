@@ -1,342 +1,103 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KisanMitraAI</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: #ffffff;
-  font-family: Arial, sans-serif;
-}
-
-.km-section {
-  width: 100%;
-  min-height: 100vh;
-  position: relative;
-  background: #ffffff;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-/* HOME MASTER IMAGE */
-.home-master-wrap {
-  width: min(100vw, 175vh);
-  height: min(100vh, 57.142857vw);
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-  margin: 0 auto;
-}
-
-.home-master-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center top;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* INVISIBLE CLICK AREAS */
-.hotspot {
-  position: absolute;
-  display: block;
-  z-index: 99999;
-  background: transparent;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* HEADER CLICK AREAS */
-.hs-home {
-  left: 25.3%;
-  top: 4.0%;
-  width: 5.6%;
-  height: 8.0%;
-}
-
-.hs-farmer {
-  left: 31.7%;
-  top: 4.0%;
-  width: 6.1%;
-  height: 8.0%;
-}
-
-.hs-fpo {
-  left: 38.1%;
-  top: 4.0%;
-  width: 5.2%;
-  height: 8.0%;
-}
-
-.hs-buyer {
-  left: 43.8%;
-  top: 4.0%;
-  width: 5.4%;
-  height: 8.0%;
-}
-
-.hs-ai {
-  left: 49.4%;
-  top: 4.0%;
-  width: 7.1%;
-  height: 8.0%;
-}
-
-.hs-trust {
-  left: 56.6%;
-  top: 4.0%;
-  width: 5.5%;
-  height: 8.0%;
-}
-
-.hs-contact {
-  left: 62.2%;
-  top: 4.0%;
-  width: 6.2%;
-  height: 8.0%;
-}
-
-.hs-language {
-  left: 67.6%;
-  top: 4.9%;
-  width: 9.0%;
-  height: 5.8%;
-}
-
-.hs-voice {
-  left: 78.0%;
-  top: 4.5%;
-  width: 10.3%;
-  height: 6.5%;
-}
-
-.hs-login {
-  left: 90.0%;
-  top: 4.5%;
-  width: 7.3%;
-  height: 6.5%;
-}
-
-/* HERO CTA CLICK AREAS */
-.hs-cta-farmer {
-  left: 3.3%;
-  top: 56.9%;
-  width: 15.0%;
-  height: 7.0%;
-}
-
-.hs-cta-buyer {
-  left: 19.2%;
-  top: 56.9%;
-  width: 15.0%;
-  height: 7.0%;
-}
-
-.hs-cta-video {
-  left: 35.0%;
-  top: 56.9%;
-  width: 13.8%;
-  height: 7.0%;
-}
-
-/* BOTTOM CARD CLICK AREAS */
-.hs-ai-card {
-  left: 3.4%;
-  top: 86.2%;
-  width: 23.4%;
-  height: 12.4%;
-}
-
-.hs-trust-card {
-  left: 27.3%;
-  top: 86.2%;
-  width: 23.4%;
-  height: 12.4%;
-}
-
-.hs-market-card {
-  left: 51.2%;
-  top: 86.2%;
-  width: 23.4%;
-  height: 12.4%;
-}
-
-.hs-voice-card {
-  left: 75.1%;
-  top: 86.2%;
-  width: 21.8%;
-  height: 12.4%;
-}
-
-/* PLACEHOLDER SECTIONS */
-.placeholder-section {
-  min-height: 100vh;
-  background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px 18px;
-}
-
-.page-name {
-  font-size: clamp(40px, 6vw, 82px);
-  color: #075c1c;
-  font-weight: 950;
-  letter-spacing: -1.8px;
-}
-
-.page-subtitle {
-  margin-top: 16px;
-  font-size: clamp(15px, 2vw, 21px);
-  color: #34463b;
-  font-weight: 650;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .home-master-wrap {
-  width: min(100vw, 175vh);
-  height: min(100vh, 57.142857vw);
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-  margin: 0 auto;
-}
-
-  .home-master-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  object-position: center top;
-  pointer-events: none;
-  user-select: none;
-}
-
-  .hotspot {
-    display: none;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KisanMitraAI</title>
+  <link rel="stylesheet" href="./styles.css?v=home-final-1366x640" />
 </head>
-
 <body>
-<main>
-  <section class="km-section" id="home">
-    <div class="home-master-wrap">
-      <img class="home-master-img" src="./assets/home-master-reference.png?v=home-final-1366" alt="KisanMitraAI Home" />
+  <main class="site-shell">
 
+    <!-- Exact master image area -->
+    <section class="master-stage">
+      <img
+        class="master-image"
+        src="./assets/home-master-reference.png?v=home-final-1366x640"
+        alt="KisanMitraAI Homepage Master"
+      />
+
+      <!-- Header clickable areas -->
+      <a class="hotspot hs-logo" href="#home" aria-label="KisanMitraAI Home"></a>
       <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
-      <a class="hotspot hs-farmer" href="#farmer" aria-label="Farmers"></a>
+      <a class="hotspot hs-farmers" href="#farmers" aria-label="Farmers"></a>
       <a class="hotspot hs-fpo" href="#fpo" aria-label="FPO"></a>
       <a class="hotspot hs-buyer" href="#buyer" aria-label="Buyer"></a>
       <a class="hotspot hs-ai" href="#ai-engine" aria-label="AI Engine"></a>
       <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
       <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
+      <a class="hotspot hs-language" href="javascript:void(0)" aria-label="Language"></a>
+      <a class="hotspot hs-voice" href="javascript:void(0)" aria-label="Talk to AI"></a>
+      <a class="hotspot hs-login" href="./login.html" aria-label="Login"></a>
 
-      <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')" aria-label="Language"></a>
-      <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()" aria-label="Talk to AI"></a>
-      <a class="hotspot hs-login" href="#login" aria-label="Login"></a>
+      <!-- Hero CTA clickable areas -->
+      <a class="hotspot hs-farmer-btn" href="#farmers" aria-label="I am a Farmer"></a>
+      <a class="hotspot hs-buyer-btn" href="#buyer" aria-label="I am a Buyer"></a>
+      <a class="hotspot hs-how-btn" href="#ai-engine" aria-label="See How It Works"></a>
+    </section>
 
-      <a class="hotspot hs-cta-farmer" href="#farmer" aria-label="I am a Farmer"></a>
-      <a class="hotspot hs-cta-buyer" href="#buyer" aria-label="I am a Buyer"></a>
-      <a class="hotspot hs-cta-video" href="#ai-engine" aria-label="See How It Works"></a>
+    <!-- Scroll sections -->
+    <section id="home" class="page-section">
+      <div class="section-inner">
+        <h2>Home Page</h2>
+        <p>Index page section</p>
+      </div>
+    </section>
 
-      <a class="hotspot hs-ai-card" href="#ai-engine" aria-label="AI Powered Insights"></a>
-      <a class="hotspot hs-trust-card" href="#trust" aria-label="Trust and Transparency"></a>
-      <a class="hotspot hs-market-card" href="#buyer" aria-label="Global Market Linkage"></a>
-      <a class="hotspot hs-voice-card" href="javascript:void(0)" onclick="speakHome()" aria-label="Voice and Language Support"></a>
-    </div>
-  </section>
+    <section id="farmers" class="page-section">
+      <div class="section-inner">
+        <h2>Farmers Page</h2>
+        <p>Farmers section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="farmer">
-    <div>
-      <h1 class="page-name">Farmer Page</h1>
-      <p class="page-subtitle">Farmer section inside index page</p>
-    </div>
-  </section>
+    <section id="fpo" class="page-section">
+      <div class="section-inner">
+        <h2>FPO Page</h2>
+        <p>FPO section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="fpo">
-    <div>
-      <h1 class="page-name">FPO Page</h1>
-      <p class="page-subtitle">FPO section inside index page</p>
-    </div>
-  </section>
+    <section id="buyer" class="page-section">
+      <div class="section-inner">
+        <h2>Buyer Page</h2>
+        <p>Buyer section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="buyer">
-    <div>
-      <h1 class="page-name">Buyer Page</h1>
-      <p class="page-subtitle">Buyer section inside index page</p>
-    </div>
-  </section>
+    <section id="ai-engine" class="page-section">
+      <div class="section-inner">
+        <h2>AI Engine Page</h2>
+        <p>AI Engine section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="ai-engine">
-    <div>
-      <h1 class="page-name">AI Engine Page</h1>
-      <p class="page-subtitle">AI Engine section inside index page</p>
-    </div>
-  </section>
+    <section id="trust" class="page-section">
+      <div class="section-inner">
+        <h2>Trust Page</h2>
+        <p>Trust section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="trust">
-    <div>
-      <h1 class="page-name">Trust Page</h1>
-      <p class="page-subtitle">Trust section inside index page</p>
-    </div>
-  </section>
+    <section id="contact" class="page-section">
+      <div class="section-inner">
+        <h2>Contact Page</h2>
+        <p>Contact section inside index page</p>
+      </div>
+    </section>
 
-  <section class="km-section placeholder-section" id="contact">
-    <div>
-      <h1 class="page-name">Contact Page</h1>
-      <p class="page-subtitle">Contact section inside index page</p>
-    </div>
-  </section>
+  </main>
 
-  <section class="km-section placeholder-section" id="login">
-    <div>
-      <h1 class="page-name">Login Page</h1>
-      <p class="page-subtitle">Login section inside index page</p>
-    </div>
-  </section>
-</main>
-
-<script>
-function speakHome() {
-  if (!("speechSynthesis" in window)) {
-    alert("Voice is not supported in this browser.");
-    return;
-  }
-
-  speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(
-    "Welcome to KisanMitraAI. Precision farming, crop intelligence, trusted market connection and voice support for farmers, FPOs and buyers."
-  );
-
-  utterance.lang = "en-IN";
-  utterance.rate = 0.9;
-  speechSynthesis.speak(utterance);
-}
-</script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
