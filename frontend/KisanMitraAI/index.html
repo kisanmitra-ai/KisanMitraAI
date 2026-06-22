@@ -483,6 +483,52 @@
   }
 }
 /* RESPONSIVE BACKGROUND IMAGES END */
+
+/* SAME SECTION CENTER POSITION START */
+.km-section {
+  min-height: 100vh !important;
+  padding: 0 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  scroll-margin-top: 0 !important;
+}
+
+.km-section > div {
+  transform: translateY(18px);
+}
+
+#home > div,
+#farmer > div,
+#fpo > div,
+#buyer > div,
+#ai-engine > div,
+#trust > div,
+#contact > div,
+#login > div {
+  width: 100%;
+  text-align: center;
+}
+
+.page-name {
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+.page-subtitle {
+  text-align: center !important;
+}
+
+@media (max-width: 768px) {
+  .km-section {
+    padding: 0 14px !important;
+  }
+
+  .km-section > div {
+    transform: translateY(10px);
+  }
+}
+/* SAME SECTION CENTER POSITION END */
 </style>
 </head>
 
@@ -692,4 +738,5 @@
   </script>
 </body>
 </html>
+
 
