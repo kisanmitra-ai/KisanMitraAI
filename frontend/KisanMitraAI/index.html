@@ -939,6 +939,9 @@
     window.addEventListener("resize", centerNavbarText);
   })();
 </script>
+
+
+
 <style id="km-final-home-click-zones">
   .hero {
     position: relative !important;
@@ -955,59 +958,59 @@
   }
 
   .km-hero-click-zone:hover {
-    background: rgba(255,255,255,0.10) !important;
-    outline: 2px solid rgba(18, 110, 38, 0.18) !important;
+    background: rgba(255,255,255,0.08) !important;
+    outline: 2px solid rgba(18, 110, 38, 0.20) !important;
   }
 
-  /* Top hero buttons */
+  /* Hero buttons — corrected */
   .km-zone-farmer-btn {
-    left: 4.8% !important;
-    top: 65.8% !important;
-    width: 12.7% !important;
-    height: 7.2% !important;
+    left: 4.6% !important;
+    top: 57.0% !important;
+    width: 12.0% !important;
+    height: 8.8% !important;
   }
 
   .km-zone-buyer-btn {
     left: 18.0% !important;
-    top: 65.8% !important;
-    width: 12.8% !important;
-    height: 7.2% !important;
+    top: 57.0% !important;
+    width: 12.2% !important;
+    height: 8.8% !important;
   }
 
   .km-zone-how-btn {
-    left: 31.7% !important;
-    top: 65.8% !important;
-    width: 16.5% !important;
-    height: 7.2% !important;
+    left: 31.5% !important;
+    top: 57.0% !important;
+    width: 16.2% !important;
+    height: 8.8% !important;
   }
 
-  /* Bottom cards */
+  /* Bottom cards — corrected */
   .km-zone-card-1 {
     left: 4.8% !important;
-    top: 78.2% !important;
-    width: 23.0% !important;
-    height: 17.8% !important;
+    top: 71.8% !important;
+    width: 22.8% !important;
+    height: 21.0% !important;
   }
 
   .km-zone-card-2 {
-    left: 29.0% !important;
-    top: 78.2% !important;
-    width: 23.0% !important;
-    height: 17.8% !important;
+    left: 28.3% !important;
+    top: 71.8% !important;
+    width: 21.8% !important;
+    height: 21.0% !important;
   }
 
   .km-zone-card-3 {
-    left: 53.3% !important;
-    top: 78.2% !important;
-    width: 23.0% !important;
-    height: 17.8% !important;
+    left: 51.2% !important;
+    top: 71.8% !important;
+    width: 22.0% !important;
+    height: 21.0% !important;
   }
 
   .km-zone-card-4 {
-    left: 77.2% !important;
-    top: 78.2% !important;
-    width: 20.8% !important;
-    height: 17.8% !important;
+    left: 74.0% !important;
+    top: 71.8% !important;
+    width: 22.0% !important;
+    height: 21.0% !important;
   }
 </style>
 
@@ -1017,44 +1020,19 @@
       var hero = document.querySelector(".hero");
       if (!hero) return;
 
-      if (hero.querySelector(".km-hero-click-zone")) return;
+      hero.querySelectorAll(".km-hero-click-zone").forEach(function (el) {
+        el.remove();
+      });
 
       var zones = [
-        {
-          cls: "km-zone-farmer-btn",
-          href: "#farmers",
-          label: "Open Farmers page"
-        },
-        {
-          cls: "km-zone-buyer-btn",
-          href: "#buyers",
-          label: "Open Buyers page"
-        },
-        {
-          cls: "km-zone-how-btn",
-          href: "#how-it-works",
-          label: "See how it works"
-        },
-        {
-          cls: "km-zone-card-1",
-          href: "#farmers",
-          label: "Open AI-powered insights for farmers"
-        },
-        {
-          cls: "km-zone-card-2",
-          href: "#trust",
-          label: "Open Trust and Transparency"
-        },
-        {
-          cls: "km-zone-card-3",
-          href: "#buyers",
-          label: "Open Global Market Linkage"
-        },
-        {
-          cls: "km-zone-card-4",
-          href: "#ai-engine",
-          label: "Open Sustainable Farming and AI Engine"
-        }
+        { cls: "km-zone-farmer-btn", href: "#farmers", label: "Open Farmers page" },
+        { cls: "km-zone-buyer-btn", href: "#buyers", label: "Open Buyers page" },
+        { cls: "km-zone-how-btn", href: "#how-it-works", label: "See how it works" },
+
+        { cls: "km-zone-card-1", href: "#farmers", label: "Open AI Powered Insights" },
+        { cls: "km-zone-card-2", href: "#trust", label: "Open Trust and Transparency" },
+        { cls: "km-zone-card-3", href: "#buyers", label: "Open Global Market Linkage" },
+        { cls: "km-zone-card-4", href: "#ai-engine", label: "Open Sustainable Farming" }
       ];
 
       zones.forEach(function (zone) {
@@ -1071,11 +1049,15 @@
       ensureClickZones();
       setTimeout(ensureClickZones, 300);
       setTimeout(ensureClickZones, 1000);
+      setTimeout(ensureClickZones, 1800);
     });
+
+    window.addEventListener("resize", ensureClickZones);
   })();
 </script>
 </body>
 </html>
+
 
 
 
