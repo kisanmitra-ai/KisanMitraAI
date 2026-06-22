@@ -12,16 +12,6 @@
       padding: 0;
     }
 
-    :root {
-      --km-header-height: 92px;
-      --km-bottom-gap: 7px;
-      --green: #08701f;
-      --dark-green: #064d18;
-      --orange: #ff7a00;
-      --blue: #075dff;
-      --text: #07111f;
-    }
-
     html {
       scroll-behavior: smooth;
     }
@@ -31,527 +21,91 @@
       min-height: 100vh;
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       background: #ffffff;
-      color: var(--text);
       overflow-x: hidden;
-    }
-
-    .km-fixed-header {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(1280px, calc(100% - 24px));
-      min-height: 72px;
-      z-index: 9999;
-      padding: 10px 18px 10px 22px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.10);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      backdrop-filter: blur(14px);
-    }
-
-    .km-brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex: 0 0 auto;
-    }
-
-    .km-brand img {
-      width: 200px;
-      height: 56px;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
-    }
-
-    .km-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 30px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .km-nav a {
-      text-decoration: none;
-      color: #14351f;
-      font-size: 14px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    .km-nav a.active {
-      color: var(--green);
-      border-bottom: 3px solid var(--green);
-      padding-bottom: 8px;
-    }
-
-    .km-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex: 0 0 auto;
-    }
-
-    .km-select-wrap {
-      position: relative;
-    }
-
-    .km-language-btn,
-    .km-voice-btn,
-    .km-login-btn {
-      height: 48px;
-      border: 0;
-      border-radius: 16px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-weight: 900;
-      cursor: pointer;
-      white-space: nowrap;
-      font-size: 15px;
-    }
-
-    .km-language-btn {
-      min-width: 132px;
-      padding: 0 18px;
-      background: rgba(255,255,255,0.96);
-      color: #111827;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
-      border: 1px solid rgba(10, 80, 28, 0.10);
-    }
-
-    .km-voice-btn {
-      min-width: 162px;
-      padding: 0 18px 0 12px;
-      background: #ffffff;
-      color: #075dff;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
-      border: 1px solid rgba(7, 93, 255, 0.16);
-    }
-
-    .voice-orb {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: radial-gradient(circle, #3f7bff 0%, #0b55ff 70%);
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 5px rgba(7, 93, 255, 0.14);
-      font-size: 20px;
-    }
-
-    .km-login-btn {
-      min-width: 118px;
-      padding: 0 22px;
-      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-      color: #ffffff;
-      box-shadow: 0 16px 30px rgba(6, 101, 29, 0.24);
-    }
-
-    .km-login-icon {
-      width: 23px;
-      height: 23px;
-      border-radius: 999px;
-      border: 2px solid #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .km-login-icon::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #ffffff;
-      position: absolute;
-      top: 4px;
-    }
-
-    .km-login-icon::after {
-      content: "";
-      width: 12px;
-      height: 6px;
-      border: 2px solid #ffffff;
-      border-bottom: 0;
-      border-radius: 10px 10px 4px 4px;
-      position: absolute;
-      bottom: 4px;
-    }
-
-    .language-panel {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 320px;
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.98);
-      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.18);
-      display: none;
-      z-index: 10000;
-    }
-
-    .language-panel.open {
-      display: block;
-    }
-
-    .language-panel h4 {
-      font-size: 14px;
-      color: #0b4f1c;
-      margin-bottom: 14px;
-    }
-
-    .language-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .lang-option {
-      border: 0;
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 10px 8px;
-      text-align: left;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      color: #111827;
-    }
-
-    .lang-option.active {
-      background: #eef8ef;
-      color: var(--green);
-    }
-
-    .km-mobile-header,
-    .km-mobile-menu {
-      display: none;
     }
 
     .km-page {
       width: 100%;
       min-height: 100vh;
-      padding-top: var(--km-header-height);
     }
 
     .km-section {
-      min-height: calc(100vh - var(--km-header-height));
-      scroll-margin-top: var(--km-header-height);
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .home-section {
-      background-image: url("./assets/home-bg-desktop.jpg");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    }
-
-    .home-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.38) 42%, rgba(255,255,255,0.05) 100%),
-        linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 72%, rgba(0,0,0,0.10) 100%);
-      z-index: 0;
-    }
-
-    .home-inner {
-      position: relative;
-      z-index: 2;
-      width: min(1220px, calc(100% - 70px));
-      min-height: calc(100vh - var(--km-header-height));
-      display: grid;
-      grid-template-columns: 1.02fr 0.82fr;
-      align-items: center;
-      padding: 34px 0 126px;
-    }
-
-    .hero-copy {
-      max-width: 720px;
-    }
-
-    .hero-title {
-      font-size: clamp(52px, 5.2vw, 82px);
-      line-height: 0.98;
-      letter-spacing: -2.6px;
-      font-weight: 950;
-      margin-bottom: 22px;
-      color: #07111f;
-    }
-
-    .hero-title .green {
-      color: var(--dark-green);
-      display: block;
-    }
-
-    .hero-title .dark {
-      display: block;
-      color: #07111f;
-    }
-
-    .hero-text {
-      max-width: 640px;
-      color: #111827;
-      font-size: clamp(18px, 1.55vw, 24px);
-      line-height: 1.45;
-      font-weight: 520;
-      margin-bottom: 34px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .cta-btn {
-      height: 58px;
-      min-width: 220px;
-      padding: 0 24px;
-      border-radius: 999px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      font-size: 18px;
-      font-weight: 920;
-      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
-    }
-
-    .cta-farmer {
-      background: linear-gradient(180deg, #0c842a 0%, #06651d 100%);
-      color: #ffffff;
-    }
-
-    .cta-buyer {
-      background: rgba(255,255,255,0.94);
-      color: #075dff;
-      border: 1px solid rgba(7, 93, 255, 0.28);
-    }
-
-    .cta-video {
-      min-width: 205px;
-      background: rgba(255,255,255,0.94);
-      color: #111827;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-    }
-
-    .hero-cards {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 14px;
-      margin-top: 20px;
-      align-self: center;
-    }
-
-    .info-card {
-      width: 275px;
-      min-height: 116px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.94);
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
-      padding: 16px 18px;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      backdrop-filter: blur(12px);
-    }
-
-    .card-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 16px;
-      font-weight: 950;
-      color: #111827;
-      margin-bottom: 8px;
-    }
-
-    .card-icon {
-      width: 33px;
-      height: 33px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      background: var(--green);
-      font-size: 20px;
-      flex: 0 0 auto;
-    }
-
-    .blue-icon {
-      background: #1266ff;
-    }
-
-    .weather-icon {
-      background: #fff2c8;
-      color: #ffb000;
-    }
-
-    .card-small {
-      font-size: 13px;
-      color: #2e3b32;
-      font-weight: 700;
-    }
-
-    .health-row,
-    .weather-row,
-    .market-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .health-score,
-    .weather-temp,
-    .market-price {
-      font-size: 27px;
-      font-weight: 950;
-      color: #111827;
-      margin-top: 3px;
-    }
-
-    .progress {
       width: 100%;
-      height: 7px;
-      background: #d7dde2;
-      border-radius: 99px;
-      margin-top: 7px;
+      min-height: 100vh;
+      position: relative;
       overflow: hidden;
+      scroll-margin-top: 0;
     }
 
-    .progress span {
-      display: block;
-      width: 72%;
-      height: 100%;
-      background: #178423;
-      border-radius: 99px;
-    }
-
-    .weather-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      margin-top: 12px;
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
-      padding-top: 9px;
-      gap: 8px;
-      font-size: 11px;
-      color: #4b5563;
-      font-weight: 750;
-    }
-
-    .weather-meta strong {
-      display: block;
-      color: #111827;
-      font-size: 13px;
-      margin-top: 2px;
-    }
-
-    .gain {
-      background: #dff5de;
-      color: #08701f;
-      padding: 6px 11px;
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 950;
-    }
-
-    .feature-strip {
-      position: absolute;
-      left: 50%;
-      bottom: var(--km-bottom-gap);
-      transform: translateX(-50%);
-      width: min(1220px, calc(100% - 58px));
-      min-height: 92px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.96);
-      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.16);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      z-index: 4;
-      overflow: hidden;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      backdrop-filter: blur(12px);
-    }
-
-    .feature-item {
+    /* HOME MASTER IMAGE SECTION */
+    #home {
+      background: #ffffff;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 18px 22px;
-      border-right: 1px solid rgba(15, 23, 42, 0.10);
+      justify-content: center;
     }
 
-    .feature-item:last-child {
-      border-right: 0;
+    .home-master {
+      width: 100%;
+      min-height: 100vh;
+      background-image: url("./assets/home-master-reference.png");
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: cover;
+      position: relative;
     }
 
-    .feature-icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #31a51e 0%, #08701f 100%);
-      color: #ffffff;
-      display: inline-flex;
+    /* Invisible click areas over the master image */
+    .hotspot {
+      position: absolute;
+      display: block;
+      z-index: 20;
+      text-decoration: none;
+      background: transparent;
+      border-radius: 14px;
+    }
+
+    .hotspot:hover {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hs-home     { left: 25.8%; top: 4.4%; width: 5.8%; height: 7.4%; }
+    .hs-farmer   { left: 32.0%; top: 4.4%; width: 6.4%; height: 7.4%; }
+    .hs-fpo      { left: 38.7%; top: 4.4%; width: 5.5%; height: 7.4%; }
+    .hs-buyer    { left: 44.4%; top: 4.4%; width: 5.7%; height: 7.4%; }
+    .hs-ai       { left: 50.1%; top: 4.4%; width: 7.2%; height: 7.4%; }
+    .hs-trust    { left: 57.3%; top: 4.4%; width: 5.8%; height: 7.4%; }
+    .hs-contact  { left: 63.2%; top: 4.4%; width: 6.6%; height: 7.4%; }
+    .hs-language { left: 67.8%; top: 4.8%; width: 9.2%; height: 5.8%; }
+    .hs-voice    { left: 78.1%; top: 4.5%; width: 10.0%; height: 6.4%; }
+    .hs-login    { left: 90.0%; top: 4.5%; width: 7.5%; height: 6.4%; }
+
+    .hs-cta-farmer { left: 3.4%; top: 56.4%; width: 14.5%; height: 6.2%; }
+    .hs-cta-buyer  { left: 19.2%; top: 56.4%; width: 14.5%; height: 6.2%; }
+    .hs-cta-video  { left: 34.7%; top: 56.4%; width: 13.0%; height: 6.2%; }
+
+    /* Future scroll sections */
+    .placeholder-section {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
+      display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      flex: 0 0 auto;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
-    }
-
-    .feature-text h3 {
-      font-size: 16px;
-      color: #111827;
-      font-weight: 950;
-      margin-bottom: 5px;
-    }
-
-    .feature-text p {
-      font-size: 13px;
-      color: #2e3b32;
-      line-height: 1.35;
-      font-weight: 600;
-    }
-
-    .placeholder-section {
-      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
+      text-align: center;
       padding: 40px 18px;
     }
 
     .page-name {
-      text-align: center;
-      font-size: clamp(38px, 6vw, 76px);
+      font-size: clamp(40px, 6vw, 82px);
+      line-height: 1.05;
       color: #075c1c;
       font-weight: 950;
       letter-spacing: -1.8px;
     }
 
     .page-subtitle {
-      text-align: center;
       margin-top: 16px;
-      font-size: clamp(15px, 2vw, 20px);
+      font-size: clamp(15px, 2vw, 21px);
       color: #34463b;
       font-weight: 650;
     }
@@ -647,7 +201,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 30px 30px;
+      padding: 30px;
       background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
     }
 
@@ -678,300 +232,15 @@
       cursor: pointer;
     }
 
-    @media (max-width: 1180px) {
-      .km-fixed-header {
-        width: calc(100% - 16px);
-        gap: 12px;
-      }
-
-      .km-brand img {
-        width: 168px;
-      }
-
-      .km-nav {
-        gap: 16px;
-      }
-
-      .km-nav a {
-        font-size: 12px;
-      }
-
-      .km-language-btn {
-        min-width: 112px;
-      }
-
-      .km-voice-btn {
-        min-width: 128px;
-      }
-
-      .km-login-btn {
-        min-width: 98px;
-        padding: 0 17px;
-      }
-
-      .home-inner {
-        width: calc(100% - 42px);
-        grid-template-columns: 1fr 0.68fr;
-      }
-
-      .hero-title {
-        font-size: clamp(46px, 5.5vw, 66px);
-      }
-
-      .hero-text {
-        font-size: 18px;
-      }
-
-      .info-card {
-        width: 245px;
-      }
-
-      .feature-strip {
-        width: calc(100% - 38px);
-      }
-
-      .feature-item {
-        gap: 11px;
-        padding: 15px 14px;
-      }
-
-      .feature-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 23px;
-      }
-
-      .feature-text h3 {
-        font-size: 13px;
-      }
-
-      .feature-text p {
-        font-size: 11px;
-      }
-    }
-
     @media (max-width: 768px) {
-      :root {
-        --km-header-height: 82px;
-        --km-bottom-gap: 7px;
-      }
-
-      .km-fixed-header {
-        display: none;
-      }
-
-      .km-mobile-header {
-        position: fixed;
-        top: 20px;
-        left: 18px;
-        right: 18px;
-        z-index: 9999;
-        min-height: 58px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.96);
-        box-shadow: 0 12px 30px rgba(15,23,42,0.12);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 12px;
-      }
-
-      .km-menu-btn {
-        width: 40px;
-        height: 40px;
-        border: 0;
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        cursor: pointer;
-      }
-
-      .km-menu-btn span {
-        width: 25px;
-        height: 3px;
-        border-radius: 99px;
-        background: #08701f;
-      }
-
-      .km-mobile-logo img {
-        width: 168px;
-        height: 42px;
-        object-fit: contain;
-        display: block;
-      }
-
-      .mobile-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .mobile-lang {
-        height: 38px;
-        border: 0;
-        border-radius: 999px;
-        background: #ffffff;
-        box-shadow: 0 8px 20px rgba(15,23,42,0.10);
-        padding: 0 10px;
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .mobile-login {
-        height: 38px;
-        border: 0;
-        border-radius: 999px;
-        background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-        color: #ffffff;
-        padding: 0 13px;
-        font-size: 13px;
-        font-weight: 900;
-      }
-
-      .km-mobile-menu {
-        position: fixed;
-        top: 88px;
-        left: 18px;
-        width: 220px;
-        z-index: 9999;
-        background: rgba(255,255,255,0.98);
-        border-radius: 16px;
-        box-shadow: 0 14px 36px rgba(15,23,42,0.14);
-        padding: 10px;
-        display: none;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .km-mobile-menu.open {
-        display: flex;
-      }
-
-      .km-mobile-menu a {
-        text-decoration: none;
-        color: #14351f;
-        font-size: 14px;
-        font-weight: 850;
-        padding: 10px 12px;
-        border-radius: 10px;
-      }
-
-      .km-page {
-        padding-top: var(--km-header-height);
-      }
-
-      .km-section {
-        min-height: calc(100vh - var(--km-header-height));
-        scroll-margin-top: var(--km-header-height);
-      }
-
-      .home-section {
-        background-image: url("./assets/home-bg-mobile.jpg");
+      .home-master {
+        background-image: url("./assets/home-master-reference.png");
+        background-size: cover;
         background-position: center top;
       }
 
-      .home-overlay {
-        background:
-          linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.10) 48%, rgba(0,40,10,0.58) 100%);
-      }
-
-      .home-inner {
-        display: block;
-        width: calc(100% - 34px);
-        min-height: calc(100vh - var(--km-header-height));
-        padding: 42px 0 28px;
-      }
-
-      .hero-copy {
-        max-width: 100%;
-      }
-
-      .hero-title {
-        font-size: clamp(48px, 12vw, 66px);
-        line-height: 0.95;
-        letter-spacing: -1.8px;
-        margin-top: 8px;
-        margin-bottom: 20px;
-      }
-
-      .hero-text {
-        width: 78%;
-        font-size: 19px;
-        line-height: 1.45;
-        margin-bottom: 26px;
-      }
-
-      .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-top: 24px;
-      }
-
-      .cta-btn {
-        min-width: 0;
-        height: 58px;
-        font-size: 18px;
-      }
-
-      .cta-video {
-        grid-column: 1 / -1;
-      }
-
-      .hero-cards {
-        margin-top: 250px;
-        align-items: stretch;
-        gap: 12px;
-      }
-
-      .info-card {
-        width: 100%;
-        min-height: auto;
-        border-radius: 16px;
-      }
-
-      .feature-strip {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        transform: none;
-        width: 100%;
-        margin-top: 18px;
-        grid-template-columns: 1fr;
-        border-radius: 18px;
-      }
-
-      .feature-item {
-        padding: 13px 16px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(15,23,42,0.10);
-      }
-
-      .feature-item:last-child {
-        border-bottom: 0;
-      }
-
-      .feature-icon {
-        width: 48px;
-        height: 48px;
-      }
-
-      .feature-text h3 {
-        font-size: 17px;
-      }
-
-      .feature-text p {
-        font-size: 13px;
-      }
-
-      .language-panel {
-        position: fixed;
-        top: 90px;
-        right: 16px;
-        left: 16px;
-        width: auto;
+      .hotspot {
+        display: none;
       }
 
       .role-buttons {
@@ -982,173 +251,22 @@
 </head>
 
 <body>
-  <header class="km-fixed-header">
-    <a class="km-brand" href="#home">
-      <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-    </a>
-
-    <nav class="km-nav">
-      <a class="active" href="#home" data-i18n="nav_home">Home</a>
-      <a href="#farmer" data-i18n="nav_farmers">Farmers</a>
-      <a href="#fpo" data-i18n="nav_fpo">FPO</a>
-      <a href="#buyer" data-i18n="nav_buyer">Buyer</a>
-      <a href="#ai-engine" data-i18n="nav_ai">AI Engine</a>
-      <a href="#trust" data-i18n="nav_trust">Trust</a>
-      <a href="#contact" data-i18n="nav_contact">Contact</a>
-    </nav>
-
-    <div class="km-header-actions">
-      <div class="km-select-wrap">
-        <button class="km-language-btn" type="button" id="languageBtn">🌐 <span id="currentLang">English</span>⌄</button>
-        <div class="language-panel" id="languagePanel">
-          <h4>Select Language / भाषा चुनें</h4>
-          <div class="language-grid">
-            <button class="lang-option active" data-lang="en">🇬🇧 English</button>
-            <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
-            <button class="lang-option" data-lang="bn">🇮🇳 বাংলা</button>
-            <button class="lang-option" data-lang="ta">🇮🇳 தமிழ்</button>
-            <button class="lang-option" data-lang="te">🇮🇳 తెలుగు</button>
-            <button class="lang-option" data-lang="mr">🇮🇳 मराठी</button>
-            <button class="lang-option" data-lang="gu">🇮🇳 ગુજરાતી</button>
-            <button class="lang-option" data-lang="pa">🇮🇳 ਪੰਜਾਬੀ</button>
-          </div>
-        </div>
-      </div>
-
-      <button class="km-voice-btn" type="button" id="voiceBtn">
-        <span class="voice-orb">🎙</span>
-        <span data-i18n="talk_ai">Talk to AI</span>
-      </button>
-
-      <button class="km-login-btn" type="button" onclick="location.hash='login'">
-        <span class="km-login-icon"></span>
-        <span data-i18n="login">Login</span>
-      </button>
-    </div>
-  </header>
-
-  <header class="km-mobile-header">
-    <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <a class="km-mobile-logo" href="#home">
-      <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-    </a>
-
-    <div class="mobile-actions">
-      <button class="mobile-lang" id="mobileLangBtn" type="button">🌐 EN</button>
-      <button class="mobile-login" type="button" onclick="location.hash='login'">Login</button>
-    </div>
-  </header>
-
-  <div class="km-mobile-menu" id="kmMobileMenu">
-    <a href="#home">Home</a>
-    <a href="#farmer">Farmers</a>
-    <a href="#fpo">FPO</a>
-    <a href="#buyer">Buyer</a>
-    <a href="#ai-engine">AI Engine</a>
-    <a href="#trust">Trust</a>
-    <a href="#contact">Contact</a>
-    <a href="#login">Login</a>
-  </div>
-
   <main class="km-page" id="kmPage">
-    <section class="km-section home-section" id="home">
-      <div class="home-overlay"></div>
-
-      <div class="home-inner">
-        <div class="hero-copy">
-          <h1 class="hero-title">
-            <span class="green" data-i18n="hero_title_1">Precision Farming.</span>
-            <span class="dark" data-i18n="hero_title_2">Stronger Market Connection.</span>
-          </h1>
-
-          <p class="hero-text" data-i18n="hero_text">
-            KisanMitraAI helps farmers, FPOs and buyers with AI-powered crop guidance, trusted market linkage, local-language support and smart farm intelligence.
-          </p>
-
-          <div class="hero-actions">
-            <a class="cta-btn cta-farmer" href="#farmer">👨‍🌾 <span data-i18n="farmer_cta">I'm a Farmer</span> →</a>
-            <a class="cta-btn cta-buyer" href="#buyer">🛒 <span data-i18n="buyer_cta">I'm a Buyer</span> →</a>
-            <a class="cta-btn cta-video" href="#ai-engine">▶ <span data-i18n="how_it_works">See How It Works</span></a>
-          </div>
-        </div>
-
-        <div class="hero-cards">
-          <article class="info-card">
-            <div class="card-head"><span class="card-icon blue-icon">AI</span><span data-i18n="crop_insight">AI Crop Insight</span></div>
-            <div class="health-row">
-              <div>
-                <div class="card-small"><strong>Wheat</strong> · Good Growth</div>
-                <div class="health-score">82/100</div>
-              </div>
-              <div style="font-size:42px">🌱</div>
-            </div>
-            <div class="progress"><span></span></div>
-          </article>
-
-          <article class="info-card">
-            <div class="card-head"><span class="card-icon weather-icon">☀️</span><span data-i18n="weather">Weather Update</span></div>
-            <div class="weather-row">
-              <div>
-                <div class="weather-temp">32°C</div>
-                <div class="card-small">Partly Cloudy</div>
-              </div>
-            </div>
-            <div class="weather-meta">
-              <div>Humidity<strong>65%</strong></div>
-              <div>Rain Chance<strong>20%</strong></div>
-              <div>Wind<strong>12 km/h</strong></div>
-            </div>
-          </article>
-
-          <article class="info-card">
-            <div class="card-head"><span class="card-icon">↗</span><span data-i18n="market">Market Linkage</span></div>
-            <div class="market-row">
-              <div>
-                <div class="card-small">Wheat (FAQ)</div>
-                <div class="market-price">₹ 2,125 <span style="font-size:15px">/ Quintal</span></div>
-              </div>
-              <span class="gain">↑ 2.5%</span>
-            </div>
-            <div class="card-small" style="margin-top:8px">Mandi: Indore</div>
-          </article>
-        </div>
-      </div>
-
-      <div class="feature-strip">
-        <div class="feature-item">
-          <span class="feature-icon">AI</span>
-          <div class="feature-text">
-            <h3 data-i18n="feature_ai">AI-Powered Insights</h3>
-            <p data-i18n="feature_ai_text">Smart recommendations for better yields and lower costs.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <span class="feature-icon">🛡</span>
-          <div class="feature-text">
-            <h3 data-i18n="feature_trust">Trust & Transparency</h3>
-            <p data-i18n="feature_trust_text">Verified data, traceability and secure transactions.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <span class="feature-icon">🌐</span>
-          <div class="feature-text">
-            <h3 data-i18n="feature_market">Global Market Linkage</h3>
-            <p data-i18n="feature_market_text">Connect to more buyers, better prices, wider markets.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <span class="feature-icon">🎙</span>
-          <div class="feature-text">
-            <h3 data-i18n="feature_voice">Voice & Language Support</h3>
-            <p data-i18n="feature_voice_text">Talk or listen in your language. Simple, smart and farmer-friendly.</p>
-          </div>
-        </div>
+    <section class="km-section" id="home">
+      <div class="home-master">
+        <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
+        <a class="hotspot hs-farmer" href="#farmer" aria-label="Farmers"></a>
+        <a class="hotspot hs-fpo" href="#fpo" aria-label="FPO"></a>
+        <a class="hotspot hs-buyer" href="#buyer" aria-label="Buyer"></a>
+        <a class="hotspot hs-ai" href="#ai-engine" aria-label="AI Engine"></a>
+        <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
+        <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
+        <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')" aria-label="Language"></a>
+        <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()" aria-label="Talk to AI"></a>
+        <a class="hotspot hs-login" href="#login" aria-label="Login"></a>
+        <a class="hotspot hs-cta-farmer" href="#farmer" aria-label="I am a Farmer"></a>
+        <a class="hotspot hs-cta-buyer" href="#buyer" aria-label="I am a Buyer"></a>
+        <a class="hotspot hs-cta-video" href="#ai-engine" aria-label="See How It Works"></a>
       </div>
     </section>
 
@@ -1227,131 +345,18 @@
   </section>
 
   <script>
-    const translations = {
-      en: {
-        nav_home: "Home",
-        nav_farmers: "Farmers",
-        nav_fpo: "FPO",
-        nav_buyer: "Buyer",
-        nav_ai: "AI Engine",
-        nav_trust: "Trust",
-        nav_contact: "Contact",
-        talk_ai: "Talk to AI",
-        login: "Login",
-        hero_title_1: "Precision Farming.",
-        hero_title_2: "Stronger Market Connection.",
-        hero_text: "KisanMitraAI helps farmers, FPOs and buyers with AI-powered crop guidance, trusted market linkage, local-language support and smart farm intelligence.",
-        farmer_cta: "I'm a Farmer",
-        buyer_cta: "I'm a Buyer",
-        how_it_works: "See How It Works",
-        crop_insight: "AI Crop Insight",
-        weather: "Weather Update",
-        market: "Market Linkage",
-        feature_ai: "AI-Powered Insights",
-        feature_ai_text: "Smart recommendations for better yields and lower costs.",
-        feature_trust: "Trust & Transparency",
-        feature_trust_text: "Verified data, traceability and secure transactions.",
-        feature_market: "Global Market Linkage",
-        feature_market_text: "Connect to more buyers, better prices, wider markets.",
-        feature_voice: "Voice & Language Support",
-        feature_voice_text: "Talk or listen in your language. Simple, smart and farmer-friendly."
-      },
-      hi: {
-        nav_home: "होम",
-        nav_farmers: "किसान",
-        nav_fpo: "FPO",
-        nav_buyer: "खरीदार",
-        nav_ai: "AI इंजन",
-        nav_trust: "भरोसा",
-        nav_contact: "संपर्क",
-        talk_ai: "AI से बात करें",
-        login: "लॉगिन",
-        hero_title_1: "स्मार्ट खेती।",
-        hero_title_2: "मजबूत बाजार जोड़।",
-        hero_text: "KisanMitraAI किसानों, FPO और खरीदारों को AI आधारित फसल सलाह, भरोसेमंद बाजार संपर्क, स्थानीय भाषा सहायता और स्मार्ट फार्म जानकारी देता है।",
-        farmer_cta: "मैं किसान हूँ",
-        buyer_cta: "मैं खरीदार हूँ",
-        how_it_works: "कैसे काम करता है",
-        crop_insight: "AI फसल जानकारी",
-        weather: "मौसम अपडेट",
-        market: "बाजार संपर्क",
-        feature_ai: "AI आधारित सलाह",
-        feature_ai_text: "बेहतर उपज और कम लागत के लिए स्मार्ट सुझाव।",
-        feature_trust: "भरोसा और पारदर्शिता",
-        feature_trust_text: "सत्यापित डेटा, ट्रेसबिलिटी और सुरक्षित लेनदेन।",
-        feature_market: "बाजार संपर्क",
-        feature_market_text: "अधिक खरीदार, बेहतर दाम और बड़े बाजार से जुड़ें।",
-        feature_voice: "आवाज और भाषा सहायता",
-        feature_voice_text: "अपनी भाषा में बोलें या सुनें। सरल, स्मार्ट और किसान-हितैषी।"
+    function speakHome() {
+      if (!("speechSynthesis" in window)) {
+        alert("Voice is not supported in this browser.");
+        return;
       }
-    };
 
-    const languageBtn = document.getElementById("languageBtn");
-    const mobileLangBtn = document.getElementById("mobileLangBtn");
-    const languagePanel = document.getElementById("languagePanel");
-    const currentLang = document.getElementById("currentLang");
-    const langOptions = document.querySelectorAll(".lang-option");
-
-    function applyLanguage(lang) {
-      const dict = translations[lang] || translations.en;
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (dict[key]) el.textContent = dict[key];
-      });
-
-      langOptions.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
-      currentLang.textContent = lang === "hi" ? "हिन्दी" : "English";
-      mobileLangBtn.textContent = lang === "hi" ? "🌐 HI" : "🌐 EN";
-      localStorage.setItem("kmLang", lang);
-    }
-
-    if (languageBtn && languagePanel) {
-      languageBtn.addEventListener("click", function () {
-        languagePanel.classList.toggle("open");
-      });
-    }
-
-    if (mobileLangBtn && languagePanel) {
-      mobileLangBtn.addEventListener("click", function () {
-        languagePanel.classList.toggle("open");
-      });
-    }
-
-    langOptions.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        applyLanguage(btn.dataset.lang);
-        languagePanel.classList.remove("open");
-      });
-    });
-
-    applyLanguage(localStorage.getItem("kmLang") || "en");
-
-    const voiceBtn = document.getElementById("voiceBtn");
-    if (voiceBtn && "speechSynthesis" in window) {
-      voiceBtn.addEventListener("click", function () {
-        const lang = localStorage.getItem("kmLang") || "en";
-        const text = document.querySelector(".hero-title").innerText + ". " + document.querySelector(".hero-text").innerText;
-        speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = lang === "hi" ? "hi-IN" : "en-IN";
-        utterance.rate = 0.9;
-        speechSynthesis.speak(utterance);
-      });
-    }
-
-    const kmMenuBtn = document.getElementById("kmMenuBtn");
-    const kmMobileMenu = document.getElementById("kmMobileMenu");
-
-    if (kmMenuBtn && kmMobileMenu) {
-      kmMenuBtn.addEventListener("click", function () {
-        kmMobileMenu.classList.toggle("open");
-      });
-
-      kmMobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", function () {
-          kmMobileMenu.classList.remove("open");
-        });
-      });
+      const text = "Welcome to KisanMitraAI. Precision farming and stronger market connection for farmers, FPOs and buyers.";
+      speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-IN";
+      utterance.rate = 0.9;
+      speechSynthesis.speak(utterance);
     }
 
     const roleButtons = document.querySelectorAll(".role-btn");
