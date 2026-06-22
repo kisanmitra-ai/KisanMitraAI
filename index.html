@@ -529,6 +529,75 @@
   }
 }
 /* SAME SECTION CENTER POSITION END */
+
+/* HEADER SAFE AREA + BOTTOM 7PX RULE START */
+:root {
+  --km-header-height: 92px;
+  --km-bottom-gap: 7px;
+}
+
+/* Main page always starts below fixed header */
+.km-page {
+  padding-top: var(--km-header-height) !important;
+}
+
+/* Every section fits below header and never hides behind header */
+.km-section {
+  min-height: calc(100vh - var(--km-header-height)) !important;
+  scroll-margin-top: var(--km-header-height) !important;
+  position: relative !important;
+  padding: 40px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Center content area */
+.section-inner,
+.km-section > div:not(.section-bottom) {
+  width: min(1180px, 100%) !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+/* Anything placed at page bottom */
+.section-bottom {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: var(--km-bottom-gap) !important;
+  transform: translateX(-50%) !important;
+  width: min(1180px, calc(100% - 28px)) !important;
+  z-index: 2 !important;
+}
+
+/* Prevent center text from shifting differently per section */
+.km-section > div:not(.section-bottom) {
+  transform: none !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --km-header-height: 70px;
+    --km-bottom-gap: 7px;
+  }
+
+  .km-page {
+    padding-top: var(--km-header-height) !important;
+  }
+
+  .km-section {
+    min-height: calc(100vh - var(--km-header-height)) !important;
+    scroll-margin-top: var(--km-header-height) !important;
+    padding: 28px 14px !important;
+  }
+
+  .section-bottom {
+    bottom: var(--km-bottom-gap) !important;
+    width: calc(100% - 20px) !important;
+  }
+}
+/* HEADER SAFE AREA + BOTTOM 7PX RULE END */
 </style>
 </head>
 
@@ -738,5 +807,6 @@
   </script>
 </body>
 </html>
+
 
 
