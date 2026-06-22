@@ -1058,8 +1058,98 @@
     window.addEventListener("resize", ensureClickZones);
   })();
 </script>
+<style id="km-login-click-final">
+  /* Keep Login button above all hero click zones */
+  .km-login-click-target,
+  .km-login-click-zone {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  .km-login-click-zone {
+    position: fixed !important;
+    top: 18px !important;
+    right: clamp(42px, 4.5vw, 72px) !important;
+    width: 122px !important;
+    height: 54px !important;
+    z-index: 1000005 !important;
+    display: block !important;
+    background: rgba(255,255,255,0) !important;
+    border-radius: 18px !important;
+    text-decoration: none !important;
+  }
+
+  .km-login-click-zone:hover {
+    outline: 2px solid rgba(18, 110, 38, 0.18) !important;
+    background: rgba(255,255,255,0.06) !important;
+  }
+</style>
+
+<script id="km-login-click-final-script">
+  (function () {
+    function goLogin(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      window.location.href = "/KisanMitraAI/login.html";
+    }
+
+    function textOf(el) {
+      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+    }
+
+    function makeLoginClickable() {
+      var all = Array.from(document.querySelectorAll("a, button, div, span"));
+      var loginEls = all.filter(function (el) {
+        var text = textOf(el);
+        var r = el.getBoundingClientRect();
+
+        return (
+          text.includes("Login") &&
+          r.top < 120 &&
+          r.right > window.innerWidth * 0.70
+        );
+      });
+
+      loginEls.forEach(function (el) {
+        el.classList.add("km-login-click-target");
+        el.style.setProperty("cursor", "pointer", "important");
+        el.style.setProperty("pointer-events", "auto", "important");
+        el.style.setProperty("z-index", "1000006", "important");
+
+        if (el.tagName.toLowerCase() === "a") {
+          el.setAttribute("href", "/KisanMitraAI/login.html");
+        }
+
+        el.onclick = goLogin;
+      });
+
+      if (!document.querySelector(".km-login-click-zone")) {
+        var zone = document.createElement("a");
+        zone.className = "km-login-click-zone";
+        zone.href = "/KisanMitraAI/login.html";
+        zone.setAttribute("aria-label", "Open Login page");
+        zone.setAttribute("title", "Open Login page");
+        zone.addEventListener("click", goLogin);
+        document.body.appendChild(zone);
+      }
+    }
+
+    window.addEventListener("load", function () {
+      makeLoginClickable();
+      setTimeout(makeLoginClickable, 300);
+      setTimeout(makeLoginClickable, 1000);
+      setTimeout(makeLoginClickable, 1800);
+    });
+
+    window.addEventListener("resize", makeLoginClickable);
+  })();
+</script>
 </body>
 </html>
+
 
 
 
