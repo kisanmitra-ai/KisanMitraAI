@@ -12,321 +12,338 @@
       padding: 0;
     }
 
-    html, body {
-      width: 100%;
-      min-height: 100%;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #ffffff;
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-    }
-
-    .page-shell {
       width: 100%;
       min-height: 100vh;
-      padding: 10px 8px 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: #f5faf6;
+      color: #0f2f1a;
+      overflow-x: hidden;
+    }
+
+    .km-page {
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .km-section {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 18px;
+      border-bottom: 1px solid rgba(15, 47, 26, 0.08);
+      background: linear-gradient(180deg, #ffffff 0%, #f1faf3 100%);
+    }
+
+    .km-section:nth-child(even) {
+      background: linear-gradient(180deg, #eef8f1 0%, #ffffff 100%);
+    }
+
+    .page-name {
+      text-align: center;
+      font-size: clamp(34px, 6vw, 76px);
+      line-height: 1.05;
+      color: #075c1c;
+      font-weight: 950;
+      letter-spacing: -1.8px;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      margin-top: 18px;
+      font-size: clamp(15px, 2vw, 20px);
+      color: #34463b;
+      font-weight: 650;
+    }
+
+    .login-box {
+      width: min(430px, 94vw);
+      padding: 34px 30px;
+      border-radius: 24px;
       background: #ffffff;
+      box-shadow: 0 24px 70px rgba(7, 42, 19, 0.14);
+      border: 1px solid rgba(7, 92, 28, 0.12);
+      text-align: center;
     }
 
-    .km-topbar {
-      width: min(1280px, calc(100% - 24px));
-      min-height: 72px;
-      margin: 0 auto;
-      padding: 10px 18px 10px 22px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.10);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .login-box h1 {
+      font-size: 38px;
+      color: #075c1c;
+      font-weight: 950;
+      margin-bottom: 8px;
     }
 
-    .km-brand {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      flex: 0 0 auto;
-    }
-
-    .km-brand img {
-      width: 200px;
-      height: 56px;
-      object-fit: contain;
-      object-position: left center;
-      display: block;
-    }
-
-    .km-nav {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 38px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .km-nav a {
-      text-decoration: none;
-      color: #14351f;
+    .login-box p {
+      color: #405349;
       font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
+      font-weight: 650;
+      margin-bottom: 24px;
     }
 
-    .km-login-btn {
-      min-width: 122px;
-      height: 48px;
-      padding: 0 24px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-      color: #ffffff !important;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .role-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 10px;
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0.1px;
-      box-shadow:
-        0 16px 30px rgba(6, 101, 29, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      margin-bottom: 22px;
     }
 
-    .km-login-btn:hover {
-      transform: translateY(-1px);
-      background: linear-gradient(180deg, #0d8d2d 0%, #06651d 100%);
-      box-shadow:
-        0 20px 36px rgba(6, 101, 29, 0.30),
-        inset 0 1px 0 rgba(255, 255, 255, 0.22);
-    }
-
-    .km-login-icon {
-      width: 24px;
-      height: 24px;
+    .role-btn {
+      height: 44px;
       border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.92);
-      display: inline-flex;
+      border: 1px solid rgba(7, 92, 28, 0.18);
+      background: #f2faf4;
+      color: #075c1c;
+      font-size: 14px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .role-btn.active {
+      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+      color: #ffffff;
+      border-color: #06651d;
+    }
+
+    .input-wrap {
+      height: 52px;
+      border-radius: 12px;
+      border: 1px solid rgba(91, 105, 125, 0.25);
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      margin-bottom: 14px;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .sign-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 14px 28px rgba(6, 101, 29, 0.22);
+      margin-top: 6px;
+    }
+
+    .dashboard-view {
+      width: 100%;
+      min-height: 100vh;
+      display: none;
       align-items: center;
       justify-content: center;
-      position: relative;
-      flex: 0 0 auto;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
     }
 
-    .km-login-icon::before {
-      content: "";
-      width: 7px;
-      height: 7px;
+    .dashboard-title {
+      font-size: clamp(36px, 6vw, 82px);
+      color: #075c1c;
+      font-weight: 950;
+      letter-spacing: -1.8px;
+    }
+
+    .dashboard-subtitle {
+      margin-top: 16px;
+      color: #34463b;
+      font-size: clamp(15px, 2vw, 21px);
+      font-weight: 650;
+    }
+
+    .back-index {
+      margin-top: 28px;
+      height: 46px;
+      padding: 0 22px;
       border-radius: 999px;
-      background: #ffffff;
-      position: absolute;
-      top: 5px;
-    }
-
-    .km-login-icon::after {
-      content: "";
-      width: 12px;
-      height: 6px;
-      border-radius: 10px 10px 4px 4px;
-      border: 2px solid #ffffff;
-      border-bottom: 0;
-      position: absolute;
-      bottom: 5px;
-    }
-
-    .km-mobile-header,
-    .km-mobile-menu {
-      display: none;
-    }
-
-    @media (max-width: 1100px) {
-      .km-topbar {
-        width: calc(100% - 16px);
-        padding: 10px 14px 10px 16px;
-      }
-
-      .km-brand img {
-        width: 170px;
-        height: 48px;
-      }
-
-      .km-nav {
-        gap: 18px;
-        overflow-x: auto;
-      }
-
-      .km-nav a {
-        font-size: 13px;
-      }
-
-      .km-login-btn {
-        min-width: 104px;
-        height: 44px;
-        padding: 0 18px;
-        border-radius: 14px;
-        font-size: 14px;
-      }
-
-      .km-login-icon {
-        width: 22px;
-        height: 22px;
-      }
+      border: 0;
+      background: #075c1c;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 850;
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
-      .km-topbar {
-        display: none;
+      .km-section {
+        padding: 28px 14px;
       }
 
-      .km-mobile-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 10px 0;
+      .login-box {
+        padding: 28px 20px;
       }
 
-      .km-menu-btn {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        cursor: pointer;
+      .login-box h1 {
+        font-size: 31px;
       }
 
-      .km-menu-btn span {
-        width: 20px;
-        height: 2px;
-        border-radius: 999px;
-        background: #14351f;
-        display: block;
-      }
-
-      .km-mobile-logo {
-        height: 44px;
-        padding: 0 12px;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
-        display: flex;
-        align-items: center;
-      }
-
-      .km-mobile-logo img {
-        width: 132px;
-        height: 34px;
-        object-fit: contain;
-        display: block;
-      }
-
-      .km-mobile-menu {
-        position: fixed;
-        top: 62px;
-        left: 10px;
-        width: 220px;
-        z-index: 9999;
-        background: rgba(255,255,255,0.98);
-        border-radius: 16px;
-        box-shadow: 0 14px 36px rgba(15,23,42,0.14);
-        padding: 10px;
-        display: none;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .km-mobile-menu.open {
-        display: flex;
-      }
-
-      .km-mobile-menu a {
-        text-decoration: none;
-        color: #14351f;
-        font-size: 14px;
-        font-weight: 800;
-        padding: 10px 12px;
-        border-radius: 10px;
-      }
-
-      .km-mobile-menu a:last-child {
-        background: #0a7a23;
-        color: #ffffff;
+      .role-buttons {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page-shell">
-    <header class="km-topbar">
-      <a class="km-brand" href="./index.html">
-        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-      </a>
+  <main class="km-page" id="kmPage">
+    <section class="km-section" id="home">
+      <div>
+        <h1 class="page-name">Home Page</h1>
+        <p class="page-subtitle">Index page section</p>
+      </div>
+    </section>
 
-      <nav class="km-nav">
-        <a href="./index.html">Home</a>
-        <a href="./farmer-dashboard.html">Farmers</a>
-        <a href="./fpo-dashboard.html">FPO</a>
-        <a href="./buyer-dashboard.html">Buyer</a>
-        <a href="./ai-engine.html">AI Engine</a>
-        <a href="./trust.html">Trust</a>
-        <a href="./contact.html">Contact</a>
-        <a class="km-login-btn" href="./login.html">
-          <span class="km-login-icon"></span>
-          Login
-        </a>
-      </nav>
-    </header>
+    <section class="km-section" id="farmer">
+      <div>
+        <h1 class="page-name">Farmer Page</h1>
+        <p class="page-subtitle">Farmer section inside index page</p>
+      </div>
+    </section>
 
-    <header class="km-mobile-header">
-      <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <section class="km-section" id="fpo">
+      <div>
+        <h1 class="page-name">FPO Page</h1>
+        <p class="page-subtitle">FPO section inside index page</p>
+      </div>
+    </section>
 
-      <a class="km-mobile-logo" href="./index.html">
-        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-      </a>
-    </header>
+    <section class="km-section" id="buyer">
+      <div>
+        <h1 class="page-name">Buyer Page</h1>
+        <p class="page-subtitle">Buyer section inside index page</p>
+      </div>
+    </section>
 
-    <div class="km-mobile-menu" id="kmMobileMenu">
-      <a href="./index.html">Home</a>
-      <a href="./farmer-dashboard.html">Farmers</a>
-      <a href="./fpo-dashboard.html">FPO</a>
-      <a href="./buyer-dashboard.html">Buyer</a>
-      <a href="./ai-engine.html">AI Engine</a>
-      <a href="./trust.html">Trust</a>
-      <a href="./contact.html">Contact</a>
-      <a href="./login.html">Login</a>
+    <section class="km-section" id="ai-engine">
+      <div>
+        <h1 class="page-name">AI Engine Page</h1>
+        <p class="page-subtitle">AI Engine section inside index page</p>
+      </div>
+    </section>
+
+    <section class="km-section" id="trust">
+      <div>
+        <h1 class="page-name">Trust Page</h1>
+        <p class="page-subtitle">Trust section inside index page</p>
+      </div>
+    </section>
+
+    <section class="km-section" id="contact">
+      <div>
+        <h1 class="page-name">Contact Page</h1>
+        <p class="page-subtitle">Contact section inside index page</p>
+      </div>
+    </section>
+
+    <section class="km-section" id="login">
+      <div class="login-box">
+        <h1>Login</h1>
+        <p>Select user type and sign in. After login, this index page will be replaced by the dashboard.</p>
+
+        <div class="role-buttons">
+          <button class="role-btn active" type="button" data-role="Farmer">Farmer</button>
+          <button class="role-btn" type="button" data-role="FPO">FPO</button>
+          <button class="role-btn" type="button" data-role="Buyer">Buyer</button>
+        </div>
+
+        <div class="input-wrap">
+          <input id="mobileNo" type="tel" maxlength="10" placeholder="Mobile No." />
+        </div>
+
+        <div class="input-wrap">
+          <input id="otp" type="text" maxlength="6" placeholder="OTP" />
+        </div>
+
+        <button class="sign-btn" type="button" id="signInBtn">Sign In</button>
+      </div>
+    </section>
+  </main>
+
+  <section class="dashboard-view" id="dashboardView">
+    <div>
+      <h1 class="dashboard-title" id="dashboardTitle">Dashboard</h1>
+      <p class="dashboard-subtitle" id="dashboardSubtitle">Logged in dashboard view</p>
+      <button class="back-index" type="button" id="backIndexBtn">Back to Index Page</button>
     </div>
-  </div>
+  </section>
 
   <script>
-    const kmMenuBtn = document.getElementById("kmMenuBtn");
-    const kmMobileMenu = document.getElementById("kmMobileMenu");
+    const roleButtons = document.querySelectorAll(".role-btn");
+    const mobileNo = document.getElementById("mobileNo");
+    const otp = document.getElementById("otp");
+    const signInBtn = document.getElementById("signInBtn");
+    const kmPage = document.getElementById("kmPage");
+    const dashboardView = document.getElementById("dashboardView");
+    const dashboardTitle = document.getElementById("dashboardTitle");
+    const dashboardSubtitle = document.getElementById("dashboardSubtitle");
+    const backIndexBtn = document.getElementById("backIndexBtn");
 
-    if (kmMenuBtn && kmMobileMenu) {
-      kmMenuBtn.addEventListener("click", function () {
-        kmMobileMenu.classList.toggle("open");
-      });
+    let selectedRole = "Farmer";
 
-      document.addEventListener("click", function (e) {
-        if (!kmMenuBtn.contains(e.target) && !kmMobileMenu.contains(e.target)) {
-          kmMobileMenu.classList.remove("open");
-        }
+    roleButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        roleButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedRole = btn.dataset.role;
       });
-    }
+    });
+
+    mobileNo.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+
+    otp.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
+    });
+
+    signInBtn.addEventListener("click", function () {
+      kmPage.style.display = "none";
+      dashboardView.style.display = "flex";
+
+      if (selectedRole === "Farmer") {
+        dashboardTitle.textContent = "Farmer Dashboard";
+        dashboardSubtitle.textContent = "Index page replaced by Farmer Dashboard after login.";
+      }
+
+      if (selectedRole === "FPO") {
+        dashboardTitle.textContent = "FPO Dashboard";
+        dashboardSubtitle.textContent = "Index page replaced by FPO Dashboard after login.";
+      }
+
+      if (selectedRole === "Buyer") {
+        dashboardTitle.textContent = "Buyer Dashboard";
+        dashboardSubtitle.textContent = "Index page replaced by Buyer Dashboard after login.";
+      }
+
+      window.scrollTo(0, 0);
+    });
+
+    backIndexBtn.addEventListener("click", function () {
+      dashboardView.style.display = "none";
+      kmPage.style.display = "block";
+      window.location.hash = "#home";
+      window.scrollTo(0, 0);
+    });
   </script>
 </body>
 </html>
