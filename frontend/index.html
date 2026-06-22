@@ -12,6 +12,16 @@
       padding: 0;
     }
 
+    :root {
+      --km-header-height: 92px;
+      --km-bottom-gap: 7px;
+      --green: #08701f;
+      --dark-green: #064d18;
+      --orange: #ff7a00;
+      --blue: #075dff;
+      --text: #07111f;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -20,8 +30,8 @@
       width: 100%;
       min-height: 100vh;
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #f5faf6;
-      color: #0f2f1a;
+      background: #ffffff;
+      color: var(--text);
       overflow-x: hidden;
     }
 
@@ -63,7 +73,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 38px;
+      gap: 30px;
       flex: 1;
       min-width: 0;
     }
@@ -72,39 +82,91 @@
       text-decoration: none;
       color: #14351f;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 850;
       white-space: nowrap;
     }
 
+    .km-nav a.active {
+      color: var(--green);
+      border-bottom: 3px solid var(--green);
+      padding-bottom: 8px;
+    }
+
+    .km-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .km-select-wrap {
+      position: relative;
+    }
+
+    .km-language-btn,
+    .km-voice-btn,
     .km-login-btn {
-      min-width: 122px;
       height: 48px;
-      padding: 0 24px;
+      border: 0;
       border-radius: 16px;
-      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-      color: #ffffff !important;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-size: 15px;
       font-weight: 900;
-      box-shadow:
-        0 16px 30px rgba(6, 101, 29, 0.24),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 15px;
+    }
+
+    .km-language-btn {
+      min-width: 132px;
+      padding: 0 18px;
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(10, 80, 28, 0.10);
+    }
+
+    .km-voice-btn {
+      min-width: 162px;
+      padding: 0 18px 0 12px;
+      background: #ffffff;
+      color: #075dff;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+      border: 1px solid rgba(7, 93, 255, 0.16);
+    }
+
+    .voice-orb {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #3f7bff 0%, #0b55ff 70%);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 5px rgba(7, 93, 255, 0.14);
+      font-size: 20px;
+    }
+
+    .km-login-btn {
+      min-width: 118px;
+      padding: 0 22px;
+      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+      color: #ffffff;
+      box-shadow: 0 16px 30px rgba(6, 101, 29, 0.24);
     }
 
     .km-login-icon {
-      width: 24px;
-      height: 24px;
+      width: 23px;
+      height: 23px;
       border-radius: 999px;
-      border: 2px solid rgba(255, 255, 255, 0.92);
+      border: 2px solid #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      flex: 0 0 auto;
     }
 
     .km-login-icon::before {
@@ -114,18 +176,64 @@
       border-radius: 999px;
       background: #ffffff;
       position: absolute;
-      top: 5px;
+      top: 4px;
     }
 
     .km-login-icon::after {
       content: "";
       width: 12px;
       height: 6px;
-      border-radius: 10px 10px 4px 4px;
       border: 2px solid #ffffff;
       border-bottom: 0;
+      border-radius: 10px 10px 4px 4px;
       position: absolute;
-      bottom: 5px;
+      bottom: 4px;
+    }
+
+    .language-panel {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 320px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.18);
+      display: none;
+      z-index: 10000;
+    }
+
+    .language-panel.open {
+      display: block;
+    }
+
+    .language-panel h4 {
+      font-size: 14px;
+      color: #0b4f1c;
+      margin-bottom: 14px;
+    }
+
+    .language-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .lang-option {
+      border: 0;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      color: #111827;
+    }
+
+    .lang-option.active {
+      background: #eef8ef;
+      color: var(--green);
     }
 
     .km-mobile-header,
@@ -136,28 +244,305 @@
     .km-page {
       width: 100%;
       min-height: 100vh;
+      padding-top: var(--km-header-height);
     }
 
     .km-section {
-      width: 100%;
-      min-height: 100vh;
-      scroll-margin-top: 96px;
+      min-height: calc(100vh - var(--km-header-height));
+      scroll-margin-top: var(--km-header-height);
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 120px 18px 40px;
-      border-bottom: 1px solid rgba(15, 47, 26, 0.08);
-      background: linear-gradient(180deg, #ffffff 0%, #f1faf3 100%);
+      overflow: hidden;
     }
 
-    .km-section:nth-child(even) {
-      background: linear-gradient(180deg, #eef8f1 0%, #ffffff 100%);
+    .home-section {
+      background-image: url("./assets/home-bg-desktop.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .home-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.38) 42%, rgba(255,255,255,0.05) 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 72%, rgba(0,0,0,0.10) 100%);
+      z-index: 0;
+    }
+
+    .home-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1220px, calc(100% - 70px));
+      min-height: calc(100vh - var(--km-header-height));
+      display: grid;
+      grid-template-columns: 1.02fr 0.82fr;
+      align-items: center;
+      padding: 34px 0 126px;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+    }
+
+    .hero-title {
+      font-size: clamp(52px, 5.2vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -2.6px;
+      font-weight: 950;
+      margin-bottom: 22px;
+      color: #07111f;
+    }
+
+    .hero-title .green {
+      color: var(--dark-green);
+      display: block;
+    }
+
+    .hero-title .dark {
+      display: block;
+      color: #07111f;
+    }
+
+    .hero-text {
+      max-width: 640px;
+      color: #111827;
+      font-size: clamp(18px, 1.55vw, 24px);
+      line-height: 1.45;
+      font-weight: 520;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      height: 58px;
+      min-width: 220px;
+      padding: 0 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-size: 18px;
+      font-weight: 920;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    .cta-farmer {
+      background: linear-gradient(180deg, #0c842a 0%, #06651d 100%);
+      color: #ffffff;
+    }
+
+    .cta-buyer {
+      background: rgba(255,255,255,0.94);
+      color: #075dff;
+      border: 1px solid rgba(7, 93, 255, 0.28);
+    }
+
+    .cta-video {
+      min-width: 205px;
+      background: rgba(255,255,255,0.94);
+      color: #111827;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .hero-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+      margin-top: 20px;
+      align-self: center;
+    }
+
+    .info-card {
+      width: 275px;
+      min-height: 116px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.94);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
+      padding: 16px 18px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 950;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .card-icon {
+      width: 33px;
+      height: 33px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: var(--green);
+      font-size: 20px;
+      flex: 0 0 auto;
+    }
+
+    .blue-icon {
+      background: #1266ff;
+    }
+
+    .weather-icon {
+      background: #fff2c8;
+      color: #ffb000;
+    }
+
+    .card-small {
+      font-size: 13px;
+      color: #2e3b32;
+      font-weight: 700;
+    }
+
+    .health-row,
+    .weather-row,
+    .market-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .health-score,
+    .weather-temp,
+    .market-price {
+      font-size: 27px;
+      font-weight: 950;
+      color: #111827;
+      margin-top: 3px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 7px;
+      background: #d7dde2;
+      border-radius: 99px;
+      margin-top: 7px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      background: #178423;
+      border-radius: 99px;
+    }
+
+    .weather-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 12px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      padding-top: 9px;
+      gap: 8px;
+      font-size: 11px;
+      color: #4b5563;
+      font-weight: 750;
+    }
+
+    .weather-meta strong {
+      display: block;
+      color: #111827;
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .gain {
+      background: #dff5de;
+      color: #08701f;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .feature-strip {
+      position: absolute;
+      left: 50%;
+      bottom: var(--km-bottom-gap);
+      transform: translateX(-50%);
+      width: min(1220px, calc(100% - 58px));
+      min-height: 92px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.96);
+      box-shadow: 0 18px 46px rgba(15, 23, 42, 0.16);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 4;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      border-right: 1px solid rgba(15, 23, 42, 0.10);
+    }
+
+    .feature-item:last-child {
+      border-right: 0;
+    }
+
+    .feature-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #31a51e 0%, #08701f 100%);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex: 0 0 auto;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+
+    .feature-text h3 {
+      font-size: 16px;
+      color: #111827;
+      font-weight: 950;
+      margin-bottom: 5px;
+    }
+
+    .feature-text p {
+      font-size: 13px;
+      color: #2e3b32;
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .placeholder-section {
+      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
+      padding: 40px 18px;
     }
 
     .page-name {
       text-align: center;
-      font-size: clamp(34px, 6vw, 76px);
-      line-height: 1.05;
+      font-size: clamp(38px, 6vw, 76px);
       color: #075c1c;
       font-weight: 950;
       letter-spacing: -1.8px;
@@ -165,7 +550,7 @@
 
     .page-subtitle {
       text-align: center;
-      margin-top: 18px;
+      margin-top: 16px;
       font-size: clamp(15px, 2vw, 20px);
       color: #34463b;
       font-weight: 650;
@@ -293,94 +678,162 @@
       cursor: pointer;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1180px) {
       .km-fixed-header {
         width: calc(100% - 16px);
-        padding: 10px 14px 10px 16px;
+        gap: 12px;
       }
 
       .km-brand img {
-        width: 170px;
-        height: 48px;
+        width: 168px;
       }
 
       .km-nav {
-        gap: 18px;
-        overflow-x: auto;
+        gap: 16px;
       }
 
       .km-nav a {
-        font-size: 13px;
+        font-size: 12px;
+      }
+
+      .km-language-btn {
+        min-width: 112px;
+      }
+
+      .km-voice-btn {
+        min-width: 128px;
       }
 
       .km-login-btn {
-        min-width: 104px;
-        height: 44px;
-        padding: 0 18px;
-        border-radius: 14px;
-        font-size: 14px;
+        min-width: 98px;
+        padding: 0 17px;
+      }
+
+      .home-inner {
+        width: calc(100% - 42px);
+        grid-template-columns: 1fr 0.68fr;
+      }
+
+      .hero-title {
+        font-size: clamp(46px, 5.5vw, 66px);
+      }
+
+      .hero-text {
+        font-size: 18px;
+      }
+
+      .info-card {
+        width: 245px;
+      }
+
+      .feature-strip {
+        width: calc(100% - 38px);
+      }
+
+      .feature-item {
+        gap: 11px;
+        padding: 15px 14px;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 23px;
+      }
+
+      .feature-text h3 {
+        font-size: 13px;
+      }
+
+      .feature-text p {
+        font-size: 11px;
       }
     }
 
     @media (max-width: 768px) {
+      :root {
+        --km-header-height: 82px;
+        --km-bottom-gap: 7px;
+      }
+
       .km-fixed-header {
         display: none;
       }
 
       .km-mobile-header {
         position: fixed;
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 18px;
+        right: 18px;
         z-index: 9999;
+        min-height: 58px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.96);
+        box-shadow: 0 12px 30px rgba(15,23,42,0.12);
         display: flex;
         align-items: center;
-        gap: 10px;
+        justify-content: space-between;
+        padding: 8px 12px;
       }
 
       .km-menu-btn {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        width: 40px;
+        height: 40px;
+        border: 0;
+        background: transparent;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        gap: 4px;
+        gap: 5px;
         cursor: pointer;
       }
 
       .km-menu-btn span {
-        width: 20px;
-        height: 2px;
-        border-radius: 999px;
-        background: #14351f;
-        display: block;
-      }
-
-      .km-mobile-logo {
-        height: 44px;
-        padding: 0 12px;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
-        display: flex;
-        align-items: center;
+        width: 25px;
+        height: 3px;
+        border-radius: 99px;
+        background: #08701f;
       }
 
       .km-mobile-logo img {
-        width: 132px;
-        height: 34px;
+        width: 168px;
+        height: 42px;
         object-fit: contain;
         display: block;
       }
 
+      .mobile-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mobile-lang {
+        height: 38px;
+        border: 0;
+        border-radius: 999px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(15,23,42,0.10);
+        padding: 0 10px;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .mobile-login {
+        height: 38px;
+        border: 0;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+        color: #ffffff;
+        padding: 0 13px;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
       .km-mobile-menu {
         position: fixed;
-        top: 62px;
-        left: 10px;
+        top: 88px;
+        left: 18px;
         width: 220px;
         z-index: 9999;
         background: rgba(255,255,255,0.98);
@@ -400,270 +853,132 @@
         text-decoration: none;
         color: #14351f;
         font-size: 14px;
-        font-weight: 800;
+        font-weight: 850;
         padding: 10px 12px;
         border-radius: 10px;
       }
 
-      .km-mobile-menu a:last-child {
-        background: #0a7a23;
-        color: #ffffff;
+      .km-page {
+        padding-top: var(--km-header-height);
       }
 
       .km-section {
-        scroll-margin-top: 72px;
-        padding: 90px 14px 28px;
+        min-height: calc(100vh - var(--km-header-height));
+        scroll-margin-top: var(--km-header-height);
       }
 
-      .login-box {
-        padding: 28px 20px;
+      .home-section {
+        background-image: url("./assets/home-bg-mobile.jpg");
+        background-position: center top;
       }
 
-      .login-box h1 {
-        font-size: 31px;
+      .home-overlay {
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.10) 48%, rgba(0,40,10,0.58) 100%);
+      }
+
+      .home-inner {
+        display: block;
+        width: calc(100% - 34px);
+        min-height: calc(100vh - var(--km-header-height));
+        padding: 42px 0 28px;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero-title {
+        font-size: clamp(48px, 12vw, 66px);
+        line-height: 0.95;
+        letter-spacing: -1.8px;
+        margin-top: 8px;
+        margin-bottom: 20px;
+      }
+
+      .hero-text {
+        width: 78%;
+        font-size: 19px;
+        line-height: 1.45;
+        margin-bottom: 26px;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .cta-btn {
+        min-width: 0;
+        height: 58px;
+        font-size: 18px;
+      }
+
+      .cta-video {
+        grid-column: 1 / -1;
+      }
+
+      .hero-cards {
+        margin-top: 250px;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .info-card {
+        width: 100%;
+        min-height: auto;
+        border-radius: 16px;
+      }
+
+      .feature-strip {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        width: 100%;
+        margin-top: 18px;
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+      }
+
+      .feature-item {
+        padding: 13px 16px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(15,23,42,0.10);
+      }
+
+      .feature-item:last-child {
+        border-bottom: 0;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .feature-text h3 {
+        font-size: 17px;
+      }
+
+      .feature-text p {
+        font-size: 13px;
+      }
+
+      .language-panel {
+        position: fixed;
+        top: 90px;
+        right: 16px;
+        left: 16px;
+        width: auto;
       }
 
       .role-buttons {
         grid-template-columns: 1fr;
       }
     }
-  
-/* RESPONSIVE BACKGROUND IMAGES START */
-.km-section {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.72), rgba(255,255,255,0.72)),
-    url("./assets/bg-desktop.jpg") !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-}
-
-.km-section:nth-child(even) {
-  background-image:
-    linear-gradient(rgba(238,248,241,0.76), rgba(255,255,255,0.76)),
-    url("./assets/bg-desktop.jpg") !important;
-}
-
-/* Laptop */
-@media (min-width: 1025px) and (max-width: 1600px) {
-  .km-section {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.72), rgba(255,255,255,0.72)),
-      url("./assets/bg-laptop.jpg") !important;
-  }
-}
-
-/* Tablet horizontal */
-@media (min-width: 769px) and (max-width: 1200px) and (orientation: landscape) {
-  .km-section {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.74), rgba(255,255,255,0.74)),
-      url("./assets/bg-tablet-landscape.jpg") !important;
-    background-position: center center !important;
-  }
-}
-
-/* Tablet vertical */
-@media (min-width: 769px) and (max-width: 1100px) and (orientation: portrait) {
-  .km-section {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.76), rgba(255,255,255,0.76)),
-      url("./assets/bg-tablet-portrait.jpg") !important;
-    background-position: center top !important;
-  }
-}
-
-/* Mobile vertical */
-@media (max-width: 768px) and (orientation: portrait) {
-  .km-section {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.78), rgba(255,255,255,0.78)),
-      url("./assets/bg-mobile.jpg") !important;
-    background-position: center top !important;
-  }
-}
-/* RESPONSIVE BACKGROUND IMAGES END */
-
-/* SAME SECTION CENTER POSITION START */
-.km-section {
-  min-height: 100vh !important;
-  padding: 0 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  scroll-margin-top: 0 !important;
-}
-
-.km-section > div {
-  transform: translateY(18px);
-}
-
-#home > div,
-#farmer > div,
-#fpo > div,
-#buyer > div,
-#ai-engine > div,
-#trust > div,
-#contact > div,
-#login > div {
-  width: 100%;
-  text-align: center;
-}
-
-.page-name {
-  margin: 0 auto !important;
-  text-align: center !important;
-}
-
-.page-subtitle {
-  text-align: center !important;
-}
-
-@media (max-width: 768px) {
-  .km-section {
-    padding: 0 14px !important;
-  }
-
-  .km-section > div {
-    transform: translateY(10px);
-  }
-}
-/* SAME SECTION CENTER POSITION END */
-
-/* HEADER SAFE AREA + BOTTOM 7PX RULE START */
-:root {
-  --km-header-height: 92px;
-  --km-bottom-gap: 7px;
-}
-
-/* Main page always starts below fixed header */
-.km-page {
-  padding-top: var(--km-header-height) !important;
-}
-
-/* Every section fits below header and never hides behind header */
-.km-section {
-  min-height: calc(100vh - var(--km-header-height)) !important;
-  scroll-margin-top: var(--km-header-height) !important;
-  position: relative !important;
-  padding: 40px 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Center content area */
-.section-inner,
-.km-section > div:not(.section-bottom) {
-  width: min(1180px, 100%) !important;
-  margin: 0 auto !important;
-  text-align: center !important;
-}
-
-/* Anything placed at page bottom */
-.section-bottom {
-  position: absolute !important;
-  left: 50% !important;
-  bottom: var(--km-bottom-gap) !important;
-  transform: translateX(-50%) !important;
-  width: min(1180px, calc(100% - 28px)) !important;
-  z-index: 2 !important;
-}
-
-/* Prevent center text from shifting differently per section */
-.km-section > div:not(.section-bottom) {
-  transform: none !important;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  :root {
-    --km-header-height: 70px;
-    --km-bottom-gap: 7px;
-  }
-
-  .km-page {
-    padding-top: var(--km-header-height) !important;
-  }
-
-  .km-section {
-    min-height: calc(100vh - var(--km-header-height)) !important;
-    scroll-margin-top: var(--km-header-height) !important;
-    padding: 28px 14px !important;
-  }
-
-  .section-bottom {
-    bottom: var(--km-bottom-gap) !important;
-    width: calc(100% - 20px) !important;
-  }
-}
-/* HEADER SAFE AREA + BOTTOM 7PX RULE END */
-
-/* GLOBAL RESPONSIVE PAGE LAYOUT RULE START */
-:root {
-  --km-header-height: 92px;
-  --km-bottom-gap: 7px;
-}
-
-/* Index scrolling page starts below fixed header */
-.km-page {
-  padding-top: var(--km-header-height) !important;
-}
-
-/* Every section stays below header */
-.km-section {
-  min-height: calc(100vh - var(--km-header-height)) !important;
-  scroll-margin-top: var(--km-header-height) !important;
-  position: relative !important;
-  padding: 40px 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Main content always centered */
-.section-inner,
-.km-section > div:not(.section-bottom) {
-  width: min(1180px, 100%) !important;
-  margin: 0 auto !important;
-  text-align: center !important;
-  transform: none !important;
-}
-
-/* Bottom content stays at bottom with only 7px gap */
-.section-bottom {
-  position: absolute !important;
-  left: 50% !important;
-  bottom: var(--km-bottom-gap) !important;
-  transform: translateX(-50%) !important;
-  width: min(1180px, calc(100% - 28px)) !important;
-  z-index: 2 !important;
-}
-
-/* Mobile adjustment */
-@media (max-width: 768px) {
-  :root {
-    --km-header-height: 70px;
-    --km-bottom-gap: 7px;
-  }
-
-  .km-page {
-    padding-top: var(--km-header-height) !important;
-  }
-
-  .km-section {
-    min-height: calc(100vh - var(--km-header-height)) !important;
-    scroll-margin-top: var(--km-header-height) !important;
-    padding: 28px 14px !important;
-  }
-
-  .section-bottom {
-    bottom: var(--km-bottom-gap) !important;
-    width: calc(100% - 20px) !important;
-  }
-}
-/* GLOBAL RESPONSIVE PAGE LAYOUT RULE END */
-</style>
+  </style>
 </head>
 
 <body>
@@ -673,30 +988,58 @@
     </a>
 
     <nav class="km-nav">
-      <a href="#home">Home</a>
-      <a href="#farmer">Farmers</a>
-      <a href="#fpo">FPO</a>
-      <a href="#buyer">Buyer</a>
-      <a href="#ai-engine">AI Engine</a>
-      <a href="#trust">Trust</a>
-      <a href="#contact">Contact</a>
-      <a class="km-login-btn" href="#login">
-        <span class="km-login-icon"></span>
-        Login
-      </a>
+      <a class="active" href="#home" data-i18n="nav_home">Home</a>
+      <a href="#farmer" data-i18n="nav_farmers">Farmers</a>
+      <a href="#fpo" data-i18n="nav_fpo">FPO</a>
+      <a href="#buyer" data-i18n="nav_buyer">Buyer</a>
+      <a href="#ai-engine" data-i18n="nav_ai">AI Engine</a>
+      <a href="#trust" data-i18n="nav_trust">Trust</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
+
+    <div class="km-header-actions">
+      <div class="km-select-wrap">
+        <button class="km-language-btn" type="button" id="languageBtn">🌐 <span id="currentLang">English</span>⌄</button>
+        <div class="language-panel" id="languagePanel">
+          <h4>Select Language / भाषा चुनें</h4>
+          <div class="language-grid">
+            <button class="lang-option active" data-lang="en">🇬🇧 English</button>
+            <button class="lang-option" data-lang="hi">🇮🇳 हिन्दी</button>
+            <button class="lang-option" data-lang="bn">🇮🇳 বাংলা</button>
+            <button class="lang-option" data-lang="ta">🇮🇳 தமிழ்</button>
+            <button class="lang-option" data-lang="te">🇮🇳 తెలుగు</button>
+            <button class="lang-option" data-lang="mr">🇮🇳 मराठी</button>
+            <button class="lang-option" data-lang="gu">🇮🇳 ગુજરાતી</button>
+            <button class="lang-option" data-lang="pa">🇮🇳 ਪੰਜਾਬੀ</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="km-voice-btn" type="button" id="voiceBtn">
+        <span class="voice-orb">🎙</span>
+        <span data-i18n="talk_ai">Talk to AI</span>
+      </button>
+
+      <button class="km-login-btn" type="button" onclick="location.hash='login'">
+        <span class="km-login-icon"></span>
+        <span data-i18n="login">Login</span>
+      </button>
+    </div>
   </header>
 
   <header class="km-mobile-header">
     <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
 
     <a class="km-mobile-logo" href="#home">
       <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
     </a>
+
+    <div class="mobile-actions">
+      <button class="mobile-lang" id="mobileLangBtn" type="button">🌐 EN</button>
+      <button class="mobile-login" type="button" onclick="location.hash='login'">Login</button>
+    </div>
   </header>
 
   <div class="km-mobile-menu" id="kmMobileMenu">
@@ -711,56 +1054,147 @@
   </div>
 
   <main class="km-page" id="kmPage">
-    <section class="km-section" id="home">
-      <div>
-        <h1 class="page-name">Home Page</h1>
-        <p class="page-subtitle">Index page section</p>
+    <section class="km-section home-section" id="home">
+      <div class="home-overlay"></div>
+
+      <div class="home-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title">
+            <span class="green" data-i18n="hero_title_1">Precision Farming.</span>
+            <span class="dark" data-i18n="hero_title_2">Stronger Market Connection.</span>
+          </h1>
+
+          <p class="hero-text" data-i18n="hero_text">
+            KisanMitraAI helps farmers, FPOs and buyers with AI-powered crop guidance, trusted market linkage, local-language support and smart farm intelligence.
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta-btn cta-farmer" href="#farmer">👨‍🌾 <span data-i18n="farmer_cta">I'm a Farmer</span> →</a>
+            <a class="cta-btn cta-buyer" href="#buyer">🛒 <span data-i18n="buyer_cta">I'm a Buyer</span> →</a>
+            <a class="cta-btn cta-video" href="#ai-engine">▶ <span data-i18n="how_it_works">See How It Works</span></a>
+          </div>
+        </div>
+
+        <div class="hero-cards">
+          <article class="info-card">
+            <div class="card-head"><span class="card-icon blue-icon">AI</span><span data-i18n="crop_insight">AI Crop Insight</span></div>
+            <div class="health-row">
+              <div>
+                <div class="card-small"><strong>Wheat</strong> · Good Growth</div>
+                <div class="health-score">82/100</div>
+              </div>
+              <div style="font-size:42px">🌱</div>
+            </div>
+            <div class="progress"><span></span></div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-head"><span class="card-icon weather-icon">☀️</span><span data-i18n="weather">Weather Update</span></div>
+            <div class="weather-row">
+              <div>
+                <div class="weather-temp">32°C</div>
+                <div class="card-small">Partly Cloudy</div>
+              </div>
+            </div>
+            <div class="weather-meta">
+              <div>Humidity<strong>65%</strong></div>
+              <div>Rain Chance<strong>20%</strong></div>
+              <div>Wind<strong>12 km/h</strong></div>
+            </div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-head"><span class="card-icon">↗</span><span data-i18n="market">Market Linkage</span></div>
+            <div class="market-row">
+              <div>
+                <div class="card-small">Wheat (FAQ)</div>
+                <div class="market-price">₹ 2,125 <span style="font-size:15px">/ Quintal</span></div>
+              </div>
+              <span class="gain">↑ 2.5%</span>
+            </div>
+            <div class="card-small" style="margin-top:8px">Mandi: Indore</div>
+          </article>
+        </div>
+      </div>
+
+      <div class="feature-strip">
+        <div class="feature-item">
+          <span class="feature-icon">AI</span>
+          <div class="feature-text">
+            <h3 data-i18n="feature_ai">AI-Powered Insights</h3>
+            <p data-i18n="feature_ai_text">Smart recommendations for better yields and lower costs.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">🛡</span>
+          <div class="feature-text">
+            <h3 data-i18n="feature_trust">Trust & Transparency</h3>
+            <p data-i18n="feature_trust_text">Verified data, traceability and secure transactions.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">🌐</span>
+          <div class="feature-text">
+            <h3 data-i18n="feature_market">Global Market Linkage</h3>
+            <p data-i18n="feature_market_text">Connect to more buyers, better prices, wider markets.</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <span class="feature-icon">🎙</span>
+          <div class="feature-text">
+            <h3 data-i18n="feature_voice">Voice & Language Support</h3>
+            <p data-i18n="feature_voice_text">Talk or listen in your language. Simple, smart and farmer-friendly.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="km-section" id="farmer">
+    <section class="km-section placeholder-section" id="farmer">
       <div>
         <h1 class="page-name">Farmer Page</h1>
         <p class="page-subtitle">Farmer section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="fpo">
+    <section class="km-section placeholder-section" id="fpo">
       <div>
         <h1 class="page-name">FPO Page</h1>
         <p class="page-subtitle">FPO section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="buyer">
+    <section class="km-section placeholder-section" id="buyer">
       <div>
         <h1 class="page-name">Buyer Page</h1>
         <p class="page-subtitle">Buyer section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="ai-engine">
+    <section class="km-section placeholder-section" id="ai-engine">
       <div>
         <h1 class="page-name">AI Engine Page</h1>
         <p class="page-subtitle">AI Engine section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="trust">
+    <section class="km-section placeholder-section" id="trust">
       <div>
         <h1 class="page-name">Trust Page</h1>
         <p class="page-subtitle">Trust section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="contact">
+    <section class="km-section placeholder-section" id="contact">
       <div>
         <h1 class="page-name">Contact Page</h1>
         <p class="page-subtitle">Contact section inside index page</p>
       </div>
     </section>
 
-    <section class="km-section" id="login">
+    <section class="km-section placeholder-section" id="login">
       <div class="login-box">
         <h1>Login</h1>
         <p>Select user type and sign in. After login, this index page will be replaced by the dashboard.</p>
@@ -793,64 +1227,120 @@
   </section>
 
   <script>
-    const roleButtons = document.querySelectorAll(".role-btn");
-    const mobileNo = document.getElementById("mobileNo");
-    const otp = document.getElementById("otp");
-    const signInBtn = document.getElementById("signInBtn");
-    const kmPage = document.getElementById("kmPage");
-    const dashboardView = document.getElementById("dashboardView");
-    const dashboardTitle = document.getElementById("dashboardTitle");
-    const dashboardSubtitle = document.getElementById("dashboardSubtitle");
-    const backIndexBtn = document.getElementById("backIndexBtn");
-    const kmMenuBtn = document.getElementById("kmMenuBtn");
-    const kmMobileMenu = document.getElementById("kmMobileMenu");
+    const translations = {
+      en: {
+        nav_home: "Home",
+        nav_farmers: "Farmers",
+        nav_fpo: "FPO",
+        nav_buyer: "Buyer",
+        nav_ai: "AI Engine",
+        nav_trust: "Trust",
+        nav_contact: "Contact",
+        talk_ai: "Talk to AI",
+        login: "Login",
+        hero_title_1: "Precision Farming.",
+        hero_title_2: "Stronger Market Connection.",
+        hero_text: "KisanMitraAI helps farmers, FPOs and buyers with AI-powered crop guidance, trusted market linkage, local-language support and smart farm intelligence.",
+        farmer_cta: "I'm a Farmer",
+        buyer_cta: "I'm a Buyer",
+        how_it_works: "See How It Works",
+        crop_insight: "AI Crop Insight",
+        weather: "Weather Update",
+        market: "Market Linkage",
+        feature_ai: "AI-Powered Insights",
+        feature_ai_text: "Smart recommendations for better yields and lower costs.",
+        feature_trust: "Trust & Transparency",
+        feature_trust_text: "Verified data, traceability and secure transactions.",
+        feature_market: "Global Market Linkage",
+        feature_market_text: "Connect to more buyers, better prices, wider markets.",
+        feature_voice: "Voice & Language Support",
+        feature_voice_text: "Talk or listen in your language. Simple, smart and farmer-friendly."
+      },
+      hi: {
+        nav_home: "होम",
+        nav_farmers: "किसान",
+        nav_fpo: "FPO",
+        nav_buyer: "खरीदार",
+        nav_ai: "AI इंजन",
+        nav_trust: "भरोसा",
+        nav_contact: "संपर्क",
+        talk_ai: "AI से बात करें",
+        login: "लॉगिन",
+        hero_title_1: "स्मार्ट खेती।",
+        hero_title_2: "मजबूत बाजार जोड़।",
+        hero_text: "KisanMitraAI किसानों, FPO और खरीदारों को AI आधारित फसल सलाह, भरोसेमंद बाजार संपर्क, स्थानीय भाषा सहायता और स्मार्ट फार्म जानकारी देता है।",
+        farmer_cta: "मैं किसान हूँ",
+        buyer_cta: "मैं खरीदार हूँ",
+        how_it_works: "कैसे काम करता है",
+        crop_insight: "AI फसल जानकारी",
+        weather: "मौसम अपडेट",
+        market: "बाजार संपर्क",
+        feature_ai: "AI आधारित सलाह",
+        feature_ai_text: "बेहतर उपज और कम लागत के लिए स्मार्ट सुझाव।",
+        feature_trust: "भरोसा और पारदर्शिता",
+        feature_trust_text: "सत्यापित डेटा, ट्रेसबिलिटी और सुरक्षित लेनदेन।",
+        feature_market: "बाजार संपर्क",
+        feature_market_text: "अधिक खरीदार, बेहतर दाम और बड़े बाजार से जुड़ें।",
+        feature_voice: "आवाज और भाषा सहायता",
+        feature_voice_text: "अपनी भाषा में बोलें या सुनें। सरल, स्मार्ट और किसान-हितैषी।"
+      }
+    };
 
-    let selectedRole = "Farmer";
+    const languageBtn = document.getElementById("languageBtn");
+    const mobileLangBtn = document.getElementById("mobileLangBtn");
+    const languagePanel = document.getElementById("languagePanel");
+    const currentLang = document.getElementById("currentLang");
+    const langOptions = document.querySelectorAll(".lang-option");
 
-    roleButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        roleButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedRole = btn.dataset.role;
+    function applyLanguage(lang) {
+      const dict = translations[lang] || translations.en;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      langOptions.forEach((btn) => btn.classList.toggle("active", btn.dataset.lang === lang));
+      currentLang.textContent = lang === "hi" ? "हिन्दी" : "English";
+      mobileLangBtn.textContent = lang === "hi" ? "🌐 HI" : "🌐 EN";
+      localStorage.setItem("kmLang", lang);
+    }
+
+    if (languageBtn && languagePanel) {
+      languageBtn.addEventListener("click", function () {
+        languagePanel.classList.toggle("open");
+      });
+    }
+
+    if (mobileLangBtn && languagePanel) {
+      mobileLangBtn.addEventListener("click", function () {
+        languagePanel.classList.toggle("open");
+      });
+    }
+
+    langOptions.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        applyLanguage(btn.dataset.lang);
+        languagePanel.classList.remove("open");
       });
     });
 
-    mobileNo.addEventListener("input", function () {
-      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
-    });
+    applyLanguage(localStorage.getItem("kmLang") || "en");
 
-    otp.addEventListener("input", function () {
-      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
-    });
+    const voiceBtn = document.getElementById("voiceBtn");
+    if (voiceBtn && "speechSynthesis" in window) {
+      voiceBtn.addEventListener("click", function () {
+        const lang = localStorage.getItem("kmLang") || "en";
+        const text = document.querySelector(".hero-title").innerText + ". " + document.querySelector(".hero-text").innerText;
+        speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang === "hi" ? "hi-IN" : "en-IN";
+        utterance.rate = 0.9;
+        speechSynthesis.speak(utterance);
+      });
+    }
 
-    signInBtn.addEventListener("click", function () {
-      kmPage.style.display = "none";
-      dashboardView.style.display = "flex";
-
-      if (selectedRole === "Farmer") {
-        dashboardTitle.textContent = "Farmer Dashboard";
-        dashboardSubtitle.textContent = "Index page replaced by Farmer Dashboard after login.";
-      }
-
-      if (selectedRole === "FPO") {
-        dashboardTitle.textContent = "FPO Dashboard";
-        dashboardSubtitle.textContent = "Index page replaced by FPO Dashboard after login.";
-      }
-
-      if (selectedRole === "Buyer") {
-        dashboardTitle.textContent = "Buyer Dashboard";
-        dashboardSubtitle.textContent = "Index page replaced by Buyer Dashboard after login.";
-      }
-
-      window.scrollTo(0, 0);
-    });
-
-    backIndexBtn.addEventListener("click", function () {
-      dashboardView.style.display = "none";
-      kmPage.style.display = "block";
-      window.location.hash = "#home";
-      window.scrollTo(0, 0);
-    });
+    const kmMenuBtn = document.getElementById("kmMenuBtn");
+    const kmMobileMenu = document.getElementById("kmMobileMenu");
 
     if (kmMenuBtn && kmMobileMenu) {
       kmMenuBtn.addEventListener("click", function () {
@@ -862,17 +1352,58 @@
           kmMobileMenu.classList.remove("open");
         });
       });
+    }
 
-      document.addEventListener("click", function (e) {
-        if (!kmMenuBtn.contains(e.target) && !kmMobileMenu.contains(e.target)) {
-          kmMobileMenu.classList.remove("open");
-        }
+    const roleButtons = document.querySelectorAll(".role-btn");
+    const mobileNo = document.getElementById("mobileNo");
+    const otp = document.getElementById("otp");
+    const signInBtn = document.getElementById("signInBtn");
+    const kmPage = document.getElementById("kmPage");
+    const dashboardView = document.getElementById("dashboardView");
+    const dashboardTitle = document.getElementById("dashboardTitle");
+    const dashboardSubtitle = document.getElementById("dashboardSubtitle");
+    const backIndexBtn = document.getElementById("backIndexBtn");
+
+    let selectedRole = "Farmer";
+
+    roleButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        roleButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedRole = btn.dataset.role;
+      });
+    });
+
+    if (mobileNo) {
+      mobileNo.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+      });
+    }
+
+    if (otp) {
+      otp.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
+      });
+    }
+
+    if (signInBtn) {
+      signInBtn.addEventListener("click", function () {
+        kmPage.style.display = "none";
+        dashboardView.style.display = "flex";
+        dashboardTitle.textContent = selectedRole + " Dashboard";
+        dashboardSubtitle.textContent = "Index page replaced by " + selectedRole + " Dashboard after login.";
+        window.scrollTo(0, 0);
+      });
+    }
+
+    if (backIndexBtn) {
+      backIndexBtn.addEventListener("click", function () {
+        dashboardView.style.display = "none";
+        kmPage.style.display = "block";
+        window.location.hash = "#home";
+        window.scrollTo(0, 0);
       });
     }
   </script>
 </body>
 </html>
-
-
-
-
