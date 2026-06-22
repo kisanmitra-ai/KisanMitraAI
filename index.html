@@ -25,6 +25,114 @@
       overflow-x: hidden;
     }
 
+    .km-fixed-header {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1280px, calc(100% - 24px));
+      min-height: 72px;
+      z-index: 9999;
+      padding: 10px 18px 10px 22px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.10);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      backdrop-filter: blur(14px);
+    }
+
+    .km-brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    .km-brand img {
+      width: 200px;
+      height: 56px;
+      object-fit: contain;
+      object-position: left center;
+      display: block;
+    }
+
+    .km-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 38px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .km-nav a {
+      text-decoration: none;
+      color: #14351f;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .km-login-btn {
+      min-width: 122px;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
+      color: #ffffff !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow:
+        0 16px 30px rgba(6, 101, 29, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .km-login-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.92);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .km-login-icon::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #ffffff;
+      position: absolute;
+      top: 5px;
+    }
+
+    .km-login-icon::after {
+      content: "";
+      width: 12px;
+      height: 6px;
+      border-radius: 10px 10px 4px 4px;
+      border: 2px solid #ffffff;
+      border-bottom: 0;
+      position: absolute;
+      bottom: 5px;
+    }
+
+    .km-mobile-header,
+    .km-mobile-menu {
+      display: none;
+    }
+
     .km-page {
       width: 100%;
       min-height: 100vh;
@@ -33,10 +141,11 @@
     .km-section {
       width: 100%;
       min-height: 100vh;
+      scroll-margin-top: 96px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 18px;
+      padding: 120px 18px 40px;
       border-bottom: 1px solid rgba(15, 47, 26, 0.08);
       background: linear-gradient(180deg, #ffffff 0%, #f1faf3 100%);
     }
@@ -153,7 +262,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 30px;
+      padding: 120px 30px 30px;
       background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
     }
 
@@ -184,9 +293,126 @@
       cursor: pointer;
     }
 
+    @media (max-width: 1100px) {
+      .km-fixed-header {
+        width: calc(100% - 16px);
+        padding: 10px 14px 10px 16px;
+      }
+
+      .km-brand img {
+        width: 170px;
+        height: 48px;
+      }
+
+      .km-nav {
+        gap: 18px;
+        overflow-x: auto;
+      }
+
+      .km-nav a {
+        font-size: 13px;
+      }
+
+      .km-login-btn {
+        min-width: 104px;
+        height: 44px;
+        padding: 0 18px;
+        border-radius: 14px;
+        font-size: 14px;
+      }
+    }
+
     @media (max-width: 768px) {
+      .km-fixed-header {
+        display: none;
+      }
+
+      .km-mobile-header {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .km-menu-btn {
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+
+      .km-menu-btn span {
+        width: 20px;
+        height: 2px;
+        border-radius: 999px;
+        background: #14351f;
+        display: block;
+      }
+
+      .km-mobile-logo {
+        height: 44px;
+        padding: 0 12px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
+        display: flex;
+        align-items: center;
+      }
+
+      .km-mobile-logo img {
+        width: 132px;
+        height: 34px;
+        object-fit: contain;
+        display: block;
+      }
+
+      .km-mobile-menu {
+        position: fixed;
+        top: 62px;
+        left: 10px;
+        width: 220px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.98);
+        border-radius: 16px;
+        box-shadow: 0 14px 36px rgba(15,23,42,0.14);
+        padding: 10px;
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .km-mobile-menu.open {
+        display: flex;
+      }
+
+      .km-mobile-menu a {
+        text-decoration: none;
+        color: #14351f;
+        font-size: 14px;
+        font-weight: 800;
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+
+      .km-mobile-menu a:last-child {
+        background: #0a7a23;
+        color: #ffffff;
+      }
+
       .km-section {
-        padding: 28px 14px;
+        scroll-margin-top: 72px;
+        padding: 90px 14px 28px;
       }
 
       .login-box {
@@ -205,6 +431,49 @@
 </head>
 
 <body>
+  <header class="km-fixed-header">
+    <a class="km-brand" href="#home">
+      <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
+    </a>
+
+    <nav class="km-nav">
+      <a href="#home">Home</a>
+      <a href="#farmer">Farmers</a>
+      <a href="#fpo">FPO</a>
+      <a href="#buyer">Buyer</a>
+      <a href="#ai-engine">AI Engine</a>
+      <a href="#trust">Trust</a>
+      <a href="#contact">Contact</a>
+      <a class="km-login-btn" href="#login">
+        <span class="km-login-icon"></span>
+        Login
+      </a>
+    </nav>
+  </header>
+
+  <header class="km-mobile-header">
+    <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <a class="km-mobile-logo" href="#home">
+      <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
+    </a>
+  </header>
+
+  <div class="km-mobile-menu" id="kmMobileMenu">
+    <a href="#home">Home</a>
+    <a href="#farmer">Farmers</a>
+    <a href="#fpo">FPO</a>
+    <a href="#buyer">Buyer</a>
+    <a href="#ai-engine">AI Engine</a>
+    <a href="#trust">Trust</a>
+    <a href="#contact">Contact</a>
+    <a href="#login">Login</a>
+  </div>
+
   <main class="km-page" id="kmPage">
     <section class="km-section" id="home">
       <div>
@@ -297,6 +566,8 @@
     const dashboardTitle = document.getElementById("dashboardTitle");
     const dashboardSubtitle = document.getElementById("dashboardSubtitle");
     const backIndexBtn = document.getElementById("backIndexBtn");
+    const kmMenuBtn = document.getElementById("kmMenuBtn");
+    const kmMobileMenu = document.getElementById("kmMobileMenu");
 
     let selectedRole = "Farmer";
 
@@ -344,6 +615,24 @@
       window.location.hash = "#home";
       window.scrollTo(0, 0);
     });
+
+    if (kmMenuBtn && kmMobileMenu) {
+      kmMenuBtn.addEventListener("click", function () {
+        kmMobileMenu.classList.toggle("open");
+      });
+
+      kmMobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", function () {
+          kmMobileMenu.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!kmMenuBtn.contains(e.target) && !kmMobileMenu.contains(e.target)) {
+          kmMobileMenu.classList.remove("open");
+        }
+      });
+    }
   </script>
 </body>
 </html>
