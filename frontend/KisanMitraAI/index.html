@@ -783,8 +783,165 @@
     z-index: 999999 !important;
   }
 </style>
+<style id="km-navbar-text-middle-final">
+  /* Center menu text vertically inside top navbar */
+  .km-clean-navbar,
+  .locked-header,
+  header,
+  nav {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .km-clean-navbar a,
+  .km-clean-navbar button,
+  .locked-header a,
+  .locked-header button,
+  header a,
+  header button,
+  nav a,
+  nav button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+  }
+
+  /* Menu text group */
+  .km-clean-navbar ul,
+  .km-clean-navbar .menu,
+  .km-clean-navbar .nav,
+  .km-clean-navbar .nav-links,
+  .locked-header ul,
+  .locked-header .menu,
+  .locked-header .nav,
+  .locked-header .nav-links,
+  header ul,
+  header .menu,
+  header .nav,
+  header .nav-links,
+  nav ul,
+  nav .menu,
+  nav .nav,
+  nav .nav-links {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Individual menu items */
+  .km-clean-navbar li,
+  .locked-header li,
+  header li,
+  nav li {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+  }
+
+  /* Login button also vertically centered */
+  .km-clean-navbar .login,
+  .km-clean-navbar [class*="login"],
+  .locked-header .login,
+  .locked-header [class*="login"],
+  header .login,
+  header [class*="login"],
+  nav .login,
+  nav [class*="login"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+</style>
+
+<script id="km-navbar-text-middle-final-script">
+  (function () {
+    function textOf(el) {
+      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim();
+    }
+
+    function findTopNavbar() {
+      var all = Array.from(document.querySelectorAll("header, nav, div, section"));
+      var matches = all.filter(function (el) {
+        var text = textOf(el);
+        var r = el.getBoundingClientRect();
+
+        return (
+          text.includes("Farmers") &&
+          text.includes("FPO") &&
+          text.includes("Buyers") &&
+          text.includes("AI Engine") &&
+          text.includes("Login") &&
+          r.width > window.innerWidth * 0.65 &&
+          r.height >= 55 &&
+          r.height <= 130
+        );
+      });
+
+      if (!matches.length) return null;
+
+      matches.sort(function (a, b) {
+        var ar = a.getBoundingClientRect();
+        var br = b.getBoundingClientRect();
+        return (br.width * br.height) - (ar.width * ar.height);
+      });
+
+      return matches[0];
+    }
+
+    function centerNavbarText() {
+      var nav = findTopNavbar();
+      if (!nav) return;
+
+      nav.classList.add("km-clean-navbar");
+
+      nav.style.setProperty("display", "flex", "important");
+      nav.style.setProperty("align-items", "center", "important");
+
+      nav.querySelectorAll("a, button, li, ul, div").forEach(function (el) {
+        var text = textOf(el);
+
+        if (
+          text === "Farmers" ||
+          text === "FPO" ||
+          text === "Buyers" ||
+          text === "AI Engine" ||
+          text === "Trust" ||
+          text === "Contact" ||
+          text.includes("Login")
+        ) {
+          el.style.setProperty("display", "inline-flex", "important");
+          el.style.setProperty("align-items", "center", "important");
+          el.style.setProperty("justify-content", "center", "important");
+          el.style.setProperty("line-height", "1", "important");
+          el.style.setProperty("margin-top", "0", "important");
+          el.style.setProperty("margin-bottom", "0", "important");
+          el.style.setProperty("padding-top", "0", "important");
+          el.style.setProperty("padding-bottom", "0", "important");
+        }
+      });
+    }
+
+    window.addEventListener("load", function () {
+      centerNavbarText();
+      setTimeout(centerNavbarText, 300);
+      setTimeout(centerNavbarText, 900);
+      setTimeout(centerNavbarText, 1600);
+    });
+
+    window.addEventListener("resize", centerNavbarText);
+  })();
+</script>
 </body>
 </html>
+
 
 
 
