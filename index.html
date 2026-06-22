@@ -33,24 +33,22 @@
       width: 100%;
       min-height: 100vh;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .home-master-wrap {
       width: 100%;
-      height: 100vh;
       position: relative;
       background: #ffffff;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .home-master-img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      object-fit: contain;
       object-position: center top;
       display: block;
-    
       pointer-events: none;
     }
 
@@ -105,8 +103,11 @@
 
     @media (max-width: 768px) {
       .home-master-img {
-        object-position: center top;
-      
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+      display: block;
       pointer-events: none;
     }
 
@@ -122,46 +123,20 @@
       }
     }
   
-/* CLICK AREA FIX START */
-.hotspot {
-  z-index: 99999 !important;
-  pointer-events: auto !important;
-  cursor: pointer !important;
-}
 
-/* Correct CTA click positions based on current master image display */
-.hs-cta-farmer {
-  left: 3.7% !important;
-  top: 66.5% !important;
-  width: 14.8% !important;
-  height: 7.2% !important;
-}
 
-.hs-cta-buyer {
-  left: 19.6% !important;
-  top: 66.5% !important;
-  width: 14.8% !important;
-  height: 7.2% !important;
-}
 
-.hs-cta-video {
-  left: 35.2% !important;
-  top: 66.5% !important;
-  width: 13.5% !important;
-  height: 7.2% !important;
-}
-/* CLICK AREA FIX END */
 
 /* CORRECT LOGO PATCH START */
 .real-logo-wrap {
   position: absolute !important;
-  left: 3.4% !important;
-  top: 3.45% !important;
-  width: 16.3% !important;
-  height: 7.15% !important;
+  left: 3.45% !important;
+  top: 3.15% !important;
+  width: 16.1% !important;
+  height: 7.5% !important;
   z-index: 99998 !important;
   background: #ffffff !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -178,8 +153,32 @@
   display: block !important;
 }
 
-.home-master-img {
-  pointer-events: none !important;
+.hotspot {
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* CTA positions on full master image */
+.hs-cta-farmer {
+  left: 3.5% !important;
+  top: 56.2% !important;
+  width: 15.0% !important;
+  height: 6.4% !important;
+}
+
+.hs-cta-buyer {
+  left: 19.3% !important;
+  top: 56.2% !important;
+  width: 15.0% !important;
+  height: 6.4% !important;
+}
+
+.hs-cta-video {
+  left: 34.9% !important;
+  top: 56.2% !important;
+  width: 13.5% !important;
+  height: 6.4% !important;
 }
 /* CORRECT LOGO PATCH END */
 </style>
@@ -191,7 +190,7 @@
       <div class="home-master-wrap">
         <img class="home-master-img" src="./assets/home-master-reference.png?v=final-home-1" alt="KisanMitraAI Home" />
         <a class="real-logo-wrap" href="#home" aria-label="KisanMitraAI Home">
-          <img src="./assets/kisanmitra-logo.png?v=correct-logo-final" alt="KisanMitraAI" />
+          <img src="./assets/kisanmitra-logo.png?v=single-correct-logo" alt="KisanMitraAI" />
         </a>
 
         <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
@@ -279,5 +278,6 @@
   </script>
 </body>
 </html>
+
 
 
