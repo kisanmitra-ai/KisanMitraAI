@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KisanMitraAI Login</title>
-
   <style>
     * {
       box-sizing: border-box;
@@ -12,57 +11,49 @@
       padding: 0;
     }
 
-    html,
-    body {
+    html, body {
       width: 100%;
       min-height: 100%;
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      color: #102015;
+      background: #ffffff;
       overflow-x: hidden;
-      background: #eef6f1;
     }
 
-    .km-login-page {
+    body {
+      min-height: 100vh;
+    }
+
+    .page-shell {
       width: 100%;
       min-height: 100vh;
-      position: relative;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
-        url("./assets/login-farm-bg.jpg");
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      padding: 22px 20px 0;
-      overflow: hidden;
+      padding: 10px 8px 0;
+      background: #ffffff;
     }
 
     .km-topbar {
-      position: relative;
-      z-index: 20;
-      width: min(1320px, calc(100% - 40px));
-      height: 74px;
+      width: min(1280px, calc(100% - 24px));
+      min-height: 72px;
       margin: 0 auto;
-      padding: 0 18px 0 26px;
+      padding: 10px 18px 10px 22px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 18px 45px rgba(13, 49, 24, 0.12);
+      box-shadow: 0 10px 32px rgba(15, 23, 42, 0.10);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      backdrop-filter: blur(14px);
+      gap: 20px;
     }
 
     .km-brand {
       display: flex;
       align-items: center;
       text-decoration: none;
-      min-width: 220px;
       flex: 0 0 auto;
     }
 
     .km-brand img {
-      width: 190px;
-      height: 58px;
+      width: 200px;
+      height: 56px;
       object-fit: contain;
       object-position: left center;
       display: block;
@@ -72,29 +63,44 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: clamp(16px, 2.2vw, 34px);
+      gap: 38px;
       flex: 1;
       min-width: 0;
     }
 
     .km-nav a {
       text-decoration: none;
-      color: #0b2d16;
-      font-size: clamp(12px, 1vw, 14px);
-      font-weight: 850;
+      color: #14351f;
+      font-size: 14px;
+      font-weight: 800;
       white-space: nowrap;
     }
 
-    .km-login-pill {
-      min-width: 104px;
-      height: 48px;
-      border-radius: 14px;
-      background: #08611d;
+    .km-login-btn {
+      min-width: 114px;
+      height: 46px;
+      padding: 0 26px;
+      border-radius: 15px;
+      background: #0a7a23;
       color: #ffffff !important;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 14px 30px rgba(8, 97, 29, 0.23);
+      gap: 10px;
+      box-shadow: 0 12px 24px rgba(10, 122, 35, 0.18);
+    }
+
+    .km-login-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 2px solid #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      line-height: 1;
+      flex: 0 0 auto;
     }
 
     .km-mobile-header,
@@ -102,424 +108,98 @@
       display: none;
     }
 
-    .login-hero {
-      width: 100%;
-      min-height: calc(100vh - 96px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 58px 20px 128px;
-      position: relative;
-    }
-
-    .login-card {
-      width: 456px;
-      min-height: 516px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(51, 83, 62, 0.18);
-      border-radius: 22px;
-      box-shadow: 0 24px 70px rgba(7, 42, 19, 0.24);
-      backdrop-filter: blur(18px);
-      padding: 36px 38px 30px;
-      position: relative;
-      z-index: 3;
-    }
-
-    .leaf-mark {
-      text-align: center;
-      font-size: 34px;
-      line-height: 1;
-      margin-bottom: 14px;
-    }
-
-    .login-title {
-      text-align: center;
-      color: #0b4f1c;
-      font-size: 34px;
-      font-weight: 950;
-      line-height: 1.1;
-      letter-spacing: -0.8px;
-      margin-bottom: 10px;
-    }
-
-    .login-subtitle {
-      text-align: center;
-      color: #1f2937;
-      font-size: 14px;
-      font-weight: 800;
-      margin-bottom: 30px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 14px;
-      font-weight: 900;
-      color: #111827;
-      margin-bottom: 10px;
-    }
-
-    .input-wrap {
-      width: 100%;
-      height: 54px;
-      border: 1px solid rgba(91, 105, 125, 0.25);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.9);
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
-
-    .input-wrap svg {
-      width: 22px;
-      height: 22px;
-      color: #596179;
-      flex: 0 0 auto;
-    }
-
-    .input-wrap input {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      padding-left: 14px;
-      font-size: 15px;
-      color: #111827;
-      font-weight: 750;
-    }
-
-    .input-wrap input::placeholder {
-      color: #667085;
-      opacity: 0.95;
-    }
-
-    .otp-row {
-      display: grid;
-      grid-template-columns: 1fr 106px;
-      gap: 10px;
-    }
-
-    .otp-btn {
-      height: 54px;
-      border: 1px solid rgba(8, 97, 29, 0.18);
-      border-radius: 10px;
-      background: #eaf7ed;
-      color: #08611d;
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .signin-btn {
-      width: 100%;
-      height: 52px;
-      border: 0;
-      border-radius: 10px;
-      background: linear-gradient(180deg, #0d6c23 0%, #075918 100%);
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 950;
-      cursor: pointer;
-      margin-top: 10px;
-      box-shadow: 0 12px 24px rgba(7, 83, 24, 0.25);
-    }
-
-    .helper-text {
-      text-align: center;
-      color: #415247;
-      font-size: 13px;
-      font-weight: 650;
-      margin-top: 18px;
-      line-height: 1.5;
-    }
-
-    .back-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 22px;
-      color: #124e24;
-      font-size: 14px;
-      font-weight: 900;
-      text-decoration: none;
-    }
-
-    .bottom-trust-strip {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      min-height: 104px;
-      background: rgba(255, 255, 255, 0.96);
-      border-top: 1px solid rgba(13, 43, 27, 0.12);
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 -10px 28px rgba(12, 34, 22, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .trust-inner {
-      width: 100%;
-      max-width: 1080px;
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr 1px 1fr;
-      align-items: center;
-      padding: 0 24px;
-    }
-
-    .trust-divider {
-      width: 1px;
-      height: 34px;
-      background: rgba(34, 82, 52, 0.28);
-    }
-
-    .trust-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      color: #20233a;
-      font-size: 18px;
-      font-weight: 750;
-      white-space: nowrap;
-    }
-
-    .trust-icon {
-      width: 31px;
-      height: 31px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #114b27;
-    }
-
-    .trust-icon.leaf {
-      color: #20a92e;
-    }
-
-    @media (min-width: 1025px) and (max-width: 1440px) {
+    @media (max-width: 1100px) {
       .km-topbar {
-        width: calc(100% - 32px);
-        height: 72px;
-        padding: 0 16px 0 22px;
-      }
-
-      .km-brand {
-        min-width: 190px;
+        width: calc(100% - 16px);
+        padding: 10px 14px 10px 16px;
       }
 
       .km-brand img {
-        width: 168px;
-        height: 54px;
-      }
-
-      .km-nav {
-        gap: 22px;
-      }
-
-      .km-nav a {
-        font-size: 13px;
-      }
-
-      .km-login-pill {
-        min-width: 94px;
-        height: 44px;
-      }
-
-      .login-hero {
-        padding-top: 46px;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
-      .km-login-page {
-        background-image: url("./assets/login-farm-bg-tablet-landscape.jpg");
-        background-position: center center;
-        padding: 16px 14px 0;
-      }
-
-      .km-topbar {
-        width: 100%;
-        height: 68px;
-        border-radius: 18px;
-        padding: 0 14px 0 18px;
-      }
-
-      .km-brand {
-        min-width: 155px;
-      }
-
-      .km-brand img {
-        width: 142px;
+        width: 170px;
         height: 48px;
       }
 
       .km-nav {
-        gap: 14px;
-      }
-
-      .km-nav a {
-        font-size: 12px;
-      }
-
-      .km-login-pill {
-        min-width: 78px;
-        height: 40px;
-        border-radius: 12px;
-      }
-
-      .login-hero {
-        min-height: calc(100vh - 84px);
-        padding: 34px 16px 118px;
-      }
-
-      .login-card {
-        width: 420px;
-        max-width: 44%;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 1100px) and (orientation: portrait) {
-      .km-login-page {
-        background-image: url("./assets/login-farm-bg-tablet.jpg");
-        background-position: center top;
-        padding: 18px 16px 0;
-      }
-
-      .km-topbar {
-        width: 100%;
-        height: auto;
-        min-height: 72px;
-        border-radius: 20px;
-        padding: 12px 16px;
-        gap: 14px;
-      }
-
-      .km-brand {
-        min-width: 160px;
-      }
-
-      .km-brand img {
-        width: 150px;
-        height: 50px;
-      }
-
-      .km-nav {
-        gap: 16px;
-        justify-content: flex-start;
+        gap: 18px;
         overflow-x: auto;
-        padding-bottom: 2px;
       }
 
       .km-nav a {
         font-size: 13px;
       }
 
-      .km-login-pill {
-        min-width: 82px;
+      .km-login-btn {
+        min-width: 92px;
         height: 42px;
-        border-radius: 12px;
-      }
-
-      .login-hero {
-        min-height: calc(100vh - 94px);
-        padding: 58px 12px 164px;
-        align-items: flex-start;
-      }
-
-      .login-card {
-        width: 520px;
-        max-width: 86%;
+        padding: 0 18px;
       }
     }
 
-    @media (max-width: 768px) and (orientation: portrait) {
-      .km-login-page {
-        background-image: url("./assets/login-farm-bg-mobile.jpg");
-        background-position: center top;
-        padding: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
-
+    @media (max-width: 768px) {
       .km-topbar {
         display: none;
       }
 
       .km-mobile-header {
-        position: fixed;
-        top: 12px;
-        left: 12px;
-        z-index: 9999;
-        height: 52px;
         display: flex;
         align-items: center;
         gap: 10px;
+        padding: 10px 10px 0;
       }
 
       .km-menu-btn {
         width: 44px;
         height: 44px;
-        border: 0;
-        border-radius: 13px;
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 10px 28px rgba(13, 49, 24, 0.16);
+        border: none;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         cursor: pointer;
       }
 
       .km-menu-btn span {
-        width: 21px;
-        height: 2.5px;
+        width: 20px;
+        height: 2px;
         border-radius: 999px;
-        background: #0b4f1c;
+        background: #14351f;
         display: block;
       }
 
       .km-mobile-logo {
         height: 44px;
-        min-width: 132px;
-        max-width: 148px;
-        border-radius: 13px;
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 10px 28px rgba(13, 49, 24, 0.16);
+        padding: 0 12px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.10);
         display: flex;
         align-items: center;
-        justify-content: center;
-        padding: 4px 10px;
       }
 
       .km-mobile-logo img {
-        width: 122px;
-        height: 36px;
+        width: 132px;
+        height: 34px;
         object-fit: contain;
+        display: block;
       }
 
       .km-mobile-menu {
         position: fixed;
-        top: 70px;
-        left: 12px;
-        z-index: 9998;
-        width: 210px;
-        border-radius: 18px;
-        background: rgba(255, 255, 255, 0.97);
-        box-shadow: 0 18px 44px rgba(13, 49, 24, 0.2);
-        padding: 12px;
+        top: 62px;
+        left: 10px;
+        width: 220px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.98);
+        border-radius: 16px;
+        box-shadow: 0 14px 36px rgba(15,23,42,0.14);
+        padding: 10px;
         display: none;
         flex-direction: column;
         gap: 4px;
-        backdrop-filter: blur(16px);
       }
 
       .km-mobile-menu.open {
@@ -528,95 +208,57 @@
 
       .km-mobile-menu a {
         text-decoration: none;
-        color: #0b2d16;
+        color: #14351f;
         font-size: 14px;
-        font-weight: 850;
-        padding: 11px 12px;
-        border-radius: 12px;
+        font-weight: 800;
+        padding: 10px 12px;
+        border-radius: 10px;
       }
 
-      .login-hero {
-        min-height: 100vh;
-        padding: 86px 14px 168px;
-        align-items: flex-start;
-        justify-content: center;
-      }
-
-      .login-card {
-        width: 92%;
-        max-width: 390px;
-        min-height: auto;
-        border-radius: 20px;
-        padding: 28px 22px 26px;
-      }
-
-      .login-title {
-        font-size: 30px;
-      }
-
-      .otp-row {
-        grid-template-columns: 1fr;
-      }
-
-      .otp-btn {
-        width: 100%;
-      }
-
-      .bottom-trust-strip {
-        min-height: 142px;
-      }
-
-      .trust-inner {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 16px;
-      }
-
-      .trust-divider {
-        display: none;
-      }
-
-      .trust-item {
-        font-size: 14px;
+      .km-mobile-menu a:last-child {
+        background: #0a7a23;
+        color: #ffffff;
       }
     }
   </style>
 </head>
-
 <body>
-  <section class="km-login-page">
+  <div class="page-shell">
     <header class="km-topbar">
       <a class="km-brand" href="./index.html">
-        <img src="./assets/branding/kisanmitra-logo.png" alt="KisanMitraAI" />
+        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
       </a>
 
       <nav class="km-nav">
         <a href="./index.html">Home</a>
-        <a href="./farmer-dashboard.html">Farmer</a>
+        <a href="./farmer-dashboard.html">Farmers</a>
         <a href="./fpo-dashboard.html">FPO</a>
         <a href="./buyer-dashboard.html">Buyer</a>
         <a href="./ai-engine.html">AI Engine</a>
         <a href="./trust.html">Trust</a>
         <a href="./contact.html">Contact</a>
-        <a class="km-login-pill" href="./login.html">Login</a>
+        <a class="km-login-btn" href="./login.html">
+          <span class="km-login-icon">O</span>
+          Login
+        </a>
       </nav>
     </header>
 
     <header class="km-mobile-header">
-      <button class="km-menu-btn" type="button" id="kmMenuBtn" aria-label="Open menu">
+      <button class="km-menu-btn" id="kmMenuBtn" type="button" aria-label="Open menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
       <a class="km-mobile-logo" href="./index.html">
-        <img src="./assets/branding/kisanmitra-logo.png" alt="KisanMitraAI" />
+        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
       </a>
     </header>
 
     <div class="km-mobile-menu" id="kmMobileMenu">
       <a href="./index.html">Home</a>
-      <a href="./farmer-dashboard.html">Farmer</a>
+      <a href="./farmer-dashboard.html">Farmers</a>
       <a href="./fpo-dashboard.html">FPO</a>
       <a href="./buyer-dashboard.html">Buyer</a>
       <a href="./ai-engine.html">AI Engine</a>
@@ -624,101 +266,11 @@
       <a href="./contact.html">Contact</a>
       <a href="./login.html">Login</a>
     </div>
-
-    <main class="login-hero">
-      <div class="login-card">
-        <div class="leaf-mark">🌱</div>
-
-        <h1 class="login-title">Welcome Back</h1>
-        <p class="login-subtitle">Sign in to continue to KisanMitraAI</p>
-
-        <form>
-          <div class="form-group">
-            <label class="form-label" for="mobileNo">Mobile No.</label>
-            <div class="input-wrap">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="7" y="2" width="10" height="20" rx="2"></rect>
-                <path d="M11 18h2"></path>
-              </svg>
-              <input id="mobileNo" type="tel" maxlength="10" placeholder="Enter mobile number" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="otp">OTP</label>
-            <div class="otp-row">
-              <div class="input-wrap">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="11" width="16" height="10" rx="2"></rect>
-                  <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
-                </svg>
-                <input id="otp" type="text" maxlength="6" placeholder="Enter OTP" />
-              </div>
-
-              <button class="otp-btn" type="button" id="sendOtpBtn">Get OTP</button>
-            </div>
-          </div>
-
-          <button class="signin-btn" type="button" id="signInBtn">Sign In</button>
-
-          <p class="helper-text">
-            Secure OTP based login for Farmers, FPOs and Buyers.
-          </p>
-
-          <a class="back-link" href="./index.html">← Back to homepage</a>
-        </form>
-      </div>
-
-      <div class="bottom-trust-strip">
-        <div class="trust-inner">
-          <div class="trust-item">🛡️ Secure &amp; Trusted</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">🌱 Empowering Farmers</div>
-          <div class="trust-divider"></div>
-          <div class="trust-item">🌍 Building Better Tomorrow</div>
-        </div>
-      </div>
-    </main>
-  </section>
+  </div>
 
   <script>
-    const mobileInput = document.getElementById("mobileNo");
-    const otpInput = document.getElementById("otp");
-    const sendOtpBtn = document.getElementById("sendOtpBtn");
-    const signInBtn = document.getElementById("signInBtn");
     const kmMenuBtn = document.getElementById("kmMenuBtn");
     const kmMobileMenu = document.getElementById("kmMobileMenu");
-
-    mobileInput.addEventListener("input", function () {
-      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
-    });
-
-    otpInput.addEventListener("input", function () {
-      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
-    });
-
-    sendOtpBtn.addEventListener("click", function () {
-      if (mobileInput.value.length !== 10) {
-        alert("Please enter a valid 10 digit mobile number.");
-        return;
-      }
-
-      alert("OTP sent successfully.");
-    });
-
-    signInBtn.addEventListener("click", function () {
-      if (mobileInput.value.length !== 10) {
-        alert("Please enter a valid 10 digit mobile number.");
-        return;
-      }
-
-      if (otpInput.value.length < 4) {
-        alert("Please enter valid OTP.");
-        return;
-      }
-
-      alert("Sign In successful.");
-    });
 
     if (kmMenuBtn && kmMobileMenu) {
       kmMenuBtn.addEventListener("click", function () {
