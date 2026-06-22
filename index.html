@@ -19,9 +19,9 @@
     body {
       width: 100%;
       min-height: 100vh;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #ffffff;
       overflow-x: hidden;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
     }
 
     .km-page {
@@ -34,39 +34,30 @@
       min-height: 100vh;
       position: relative;
       overflow: hidden;
-      scroll-margin-top: 0;
     }
 
-    /* HOME MASTER IMAGE SECTION */
-    #home {
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .home-master {
+    .home-master-wrap {
       width: 100%;
       min-height: 100vh;
-      background-image: url("./assets/home-master-reference.png");
-      background-repeat: no-repeat;
-      background-position: center top;
-      background-size: cover;
       position: relative;
+      background: #ffffff;
+      overflow: hidden;
     }
 
-    /* Invisible click areas over the master image */
+    .home-master-img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
     .hotspot {
       position: absolute;
-      display: block;
       z-index: 20;
-      text-decoration: none;
+      display: block;
       background: transparent;
-      border-radius: 14px;
-    }
-
-    .hotspot:hover {
-      background: rgba(255,255,255,0.04);
+      text-decoration: none;
     }
 
     .hs-home     { left: 25.8%; top: 4.4%; width: 5.8%; height: 7.4%; }
@@ -84,7 +75,6 @@
     .hs-cta-buyer  { left: 19.2%; top: 56.4%; width: 14.5%; height: 6.2%; }
     .hs-cta-video  { left: 34.7%; top: 56.4%; width: 13.0%; height: 6.2%; }
 
-    /* Future scroll sections */
     .placeholder-section {
       min-height: 100vh;
       background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
@@ -110,163 +100,39 @@
       font-weight: 650;
     }
 
-    .login-box {
-      width: min(430px, 94vw);
-      padding: 34px 30px;
-      border-radius: 24px;
-      background: #ffffff;
-      box-shadow: 0 24px 70px rgba(7, 42, 19, 0.14);
-      border: 1px solid rgba(7, 92, 28, 0.12);
-      text-align: center;
-    }
-
-    .login-box h1 {
-      font-size: 38px;
-      color: #075c1c;
-      font-weight: 950;
-      margin-bottom: 8px;
-    }
-
-    .login-box p {
-      color: #405349;
-      font-size: 14px;
-      font-weight: 650;
-      margin-bottom: 24px;
-    }
-
-    .role-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .role-btn {
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(7, 92, 28, 0.18);
-      background: #f2faf4;
-      color: #075c1c;
-      font-size: 14px;
-      font-weight: 850;
-      cursor: pointer;
-    }
-
-    .role-btn.active {
-      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-      color: #ffffff;
-      border-color: #06651d;
-    }
-
-    .input-wrap {
-      height: 52px;
-      border-radius: 12px;
-      border: 1px solid rgba(91, 105, 125, 0.25);
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      padding: 0 15px;
-      margin-bottom: 14px;
-    }
-
-    .input-wrap input {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      outline: 0;
-      background: transparent;
-      font-size: 15px;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .sign-btn {
-      width: 100%;
-      height: 52px;
-      border: 0;
-      border-radius: 13px;
-      background: linear-gradient(180deg, #0b7f28 0%, #06651d 100%);
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 950;
-      cursor: pointer;
-      box-shadow: 0 14px 28px rgba(6, 101, 29, 0.22);
-      margin-top: 6px;
-    }
-
-    .dashboard-view {
-      width: 100%;
-      min-height: 100vh;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      background: linear-gradient(180deg, #ffffff 0%, #eef8f1 100%);
-    }
-
-    .dashboard-title {
-      font-size: clamp(36px, 6vw, 82px);
-      color: #075c1c;
-      font-weight: 950;
-      letter-spacing: -1.8px;
-    }
-
-    .dashboard-subtitle {
-      margin-top: 16px;
-      color: #34463b;
-      font-size: clamp(15px, 2vw, 21px);
-      font-weight: 650;
-    }
-
-    .back-index {
-      margin-top: 28px;
-      height: 46px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 0;
-      background: #075c1c;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 850;
-      cursor: pointer;
-    }
-
     @media (max-width: 768px) {
-      .home-master {
-        background-image: url("./assets/home-master-reference.png");
-        background-size: cover;
-        background-position: center top;
+      .home-master-img {
+        height: 100vh;
+        object-fit: cover;
+        object-position: center top;
       }
 
       .hotspot {
         display: none;
-      }
-
-      .role-buttons {
-        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="km-page" id="kmPage">
+  <main class="km-page">
     <section class="km-section" id="home">
-      <div class="home-master">
-        <a class="hotspot hs-home" href="#home" aria-label="Home"></a>
-        <a class="hotspot hs-farmer" href="#farmer" aria-label="Farmers"></a>
-        <a class="hotspot hs-fpo" href="#fpo" aria-label="FPO"></a>
-        <a class="hotspot hs-buyer" href="#buyer" aria-label="Buyer"></a>
-        <a class="hotspot hs-ai" href="#ai-engine" aria-label="AI Engine"></a>
-        <a class="hotspot hs-trust" href="#trust" aria-label="Trust"></a>
-        <a class="hotspot hs-contact" href="#contact" aria-label="Contact"></a>
-        <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')" aria-label="Language"></a>
-        <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()" aria-label="Talk to AI"></a>
-        <a class="hotspot hs-login" href="#login" aria-label="Login"></a>
-        <a class="hotspot hs-cta-farmer" href="#farmer" aria-label="I am a Farmer"></a>
-        <a class="hotspot hs-cta-buyer" href="#buyer" aria-label="I am a Buyer"></a>
-        <a class="hotspot hs-cta-video" href="#ai-engine" aria-label="See How It Works"></a>
+      <div class="home-master-wrap">
+        <img class="home-master-img" src="./assets/home-master-reference.png?v=final1" alt="KisanMitraAI Home" />
+
+        <a class="hotspot hs-home" href="#home"></a>
+        <a class="hotspot hs-farmer" href="#farmer"></a>
+        <a class="hotspot hs-fpo" href="#fpo"></a>
+        <a class="hotspot hs-buyer" href="#buyer"></a>
+        <a class="hotspot hs-ai" href="#ai-engine"></a>
+        <a class="hotspot hs-trust" href="#trust"></a>
+        <a class="hotspot hs-contact" href="#contact"></a>
+        <a class="hotspot hs-language" href="javascript:void(0)" onclick="alert('Language selector will be connected next.')"></a>
+        <a class="hotspot hs-voice" href="javascript:void(0)" onclick="speakHome()"></a>
+        <a class="hotspot hs-login" href="#login"></a>
+        <a class="hotspot hs-cta-farmer" href="#farmer"></a>
+        <a class="hotspot hs-cta-buyer" href="#buyer"></a>
+        <a class="hotspot hs-cta-video" href="#ai-engine"></a>
       </div>
     </section>
 
@@ -313,36 +179,12 @@
     </section>
 
     <section class="km-section placeholder-section" id="login">
-      <div class="login-box">
-        <h1>Login</h1>
-        <p>Select user type and sign in. After login, this index page will be replaced by the dashboard.</p>
-
-        <div class="role-buttons">
-          <button class="role-btn active" type="button" data-role="Farmer">Farmer</button>
-          <button class="role-btn" type="button" data-role="FPO">FPO</button>
-          <button class="role-btn" type="button" data-role="Buyer">Buyer</button>
-        </div>
-
-        <div class="input-wrap">
-          <input id="mobileNo" type="tel" maxlength="10" placeholder="Mobile No." />
-        </div>
-
-        <div class="input-wrap">
-          <input id="otp" type="text" maxlength="6" placeholder="OTP" />
-        </div>
-
-        <button class="sign-btn" type="button" id="signInBtn">Sign In</button>
+      <div>
+        <h1 class="page-name">Login Page</h1>
+        <p class="page-subtitle">Login section inside index page</p>
       </div>
     </section>
   </main>
-
-  <section class="dashboard-view" id="dashboardView">
-    <div>
-      <h1 class="dashboard-title" id="dashboardTitle">Dashboard</h1>
-      <p class="dashboard-subtitle" id="dashboardSubtitle">Logged in dashboard view</p>
-      <button class="back-index" type="button" id="backIndexBtn">Back to Index Page</button>
-    </div>
-  </section>
 
   <script>
     function speakHome() {
@@ -351,63 +193,13 @@
         return;
       }
 
-      const text = "Welcome to KisanMitraAI. Precision farming and stronger market connection for farmers, FPOs and buyers.";
       speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
+      const utterance = new SpeechSynthesisUtterance(
+        "Welcome to KisanMitraAI. Precision farming and stronger market connection for farmers, FPOs and buyers."
+      );
       utterance.lang = "en-IN";
       utterance.rate = 0.9;
       speechSynthesis.speak(utterance);
-    }
-
-    const roleButtons = document.querySelectorAll(".role-btn");
-    const mobileNo = document.getElementById("mobileNo");
-    const otp = document.getElementById("otp");
-    const signInBtn = document.getElementById("signInBtn");
-    const kmPage = document.getElementById("kmPage");
-    const dashboardView = document.getElementById("dashboardView");
-    const dashboardTitle = document.getElementById("dashboardTitle");
-    const dashboardSubtitle = document.getElementById("dashboardSubtitle");
-    const backIndexBtn = document.getElementById("backIndexBtn");
-
-    let selectedRole = "Farmer";
-
-    roleButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        roleButtons.forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        selectedRole = btn.dataset.role;
-      });
-    });
-
-    if (mobileNo) {
-      mobileNo.addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
-      });
-    }
-
-    if (otp) {
-      otp.addEventListener("input", function () {
-        this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
-      });
-    }
-
-    if (signInBtn) {
-      signInBtn.addEventListener("click", function () {
-        kmPage.style.display = "none";
-        dashboardView.style.display = "flex";
-        dashboardTitle.textContent = selectedRole + " Dashboard";
-        dashboardSubtitle.textContent = "Index page replaced by " + selectedRole + " Dashboard after login.";
-        window.scrollTo(0, 0);
-      });
-    }
-
-    if (backIndexBtn) {
-      backIndexBtn.addEventListener("click", function () {
-        dashboardView.style.display = "none";
-        kmPage.style.display = "block";
-        window.location.hash = "#home";
-        window.scrollTo(0, 0);
-      });
     }
   </script>
 </body>
