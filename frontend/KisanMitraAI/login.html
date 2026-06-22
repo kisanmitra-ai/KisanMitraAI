@@ -1,121 +1,502 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KisanMitraAI Login</title>
-<style>
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#eef5ef;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
-}
-.topbar{
-  position:fixed;
-  top:14px;
-  left:32px;
-  right:32px;
-  height:78px;
-  z-index:20;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 26px;
-  background:rgba(255,255,255,.96);
-  border-radius:22px;
-  box-shadow:0 16px 42px rgba(5,35,14,.16);
-}
-.logo img{
-  height:62px;
-  display:block;
-}
-.nav{
-  display:flex;
-  align-items:center;
-  gap:54px;
-  color:#082e14;
-  font-size:16px;
-  font-weight:800;
-}
-.nav a{
-  color:inherit;
-  text-decoration:none;
-}
-.login-btn{
-  height:52px;
-  padding:0 28px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#075b18;
-  color:#fff;
-  font-size:17px;
-  font-weight:900;
-  text-decoration:none;
-}
-.screen{
-  width:100vw;
-  height:100vh;
-  background:url("./home-assets/kisanmitraai-login-page-final.png?v=fit-menu-final") center center / cover no-repeat;
-}
-.click-login{
-  position:absolute;
-  left:36%;
-  top:52%;
-  width:28%;
-  height:6%;
-  z-index:10;
-}
-.click-signup{
-  position:absolute;
-  left:36%;
-  top:60%;
-  width:28%;
-  height:6%;
-  z-index:10;
-}
-.click-back{
-  position:absolute;
-  left:42%;
-  top:70%;
-  width:16%;
-  height:4%;
-  z-index:10;
-}
-@media(max-width:768px){
-  .topbar{left:12px;right:12px;height:66px;top:10px}
-  .logo img{height:48px}
-  .nav{display:none}
-  .login-btn{height:44px;padding:0 18px}
-}
-</style>
-</head>
-<body>
-<header class="topbar">
-  <a class="logo" href="./index.html">
-    <img src="./kisanmitra-web-ui/assets/kisanmitra-logo-exact.png" alt="KisanMitraAI">
-  </a>
-  <nav class="nav">
-    <a href="./index.html#farmers">Farmers</a>
-    <a href="./index.html#fpo">FPO</a>
-    <a href="./index.html#buyers">Buyers</a>
-    <a href="./index.html#engine">AI Engine</a>
-    <a href="./index.html#trust">Trust</a>
-    <a href="./index.html#contact">Contact</a>
-  </nav>
-  <a class="login-btn" href="./login.html">Login</a>
-</header>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KisanMitraAI Login</title>
 
-<main class="screen">
-  <a class="click-login" href="#login" aria-label="Login"></a>
-  <a class="click-signup" href="./register.html" aria-label="Sign Up"></a>
-  <a class="click-back" href="./index.html" aria-label="Back to homepage"></a>
-</main>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: #102015;
+      overflow-x: hidden;
+    }
+
+    .km-fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      z-index: 9999;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .km-header-inner {
+      height: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .km-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #123524;
+      font-weight: 800;
+    }
+
+    .km-brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .km-brand span {
+      font-size: 18px;
+      font-weight: 850;
+    }
+
+    .km-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .km-nav a {
+      text-decoration: none;
+      color: #1f3529;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .km-nav .login-pill {
+      background: #08611d;
+      color: #ffffff;
+      padding: 13px 26px;
+      border-radius: 14px;
+      font-weight: 850;
+    }
+
+    .km-page-content {
+      padding-top: 72px;
+      min-height: 100vh;
+    }
+
+    .login-page {
+      position: relative;
+      width: 100%;
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 58px 20px 128px;
+      background:
+        linear-gradient(rgba(255,255,255,0.03), rgba(255,255,255,0.03)),
+        url("./assets/login-farm-bg.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .login-card {
+      width: 440px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(47, 84, 58, 0.24);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(7, 42, 19, 0.25);
+      backdrop-filter: blur(18px);
+      padding: 38px 38px 34px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .leaf-mark {
+      text-align: center;
+      font-size: 31px;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .login-title {
+      text-align: center;
+      color: #0b4f1c;
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+
+    .login-subtitle {
+      text-align: center;
+      color: #283342;
+      font-size: 14px;
+      font-weight: 650;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 850;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .input-wrap {
+      width: 100%;
+      height: 54px;
+      border: 1px solid rgba(91, 105, 125, 0.25);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.86);
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.04);
+    }
+
+    .input-wrap svg {
+      width: 22px;
+      height: 22px;
+      color: #596179;
+      flex: 0 0 auto;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      padding-left: 13px;
+      font-size: 15px;
+      color: #111827;
+      font-weight: 650;
+    }
+
+    .input-wrap input::placeholder {
+      color: #667085;
+    }
+
+    .otp-row {
+      display: grid;
+      grid-template-columns: 1fr 106px;
+      gap: 10px;
+    }
+
+    .otp-btn {
+      height: 54px;
+      border: 1px solid rgba(8, 97, 29, 0.18);
+      border-radius: 10px;
+      background: #eaf7ed;
+      color: #08611d;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .signin-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #0d6c23 0%, #075918 100%);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 900;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 10px 20px rgba(7, 83, 24, 0.24);
+    }
+
+    .helper-text {
+      text-align: center;
+      color: #415247;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 18px;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      color: #124e24;
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .bottom-trust-strip {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      min-height: 104px;
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid rgba(13, 43, 27, 0.12);
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -10px 28px rgba(12, 34, 22, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .trust-inner {
+      width: 100%;
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: center;
+      padding: 0 24px;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 34px;
+      background: rgba(34, 82, 52, 0.28);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: #20233a;
+      font-size: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .trust-icon {
+      font-size: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .km-fixed-header {
+        height: 64px;
+      }
+
+      .km-header-inner {
+        padding: 0 16px;
+      }
+
+      .km-brand img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .km-brand span {
+        font-size: 14px;
+      }
+
+      .km-nav {
+        gap: 12px;
+        overflow-x: auto;
+      }
+
+      .km-nav a {
+        font-size: 12px;
+      }
+
+      .km-nav .login-pill {
+        padding: 10px 16px;
+        border-radius: 12px;
+      }
+
+      .km-page-content {
+        padding-top: 64px;
+      }
+
+      .login-page {
+        min-height: calc(100vh - 64px);
+        padding: 34px 14px 168px;
+        background-position: center top;
+      }
+
+      .login-card {
+        width: 100%;
+        max-width: 410px;
+        padding: 30px 22px 28px;
+        border-radius: 20px;
+      }
+
+      .login-title {
+        font-size: 30px;
+      }
+
+      .otp-row {
+        grid-template-columns: 1fr;
+      }
+
+      .otp-btn {
+        width: 100%;
+      }
+
+      .bottom-trust-strip {
+        min-height: 142px;
+      }
+
+      .trust-inner {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .trust-divider {
+        display: none;
+      }
+
+      .trust-item {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="km-fixed-header">
+    <div class="km-header-inner">
+      <a class="km-brand" href="./index.html">
+        <img src="./assets/branding/kisanmitra-logo.png" alt="KisanMitraAI" />
+        <span>KisanMitraAI</span>
+      </a>
+
+      <nav class="km-nav">
+        <a href="./index.html">Home</a>
+        <a href="./farmer-dashboard.html">Farmer</a>
+        <a href="./fpo-dashboard.html">FPO</a>
+        <a href="./buyer-dashboard.html">Buyer</a>
+        <a href="./ai-engine.html">AI Engine</a>
+        <a href="./trust.html">Trust</a>
+        <a href="./contact.html">Contact</a>
+        <a class="login-pill" href="./login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="km-page-content">
+    <section class="login-page">
+      <div class="login-card">
+        <div class="leaf-mark">🌱</div>
+
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to continue to KisanMitraAI</p>
+
+        <form>
+          <div class="form-group">
+            <label class="form-label" for="mobileNo">Mobile No.</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+                <path d="M11 18h2"></path>
+              </svg>
+              <input id="mobileNo" type="tel" maxlength="10" placeholder="Enter mobile number" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="otp">OTP</label>
+            <div class="otp-row">
+              <div class="input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="11" width="16" height="10" rx="2"></rect>
+                  <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
+                </svg>
+                <input id="otp" type="text" maxlength="6" placeholder="Enter OTP" />
+              </div>
+
+              <button class="otp-btn" type="button" id="sendOtpBtn">Get OTP</button>
+            </div>
+          </div>
+
+          <button class="signin-btn" type="button" id="signInBtn">Sign In</button>
+
+          <p class="helper-text">
+            Secure OTP based login for Farmers, FPOs and Buyers.
+          </p>
+
+          <a class="back-link" href="./index.html">← Back to homepage</a>
+        </form>
+      </div>
+
+      <div class="bottom-trust-strip">
+        <div class="trust-inner">
+          <div class="trust-item">
+            <span class="trust-icon">🛡️</span>
+            Secure &amp; Trusted
+          </div>
+
+          <div class="trust-divider"></div>
+
+          <div class="trust-item">
+            <span class="trust-icon">🌱</span>
+            Empowering Farmers
+          </div>
+
+          <div class="trust-divider"></div>
+
+          <div class="trust-item">
+            <span class="trust-icon">🌍</span>
+            Building Better Tomorrow
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const mobileInput = document.getElementById("mobileNo");
+    const otpInput = document.getElementById("otp");
+    const sendOtpBtn = document.getElementById("sendOtpBtn");
+    const signInBtn = document.getElementById("signInBtn");
+
+    mobileInput.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+
+    otpInput.addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
+    });
+
+    sendOtpBtn.addEventListener("click", function () {
+      if (mobileInput.value.length !== 10) {
+        alert("Please enter a valid 10 digit mobile number.");
+        return;
+      }
+
+      alert("OTP sent successfully.");
+    });
+
+    signInBtn.addEventListener("click", function () {
+      if (mobileInput.value.length !== 10) {
+        alert("Please enter a valid 10 digit mobile number.");
+        return;
+      }
+
+      if (otpInput.value.length < 4) {
+        alert("Please enter valid OTP.");
+        return;
+      }
+
+      alert("Sign In successful.");
+    });
+  </script>
 </body>
 </html>
