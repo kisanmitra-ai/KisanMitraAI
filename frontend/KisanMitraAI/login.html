@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -367,7 +367,122 @@
         font-size: 14px;
       }
     }
-  </style>
+  
+/* KM INDEX TOPBAR OVERRIDE START */
+.km-fixed-header {
+  position: absolute !important;
+  top: 22px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 76px) !important;
+  max-width: 1268px !important;
+  height: 74px !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 18px 45px rgba(13, 49, 24, 0.12) !important;
+  border: 0 !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+.km-header-inner {
+  height: 100% !important;
+  max-width: none !important;
+  padding: 0 18px 0 26px !important;
+}
+
+.km-brand {
+  min-width: 235px !important;
+  gap: 0 !important;
+}
+
+.km-brand img {
+  width: 190px !important;
+  height: 58px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+}
+
+.km-brand span {
+  display: none !important;
+}
+
+.km-nav {
+  flex: 1 !important;
+  justify-content: flex-end !important;
+  gap: 34px !important;
+  overflow: visible !important;
+}
+
+.km-nav a {
+  color: #0b2d16 !important;
+  font-size: 14px !important;
+  font-weight: 850 !important;
+}
+
+.km-nav a[href="./login.html"],
+.km-nav a[href="login.html"],
+.km-nav .login-pill {
+  min-width: 104px !important;
+  height: 48px !important;
+  padding: 0 26px !important;
+  border-radius: 14px !important;
+  background: #08611d !important;
+  color: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 14px 30px rgba(8, 97, 29, 0.23) !important;
+}
+
+.km-page-content {
+  padding-top: 0 !important;
+  min-height: 100vh !important;
+}
+
+.login-page {
+  min-height: 100vh !important;
+  padding-top: 156px !important;
+  padding-bottom: 128px !important;
+}
+
+@media (max-width: 768px) {
+  .km-fixed-header {
+    top: 14px !important;
+    width: calc(100% - 20px) !important;
+    height: 70px !important;
+    border-radius: 18px !important;
+  }
+
+  .km-header-inner {
+    padding: 0 14px !important;
+  }
+
+  .km-brand {
+    min-width: 132px !important;
+  }
+
+  .km-brand img {
+    width: 132px !important;
+    height: 48px !important;
+  }
+
+  .km-nav {
+    gap: 13px !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+  }
+
+  .km-nav a {
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .login-page {
+    padding-top: 108px !important;
+  }
+}
+/* KM INDEX TOPBAR OVERRIDE END */
+</style>
 </head>
 
 <body>
@@ -394,7 +509,7 @@
   <main class="km-page-content">
     <section class="login-page">
       <div class="login-card">
-        <div class="leaf-mark">🌱</div>
+        <div class="leaf-mark">ðŸŒ±</div>
 
         <h1 class="login-title">Welcome Back</h1>
         <p class="login-subtitle">Sign in to continue to KisanMitraAI</p>
@@ -432,28 +547,28 @@
             Secure OTP based login for Farmers, FPOs and Buyers.
           </p>
 
-          <a class="back-link" href="./index.html">← Back to homepage</a>
+          <a class="back-link" href="./index.html">â† Back to homepage</a>
         </form>
       </div>
 
       <div class="bottom-trust-strip">
         <div class="trust-inner">
           <div class="trust-item">
-            <span class="trust-icon">🛡️</span>
+            <span class="trust-icon">ðŸ›¡ï¸</span>
             Secure &amp; Trusted
           </div>
 
           <div class="trust-divider"></div>
 
           <div class="trust-item">
-            <span class="trust-icon">🌱</span>
+            <span class="trust-icon">ðŸŒ±</span>
             Empowering Farmers
           </div>
 
           <div class="trust-divider"></div>
 
           <div class="trust-item">
-            <span class="trust-icon">🌍</span>
+            <span class="trust-icon">ðŸŒ</span>
             Building Better Tomorrow
           </div>
         </div>
