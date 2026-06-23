@@ -779,41 +779,23 @@ html,body{
 </style>
 
 
-<style id="manual-position-editor-css-v2">
+
+
+<style id="manual-position-editor-numeric-css">
+body.edit-mode .fm-hotspot {
+  pointer-events: none !important;
+}
+
 body.edit-mode .fm-text,
 body.edit-mode .fm-btn-text {
-  outline: 1px dashed rgba(0, 120, 255, 0.55);
-  cursor: pointer;
+  outline: 1px dashed rgba(0, 120, 255, 0.65) !important;
+  cursor: pointer !important;
+  user-select: none !important;
 }
 
 body.edit-mode .fm-selected {
   outline: 3px solid #ff2a00 !important;
-  background: rgba(255, 255, 0, 0.16) !important;
-}
-
-.position-toolbar {
-  position: fixed;
-  left: 16px;
-  bottom: 18px;
-  z-index: 2147483647;
-  background: rgba(5, 20, 10, 0.92);
-  color: #ffffff;
-  border-radius: 14px;
-  padding: 12px 14px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.45;
-  box-shadow: 0 14px 34px rgba(0,0,0,.32);
-  display: none;
-  max-width: 560px;
-}
-
-body.edit-mode .position-toolbar {
-  display: block;
-}
-
-.position-toolbar strong {
-  color: #8cff9b;
+  background: rgba(255,255,0,.18) !important;
 }
 
 .position-toggle-btn {
@@ -825,68 +807,54 @@ body.edit-mode .position-toolbar {
   border-radius: 999px;
   padding: 10px 16px;
   background: #08751f;
-  color: white;
+  color: #fff;
   font-size: 13px;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(0,0,0,.22);
-}
-</style>
-<style id="manual-editor-click-arrow-fix-v3">
-/* Manual editor click + arrow fix v3 */
-
-body.edit-mode .fm-hotspot {
-  pointer-events: none !important;
 }
 
-body.edit-mode a.fm-text,
-body.edit-mode a.fm-btn-text {
-  pointer-events: auto !important;
-}
-
-body.edit-mode .fm-text,
-body.edit-mode .fm-btn-text {
-  outline: 1px dashed rgba(0, 120, 255, 0.6) !important;
-  cursor: move !important;
-}
-
-body.edit-mode .fm-selected {
-  outline: 3px solid #ff2a00 !important;
-  background: rgba(255, 255, 0, 0.16) !important;
-}
-
-.nudge-controls {
+.position-toolbar {
   position: fixed;
-  right: 18px;
+  left: 16px;
   bottom: 18px;
   z-index: 2147483647;
-  display: none;
-  grid-template-columns: 44px 44px 44px;
-  gap: 6px;
-  background: rgba(5, 20, 10, 0.92);
-  padding: 10px;
+  background: rgba(5,20,10,.94);
+  color: #fff;
   border-radius: 14px;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  display: none;
+  width: 430px;
   box-shadow: 0 14px 34px rgba(0,0,0,.32);
 }
 
-body.edit-mode .nudge-controls {
-  display: grid;
+body.edit-mode .position-toolbar {
+  display: block;
 }
 
-.nudge-controls button {
-  width: 44px;
-  height: 36px;
+.position-toolbar input {
+  width: 78px;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid #9ee7a7;
+  margin: 4px;
+  font-weight: 800;
+}
+
+.position-toolbar button {
+  padding: 7px 10px;
+  margin: 4px;
   border: 0;
   border-radius: 8px;
   background: #08751f;
   color: #fff;
-  font-size: 18px;
   font-weight: 900;
   cursor: pointer;
 }
 
-.nudge-controls .empty {
-  visibility: hidden;
+.position-toolbar .danger {
+  background: #c40000;
 }
 </style>
 </head>
@@ -987,21 +955,18 @@ body.edit-mode .nudge-controls {
 
 
 
-<script id="manual-position-editor-drag-v5">
-(function () {
-  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v5";
-  let dragStart = null;
 
-  function px(n) {
-    return Math.round(n * 10) / 10 + "px";
-  }
+<script id="manual-position-editor-numeric-js">
+(function () {
+  const STORAGE_KEY = "kisanmitra_farmers_numeric_positions_v1";
+  let selected = null;
 
   function blocks() {
     return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
   }
 
-  function selected() {
-    return Array.from(document.querySelectorAll(".fm-selected"));
+  function px(n) {
+    return Math.round(Number(n) * 10) / 10 + "px";
   }
 
   function getPos(el) {
@@ -1010,11 +975,6 @@ body.edit-mode .nudge-controls {
       left: parseFloat(s.left) || 0,
       top: parseFloat(s.top) || 0
     };
-  }
-
-  function setPos(el, left, top) {
-    el.style.left = px(left);
-    el.style.top = px(top);
   }
 
   function getId(el, i) {
@@ -1028,55 +988,73 @@ body.edit-mode .nudge-controls {
     return el.dataset.posId;
   }
 
-  function updateInfo() {
-    const info = document.getElementById("positionInfo");
-    if (!info) return;
+  function updatePanel() {
+    const info = document.getElementById("posInfo");
+    const leftInput = document.getElementById("posLeft");
+    const topInput = document.getElementById("posTop");
 
-    const s = selected();
-    if (!s.length) {
-      info.innerHTML = "No block selected.";
+    if (!info || !leftInput || !topInput) return;
+
+    if (!selected) {
+      info.textContent = "No text selected.";
+      leftInput.value = "";
+      topInput.value = "";
       return;
     }
 
-    const p = getPos(s[0]);
-    info.innerHTML =
-      "<strong>Selected:</strong> " + s.length +
-      " block(s) | first: " + s[0].dataset.posId +
-      " | left: " + p.left.toFixed(1) +
-      "px | top: " + p.top.toFixed(1) + "px";
+    const p = getPos(selected);
+    info.textContent = "Selected: " + selected.dataset.posId;
+    leftInput.value = p.left.toFixed(1);
+    topInput.value = p.top.toFixed(1);
   }
 
-  function clearSelected() {
-    selected().forEach(el => el.classList.remove("fm-selected"));
-    updateInfo();
+  function selectBlock(el) {
+    blocks().forEach(b => b.classList.remove("fm-selected"));
+    selected = el;
+    selected.classList.add("fm-selected");
+    updatePanel();
   }
 
-  function moveSelected(dx, dy) {
-    const s = selected();
-    if (!s.length) return;
+  window.fmApplyPosition = function () {
+    if (!selected) {
+      alert("Select a text block first.");
+      return;
+    }
 
-    s.forEach(el => {
-      const p = getPos(el);
-      setPos(el, p.left + dx, p.top + dy);
-    });
+    const left = document.getElementById("posLeft").value;
+    const top = document.getElementById("posTop").value;
 
-    updateInfo();
-  }
+    selected.style.left = px(left);
+    selected.style.top = px(top);
+    updatePanel();
+  };
 
-  window.fmMoveSelected = moveSelected;
+  window.fmMoveBy = function (dx, dy) {
+    if (!selected) {
+      alert("Select a text block first.");
+      return;
+    }
 
-  function savePositions() {
+    const p = getPos(selected);
+    selected.style.left = px(p.left + dx);
+    selected.style.top = px(p.top + dy);
+    updatePanel();
+  };
+
+  window.fmSavePositions = function () {
     const data = {};
+
     blocks().forEach((el, i) => {
       const id = getId(el, i);
       const p = getPos(el);
       data[id] = { left: p.left, top: p.top };
     });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
-    alert("Positions saved.");
-  }
 
-  function loadPositions() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    alert("Saved in browser.");
+  };
+
+  window.fmLoadPositions = function () {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
 
@@ -1084,12 +1062,15 @@ body.edit-mode .nudge-controls {
       const data = JSON.parse(raw);
       blocks().forEach((el, i) => {
         const id = getId(el, i);
-        if (data[id]) setPos(el, data[id].left, data[id].top);
+        if (data[id]) {
+          el.style.left = px(data[id].left);
+          el.style.top = px(data[id].top);
+        }
       });
-    } catch (e) {}
-  }
+    } catch(e) {}
+  };
 
-  function exportCss() {
+  window.fmExportPositions = function () {
     let css = "/* FINAL FARMERS MANUAL POSITIONS */\n";
 
     blocks().forEach((el, i) => {
@@ -1101,7 +1082,7 @@ body.edit-mode .nudge-controls {
         !["fm-text","fm-btn-text","fm-selected"].includes(c)
       );
 
-      const selector = cls.length ? "." + cls.join(".") : '[data-pos-id="' + el.dataset.posId + '"]';
+      const selector = "." + cls.join(".");
       css += selector + "{left:" + px(p.left) + " !important;top:" + px(p.top) + " !important;}\n";
     });
 
@@ -1119,172 +1100,68 @@ body.edit-mode .nudge-controls {
       document.body.appendChild(box);
       box.focus();
       box.select();
-      alert("Copy CSS from the text box.");
     });
-  }
+  };
 
-  function startDrag(e, el) {
-    if (!document.body.classList.contains("edit-mode")) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!e.shiftKey && !el.classList.contains("fm-selected")) {
-      clearSelected();
-      el.classList.add("fm-selected");
-    }
-
-    if (e.shiftKey) {
-      el.classList.toggle("fm-selected");
-    }
-
-    const s = selected();
-    dragStart = {
-      x: e.clientX,
-      y: e.clientY,
-      items: s.map(item => {
-        const p = getPos(item);
-        return { el: item, left: p.left, top: p.top };
-      })
-    };
-
-    updateInfo();
-  }
-
-  function dragMove(e) {
-    if (!dragStart) return;
-
-    e.preventDefault();
-
-    const dx = e.clientX - dragStart.x;
-    const dy = e.clientY - dragStart.y;
-
-    dragStart.items.forEach(item => {
-      setPos(item.el, item.left + dx, item.top + dy);
-    });
-
-    updateInfo();
-  }
-
-  function endDrag() {
-    dragStart = null;
-  }
-
-  function setupBlocks() {
+  function setup() {
     blocks().forEach((el, i) => {
       getId(el, i);
 
-      el.addEventListener("pointerdown", function(e) {
-        startDrag(e, el);
-      }, true);
-
-      el.addEventListener("click", function(e) {
+      el.addEventListener("click", function (e) {
         if (!document.body.classList.contains("edit-mode")) return;
+
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        selectBlock(el);
+        return false;
       }, true);
     });
-  }
 
-  function setupControls() {
-    let btn = document.getElementById("positionToggleBtn");
-    if (!btn) {
-      btn = document.createElement("button");
-      btn.id = "positionToggleBtn";
-      btn.className = "position-toggle-btn";
-      btn.type = "button";
-      btn.textContent = "Edit Positions";
-      document.body.appendChild(btn);
-    }
-
-    btn.onclick = function () {
+    const toggle = document.createElement("button");
+    toggle.className = "position-toggle-btn";
+    toggle.textContent = "Edit Positions";
+    toggle.onclick = function () {
       document.body.classList.toggle("edit-mode");
-      if (!document.body.classList.contains("edit-mode")) clearSelected();
-      updateInfo();
+      updatePanel();
     };
+    document.body.appendChild(toggle);
 
-    let toolbar = document.getElementById("positionToolbar");
-    if (!toolbar) {
-      toolbar = document.createElement("div");
-      toolbar.id = "positionToolbar";
-      toolbar.className = "position-toolbar";
-      document.body.appendChild(toolbar);
-    }
-
-    toolbar.innerHTML = `
-      <div id="positionInfo">No block selected.</div>
+    const panel = document.createElement("div");
+    panel.className = "position-toolbar";
+    panel.innerHTML = `
+      <div id="posInfo">No text selected.</div>
       <div style="margin-top:8px;">
-        Click text, then drag with mouse. Shift+Click = multi-select.
+        Left <input id="posLeft" type="number" step="1">
+        Top <input id="posTop" type="number" step="1">
+        <button onclick="fmApplyPosition()">Apply</button>
       </div>
       <div>
-        <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
+        <button onclick="fmMoveBy(-1,0)">←</button>
+        <button onclick="fmMoveBy(1,0)">→</button>
+        <button onclick="fmMoveBy(0,-1)">↑</button>
+        <button onclick="fmMoveBy(0,1)">↓</button>
+        <button onclick="fmMoveBy(-10,0)">←10</button>
+        <button onclick="fmMoveBy(10,0)">10→</button>
+      </div>
+      <div>
+        <button onclick="fmSavePositions()">Save</button>
+        <button onclick="fmExportPositions()">Export CSS</button>
+        <button class="danger" onclick="location.reload()">Reload</button>
       </div>
     `;
+    document.body.appendChild(panel);
 
-    let nudge = document.getElementById("nudgeControls");
-    if (!nudge) {
-      nudge = document.createElement("div");
-      nudge.id = "nudgeControls";
-      nudge.className = "nudge-controls";
-      document.body.appendChild(nudge);
-    }
-
-    nudge.innerHTML = `
-      <span class="empty"></span>
-      <button type="button" data-dx="0" data-dy="-1">↑</button>
-      <span class="empty"></span>
-      <button type="button" data-dx="-1" data-dy="0">←</button>
-      <button type="button" data-dx="0" data-dy="1">↓</button>
-      <button type="button" data-dx="1" data-dy="0">→</button>
-    `;
-
-    nudge.querySelectorAll("button").forEach(b => {
-      b.addEventListener("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        moveSelected(Number(b.dataset.dx), Number(b.dataset.dy));
-      });
-    });
+    fmLoadPositions();
   }
 
-  document.addEventListener("pointermove", dragMove, true);
-  document.addEventListener("pointerup", endDrag, true);
-
-  window.addEventListener("keydown", function(e) {
-    if (!document.body.classList.contains("edit-mode")) return;
-
-    if (e.key === "Escape") {
-      e.preventDefault();
-      clearSelected();
-    }
-
-    if (e.key.toLowerCase() === "s") {
-      e.preventDefault();
-      savePositions();
-    }
-
-    if (e.key.toLowerCase() === "e") {
-      e.preventDefault();
-      exportCss();
-    }
-
-    const step = e.ctrlKey ? 10 : (e.altKey ? 0.5 : 1);
-
-    if (e.key === "ArrowUp") { e.preventDefault(); moveSelected(0, -step); }
-    if (e.key === "ArrowDown") { e.preventDefault(); moveSelected(0, step); }
-    if (e.key === "ArrowLeft") { e.preventDefault(); moveSelected(-step, 0); }
-    if (e.key === "ArrowRight") { e.preventDefault(); moveSelected(step, 0); }
-  }, true);
-
-  window.addEventListener("load", function () {
-    setupBlocks();
-    setupControls();
-    loadPositions();
-  });
+  window.addEventListener("load", setup);
 })();
 </script>
 </body>
 </html>
+
 
 
 
