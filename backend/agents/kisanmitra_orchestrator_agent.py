@@ -1,12 +1,18 @@
 ﻿"""
 KisanMitraAI Main Orchestrator Agent
 
-Routes farmer, FPO, buyer and institutional requests to the correct internal agent.
-This is the top-level decision layer for KisanMitraAI.
+Routes farmer, FPO, buyer and institutional requests to the correct internal agents.
 """
 
 from dataclasses import dataclass
 from typing import Dict, List, Optional
+
+from farm_intelligence_agent import FarmIntelligenceAgent, FarmIntelligenceRequest
+from quality_grading_agent import QualityGradingAgent, QualityGradingRequest
+from best_mandi_agent import BestMandiAgent, BestMandiRequest
+from deal_os_agent import DealOSAgent, DealRequest
+from trust_agent import TrustAgent, TrustRequest
+from fpo_os_agent import FPOOSAgent, FPORequest
 
 
 @dataclass
@@ -18,27 +24,26 @@ class AgentRoute:
 
 
 class KisanMitraOrchestratorAgent:
+
     def __init__(self):
-        self.agent_map = {
-            "best_mandi": "BEST_MANDI_ENGINE",
-            "deal_os": "DEAL_OS_ENGINE",
-            "quality_grading": "QUALITY_GRADING_ENGINE",
-            "farm_intelligence": "FARM_INTELLIGENCE_ENGINE",
-            "fpo_os": "FPO_OS_ENGINE",
-            "trust": "TRUST_ENGINE",
-        }
+        self.farm_agent = FarmIntelligenceAgent()
+        self.quality_agent = QualityGradingAgent()
+        self.mandi_agent = BestMandiAgent()
+        self.deal_agent = DealOSAgent()
+        self.trust_agent = TrustAgent()
+        self.fpo_agent = FPOOSAgent()
 
     def detect_intent(self, message: str) -> str:
         text = message.lower()
+
+        if any(x in text for x in ["quality", "grade", "grading", "defect", "premium", "image", "photo"]):
+            return "quality_grading"
 
         if any(x in text for x in ["where to sell", "sell", "selling", "best mandi", "mandi", "best price", "net profit"]):
             return "best_mandi"
 
         if any(x in text for x in ["buyer", "deal", "contract", "agreement", "requirement", "connect"]):
             return "deal_os"
-
-        if any(x in text for x in ["quality", "grade", "grading", "defect", "premium", "image", "photo"]):
-            return "quality_grading"
 
         if any(x in text for x in ["satellite", "soil", "crop suitability", "weather", "disease", "pest", "farm"]):
             return "farm_intelligence"
@@ -51,103 +56,160 @@ class KisanMitraOrchestratorAgent:
 
         return "general"
 
-    def required_fields_for_intent(self, intent: str) -> List[str]:
-        required = {
-            "best_mandi": ["crop", "quantity", "location", "time_window"],
-            "deal_os": ["crop_or_requirement", "quantity", "location", "quality_expectation"],
-            "quality_grading": ["crop", "image_or_quality_description"],
-            "farm_intelligence": ["farm_location_or_boundary", "crop"],
-            "fpo_os": ["fpo_name_or_id", "operation_type"],
-            "trust": ["counterparty_name_or_id"],
-        }
-        return required.get(intent, [])
-
-    def find_missing_fields(self, intent: str, context: Dict) -> List[str]:
-        required = self.required_fields_for_intent(intent)
-        return [field for field in required if not context.get(field)]
-
     def route(self, message: str, context: Optional[Dict] = None) -> AgentRoute:
         context = context or {}
         intent = self.detect_intent(message)
-        missing = self.find_missing_fields(intent, context)
 
-        if intent == "quality_grading":
-            return AgentRoute(
-                primary_agent="QUALITY_GRADING_ENGINE",
-                secondary_agents=["BEST_MANDI_ENGINE", "DEAL_OS_ENGINE"],
-                reason="Quality must be understood before price or buyer matching.",
-                required_missing_fields=missing,
-            )
+        missing = []
 
-        if intent == "best_mandi":
-            return AgentRoute(
-                primary_agent="BEST_MANDI_ENGINE",
-                secondary_agents=["DEAL_OS_ENGINE"],
-                reason="The user is asking for best selling option or net price.",
-                required_missing_fields=missing,
-            )
+        required = {
+            "quality_grading": ["crop"],
+            "best_mandi": ["crop", "quantity_kg", "location"],
+            "deal_os": ["crop", "quantity_kg", "location"],
+            "farm_intelligence": ["location"],
+            "fpo_os": ["fpo_name", "operation_type"],
+            "trust": ["counterparty_name"],
+        }.get(intent, [])
 
-        if intent == "deal_os":
-            return AgentRoute(
-                primary_agent="DEAL_OS_ENGINE",
-                secondary_agents=["TRUST_ENGINE"],
-                reason="The user is asking for buyer matching, deal structure or contract flow.",
-                required_missing_fields=missing,
-            )
+        for field in required:
+            if not context.get(field):
+                missing.append(field)
 
-        if intent == "farm_intelligence":
-            return AgentRoute(
-                primary_agent="FARM_INTELLIGENCE_ENGINE",
-                secondary_agents=["QUALITY_GRADING_ENGINE", "BEST_MANDI_ENGINE"],
-                reason="The user is asking about farm, crop, soil, satellite, weather or risk intelligence.",
-                required_missing_fields=missing,
-            )
+        engine_map = {
+            "quality_grading": ("QUALITY_GRADING_ENGINE", ["BEST_MANDI_ENGINE", "DEAL_OS_ENGINE"]),
+            "best_mandi": ("BEST_MANDI_ENGINE", ["DEAL_OS_ENGINE"]),
+            "deal_os": ("DEAL_OS_ENGINE", ["TRUST_ENGINE"]),
+            "farm_intelligence": ("FARM_INTELLIGENCE_ENGINE", ["QUALITY_GRADING_ENGINE", "BEST_MANDI_ENGINE"]),
+            "fpo_os": ("FPO_OS_ENGINE", ["DEAL_OS_ENGINE", "TRUST_ENGINE"]),
+            "trust": ("TRUST_ENGINE", ["DEAL_OS_ENGINE"]),
+            "general": ("GENERAL_KISANMITRA_ASSISTANT", []),
+        }
 
-        if intent == "fpo_os":
-            return AgentRoute(
-                primary_agent="FPO_OS_ENGINE",
-                secondary_agents=["DEAL_OS_ENGINE", "TRUST_ENGINE"],
-                reason="The user is asking about FPO operations or farmer management.",
-                required_missing_fields=missing,
-            )
-
-        if intent == "trust":
-            return AgentRoute(
-                primary_agent="TRUST_ENGINE",
-                secondary_agents=["DEAL_OS_ENGINE"],
-                reason="The user is asking about trust, verification or payment risk.",
-                required_missing_fields=missing,
-            )
+        primary, secondary = engine_map[intent]
 
         return AgentRoute(
-            primary_agent="GENERAL_KISANMITRA_ASSISTANT",
-            secondary_agents=[],
-            reason="No specific engine was required. General agricultural guidance can be provided.",
-            required_missing_fields=[],
+            primary_agent=primary,
+            secondary_agents=secondary,
+            reason=f"Detected intent: {intent}",
+            required_missing_fields=missing,
         )
 
-    def format_response_shell(self, route: AgentRoute) -> Dict:
+    def run_workflow(self, message: str, context: Optional[Dict] = None) -> Dict:
+        context = context or {}
+        route = self.route(message, context)
+
+        if route.required_missing_fields:
+            return {
+                "summary": "More information is needed before running the full recommendation.",
+                "details": {
+                    "route": route,
+                    "missing_fields": route.required_missing_fields,
+                },
+                "next_actions": [
+                    f"Please provide: {', '.join(route.required_missing_fields)}"
+                ],
+            }
+
+        outputs = {}
+
+        if route.primary_agent == "FARM_INTELLIGENCE_ENGINE":
+            outputs["farm_intelligence"] = self.farm_agent.analyze(
+                FarmIntelligenceRequest(
+                    farm_location=context.get("location"),
+                    crop=context.get("crop"),
+                    area_acres=context.get("area_acres"),
+                )
+            )
+
+        if route.primary_agent == "QUALITY_GRADING_ENGINE":
+            outputs["quality_grading"] = self.quality_agent.grade(
+                QualityGradingRequest(
+                    crop=context.get("crop"),
+                    variety=context.get("variety"),
+                    image_path=context.get("image_path"),
+                    quality_description=context.get("quality_description"),
+                    quantity_kg=context.get("quantity_kg"),
+                )
+            )
+
+        if route.primary_agent == "BEST_MANDI_ENGINE":
+            outputs["best_mandi"] = self.mandi_agent.evaluate(
+                BestMandiRequest(
+                    crop=context.get("crop"),
+                    quantity_kg=context.get("quantity_kg"),
+                    location=context.get("location"),
+                    time_window=context.get("time_window", "today"),
+                )
+            )
+
+            outputs["deal_os"] = self.deal_agent.match(
+                DealRequest(
+                    crop=context.get("crop"),
+                    quantity_kg=context.get("quantity_kg"),
+                    location=context.get("location"),
+                    quality_grade=context.get("quality_grade", "B"),
+                    expected_price_per_kg=outputs["best_mandi"].best_option.net_price_per_kg,
+                )
+            )
+
+        if route.primary_agent == "DEAL_OS_ENGINE":
+            outputs["deal_os"] = self.deal_agent.match(
+                DealRequest(
+                    crop=context.get("crop"),
+                    quantity_kg=context.get("quantity_kg"),
+                    location=context.get("location"),
+                    quality_grade=context.get("quality_grade", "B"),
+                    expected_price_per_kg=context.get("expected_price_per_kg"),
+                )
+            )
+
+        if route.primary_agent == "TRUST_ENGINE":
+            outputs["trust"] = self.trust_agent.evaluate(
+                TrustRequest(
+                    counterparty_name=context.get("counterparty_name"),
+                    counterparty_type=context.get("counterparty_type", "Buyer"),
+                    location=context.get("location", "Unknown"),
+                    deal_value=context.get("deal_value", 0),
+                    previous_deals_count=context.get("previous_deals_count", 0),
+                    on_time_payment_rate=context.get("on_time_payment_rate", 0),
+                    dispute_count=context.get("dispute_count", 0),
+                    verified=context.get("verified", False),
+                )
+            )
+
+        if route.primary_agent == "FPO_OS_ENGINE":
+            outputs["fpo_os"] = self.fpo_agent.manage(
+                FPORequest(
+                    fpo_name=context.get("fpo_name"),
+                    operation_type=context.get("operation_type"),
+                    crop=context.get("crop"),
+                    location=context.get("location"),
+                )
+            )
+
         return {
-            "summary": "",
-            "details": {
-                "primary_agent": route.primary_agent,
-                "secondary_agents": route.secondary_agents,
-                "reason": route.reason,
-                "missing_fields": route.required_missing_fields,
-            },
-            "next_actions": [],
+            "summary": "KisanMitraAI agent workflow completed.",
+            "details": outputs,
+            "next_actions": [
+                "Review the recommendation.",
+                "Confirm quantity, quality and location.",
+                "Proceed to deal creation if suitable.",
+            ],
         }
 
 
 if __name__ == "__main__":
     agent = KisanMitraOrchestratorAgent()
-    result = agent.route(
+
+    result = agent.run_workflow(
         "Where should I sell 1000 kg tomato near Nadia?",
         {
-            "crop": "tomato",
-            "quantity": "1000 kg",
+            "crop": "Tomato",
+            "quantity_kg": 1000,
             "location": "Nadia, West Bengal",
+            "time_window": "today",
+            "quality_grade": "A",
         },
     )
-    print(result)
 
+    print(result)
