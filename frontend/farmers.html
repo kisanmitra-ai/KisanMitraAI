@@ -1,668 +1,282 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KisanMitraAI Farmers</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KisanMitraAI Farmers</title>
 
-  <style>
-    :root{
-      --km-green:#08751f;
-      --km-dark:#071122;
-      --km-blue:#1262ff;
-    }
+<style>
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+  background:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+  overflow-x:hidden;
+}
+body{
+  display:flex;
+  justify-content:center;
+}
+.stage{
+  position:relative;
+  width:1366px;
+  height:640px;
+  overflow:hidden;
+  background:#fff;
+  transform-origin:top center;
+}
+.bg{
+  position:absolute;
+  inset:0;
+  width:1366px;
+  height:640px;
+  object-fit:fill;
+  z-index:1;
+}
+.t{
+  position:absolute;
+  z-index:5;
+  margin:0;
+  padding:0;
+  color:#071122;
+  font-weight:900;
+  line-height:1;
+  white-space:nowrap;
+}
+.green{color:#08751f}
+.blue{color:#1262ff}
+.white{color:#fff}
 
-    *{
-      box-sizing:border-box;
-    }
+/* Header */
+.nav{font-size:12px;text-align:center}
+.home{left:356px;top:72px}
+.farmers{left:430px;top:72px;color:#08751f}
+.fpo{left:500px;top:72px}
+.buyer{left:580px;top:72px}
+.ai-engine{left:646px;top:72px}
+.trust{left:730px;top:72px}
+.contact{left:799px;top:72px}
 
-    html,body{
-      margin:0;
-      padding:0;
-      width:100%;
-      min-height:100%;
-      background:#ffffff;
-      font-family:Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
-    }
+.lang{left:1048px;top:38px;width:70px;height:34px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.ai-short{left:1240px;top:38px;width:20px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#1262ff}
+.login{left:1310px;top:38px;width:42px;height:34px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff}
 
-    body{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-    }
-
-    .fm-page{
-      width:100%;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      background:#ffffff;
-    }
-
-    .fm-stage{
-      position:relative;
-      width:1366px;
-      height:640px;
-      overflow:hidden;
-      background:#fff;
-      transform-origin:top center;
-    }
-
-    .fm-bg{
-      position:absolute;
-      left:0;
-      top:0;
-      width:1366px;
-      height:640px;
-      object-fit:fill;
-      z-index:1;
-      user-select:none;
-      pointer-events:none;
-    }
-
-    .fm-text{
-      position:absolute;
-      z-index:20;
-      margin:0;
-      padding:0;
-      transform:none;
-      white-space:nowrap;
-    }
-
-    .fm-nav{
-      font-size:12px;
-      line-height:1;
-      font-weight:900;
-      color:var(--km-dark);
-      text-align:center;
-    }
-
-    .fm-nav-farmers{
-      color:var(--km-green);
-    }
-
-    .fm-nav-home{left:356px;top:72px;}
-    .fm-nav-farmers{left:430px;top:72px;}
-    .fm-nav-fpo{left:500px;top:72px;}
-    .fm-nav-buyer{left:580px;top:72px;}
-    .fm-nav-ai{left:646px;top:72px;}
-    .fm-nav-trust{left:730px;top:72px;}
-    .fm-nav-contact{left:799px;top:72px;}
-
-    .fm-lang{
-      left:1046px;
-      top:38px;
-      width:74px;
-      height:34px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:14.5px;
-      font-weight:900;
-      color:var(--km-dark);
-      line-height:1;
-    }
-
-    .fm-talk{
-      left:1235px;
-      top:38px;
-      width:24px;
-      height:34px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:14px;
-      font-weight:950;
-      color:var(--km-blue);
-      line-height:1;
-    }
-
-    .fm-login{
-      left:1310px;
-      top:38px;
-      width:42px;
-      height:34px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:14px;
-      font-weight:950;
-      color:#fff;
-      line-height:1;
-    }
-
-    .fm-breadcrumb{
-      left:46px;
-      top:148px;
-      font-size:13px;
-      font-weight:850;
-      color:var(--km-green);
-    }
-
-    .fm-title{
-      left:46px;
-      top:166px;
-      font-size:47px;
-      line-height:.98;
-      font-weight:950;
-      color:var(--km-green);
-      letter-spacing:-1px;
-    }
-
-    .fm-subtitle{
-      left:46px;
-      top:225px;
-      font-size:24px;
-      line-height:1.05;
-      font-weight:950;
-      color:var(--km-dark);
-    }
-
-    .fm-desc{
-      left:46px;
-      top:272px;
-      width:560px;
-      white-space:normal;
-      font-size:14px;
-      line-height:1.45;
-      font-weight:750;
-      color:var(--km-dark);
-    }
-
-    .fm-btn-explore{
-      left:70px;
-      top:364px;
-      width:210px;
-      height:48px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-size:17px;
-      font-weight:950;
-      color:#fff;
-      line-height:1;
-    }
-
-    .fm-r-title{
-      font-size:14px;
-      font-weight:950;
-      color:var(--km-dark);
-      line-height:1.05;
-    }
-
-    .fm-r-value{
-      font-size:20px;
-      font-weight:950;
-      color:var(--km-dark);
-      line-height:1;
-    }
-
-    .fm-r-small{
-      font-size:10px;
-      font-weight:750;
-      color:var(--km-dark);
-      line-height:1.1;
-    }
-
-    .fm-ai-title{left:1135px;top:109px;}
-    .fm-ai-small{left:1135px;top:132px;}
-    .fm-ai-health{left:1135px;top:154px;}
-    .fm-ai-value{left:1135px;top:172px;}
-
-    .fm-weather-title{left:1135px;top:217px;}
-    .fm-weather-value{left:1135px;top:242px;}
-    .fm-weather-small{left:1135px;top:271px;}
-    .fm-humidity{left:1126px;top:317px;}
-    .fm-rain{left:1186px;top:317px;}
-    .fm-wind{left:1267px;top:317px;}
-
-    .fm-market-title{left:1126px;top:350px;}
-    .fm-market-small{left:1126px;top:374px;}
-    .fm-market-value{left:1135px;top:390px;font-size:19px;}
-    .fm-market-mandi{left:1135px;top:423px;}
-
-    .fm-tool-title{
-      font-size:11px;
-      font-weight:950;
-      color:var(--km-dark);
-      line-height:1.08;
-      white-space:normal;
-    }
-
-    .fm-tool-desc{
-      font-size:8px;
-      font-weight:700;
-      color:var(--km-dark);
-      line-height:1.18;
-      white-space:normal;
-    }
-
-    .fm-tool-link{
-      font-size:10px;
-      font-weight:950;
-      color:var(--km-green);
-      line-height:1;
-    }
-
-    .fm-t1-title{left:108px;top:448px;width:130px;}
-    .fm-t1-desc{left:108px;top:468px;width:130px;}
-    .fm-t1-link{left:54px;top:558px;}
-
-    .fm-t2-title{left:344px;top:448px;width:125px;}
-    .fm-t2-desc{left:344px;top:468px;width:125px;}
-    .fm-t2-link{left:295px;top:558px;}
-
-    .fm-t3-title{left:560px;top:448px;width:135px;}
-    .fm-t3-desc{left:560px;top:468px;width:135px;}
-    .fm-t3-link{left:561px;top:497px;}
-
-    .fm-t4-title{left:775px;top:448px;width:135px;}
-    .fm-t4-desc{left:775px;top:468px;width:135px;}
-    .fm-t4-link{left:770px;top:497px;}
-
-    .fm-t5-title{left:997px;top:448px;width:130px;}
-    .fm-t5-desc{left:997px;top:468px;width:130px;}
-    .fm-t5-link{left:1000px;top:497px;}
-
-    .fm-t6-title{left:1195px;top:448px;width:130px;}
-    .fm-t6-desc{left:1195px;top:468px;width:130px;}
-    .fm-t6-link{left:1195px;top:497px;}
-
-    .fm-bottom-title{
-      font-size:14px;
-      font-weight:950;
-      color:var(--km-dark);
-      line-height:1.05;
-    }
-
-    .fm-bottom-desc{
-      font-size:9px;
-      font-weight:700;
-      color:var(--km-dark);
-      line-height:1.18;
-      white-space:normal;
-    }
-
-    .fm-bottom-link{
-      font-size:10px;
-      font-weight:950;
-      color:var(--km-green);
-      line-height:1;
-    }
-
-    .fm-b1-title{left:125px;top:559px;}
-    .fm-b1-desc{left:125px;top:578px;width:180px;}
-    .fm-b1-link{left:125px;top:613px;}
-
-    .fm-b2-title{left:478px;top:559px;}
-    .fm-b2-desc{left:478px;top:578px;width:190px;}
-    .fm-b2-link{left:478px;top:613px;}
-
-    .fm-b3-title{left:795px;top:559px;}
-    .fm-b3-desc{left:795px;top:578px;width:190px;}
-    .fm-b3-link{left:795px;top:613px;}
-
-    .fm-b4-title{left:1109px;top:559px;}
-    .fm-b4-desc{left:1109px;top:578px;width:190px;}
-    .fm-b4-link{left:1109px;top:613px;}
-
-    .fm-click{
-      position:absolute;
-      z-index:50;
-      display:block;
-      text-decoration:none;
-      background:transparent;
-    }
-
-    .hot-home{left:335px;top:25px;width:65px;height:75px;}
-    .hot-farmers{left:410px;top:25px;width:75px;height:75px;}
-    .hot-fpo{left:490px;top:25px;width:65px;height:75px;}
-    .hot-buyer{left:565px;top:25px;width:70px;height:75px;}
-    .hot-ai{left:640px;top:25px;width:90px;height:75px;}
-    .hot-trust{left:725px;top:25px;width:75px;height:75px;}
-    .hot-contact{left:800px;top:25px;width:90px;height:75px;}
-    .hot-login{left:1270px;top:26px;width:85px;height:54px;}
-    .hot-dashboard{left:48px;top:352px;width:255px;height:58px;}
-
-    .voice-btn{
-      position:absolute;
-      left:-9999px;
-      top:auto;
-      width:1px;
-      height:1px;
-      overflow:hidden;
-    }
-
-    @media (max-width:1366px){
-      .fm-stage{
-        transform:scale(calc(100vw / 1366));
-        height:calc(640px * (100vw / 1366));
-      }
-    }
-  </style>
-<style id="farmers-v5-final-coordinate-fix">
-/* FARMERS V5 FINAL COORDINATE FIX */
-
-/* Hero CTA */
-.fm-btn-explore{
-  left:86px !important;
-  top:392px !important;
-  width:205px !important;
-  height:40px !important;
-  color:#fff !important;
-  font-size:16px !important;
-  font-weight:950 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  z-index:999 !important;
+/* Hero */
+.breadcrumb{left:46px;top:148px;font-size:13px;color:#08751f}
+.title{left:46px;top:166px;font-size:47px;line-height:.98;font-weight:950;color:#08751f;letter-spacing:-1px}
+.subtitle{left:46px;top:225px;font-size:24px;font-weight:950;color:#071122}
+.desc{
+  left:46px;
+  top:272px;
+  width:560px;
+  white-space:normal;
+  font-size:14px;
+  line-height:1.45;
+  font-weight:750;
+}
+.dashboard{
+  left:82px;
+  top:392px;
+  width:205px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:16px;
+  font-weight:950;
+  color:#fff;
 }
 
-/* Top-right labels */
-.fm-lang{
-  left:1048px !important;
-  top:38px !important;
-  width:70px !important;
-  height:34px !important;
-  font-size:14px !important;
+/* Right cards */
+.r-title{font-size:14px;font-weight:950}
+.r-small{font-size:10px;font-weight:750;line-height:1.1}
+.r-value{font-size:20px;font-weight:950}
+
+.ai-title{left:1172px;top:108px}
+.ai-small{left:1172px;top:130px}
+.ai-health{left:1172px;top:152px}
+.ai-value{left:1172px;top:170px}
+
+.weather-title{left:1172px;top:220px}
+.weather-value{left:1172px;top:244px}
+.weather-small{left:1172px;top:270px}
+.humidity{left:1125px;top:319px;text-align:center}
+.rain{left:1190px;top:319px;text-align:center}
+.wind{left:1270px;top:319px;text-align:center}
+
+.market-title{left:1162px;top:350px}
+.market-small{left:1162px;top:374px}
+.market-value{left:1162px;top:392px;font-size:18px}
+.market-mandi{left:1162px;top:423px}
+
+/* Tool cards */
+.tool-title{font-size:11px;font-weight:950;line-height:1.08;white-space:normal}
+.tool-desc{font-size:7.5px;font-weight:750;line-height:1.22;white-space:normal}
+.tool-link{font-size:10px;font-weight:950;color:#08751f}
+
+.t1-title{left:105px;top:456px;width:120px}
+.t1-desc{left:105px;top:474px;width:120px}
+.t1-link{left:54px;top:586px}
+
+.t2-title{left:332px;top:456px;width:130px}
+.t2-desc{left:332px;top:474px;width:130px}
+.t2-link{left:292px;top:586px}
+
+.t3-title{left:558px;top:456px;width:130px}
+.t3-desc{left:558px;top:478px;width:130px}
+.t3-link{left:558px;top:586px}
+
+.t4-title{left:772px;top:456px;width:130px}
+.t4-desc{left:772px;top:474px;width:130px}
+.t4-link{left:772px;top:586px}
+
+.t5-title{left:1000px;top:456px;width:120px}
+.t5-desc{left:1000px;top:474px;width:120px}
+.t5-link{left:1000px;top:586px}
+
+.t6-title{left:1200px;top:456px;width:130px}
+.t6-desc{left:1200px;top:474px;width:130px}
+.t6-link{left:1200px;top:586px}
+
+/* Bottom strip */
+.bottom-title{font-size:13px;font-weight:950}
+.bottom-desc{font-size:8.5px;font-weight:750;line-height:1.18;white-space:normal}
+.bottom-link{font-size:10px;font-weight:950;color:#08751f}
+
+.b1-title{left:122px;top:552px}
+.b1-desc{left:122px;top:573px;width:170px}
+.b1-link{left:122px;top:608px}
+
+.b2-title{left:470px;top:552px}
+.b2-desc{left:470px;top:573px;width:180px}
+.b2-link{left:470px;top:608px}
+
+.b3-title{left:790px;top:552px}
+.b3-desc{left:790px;top:573px;width:180px}
+.b3-link{left:790px;top:608px}
+
+.b4-title{left:1110px;top:552px}
+.b4-desc{left:1110px;top:573px;width:190px}
+.b4-link{left:1110px;top:608px}
+
+/* Click zones */
+.hot{
+  position:absolute;
+  z-index:20;
+  display:block;
+  background:transparent;
+  text-decoration:none;
 }
+.hot-home{left:335px;top:25px;width:65px;height:75px}
+.hot-farmers{left:410px;top:25px;width:75px;height:75px}
+.hot-fpo{left:490px;top:25px;width:65px;height:75px}
+.hot-buyer{left:565px;top:25px;width:70px;height:75px}
+.hot-ai{left:640px;top:25px;width:90px;height:75px}
+.hot-trust{left:725px;top:25px;width:75px;height:75px}
+.hot-contact{left:800px;top:25px;width:90px;height:75px}
+.hot-login{left:1270px;top:26px;width:85px;height:54px}
+.hot-dashboard{left:48px;top:352px;width:255px;height:58px}
 
-.fm-talk{
-  left:1238px !important;
-  top:38px !important;
-  width:24px !important;
-  height:34px !important;
-  font-size:13px !important;
+@media(max-width:1366px){
+  .stage{
+    transform:scale(calc(100vw / 1366));
+    height:calc(640px * (100vw / 1366));
+  }
 }
-
-.fm-login{
-  left:1310px !important;
-  top:38px !important;
-  width:42px !important;
-  height:34px !important;
-  font-size:13px !important;
-}
-
-/* Right insight cards - move text away from icons */
-.fm-ai-title{left:1172px !important;top:108px !important;}
-.fm-ai-small{left:1172px !important;top:130px !important;}
-.fm-ai-health{left:1172px !important;top:152px !important;}
-.fm-ai-value{left:1172px !important;top:170px !important;}
-
-.fm-weather-title{left:1172px !important;top:220px !important;}
-.fm-weather-value{left:1172px !important;top:244px !important;}
-.fm-weather-small{left:1172px !important;top:270px !important;}
-
-.fm-humidity{left:1124px !important;top:319px !important;text-align:center !important;}
-.fm-rain{left:1190px !important;top:319px !important;text-align:center !important;}
-.fm-wind{left:1270px !important;top:319px !important;text-align:center !important;}
-
-.fm-market-title{left:1162px !important;top:350px !important;}
-.fm-market-small{left:1162px !important;top:374px !important;}
-.fm-market-value{left:1162px !important;top:392px !important;font-size:18px !important;}
-.fm-market-mandi{left:1162px !important;top:423px !important;}
-
-/* Tool cards - larger and aligned to right of icons */
-.fm-tool-title{
-  font-size:11px !important;
-  line-height:1.08 !important;
-  font-weight:950 !important;
-}
-
-.fm-tool-desc{
-  font-size:7.5px !important;
-  line-height:1.22 !important;
-  font-weight:750 !important;
-}
-
-.fm-tool-link{
-  font-size:10px !important;
-  font-weight:950 !important;
-}
-
-/* Row 1 cards */
-.fm-t1-title{left:105px !important;top:456px !important;width:120px !important;}
-.fm-t1-desc{left:105px !important;top:474px !important;width:120px !important;}
-.fm-t1-link{left:54px !important;top:586px !important;}
-
-.fm-t2-title{left:332px !important;top:456px !important;width:130px !important;}
-.fm-t2-desc{left:332px !important;top:474px !important;width:130px !important;}
-.fm-t2-link{left:292px !important;top:586px !important;}
-
-.fm-t3-title{left:558px !important;top:456px !important;width:130px !important;}
-.fm-t3-desc{left:558px !important;top:478px !important;width:130px !important;}
-.fm-t3-link{left:558px !important;top:586px !important;}
-
-.fm-t4-title{left:772px !important;top:456px !important;width:130px !important;}
-.fm-t4-desc{left:772px !important;top:474px !important;width:130px !important;}
-.fm-t4-link{left:772px !important;top:586px !important;}
-
-.fm-t5-title{left:1000px !important;top:456px !important;width:120px !important;}
-.fm-t5-desc{left:1000px !important;top:474px !important;width:120px !important;}
-.fm-t5-link{left:1000px !important;top:586px !important;}
-
-.fm-t6-title{left:1200px !important;top:456px !important;width:130px !important;}
-.fm-t6-desc{left:1200px !important;top:474px !important;width:130px !important;}
-.fm-t6-link{left:1200px !important;top:586px !important;}
-
-/* Bottom strip - move text to right of icons */
-.fm-bottom-title{
-  font-size:13px !important;
-  line-height:1.05 !important;
-  font-weight:950 !important;
-}
-
-.fm-bottom-desc{
-  font-size:8.5px !important;
-  line-height:1.18 !important;
-  font-weight:750 !important;
-}
-
-.fm-bottom-link{
-  font-size:10px !important;
-  font-weight:950 !important;
-}
-
-.fm-b1-title{left:122px !important;top:552px !important;}
-.fm-b1-desc{left:122px !important;top:573px !important;width:170px !important;}
-.fm-b1-link{left:122px !important;top:608px !important;}
-
-.fm-b2-title{left:470px !important;top:552px !important;}
-.fm-b2-desc{left:470px !important;top:573px !important;width:180px !important;}
-.fm-b2-link{left:470px !important;top:608px !important;}
-
-.fm-b3-title{left:790px !important;top:552px !important;}
-.fm-b3-desc{left:790px !important;top:573px !important;width:180px !important;}
-.fm-b3-link{left:790px !important;top:608px !important;}
-
-.fm-b4-title{left:1110px !important;top:552px !important;}
-.fm-b4-desc{left:1110px !important;top:573px !important;width:190px !important;}
-.fm-b4-link{left:1110px !important;top:608px !important;}
 </style>
 </head>
 
 <body>
-  <main class="fm-page">
-    <section class="fm-stage" id="farmers">
-      <img class="fm-bg" src="/assets/farmers-master-clean-background-v5.png?v=clean-final-replacement-v1" alt="KisanMitraAI Farmers Background" />
+<div class="stage">
+  <img class="bg" src="/assets/farmers-master-clean-background-v5.png?v=fresh-farmers-v1" alt="KisanMitraAI Farmers">
 
-      <a class="fm-click hot-home" href="/KisanMitraAI/index.html#home" aria-label="Home"></a>
-      <a class="fm-click hot-farmers" href="/farmers.html" aria-label="Farmers"></a>
-      <a class="fm-click hot-fpo" href="/KisanMitraAI/index.html#fpo" aria-label="FPO"></a>
-      <a class="fm-click hot-buyer" href="/KisanMitraAI/index.html#buyer" aria-label="Buyer"></a>
-      <a class="fm-click hot-ai" href="/KisanMitraAI/index.html#ai-engine" aria-label="AI Engine"></a>
-      <a class="fm-click hot-trust" href="/KisanMitraAI/index.html#trust" aria-label="Trust"></a>
-      <a class="fm-click hot-contact" href="/KisanMitraAI/index.html#contact" aria-label="Contact"></a>
-      <a class="fm-click hot-login" href="/KisanMitraAI/index.html#login" aria-label="Login"></a>
-      <a class="fm-click hot-dashboard" href="/KisanMitraAI/index.html#login" aria-label="Enter Dashboard"></a>
+  <a class="hot hot-home" href="/KisanMitraAI/index.html#home"></a>
+  <a class="hot hot-farmers" href="/farmers.html"></a>
+  <a class="hot hot-fpo" href="/KisanMitraAI/index.html#fpo"></a>
+  <a class="hot hot-buyer" href="/KisanMitraAI/index.html#buyer"></a>
+  <a class="hot hot-ai" href="/KisanMitraAI/index.html#ai-engine"></a>
+  <a class="hot hot-trust" href="/KisanMitraAI/index.html#trust"></a>
+  <a class="hot hot-contact" href="/KisanMitraAI/index.html#contact"></a>
+  <a class="hot hot-login" href="/KisanMitraAI/index.html#login"></a>
+  <a class="hot hot-dashboard" href="/KisanMitraAI/index.html#login"></a>
 
-      <div class="fm-text fm-nav fm-nav-home" data-i18n="nav.home">Home</div>
-      <div class="fm-text fm-nav fm-nav-farmers" data-i18n="nav.farmers">Farmers</div>
-      <div class="fm-text fm-nav fm-nav-fpo" data-i18n="nav.fpo">FPO</div>
-      <div class="fm-text fm-nav fm-nav-buyer" data-i18n="nav.buyer">Buyer</div>
-      <div class="fm-text fm-nav fm-nav-ai" data-i18n="nav.ai">AI Engine</div>
-      <div class="fm-text fm-nav fm-nav-trust" data-i18n="nav.trust">Trust</div>
-      <div class="fm-text fm-nav fm-nav-contact" data-i18n="nav.contact">Contact</div>
+  <div class="t nav home">Home</div>
+  <div class="t nav farmers">Farmers</div>
+  <div class="t nav fpo">FPO</div>
+  <div class="t nav buyer">Buyer</div>
+  <div class="t nav ai-engine">AI Engine</div>
+  <div class="t nav trust">Trust</div>
+  <div class="t nav contact">Contact</div>
 
-      <div class="fm-text fm-lang" data-i18n="lang.english">English</div>
-      <div class="fm-text fm-talk" data-i18n="nav.aiShort">AI</div>
-      <div class="fm-text fm-login" data-i18n="nav.login">Login</div>
+  <div class="t lang">English</div>
+  <div class="t ai-short">AI</div>
+  <div class="t login">Login</div>
 
-      <div class="fm-text fm-breadcrumb" data-i18n="farmers.breadcrumb">Home › Farmers</div>
-      <h1 class="fm-text fm-title" data-i18n="farmers.title">Empowering Farmers.</h1>
-      <h2 class="fm-text fm-subtitle" data-i18n="farmers.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
-      <p class="fm-text fm-desc" data-i18n="farmers.desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
-      <div class="fm-text fm-btn-explore" data-i18n="farmers.enterDashboard">Enter Dashboard</div>
+  <div class="t breadcrumb">Home › Farmers</div>
+  <h1 class="t title">Empowering Farmers.</h1>
+  <h2 class="t subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
+  <p class="t desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
+  <div class="t dashboard">Enter Dashboard</div>
 
-      <div class="fm-text fm-r-title fm-ai-title" data-i18n="right.aiTitle">AI Crop Insight</div>
-      <div class="fm-text fm-r-small fm-ai-small" data-i18n="right.aiCrop">Wheat · Good Growth</div>
-      <div class="fm-text fm-r-small fm-ai-health" data-i18n="right.healthScore">Health Score</div>
-      <div class="fm-text fm-r-value fm-ai-value" data-i18n="right.healthValue">82/100</div>
+  <div class="t r-title ai-title">AI Crop Insight</div>
+  <div class="t r-small ai-small">Wheat · Good Growth</div>
+  <div class="t r-small ai-health">Health Score</div>
+  <div class="t r-value ai-value">82/100</div>
 
-      <div class="fm-text fm-r-title fm-weather-title" data-i18n="right.weatherTitle">Weather Update</div>
-      <div class="fm-text fm-r-value fm-weather-value" data-i18n="right.weatherTemp">32°C</div>
-      <div class="fm-text fm-r-small fm-weather-small" data-i18n="right.weatherStatus">Partly Cloudy</div>
-      <div class="fm-text fm-r-small fm-humidity" data-i18n="right.humidity">Humidity<br>65%</div>
-      <div class="fm-text fm-r-small fm-rain" data-i18n="right.rain">Rain Chance<br>20%</div>
-      <div class="fm-text fm-r-small fm-wind" data-i18n="right.wind">Wind<br>12 km/h</div>
+  <div class="t r-title weather-title">Weather Update</div>
+  <div class="t r-value weather-value">32°C</div>
+  <div class="t r-small weather-small">Partly Cloudy</div>
+  <div class="t r-small humidity">Humidity<br>65%</div>
+  <div class="t r-small rain">Rain Chance<br>20%</div>
+  <div class="t r-small wind">Wind<br>12 km/h</div>
 
-      <div class="fm-text fm-r-title fm-market-title" data-i18n="right.marketTitle">Market Linkage</div>
-      <div class="fm-text fm-r-small fm-market-small" data-i18n="right.marketCrop">Wheat (FAQ)</div>
-      <div class="fm-text fm-r-value fm-market-value" data-i18n="right.marketPrice">₹ 2,125 / Quintal</div>
-      <div class="fm-text fm-r-small fm-market-mandi" data-i18n="right.marketMandi">Mandi: Indore</div>
+  <div class="t r-title market-title">Market Linkage</div>
+  <div class="t r-small market-small">Wheat (FAQ)</div>
+  <div class="t r-value market-value">₹ 2,125 / Quintal</div>
+  <div class="t r-small market-mandi">Mandi: Indore</div>
 
-      <div class="fm-text fm-tool-title fm-t1-title" data-i18n="tool.t1.title">AI Crop Advisory</div>
-      <div class="fm-text fm-tool-desc fm-t1-desc" data-i18n="tool.t1.desc">Get AI-powered crop recommendations for higher yield and income.</div>
-      <div class="fm-text fm-tool-link fm-t1-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t1-title">AI Crop Advisory</div>
+  <div class="t tool-desc t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
+  <div class="t tool-link t1-link">Use Now →</div>
 
-      <div class="fm-text fm-tool-title fm-t2-title" data-i18n="tool.t2.title">Fertilizer Calculator</div>
-      <div class="fm-text fm-tool-desc fm-t2-desc" data-i18n="tool.t2.desc">Calculate the right fertilizer dose for your crop and field size.</div>
-      <div class="fm-text fm-tool-link fm-t2-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t2-title">Fertilizer Calculator</div>
+  <div class="t tool-desc t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
+  <div class="t tool-link t2-link">Use Now →</div>
 
-      <div class="fm-text fm-tool-title fm-t3-title" data-i18n="tool.t3.title">Pest & Disease Detection</div>
-      <div class="fm-text fm-tool-desc fm-t3-desc" data-i18n="tool.t3.desc">Identify pests and diseases from images and get control solutions.</div>
-      <div class="fm-text fm-tool-link fm-t3-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t3-title">Pest & Disease Detection</div>
+  <div class="t tool-desc t3-desc">Identify pests and diseases from images and get control solutions.</div>
+  <div class="t tool-link t3-link">Use Now →</div>
 
-      <div class="fm-text fm-tool-title fm-t4-title" data-i18n="tool.t4.title">Weather & Alerts</div>
-      <div class="fm-text fm-tool-desc fm-t4-desc" data-i18n="tool.t4.desc">Real-time weather updates and alerts to plan farming better.</div>
-      <div class="fm-text fm-tool-link fm-t4-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t4-title">Weather & Alerts</div>
+  <div class="t tool-desc t4-desc">Real-time weather updates and alerts to plan farming better.</div>
+  <div class="t tool-link t4-link">Use Now →</div>
 
-      <div class="fm-text fm-tool-title fm-t5-title" data-i18n="tool.t5.title">Mandi Prices</div>
-      <div class="fm-text fm-tool-desc fm-t5-desc" data-i18n="tool.t5.desc">Check live mandi rates and find the best time to sell.</div>
-      <div class="fm-text fm-tool-link fm-t5-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t5-title">Mandi Prices</div>
+  <div class="t tool-desc t5-desc">Check live mandi rates and find the best time to sell.</div>
+  <div class="t tool-link t5-link">Use Now →</div>
 
-      <div class="fm-text fm-tool-title fm-t6-title" data-i18n="tool.t6.title">Schemes & Support</div>
-      <div class="fm-text fm-tool-desc fm-t6-desc" data-i18n="tool.t6.desc">Explore government schemes, loans, subsidies and insurance options.</div>
-      <div class="fm-text fm-tool-link fm-t6-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t tool-title t6-title">Schemes & Support</div>
+  <div class="t tool-desc t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
+  <div class="t tool-link t6-link">Use Now →</div>
 
-      <div class="fm-text fm-bottom-title fm-b1-title" data-i18n="bottom.b1.title">AI-Powered Insights</div>
-      <div class="fm-text fm-bottom-desc fm-b1-desc" data-i18n="bottom.b1.desc">Smart recommendations for better yields and lower costs.</div>
-      <div class="fm-text fm-bottom-link fm-b1-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t bottom-title b1-title">AI-Powered Insights</div>
+  <div class="t bottom-desc b1-desc">Smart recommendations for better yields and lower costs.</div>
+  <div class="t bottom-link b1-link">Use Now →</div>
 
-      <div class="fm-text fm-bottom-title fm-b2-title" data-i18n="bottom.b2.title">Trust & Transparency</div>
-      <div class="fm-text fm-bottom-desc fm-b2-desc" data-i18n="bottom.b2.desc">Verified data, traceability and secure transactions.</div>
-      <div class="fm-text fm-bottom-link fm-b2-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t bottom-title b2-title">Trust & Transparency</div>
+  <div class="t bottom-desc b2-desc">Verified data, traceability and secure transactions.</div>
+  <div class="t bottom-link b2-link">Use Now →</div>
 
-      <div class="fm-text fm-bottom-title fm-b3-title" data-i18n="bottom.b3.title">Global Market Linkage</div>
-      <div class="fm-text fm-bottom-desc fm-b3-desc" data-i18n="bottom.b3.desc">Connect to more buyers, better prices, wider markets.</div>
-      <div class="fm-text fm-bottom-link fm-b3-link" data-i18n="tool.useNow">Use Now →</div>
+  <div class="t bottom-title b3-title">Global Market Linkage</div>
+  <div class="t bottom-desc b3-desc">Connect to more buyers, better prices, wider markets.</div>
+  <div class="t bottom-link b3-link">Use Now →</div>
 
-      <div class="fm-text fm-bottom-title fm-b4-title" data-i18n="bottom.b4.title">Voice & Language Support</div>
-      <div class="fm-text fm-bottom-desc fm-b4-desc" data-i18n="bottom.b4.desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-      <div class="fm-text fm-bottom-link fm-b4-link" data-i18n="tool.useNow">Use Now →</div>
-
-      <button class="voice-btn" id="listenPage" type="button">Listen</button>
-    </section>
-  </main>
-
-  <script>
-    const kmTranslations = {
-      en: {
-        "nav.home":"Home",
-        "nav.farmers":"Farmers",
-        "nav.fpo":"FPO",
-        "nav.buyer":"Buyer",
-        "nav.ai":"AI Engine",
-        "nav.trust":"Trust",
-        "nav.contact":"Contact",
-        "nav.login":"Login",
-        "nav.aiShort":"AI",
-        "lang.english":"English",
-        "farmers.breadcrumb":"Home › Farmers",
-        "farmers.title":"Empowering Farmers.",
-        "farmers.subtitle":"Better Decisions. Higher Yields. Stronger Income.",
-        "farmers.desc":"KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.",
-        "farmers.enterDashboard":"Enter Dashboard",
-        "right.aiTitle":"AI Crop Insight",
-        "right.aiCrop":"Wheat · Good Growth",
-        "right.healthScore":"Health Score",
-        "right.healthValue":"82/100",
-        "right.weatherTitle":"Weather Update",
-        "right.weatherTemp":"32°C",
-        "right.weatherStatus":"Partly Cloudy",
-        "right.humidity":"Humidity<br>65%",
-        "right.rain":"Rain Chance<br>20%",
-        "right.wind":"Wind<br>12 km/h",
-        "right.marketTitle":"Market Linkage",
-        "right.marketCrop":"Wheat (FAQ)",
-        "right.marketPrice":"₹ 2,125 / Quintal",
-        "right.marketMandi":"Mandi: Indore",
-        "tool.t1.title":"AI Crop Advisory",
-        "tool.t1.desc":"Get AI-powered crop recommendations for higher yield and income.",
-        "tool.t2.title":"Fertilizer Calculator",
-        "tool.t2.desc":"Calculate the right fertilizer dose for your crop and field size.",
-        "tool.t3.title":"Pest & Disease Detection",
-        "tool.t3.desc":"Identify pests and diseases from images and get control solutions.",
-        "tool.t4.title":"Weather & Alerts",
-        "tool.t4.desc":"Real-time weather updates and alerts to plan farming better.",
-        "tool.t5.title":"Mandi Prices",
-        "tool.t5.desc":"Check live mandi rates and find the best time to sell.",
-        "tool.t6.title":"Schemes & Support",
-        "tool.t6.desc":"Explore government schemes, loans, subsidies and insurance options.",
-        "tool.useNow":"Use Now →",
-        "bottom.b1.title":"AI-Powered Insights",
-        "bottom.b1.desc":"Smart recommendations for better yields and lower costs.",
-        "bottom.b2.title":"Trust & Transparency",
-        "bottom.b2.desc":"Verified data, traceability and secure transactions.",
-        "bottom.b3.title":"Global Market Linkage",
-        "bottom.b3.desc":"Connect to more buyers, better prices, wider markets.",
-        "bottom.b4.title":"Voice & Language Support",
-        "bottom.b4.desc":"Talk or listen in your language. Simple, smart & farmer-friendly."
-      }
-    };
-
-    function setLanguage(lang){
-      const dict = kmTranslations[lang] || kmTranslations.en;
-      document.querySelectorAll("[data-i18n]").forEach((el)=>{
-        const key = el.getAttribute("data-i18n");
-        if(dict[key]) el.innerHTML = dict[key];
-      });
-    }
-
-    setLanguage("en");
-
-    function listenFarmersPage(){
-      if(!("speechSynthesis" in window)) return;
-      const text = [
-        document.querySelector(".fm-title")?.innerText,
-        document.querySelector(".fm-subtitle")?.innerText,
-        document.querySelector(".fm-desc")?.innerText
-      ].filter(Boolean).join(". ");
-
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-IN";
-      utterance.rate = 0.92;
-      window.speechSynthesis.speak(utterance);
-    }
-
-    document.querySelector(".hot-ai")?.addEventListener("click", function(e){
-      e.preventDefault();
-      listenFarmersPage();
-    });
-  </script>
+  <div class="t bottom-title b4-title">Voice & Language Support</div>
+  <div class="t bottom-desc b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+  <div class="t bottom-link b4-link">Use Now →</div>
+</div>
 </body>
 </html>
-
