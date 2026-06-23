@@ -31,7 +31,7 @@ class KisanMitraOrchestratorAgent:
     def detect_intent(self, message: str) -> str:
         text = message.lower()
 
-        if any(x in text for x in ["where to sell", "best mandi", "mandi", "best price", "net profit"]):
+        if any(x in text for x in ["where to sell", "sell", "selling", "best mandi", "mandi", "best price", "net profit"]):
             return "best_mandi"
 
         if any(x in text for x in ["buyer", "deal", "contract", "agreement", "requirement", "connect"]):
@@ -150,3 +150,4 @@ if __name__ == "__main__":
         },
     )
     print(result)
+
