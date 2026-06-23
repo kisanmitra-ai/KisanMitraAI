@@ -1194,83 +1194,75 @@ body.edit-mode .fm-selected {
   background: rgba(255,255,0,.18) !important;
 }
 </style>
-<style id="farmers-floating-editor-v1">
-/* FLOATING DRAGGABLE POSITION EDITOR */
 
-.position-toolbar {
-  left: 20px !important;
-  top: 360px !important;
-  bottom: auto !important;
-  width: 430px !important;
-  max-width: 430px !important;
-  cursor: default !important;
+
+<style id="farmers-editor-panel-position-final">
+/* FINAL WORKING EDITOR PANEL POSITION SYSTEM */
+
+.position-toolbar{
+  position:fixed !important;
+  z-index:2147483647 !important;
+  width:450px !important;
+  max-width:450px !important;
+  bottom:auto !important;
 }
 
-.editor-drag-handle {
-  width: 100%;
-  padding: 8px 10px;
-  margin: -4px -4px 8px -4px;
-  border-radius: 10px;
-  background: #08751f;
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 13px;
-  cursor: move;
-  user-select: none;
-  text-align: center;
+/* Default */
+body.editor-panel-bl .position-toolbar{
+  left:20px !important;
+  right:auto !important;
+  top:auto !important;
+  bottom:20px !important;
 }
 
-.position-toolbar input {
-  width: 80px !important;
-  height: 28px !important;
-  margin: 3px !important;
-  border-radius: 6px !important;
-  border: 1px solid #9ee7a7 !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
+body.editor-panel-tl .position-toolbar{
+  left:20px !important;
+  right:auto !important;
+  top:110px !important;
+  bottom:auto !important;
 }
 
-.position-toolbar button {
-  min-width: 36px !important;
-  height: 30px !important;
-  padding: 5px 8px !important;
-  margin: 3px !important;
-  border-radius: 7px !important;
-  font-size: 12px !important;
-  font-weight: 900 !important;
-}
-</style>
-<style id="farmers-editor-position-buttons-v2">
-.position-toolbar {
-  position: fixed !important;
-  left: 20px !important;
-  top: 330px !important;
-  bottom: auto !important;
-  width: 450px !important;
-  max-width: 450px !important;
-  z-index: 2147483647 !important;
+body.editor-panel-tr .position-toolbar{
+  left:auto !important;
+  right:20px !important;
+  top:110px !important;
+  bottom:auto !important;
 }
 
-.editor-move-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-bottom: 8px;
-  padding-bottom: 7px;
-  border-bottom: 1px solid rgba(255,255,255,.25);
+body.editor-panel-br .position-toolbar{
+  left:auto !important;
+  right:20px !important;
+  top:auto !important;
+  bottom:20px !important;
 }
 
-.editor-move-row button {
-  min-width: 58px !important;
-  height: 28px !important;
-  font-size: 11px !important;
-  padding: 4px 7px !important;
-  background: #0d8f2e !important;
-  color: #fff !important;
-  border-radius: 7px !important;
-  border: 0 !important;
-  cursor: pointer !important;
-  font-weight: 900 !important;
+body.editor-panel-center .position-toolbar{
+  left:455px !important;
+  right:auto !important;
+  top:250px !important;
+  bottom:auto !important;
+}
+
+.editor-move-row{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:5px !important;
+  margin-bottom:8px !important;
+  padding-bottom:8px !important;
+  border-bottom:1px solid rgba(255,255,255,.25) !important;
+}
+
+.editor-move-row button{
+  min-width:62px !important;
+  height:30px !important;
+  padding:5px 8px !important;
+  border:0 !important;
+  border-radius:8px !important;
+  background:#0d8f2e !important;
+  color:#fff !important;
+  font-size:11px !important;
+  font-weight:900 !important;
+  cursor:pointer !important;
 }
 </style>
 </head>
@@ -1641,230 +1633,64 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener("load", setup);
 })();
 </script>
-<script id="farmers-floating-editor-v1-js">
-(function () {
-  function makeEditorFloating() {
-    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
-    if (!panel) return;
 
-    if (!panel.querySelector(".editor-drag-handle")) {
-      const handle = document.createElement("div");
-      handle.className = "editor-drag-handle";
-      handle.textContent = "Drag Editor Panel";
-      panel.prepend(handle);
-    }
 
-    const handle = panel.querySelector(".editor-drag-handle");
 
-    panel.style.position = "fixed";
-    panel.style.left = localStorage.getItem("farmersEditorLeft") || "20px";
-    panel.style.top = localStorage.getItem("farmersEditorTop") || "360px";
-    panel.style.bottom = "auto";
-    panel.style.zIndex = "2147483647";
-
-    let dragging = false;
-    let startX = 0;
-    let startY = 0;
-    let startLeft = 0;
-    let startTop = 0;
-
-    function num(v) {
-      return parseFloat(String(v || "0").replace("px", "")) || 0;
-    }
-
-    handle.onmousedown = function (e) {
-      dragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      startLeft = num(panel.style.left);
-      startTop = num(panel.style.top);
-      e.preventDefault();
-      e.stopPropagation();
-    };
-
-    document.addEventListener("mousemove", function (e) {
-      if (!dragging) return;
-
-      const newLeft = startLeft + (e.clientX - startX);
-      const newTop = startTop + (e.clientY - startY);
-
-      panel.style.left = newLeft + "px";
-      panel.style.top = newTop + "px";
-      panel.style.bottom = "auto";
-
-      localStorage.setItem("farmersEditorLeft", panel.style.left);
-      localStorage.setItem("farmersEditorTop", panel.style.top);
-    });
-
-    document.addEventListener("mouseup", function () {
-      dragging = false;
+<script id="farmers-editor-panel-position-final-js">
+(function(){
+  function removeOldMoveRows(){
+    document.querySelectorAll(".editor-move-row").forEach(function(row){
+      row.remove();
     });
   }
 
-  window.addEventListener("load", function () {
-    setTimeout(makeEditorFloating, 500);
-  });
+  window.setFarmersEditorPanel = function(pos){
+    document.body.classList.remove(
+      "editor-panel-tl",
+      "editor-panel-tr",
+      "editor-panel-bl",
+      "editor-panel-br",
+      "editor-panel-center"
+    );
 
-  document.addEventListener("click", function () {
-    setTimeout(makeEditorFloating, 100);
-  }, true);
-})();
-</script>
-<script id="farmers-editor-position-buttons-v2-js">
-(function () {
-  function moveEditorPanel(pos) {
-    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
-    if (!panel) return;
+    document.body.classList.add("editor-panel-" + pos);
+    localStorage.setItem("farmersEditorPanelPosition", pos);
+  };
 
-    panel.style.position = "fixed";
-    panel.style.bottom = "auto";
-    panel.style.right = "auto";
-    panel.style.zIndex = "2147483647";
+  function installPanelButtons(){
+    var panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
+    if(!panel) return;
 
-    if (pos === "tl") {
-      panel.style.left = "20px";
-      panel.style.top = "110px";
-    }
+    removeOldMoveRows();
 
-    if (pos === "tr") {
-      panel.style.left = "auto";
-      panel.style.right = "20px";
-      panel.style.top = "110px";
-    }
-
-    if (pos === "bl") {
-      panel.style.left = "20px";
-      panel.style.top = "auto";
-      panel.style.bottom = "20px";
-      panel.style.right = "auto";
-    }
-
-    if (pos === "br") {
-      panel.style.left = "auto";
-      panel.style.right = "20px";
-      panel.style.top = "auto";
-      panel.style.bottom = "20px";
-    }
-
-    if (pos === "center") {
-      panel.style.left = "460px";
-      panel.style.top = "260px";
-      panel.style.right = "auto";
-      panel.style.bottom = "auto";
-    }
-  }
-
-  window.moveEditorPanel = moveEditorPanel;
-
-  function addMoveButtons() {
-    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
-    if (!panel) return;
-
-    if (panel.querySelector(".editor-move-row")) return;
-
-    const row = document.createElement("div");
+    var row = document.createElement("div");
     row.className = "editor-move-row";
     row.innerHTML = `
-      <button type="button" onclick="moveEditorPanel('tl')">Top L</button>
-      <button type="button" onclick="moveEditorPanel('tr')">Top R</button>
-      <button type="button" onclick="moveEditorPanel('bl')">Bottom L</button>
-      <button type="button" onclick="moveEditorPanel('br')">Bottom R</button>
-      <button type="button" onclick="moveEditorPanel('center')">Center</button>
+      <button type="button" onclick="setFarmersEditorPanel('tl')">Top L</button>
+      <button type="button" onclick="setFarmersEditorPanel('tr')">Top R</button>
+      <button type="button" onclick="setFarmersEditorPanel('bl')">Bottom L</button>
+      <button type="button" onclick="setFarmersEditorPanel('br')">Bottom R</button>
+      <button type="button" onclick="setFarmersEditorPanel('center')">Center</button>
     `;
 
     panel.prepend(row);
+
+    var saved = localStorage.getItem("farmersEditorPanelPosition") || "bl";
+    window.setFarmersEditorPanel(saved);
   }
 
-  window.addEventListener("load", function () {
-    setTimeout(addMoveButtons, 700);
+  window.addEventListener("load", function(){
+    setTimeout(installPanelButtons, 800);
   });
 
-  document.addEventListener("click", function () {
-    setTimeout(addMoveButtons, 150);
-  }, true);
-})();
-</script>
-<script id="farmers-editor-force-position-v3-js">
-(function () {
-  function setImp(el, prop, value) {
-    el.style.setProperty(prop, value, "important");
-  }
-
-  function moveEditorPanel(pos) {
-    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
-    if (!panel) return;
-
-    setImp(panel, "position", "fixed");
-    setImp(panel, "z-index", "2147483647");
-
-    if (pos === "tl") {
-      setImp(panel, "left", "20px");
-      setImp(panel, "right", "auto");
-      setImp(panel, "top", "110px");
-      setImp(panel, "bottom", "auto");
-    }
-
-    if (pos === "tr") {
-      setImp(panel, "left", "auto");
-      setImp(panel, "right", "20px");
-      setImp(panel, "top", "110px");
-      setImp(panel, "bottom", "auto");
-    }
-
-    if (pos === "bl") {
-      setImp(panel, "left", "20px");
-      setImp(panel, "right", "auto");
-      setImp(panel, "top", "auto");
-      setImp(panel, "bottom", "20px");
-    }
-
-    if (pos === "br") {
-      setImp(panel, "left", "auto");
-      setImp(panel, "right", "20px");
-      setImp(panel, "top", "auto");
-      setImp(panel, "bottom", "20px");
-    }
-
-    if (pos === "center") {
-      setImp(panel, "left", "460px");
-      setImp(panel, "right", "auto");
-      setImp(panel, "top", "240px");
-      setImp(panel, "bottom", "auto");
-    }
-  }
-
-  window.moveEditorPanel = moveEditorPanel;
-
-  function addMoveButtons() {
-    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
-    if (!panel) return;
-
-    if (panel.querySelector(".editor-move-row")) return;
-
-    const row = document.createElement("div");
-    row.className = "editor-move-row";
-    row.innerHTML = `
-      <button type="button" onclick="moveEditorPanel('tl')">Top L</button>
-      <button type="button" onclick="moveEditorPanel('tr')">Top R</button>
-      <button type="button" onclick="moveEditorPanel('bl')">Bottom L</button>
-      <button type="button" onclick="moveEditorPanel('br')">Bottom R</button>
-      <button type="button" onclick="moveEditorPanel('center')">Center</button>
-    `;
-
-    panel.prepend(row);
-  }
-
-  window.addEventListener("load", function () {
-    setTimeout(addMoveButtons, 600);
-  });
-
-  document.addEventListener("click", function () {
-    setTimeout(addMoveButtons, 150);
+  document.addEventListener("click", function(){
+    setTimeout(installPanelButtons, 120);
   }, true);
 })();
 </script>
 </body>
 </html>
+
 
 
 
