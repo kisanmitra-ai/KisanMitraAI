@@ -6,33 +6,26 @@
 <title>KisanMitraAI | Farmers</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,
-body{
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  background:#ffffff;
+  background:#fff;
   font-family:Arial, Helvetica, sans-serif;
 }
 
-/* LOCKED 1366 × 640 PAGE LAW */
-.stage-wrap{
+.fm-wrap{
   width:100vw;
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:flex-start;
   overflow:hidden;
-  background:#ffffff;
+  background:#fff;
 }
 
-.stage{
+.fm-stage{
   width:1366px;
   height:640px;
   position:relative;
@@ -41,7 +34,7 @@ body{
   transform:scale(min(calc(100vw / 1366), calc(100vh / 640)));
 }
 
-.page-bg{
+.fm-bg{
   position:absolute;
   inset:0;
   width:1366px;
@@ -52,116 +45,112 @@ body{
   user-select:none;
 }
 
-.t{
+.fm-text{
   position:absolute;
   z-index:20;
-  color:#071122;
   text-decoration:none;
+  color:#071122;
 }
 
-/* HEADER */
-.logo{
-  left:32px;
-  top:18px;
-  width:230px;
-  height:58px;
+.fm-logo{
+  left:34px;
+  top:15px;
+  width:225px;
+  height:60px;
   z-index:30;
 }
-
-.logo img{
+.fm-logo img{
   width:100%;
   height:100%;
   object-fit:contain;
   object-position:left center;
 }
 
-.nav{
-  top:73px;
-  font-size:13px;
+/* Header */
+.fm-nav{
+  top:72px;
+  font-size:12px;
   line-height:1;
   font-weight:850;
   color:#111827;
 }
+.fm-nav-home{left:365px}
+.fm-nav-farmers{left:442px;color:#08751f}
+.fm-nav-fpo{left:530px}
+.fm-nav-buyer{left:612px}
+.fm-nav-ai{left:696px}
+.fm-nav-trust{left:793px}
+.fm-nav-contact{left:867px}
 
-.nav-home{left:365px;}
-.nav-farmers{left:440px;color:#08751f;}
-.nav-fpo{left:528px;}
-.nav-buyer{left:610px;}
-.nav-ai{left:690px;}
-.nav-trust{left:790px;}
-.nav-contact{left:860px;}
-
-.lang{
+.fm-lang{
   left:1015px;
-  top:50px;
+  top:49px;
   font-size:15px;
   font-weight:850;
 }
-
-.talk{
-  left:1158px;
-  top:50px;
+.fm-talk{
+  left:1162px;
+  top:49px;
   font-size:15px;
   font-weight:850;
   color:#1262ff;
 }
-
-.login{
-  left:1285px;
-  top:50px;
+.fm-login{
+  left:1287px;
+  top:49px;
   font-size:15px;
   font-weight:850;
-  color:#ffffff;
+  color:#fff;
 }
 
-/* HERO */
-.breadcrumb{
-  left:45px;
-  top:145px;
-  font-size:15px;
+/* Hero */
+.fm-breadcrumb{
+  left:46px;
+  top:148px;
+  font-size:14px;
   font-weight:800;
   color:#075c1c;
 }
 
-.hero-title{
-  left:45px;
-  top:176px;
+.fm-title{
+  left:46px;
+  top:174px;
   width:610px;
-  font-size:47px;
+  font-size:46px;
   line-height:.98;
   font-weight:950;
-  letter-spacing:-1.4px;
+  letter-spacing:-1.2px;
   color:#06651d;
   white-space:nowrap;
 }
 
-.hero-subtitle{
-  left:45px;
-  top:241px;
-  width:650px;
-  font-size:24px;
+.fm-subtitle{
+  left:46px;
+  top:238px;
+  width:665px;
+  font-size:23px;
   line-height:1.05;
   font-weight:950;
   color:#071122;
   white-space:nowrap;
 }
 
-.hero-desc{
-  left:45px;
-  top:294px;
-  width:535px;
+.fm-desc{
+  left:46px;
+  top:290px;
+  width:545px;
   font-size:15px;
   line-height:1.45;
   font-weight:650;
   color:#101820;
 }
 
-/* BUTTON TEXT */
-.btn{
+/* Hero buttons */
+.fm-btn-text{
   position:absolute;
-  z-index:30;
-  top:399px;
-  height:38px;
+  z-index:40;
+  top:397px;
+  height:42px;
   display:flex;
   align-items:center;
   font-size:15px;
@@ -170,261 +159,228 @@ body{
   text-decoration:none;
   white-space:nowrap;
 }
-
-.explore{
+.fm-btn-explore{
   left:92px;
-  width:165px;
-  color:#ffffff;
+  width:180px;
+  color:#fff;
 }
-
-.whatsapp{
-  left:315px;
-  width:220px;
+.fm-btn-whatsapp{
+  left:337px;
+  width:210px;
   color:#08751f;
 }
 
-/* RIGHT CARDS */
-.rtitle{
+/* Right insight cards */
+.fm-r-title{
   font-size:14px;
   line-height:1.1;
   font-weight:950;
   color:#111827;
 }
-
-.rsmall{
+.fm-r-small{
   font-size:11px;
   line-height:1.2;
   font-weight:700;
   color:#111827;
 }
-
-.rvalue{
+.fm-r-value{
   font-size:21px;
   line-height:1;
   font-weight:950;
   color:#071122;
 }
 
-.ai-title{left:1135px;top:136px;}
-.ai-small{left:1135px;top:160px;}
-.ai-health{left:1135px;top:184px;}
-.ai-value{left:1135px;top:203px;}
+.fm-ai-title{left:1135px;top:141px}
+.fm-ai-small{left:1135px;top:166px}
+.fm-ai-health{left:1135px;top:189px}
+.fm-ai-value{left:1135px;top:207px}
 
-.weather-title{left:1135px;top:255px;}
-.weather-value{left:1135px;top:281px;}
-.weather-small{left:1135px;top:309px;}
-.weather-humidity{left:1110px;top:342px;}
-.weather-rain{left:1200px;top:342px;}
-.weather-wind{left:1280px;top:342px;}
+.fm-weather-title{left:1135px;top:258px}
+.fm-weather-value{left:1135px;top:283px}
+.fm-weather-small{left:1135px;top:312px}
+.fm-humidity{left:1112px;top:343px;font-size:10px}
+.fm-rain{left:1207px;top:343px;font-size:10px}
+.fm-wind{left:1283px;top:343px;font-size:10px}
 
-.market-title{left:1135px;top:373px;}
-.market-small{left:1135px;top:397px;}
-.market-value{left:1135px;top:424px;}
-.market-mandi{left:1135px;top:458px;}
+.fm-market-title{left:1135px;top:377px}
+.fm-market-small{left:1135px;top:401px}
+.fm-market-value{left:1135px;top:426px}
+.fm-market-mandi{left:1135px;top:459px}
 
-/* TOOL CARDS */
-.tool-title{
+/* Tool cards */
+.fm-tool-title{
   font-size:12px;
   line-height:1.08;
   font-weight:950;
   color:#111827;
 }
-
-.tool-desc{
+.fm-tool-desc{
   font-size:10px;
-  line-height:1.25;
+  line-height:1.22;
   font-weight:650;
   color:#111827;
 }
-
-.tool-link{
+.fm-tool-link{
   font-size:11px;
   line-height:1;
   font-weight:950;
   color:#08751f;
 }
 
-.t1-title{left:108px;top:480px;width:130px;}
-.t1-desc{left:108px;top:502px;width:130px;}
-.t1-link{left:55px;top:573px;}
+.fm-t1-title{left:108px;top:484px;width:130px}
+.fm-t1-desc{left:108px;top:506px;width:130px}
+.fm-t1-link{left:54px;top:574px}
 
-.t2-title{left:345px;top:480px;width:130px;}
-.t2-desc{left:345px;top:502px;width:130px;}
-.t2-link{left:295px;top:573px;}
+.fm-t2-title{left:344px;top:484px;width:130px}
+.fm-t2-desc{left:344px;top:506px;width:130px}
+.fm-t2-link{left:295px;top:574px}
 
-.t3-title{left:565px;top:475px;width:135px;}
-.t3-desc{left:565px;top:504px;width:135px;}
-.t3-link{left:525px;top:573px;}
+.fm-t3-title{left:565px;top:479px;width:135px}
+.fm-t3-desc{left:565px;top:508px;width:135px}
+.fm-t3-link{left:525px;top:574px}
 
-.t4-title{left:790px;top:480px;width:140px;}
-.t4-desc{left:790px;top:502px;width:140px;}
-.t4-link{left:740px;top:573px;}
+.fm-t4-title{left:790px;top:484px;width:140px}
+.fm-t4-desc{left:790px;top:506px;width:140px}
+.fm-t4-link{left:740px;top:574px}
 
-.t5-title{left:1010px;top:480px;width:130px;}
-.t5-desc{left:1010px;top:502px;width:130px;}
-.t5-link{left:970px;top:573px;}
+.fm-t5-title{left:1010px;top:484px;width:130px}
+.fm-t5-desc{left:1010px;top:506px;width:130px}
+.fm-t5-link{left:970px;top:574px}
 
-.t6-title{left:1195px;top:480px;width:145px;}
-.t6-desc{left:1195px;top:502px;width:145px;}
-.t6-link{left:1165px;top:573px;}
+.fm-t6-title{left:1195px;top:484px;width:145px}
+.fm-t6-desc{left:1195px;top:506px;width:145px}
+.fm-t6-link{left:1165px;top:574px}
 
-/* BOTTOM STRIP */
-.btitle{
-  font-size:16px;
+/* Bottom strip */
+.fm-bottom-title{
+  font-size:15px;
   line-height:1.08;
   font-weight:950;
   color:#111827;
 }
-
-.bdesc{
-  font-size:12px;
+.fm-bottom-desc{
+  font-size:11px;
   line-height:1.25;
   font-weight:650;
   color:#111827;
 }
 
-.b1-title{left:135px;top:590px;width:220px;}
-.b1-desc{left:135px;top:615px;width:220px;}
+.fm-b1-title{left:135px;top:594px;width:220px}
+.fm-b1-desc{left:135px;top:616px;width:220px}
 
-.b2-title{left:455px;top:590px;width:220px;}
-.b2-desc{left:455px;top:615px;width:220px;}
+.fm-b2-title{left:455px;top:594px;width:220px}
+.fm-b2-desc{left:455px;top:616px;width:220px}
 
-.b3-title{left:745px;top:590px;width:240px;}
-.b3-desc{left:745px;top:615px;width:240px;}
+.fm-b3-title{left:745px;top:594px;width:240px}
+.fm-b3-desc{left:745px;top:616px;width:240px}
 
-.b4-title{left:1070px;top:590px;width:250px;}
-.b4-desc{left:1070px;top:615px;width:250px;}
+.fm-b4-title{left:1070px;top:594px;width:250px}
+.fm-b4-desc{left:1070px;top:616px;width:250px}
 
-/* CLICK AREAS */
-.hotspot{
+/* Click areas */
+.fm-hotspot{
   position:absolute;
-  z-index:60;
-  background:transparent;
+  z-index:80;
   border:0;
+  background:transparent;
   cursor:pointer;
 }
-
-.hs-home{left:350px;top:35px;width:60px;height:65px;}
-.hs-farmers{left:430px;top:35px;width:80px;height:65px;}
-.hs-fpo{left:520px;top:35px;width:60px;height:65px;}
-.hs-buyer{left:600px;top:35px;width:70px;height:65px;}
-.hs-ai{left:680px;top:35px;width:90px;height:65px;}
-.hs-trust{left:780px;top:35px;width:70px;height:65px;}
-.hs-contact{left:850px;top:35px;width:90px;height:65px;}
-.hs-lang{left:980px;top:25px;width:125px;height:55px;}
-.hs-talk{left:1135px;top:25px;width:120px;height:55px;}
-.hs-login{left:1260px;top:25px;width:90px;height:55px;}
-
-.hs-explore{left:40px;top:390px;width:210px;height:55px;}
-.hs-whatsapp{left:285px;top:390px;width:240px;height:55px;}
+.fm-click-home{left:350px;top:35px;width:60px;height:65px}
+.fm-click-farmers{left:430px;top:35px;width:80px;height:65px}
+.fm-click-explore{left:40px;top:390px;width:215px;height:55px}
+.fm-click-whatsapp{left:290px;top:390px;width:245px;height:55px}
 </style>
 </head>
 
 <body>
-<div class="stage-wrap">
-  <section class="stage">
-    <img class="page-bg" src="./assets/farmers-master-clean-background.png?v=farmers-page-final-1" alt="Farmers Page Background">
+<div class="fm-wrap">
+  <section class="fm-stage">
+    <img class="fm-bg" src="./assets/farmers-master-clean-background.png?v=farmers-unique-v1" alt="Farmers Page Background">
 
-    <a class="t logo" href="./index.html" aria-label="KisanMitraAI Home">
+    <a class="fm-text fm-logo" href="./index.html">
       <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI">
     </a>
 
-    <!-- Header text -->
-    <a class="t nav nav-home" href="./index.html" data-i18n="nav.home">Home</a>
-    <a class="t nav nav-farmers" href="./farmers.html" data-i18n="nav.farmers">Farmers</a>
-    <a class="t nav nav-fpo" href="#fpo" data-i18n="nav.fpo">FPO</a>
-    <a class="t nav nav-buyer" href="#buyer" data-i18n="nav.buyer">Buyer</a>
-    <a class="t nav nav-ai" href="#ai-engine" data-i18n="nav.aiEngine">AI Engine</a>
-    <a class="t nav nav-trust" href="#trust" data-i18n="nav.trust">Trust</a>
-    <a class="t nav nav-contact" href="#contact" data-i18n="nav.contact">Contact</a>
+    <a class="fm-text fm-nav fm-nav-home" href="./index.html" data-i18n="nav.home">Home</a>
+    <a class="fm-text fm-nav fm-nav-farmers" href="./farmers.html" data-i18n="nav.farmers">Farmers</a>
+    <a class="fm-text fm-nav fm-nav-fpo" href="#fpo" data-i18n="nav.fpo">FPO</a>
+    <a class="fm-text fm-nav fm-nav-buyer" href="#buyer" data-i18n="nav.buyer">Buyer</a>
+    <a class="fm-text fm-nav fm-nav-ai" href="#ai-engine" data-i18n="nav.aiEngine">AI Engine</a>
+    <a class="fm-text fm-nav fm-nav-trust" href="#trust" data-i18n="nav.trust">Trust</a>
+    <a class="fm-text fm-nav fm-nav-contact" href="#contact" data-i18n="nav.contact">Contact</a>
 
-    <div class="t lang" data-i18n="common.language">English</div>
-    <div class="t talk" data-i18n="common.talkToAi">Talk to AI</div>
-    <div class="t login" data-i18n="common.login">Login</div>
+    <div class="fm-text fm-lang" data-i18n="common.language">English</div>
+    <div class="fm-text fm-talk" data-i18n="common.talkToAi">Talk to AI</div>
+    <div class="fm-text fm-login" data-i18n="common.login">Login</div>
 
-    <!-- Hero -->
-    <div class="t breadcrumb">
-      <span data-i18n="nav.home">Home</span>
-      <span>›</span>
-      <span data-i18n="nav.farmers">Farmers</span>
+    <div class="fm-text fm-breadcrumb">
+      <span data-i18n="nav.home">Home</span> › <span data-i18n="nav.farmers">Farmers</span>
     </div>
 
-    <h1 class="t hero-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
-    <h2 class="t hero-subtitle" data-i18n="farmers.hero.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
-    <p class="t hero-desc" data-i18n="farmers.hero.description">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
+    <h1 class="fm-text fm-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
+    <h2 class="fm-text fm-subtitle" data-i18n="farmers.hero.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
+    <p class="fm-text fm-desc" data-i18n="farmers.hero.description">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
 
-    <a class="btn explore" href="#farmer-tools" data-i18n="farmers.hero.explore">Explore Farmer Tools</a>
-    <a class="btn whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">Join WhatsApp Channel</a>
+    <a class="fm-btn-text fm-btn-explore" href="#farmer-tools" data-i18n="farmers.hero.explore">Explore Farmer Tools</a>
+    <a class="fm-btn-text fm-btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">Join WhatsApp Channel</a>
 
-    <!-- Right cards -->
-    <div class="t rtitle ai-title" data-i18n="farmers.insight.title">AI Crop Insight</div>
-    <div class="t rsmall ai-small" data-i18n="farmers.insight.crop">Wheat · Good Growth</div>
-    <div class="t rsmall ai-health" data-i18n="farmers.insight.health">Health Score</div>
-    <div class="t rvalue ai-value">82/100</div>
+    <div class="fm-text fm-r-title fm-ai-title" data-i18n="farmers.insight.title">AI Crop Insight</div>
+    <div class="fm-text fm-r-small fm-ai-small" data-i18n="farmers.insight.crop">Wheat · Good Growth</div>
+    <div class="fm-text fm-r-small fm-ai-health" data-i18n="farmers.insight.health">Health Score</div>
+    <div class="fm-text fm-r-value fm-ai-value">82/100</div>
 
-    <div class="t rtitle weather-title" data-i18n="farmers.weather.title">Weather Update</div>
-    <div class="t rvalue weather-value">32°C</div>
-    <div class="t rsmall weather-small" data-i18n="farmers.weather.status">Partly Cloudy</div>
-    <div class="t rsmall weather-humidity">Humidity<br>65%</div>
-    <div class="t rsmall weather-rain">Rain Chance<br>20%</div>
-    <div class="t rsmall weather-wind">Wind<br>12 km/h</div>
+    <div class="fm-text fm-r-title fm-weather-title" data-i18n="farmers.weather.title">Weather Update</div>
+    <div class="fm-text fm-r-value fm-weather-value">32°C</div>
+    <div class="fm-text fm-r-small fm-weather-small" data-i18n="farmers.weather.status">Partly Cloudy</div>
+    <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
+    <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
+    <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
 
-    <div class="t rtitle market-title" data-i18n="farmers.market.title">Market Linkage</div>
-    <div class="t rsmall market-small" data-i18n="farmers.market.crop">Wheat (FAQ)</div>
-    <div class="t rvalue market-value">₹ 2,125</div>
-    <div class="t rsmall market-mandi">Mandi: Indore</div>
+    <div class="fm-text fm-r-title fm-market-title" data-i18n="farmers.market.title">Market Linkage</div>
+    <div class="fm-text fm-r-small fm-market-small" data-i18n="farmers.market.crop">Wheat (FAQ)</div>
+    <div class="fm-text fm-r-value fm-market-value">₹ 2,125</div>
+    <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
 
-    <!-- Tool cards -->
-    <div class="t tool-title t1-title" data-i18n="farmers.tools.crop.title">AI Crop Advisory</div>
-    <div class="t tool-desc t1-desc" data-i18n="farmers.tools.crop.desc">Get AI-powered crop recommendations for higher yield and income.</div>
-    <div class="t tool-link t1-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t1-title">AI Crop Advisory</div>
+    <div class="fm-text fm-tool-desc fm-t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
+    <div class="fm-text fm-tool-link fm-t1-link">Use Now →</div>
 
-    <div class="t tool-title t2-title" data-i18n="farmers.tools.fertilizer.title">Fertilizer Calculator</div>
-    <div class="t tool-desc t2-desc" data-i18n="farmers.tools.fertilizer.desc">Calculate the right fertilizer dose for your crop and field size.</div>
-    <div class="t tool-link t2-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t2-title">Fertilizer Calculator</div>
+    <div class="fm-text fm-tool-desc fm-t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
+    <div class="fm-text fm-tool-link fm-t2-link">Use Now →</div>
 
-    <div class="t tool-title t3-title" data-i18n="farmers.tools.pest.title">Pest & Disease Detection</div>
-    <div class="t tool-desc t3-desc" data-i18n="farmers.tools.pest.desc">Identify pests and diseases from images and get control solutions.</div>
-    <div class="t tool-link t3-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t3-title">Pest & Disease Detection</div>
+    <div class="fm-text fm-tool-desc fm-t3-desc">Identify pests and diseases from images and get control solutions.</div>
+    <div class="fm-text fm-tool-link fm-t3-link">Use Now →</div>
 
-    <div class="t tool-title t4-title" data-i18n="farmers.tools.weather.title">Weather & Alerts</div>
-    <div class="t tool-desc t4-desc" data-i18n="farmers.tools.weather.desc">Real-time weather updates and alerts to plan farming better.</div>
-    <div class="t tool-link t4-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t4-title">Weather & Alerts</div>
+    <div class="fm-text fm-tool-desc fm-t4-desc">Real-time weather updates and alerts to plan farming better.</div>
+    <div class="fm-text fm-tool-link fm-t4-link">Use Now →</div>
 
-    <div class="t tool-title t5-title" data-i18n="farmers.tools.mandi.title">Mandi Prices</div>
-    <div class="t tool-desc t5-desc" data-i18n="farmers.tools.mandi.desc">Check live mandi rates and find the best time to sell.</div>
-    <div class="t tool-link t5-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t5-title">Mandi Prices</div>
+    <div class="fm-text fm-tool-desc fm-t5-desc">Check live mandi rates and find the best time to sell.</div>
+    <div class="fm-text fm-tool-link fm-t5-link">Use Now →</div>
 
-    <div class="t tool-title t6-title" data-i18n="farmers.tools.scheme.title">Schemes & Support</div>
-    <div class="t tool-desc t6-desc" data-i18n="farmers.tools.scheme.desc">Explore government schemes, loans, subsidies and insurance options.</div>
-    <div class="t tool-link t6-link" data-i18n="common.useNow">Use Now →</div>
+    <div class="fm-text fm-tool-title fm-t6-title">Schemes & Support</div>
+    <div class="fm-text fm-tool-desc fm-t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
+    <div class="fm-text fm-tool-link fm-t6-link">Use Now →</div>
 
-    <!-- Bottom cards -->
-    <div class="t btitle b1-title" data-i18n="home.features.ai.title">AI-Powered Insights</div>
-    <div class="t bdesc b1-desc" data-i18n="home.features.ai.desc">Smart recommendations for better yields and lower costs.</div>
+    <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
+    <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
 
-    <div class="t btitle b2-title" data-i18n="home.features.trust.title">Trust & Transparency</div>
-    <div class="t bdesc b2-desc" data-i18n="home.features.trust.desc">Verified data, traceability and secure transactions.</div>
+    <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
+    <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
 
-    <div class="t btitle b3-title" data-i18n="home.features.market.title">Global Market Linkage</div>
-    <div class="t bdesc b3-desc" data-i18n="home.features.market.desc">Connect to more buyers, better prices, wider markets.</div>
+    <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
+    <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
 
-    <div class="t btitle b4-title" data-i18n="home.features.voice.title">Voice & Language Support</div>
-    <div class="t bdesc b4-desc" data-i18n="home.features.voice.desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+    <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
+    <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
 
-    <!-- Invisible click areas -->
-    <button class="hotspot hs-home" onclick="location.href='./index.html'" aria-label="Home"></button>
-    <button class="hotspot hs-farmers" onclick="location.href='./farmers.html'" aria-label="Farmers"></button>
-    <button class="hotspot hs-fpo" onclick="location.href='#fpo'" aria-label="FPO"></button>
-    <button class="hotspot hs-buyer" onclick="location.href='#buyer'" aria-label="Buyer"></button>
-    <button class="hotspot hs-ai" onclick="location.href='#ai-engine'" aria-label="AI Engine"></button>
-    <button class="hotspot hs-trust" onclick="location.href='#trust'" aria-label="Trust"></button>
-    <button class="hotspot hs-contact" onclick="location.href='#contact'" aria-label="Contact"></button>
-    <button class="hotspot hs-lang" aria-label="Language"></button>
-    <button class="hotspot hs-talk" aria-label="Talk to AI"></button>
-    <button class="hotspot hs-login" onclick="location.href='#login'" aria-label="Login"></button>
-    <button class="hotspot hs-explore" onclick="location.href='#farmer-tools'" aria-label="Explore Farmer Tools"></button>
-    <button class="hotspot hs-whatsapp" onclick="location.href='#whatsapp'" aria-label="Join WhatsApp Channel"></button>
+    <button class="fm-hotspot fm-click-home" onclick="location.href='./index.html'"></button>
+    <button class="fm-hotspot fm-click-farmers" onclick="location.href='./farmers.html'"></button>
+    <button class="fm-hotspot fm-click-explore" onclick="location.href='#farmer-tools'"></button>
+    <button class="fm-hotspot fm-click-whatsapp" onclick="location.href='#whatsapp'"></button>
   </section>
 </div>
 </body>
