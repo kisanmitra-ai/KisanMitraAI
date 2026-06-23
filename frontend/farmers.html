@@ -620,6 +620,99 @@ html,body{
   z-index:80 !important;
 }
 </style>
+<style id="farmers-topbar-fix-v1">
+/* FARMERS TOP BAR ONLY FIX */
+
+/* Cover baked/second logo layer from clean background */
+.fm-logo{
+  left:31px !important;
+  top:15px !important;
+  width:235px !important;
+  height:62px !important;
+  z-index:500 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+  background:#ffffff !important;
+  border-radius:10px !important;
+  overflow:visible !important;
+}
+
+.fm-logo::before{
+  content:"" !important;
+  position:absolute !important;
+  left:-6px !important;
+  top:-4px !important;
+  width:250px !important;
+  height:70px !important;
+  background:#ffffff !important;
+  border-radius:12px !important;
+  z-index:0 !important;
+}
+
+.fm-logo img{
+  position:relative !important;
+  z-index:2 !important;
+  width:230px !important;
+  height:auto !important;
+  object-fit:contain !important;
+  object-position:left center !important;
+  display:block !important;
+}
+
+/* Top menu label alignment only */
+.fm-nav{
+  top:72px !important;
+  font-size:12px !important;
+  line-height:1 !important;
+  font-weight:850 !important;
+  color:#111827 !important;
+  z-index:500 !important;
+}
+
+/* Pixel-align labels under baked icons */
+.fm-nav-home{left:365px !important;}
+.fm-nav-farmers{left:441px !important;color:#08751f !important;}
+.fm-nav-fpo{left:531px !important;}
+.fm-nav-buyer{left:614px !important;}
+.fm-nav-ai{left:696px !important;}
+.fm-nav-trust{left:796px !important;}
+.fm-nav-contact{left:866px !important;}
+
+/* Right top controls text */
+.fm-lang{
+  left:1018px !important;
+  top:49px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+  z-index:500 !important;
+}
+
+.fm-talk{
+  left:1163px !important;
+  top:49px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+  color:#1262ff !important;
+  z-index:500 !important;
+}
+
+.fm-login{
+  left:1287px !important;
+  top:49px !important;
+  font-size:15px !important;
+  font-weight:850 !important;
+  color:#ffffff !important;
+  z-index:500 !important;
+}
+
+/* Keep click areas active but behind visible text */
+.fm-hotspot{
+  z-index:400 !important;
+  background:transparent !important;
+  opacity:0 !important;
+}
+</style>
 </head>
 
 <body>
@@ -715,6 +808,7 @@ html,body{
 </div>
 </body>
 </html>
+
 
 
 
