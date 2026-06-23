@@ -777,17 +777,17 @@ html,body{
   object-position:left center !important;
 }
 </style>
-<style id="manual-position-editor-css">
-/* MANUAL POSITION EDITOR */
+
+<style id="manual-position-editor-css-v2">
 body.edit-mode .fm-text,
 body.edit-mode .fm-btn-text {
-  outline: 1px dashed rgba(0, 120, 255, 0.45);
+  outline: 1px dashed rgba(0, 120, 255, 0.55);
   cursor: pointer;
 }
 
 body.edit-mode .fm-selected {
   outline: 3px solid #ff2a00 !important;
-  background: rgba(255, 255, 0, 0.12) !important;
+  background: rgba(255, 255, 0, 0.16) !important;
 }
 
 .position-toolbar {
@@ -804,7 +804,7 @@ body.edit-mode .fm-selected {
   line-height: 1.45;
   box-shadow: 0 14px 34px rgba(0,0,0,.32);
   display: none;
-  max-width: 420px;
+  max-width: 560px;
 }
 
 body.edit-mode .position-toolbar {
@@ -924,10 +924,11 @@ body.edit-mode .position-toolbar {
     <button class="fm-hotspot fm-click-whatsapp" onclick="location.href='#whatsapp'"></button>
   </section>
 </div>
+
 <script id="manual-position-editor-js">
 (function () {
-  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v1";
-  let selected = null;
+  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v2";
+  let selectedBlocks = [];
 
   function px(n) {
     return Math.round(n * 10) / 10 + "px";
@@ -946,30 +947,42 @@ body.edit-mode .position-toolbar {
     el.style.top = px(top);
   }
 
-  function makeEditable() {
-    const blocks = document.querySelectorAll(".fm-text, .fm-btn-text");
-    blocks.forEach((el, index) => {
-      if (!el.dataset.posId) {
-        const className = Array.from(el.classList).find(c =>
-          c.startsWith("fm-") &&
-          !["fm-text", "fm-btn-text"].includes(c)
-        );
-        el.dataset.posId = className || ("block-" + index);
-      }
-
-      el.addEventListener("click", function (e) {
-        if (!document.body.classList.contains("edit-mode")) return;
-        e.preventDefault();
-        e.stopPropagation();
-        selectBlock(el);
-      });
-    });
+  function getId(el, index) {
+    if (!el.dataset.posId) {
+      const classes = Array.from(el.classList).filter(c =>
+        c.startsWith("fm-") &&
+        !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
+      );
+      el.dataset.posId = classes.join(".") || ("block-" + index);
+    }
+    return el.dataset.posId;
   }
 
-  function selectBlock(el) {
-    if (selected) selected.classList.remove("fm-selected");
-    selected = el;
-    selected.classList.add("fm-selected");
+  function allBlocks() {
+    return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
+  }
+
+  function clearSelection() {
+    selectedBlocks.forEach(el => el.classList.remove("fm-selected"));
+    selectedBlocks = [];
+    updateToolbar();
+  }
+
+  function selectOnly(el) {
+    clearSelection();
+    selectedBlocks = [el];
+    el.classList.add("fm-selected");
+    updateToolbar();
+  }
+
+  function toggleSelect(el) {
+    if (selectedBlocks.includes(el)) {
+      el.classList.remove("fm-selected");
+      selectedBlocks = selectedBlocks.filter(x => x !== el);
+    } else {
+      selectedBlocks.push(el);
+      el.classList.add("fm-selected");
+    }
     updateToolbar();
   }
 
@@ -977,28 +990,29 @@ body.edit-mode .position-toolbar {
     const info = document.getElementById("positionInfo");
     if (!info) return;
 
-    if (!selected) {
+    if (!selectedBlocks.length) {
       info.innerHTML = "No block selected.";
       return;
     }
 
-    const pos = getPos(selected);
+    const first = selectedBlocks[0];
+    const pos = getPos(first);
+
     info.innerHTML =
-      "<strong>Selected:</strong> " + selected.dataset.posId +
+      "<strong>Selected:</strong> " + selectedBlocks.length +
+      " block(s) | first: " + first.dataset.posId +
       " | left: " + pos.left.toFixed(1) +
       "px | top: " + pos.top.toFixed(1) + "px";
   }
 
   function savePositions() {
     const data = {};
-    document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
-      if (!el.dataset.posId) return;
+    allBlocks().forEach((el, index) => {
+      const id = getId(el, index);
       const pos = getPos(el);
-      data[el.dataset.posId] = {
-        left: pos.left,
-        top: pos.top
-      };
+      data[id] = { left: pos.left, top: pos.top };
     });
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
     alert("Positions saved in browser.");
   }
@@ -1009,34 +1023,39 @@ body.edit-mode .position-toolbar {
 
     try {
       const data = JSON.parse(raw);
-      document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
-        const id = el.dataset.posId;
+      allBlocks().forEach((el, index) => {
+        const id = getId(el, index);
         if (data[id]) {
           setPos(el, data[id].left, data[id].top);
         }
       });
-    } catch (e) {
-      console.warn("Could not load saved positions", e);
+    } catch (err) {
+      console.warn("Could not load saved positions", err);
     }
   }
 
   function exportCss() {
     let css = "/* FINAL FARMERS MANUAL POSITIONS */\n";
-    document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
-      const id = el.dataset.posId;
+
+    allBlocks().forEach((el, index) => {
+      getId(el, index);
       const pos = getPos(el);
+
       const uniqueClasses = Array.from(el.classList)
-        .filter(c => c.startsWith("fm-") && c !== "fm-text" && c !== "fm-btn-text" && c !== "fm-selected");
+        .filter(c =>
+          c.startsWith("fm-") &&
+          !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
+        );
 
       const selector = uniqueClasses.length
         ? "." + uniqueClasses.join(".")
-        : '[data-pos-id="' + id + '"]';
+        : '[data-pos-id="' + el.dataset.posId + '"]';
 
       css += selector + "{left:" + px(pos.left) + " !important;top:" + px(pos.top) + " !important;}\n";
     });
 
     navigator.clipboard.writeText(css).then(() => {
-      alert("Final CSS copied to clipboard. Paste it into PowerShell/chat to freeze.");
+      alert("Final CSS copied to clipboard.");
     }).catch(() => {
       const box = document.createElement("textarea");
       box.value = css;
@@ -1047,17 +1066,53 @@ body.edit-mode .position-toolbar {
       box.style.height = "70vh";
       box.style.zIndex = "2147483647";
       document.body.appendChild(box);
+      box.focus();
       box.select();
       alert("Copy the CSS from the text box.");
     });
   }
 
+  function moveSelected(dx, dy) {
+    selectedBlocks.forEach(el => {
+      const pos = getPos(el);
+      setPos(el, pos.left + dx, pos.top + dy);
+    });
+    updateToolbar();
+  }
+
+  function makeEditable() {
+    allBlocks().forEach((el, index) => {
+      getId(el, index);
+
+      el.setAttribute("tabindex", "0");
+
+      el.addEventListener("mousedown", function (e) {
+        if (!document.body.classList.contains("edit-mode")) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.shiftKey) {
+          toggleSelect(el);
+        } else {
+          selectOnly(el);
+        }
+
+        document.body.focus();
+      });
+    });
+  }
+
   function toggleEditMode() {
     document.body.classList.toggle("edit-mode");
-    if (!document.body.classList.contains("edit-mode") && selected) {
-      selected.classList.remove("fm-selected");
-      selected = null;
+
+    if (!document.body.classList.contains("edit-mode")) {
+      clearSelection();
+    } else {
+      document.body.setAttribute("tabindex", "0");
+      document.body.focus();
     }
+
     updateToolbar();
   }
 
@@ -1068,7 +1123,9 @@ body.edit-mode .position-toolbar {
       btn.className = "position-toggle-btn";
       btn.type = "button";
       btn.textContent = "Edit Positions";
-      btn.onclick = toggleEditMode;
+      btn.onclick = function () {
+        toggleEditMode();
+      };
       document.body.appendChild(btn);
     }
 
@@ -1079,7 +1136,7 @@ body.edit-mode .position-toolbar {
       toolbar.innerHTML = `
         <div id="positionInfo">No block selected.</div>
         <div style="margin-top:8px;">
-          Click text → Arrow keys move 1px · Shift=10px · Alt=0.5px
+          Click = select · Shift+Click = multi-select · Arrow = 1px · Ctrl+Arrow = 10px · Alt+Arrow = 0.5px
         </div>
         <div>
           <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
@@ -1092,43 +1149,46 @@ body.edit-mode .position-toolbar {
   document.addEventListener("keydown", function (e) {
     if (!document.body.classList.contains("edit-mode")) return;
 
-    if (e.key === "Escape") {
-      if (selected) selected.classList.remove("fm-selected");
-      selected = null;
-      updateToolbar();
+    const key = e.key;
+
+    if (key === "Escape") {
+      e.preventDefault();
+      clearSelection();
       return;
     }
 
-    if (e.key.toLowerCase() === "s") {
+    if (key.toLowerCase() === "s") {
       e.preventDefault();
       savePositions();
       return;
     }
 
-    if (e.key.toLowerCase() === "e") {
+    if (key.toLowerCase() === "e") {
       e.preventDefault();
       exportCss();
       return;
     }
 
-    if (!selected) return;
+    const arrowKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+    if (!arrowKeys.includes(key)) return;
 
-    const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-    if (!keys.includes(e.key)) return;
+    if (!selectedBlocks.length) return;
 
     e.preventDefault();
+    e.stopPropagation();
 
-    const step = e.shiftKey ? 10 : (e.altKey ? 0.5 : 1);
-    const pos = getPos(selected);
+    const step = e.ctrlKey ? 10 : (e.altKey ? 0.5 : 1);
 
-    if (e.key === "ArrowLeft") pos.left -= step;
-    if (e.key === "ArrowRight") pos.left += step;
-    if (e.key === "ArrowUp") pos.top -= step;
-    if (e.key === "ArrowDown") pos.top += step;
+    let dx = 0;
+    let dy = 0;
 
-    setPos(selected, pos.left, pos.top);
-    updateToolbar();
-  });
+    if (key === "ArrowLeft") dx = -step;
+    if (key === "ArrowRight") dx = step;
+    if (key === "ArrowUp") dy = -step;
+    if (key === "ArrowDown") dy = step;
+
+    moveSelected(dx, dy);
+  }, true);
 
   window.addEventListener("load", function () {
     makeEditable();
@@ -1139,6 +1199,7 @@ body.edit-mode .position-toolbar {
 </script>
 </body>
 </html>
+
 
 
 
