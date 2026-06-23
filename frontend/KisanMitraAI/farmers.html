@@ -985,137 +985,138 @@ body.edit-mode .nudge-controls {
 
 
 
-<script id="manual-position-editor-js-v3">
+
+<script id="manual-position-editor-force-move-v4">
 (function () {
-  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v3";
-  let selectedBlocks = [];
+  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v4";
 
   function px(n) {
     return Math.round(n * 10) / 10 + "px";
   }
 
-  function getPos(el) {
-    const style = window.getComputedStyle(el);
-    return {
-      left: parseFloat(style.left) || 0,
-      top: parseFloat(style.top) || 0
-    };
-  }
-
-  function setPos(el, left, top) {
-    el.style.left = px(left);
-    el.style.top = px(top);
-  }
-
-  function allBlocks() {
+  function getBlocks() {
     return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
+  }
+
+  function getSelected() {
+    return Array.from(document.querySelectorAll(".fm-selected"));
   }
 
   function getId(el, index) {
     if (!el.dataset.posId) {
       const classes = Array.from(el.classList).filter(c =>
         c.startsWith("fm-") &&
-        !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
+        ![
+          "fm-text",
+          "fm-btn-text",
+          "fm-selected"
+        ].includes(c)
       );
       el.dataset.posId = classes.join(".") || ("block-" + index);
     }
     return el.dataset.posId;
   }
 
+  function getLeftTop(el) {
+    const cs = window.getComputedStyle(el);
+    return {
+      left: parseFloat(cs.left) || 0,
+      top: parseFloat(cs.top) || 0
+    };
+  }
+
+  function setLeftTop(el, left, top) {
+    el.style.left = px(left);
+    el.style.top = px(top);
+  }
+
   function updateToolbar() {
     const info = document.getElementById("positionInfo");
     if (!info) return;
 
-    if (!selectedBlocks.length) {
+    const selected = getSelected();
+
+    if (!selected.length) {
       info.innerHTML = "No block selected.";
       return;
     }
 
-    const first = selectedBlocks[0];
-    const pos = getPos(first);
+    const first = selected[0];
+    const pos = getLeftTop(first);
 
     info.innerHTML =
-      "<strong>Selected:</strong> " + selectedBlocks.length +
+      "<strong>Selected:</strong> " + selected.length +
       " block(s) | first: " + first.dataset.posId +
       " | left: " + pos.left.toFixed(1) +
       "px | top: " + pos.top.toFixed(1) + "px";
   }
 
-  function clearSelection() {
-    selectedBlocks.forEach(el => el.classList.remove("fm-selected"));
-    selectedBlocks = [];
-    updateToolbar();
-  }
+  window.fmMoveSelected = function (dx, dy) {
+    const selected = getSelected();
 
-  function selectOnly(el) {
-    clearSelection();
-    selectedBlocks = [el];
-    el.classList.add("fm-selected");
-    updateToolbar();
-  }
-
-  function toggleSelect(el) {
-    if (selectedBlocks.includes(el)) {
-      el.classList.remove("fm-selected");
-      selectedBlocks = selectedBlocks.filter(x => x !== el);
-    } else {
-      selectedBlocks.push(el);
-      el.classList.add("fm-selected");
+    if (!selected.length) {
+      alert("Select a text block first.");
+      return;
     }
-    updateToolbar();
-  }
 
-  function moveSelected(dx, dy) {
-    if (!selectedBlocks.length) return;
-
-    selectedBlocks.forEach(el => {
-      const pos = getPos(el);
-      setPos(el, pos.left + dx, pos.top + dy);
+    selected.forEach(el => {
+      const pos = getLeftTop(el);
+      setLeftTop(el, pos.left + dx, pos.top + dy);
     });
 
     updateToolbar();
-  }
+  };
 
-  function savePositions() {
+  window.fmClearSelected = function () {
+    getSelected().forEach(el => el.classList.remove("fm-selected"));
+    updateToolbar();
+  };
+
+  window.fmSavePositions = function () {
     const data = {};
 
-    allBlocks().forEach((el, index) => {
+    getBlocks().forEach((el, index) => {
       const id = getId(el, index);
-      const pos = getPos(el);
+      const pos = getLeftTop(el);
       data[id] = { left: pos.left, top: pos.top };
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
-    alert("Positions saved in this browser.");
-  }
+    alert("Positions saved.");
+  };
 
-  function loadPositions() {
+  window.fmLoadPositions = function () {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
 
     try {
       const data = JSON.parse(raw);
-      allBlocks().forEach((el, index) => {
+
+      getBlocks().forEach((el, index) => {
         const id = getId(el, index);
         if (data[id]) {
-          setPos(el, data[id].left, data[id].top);
+          setLeftTop(el, data[id].left, data[id].top);
         }
       });
-    } catch (err) {
-      console.warn("Could not load positions", err);
+    } catch (e) {
+      console.warn("Could not load saved positions", e);
     }
-  }
+  };
 
-  function exportCss() {
+  window.fmExportPositions = function () {
     let css = "/* FINAL FARMERS MANUAL POSITIONS */\n";
 
-    allBlocks().forEach((el, index) => {
+    getBlocks().forEach((el, index) => {
       getId(el, index);
-      const pos = getPos(el);
 
+      const pos = getLeftTop(el);
       const uniqueClasses = Array.from(el.classList).filter(c =>
         c.startsWith("fm-") &&
-        !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
+        ![
+          "fm-text",
+          "fm-btn-text",
+          "fm-selected"
+        ].includes(c)
       );
 
       const selector = uniqueClasses.length
@@ -1125,9 +1126,9 @@ body.edit-mode .nudge-controls {
       css += selector + "{left:" + px(pos.left) + " !important;top:" + px(pos.top) + " !important;}\n";
     });
 
-    navigator.clipboard.writeText(css).then(() => {
+    navigator.clipboard.writeText(css).then(function () {
       alert("Final CSS copied to clipboard.");
-    }).catch(() => {
+    }).catch(function () {
       const box = document.createElement("textarea");
       box.value = css;
       box.style.position = "fixed";
@@ -1139,14 +1140,13 @@ body.edit-mode .nudge-controls {
       document.body.appendChild(box);
       box.focus();
       box.select();
-      alert("Copy the CSS from the text box.");
+      alert("Copy CSS from the text box.");
     });
-  }
+  };
 
-  function makeEditable() {
-    allBlocks().forEach((el, index) => {
+  function enableSelection() {
+    getBlocks().forEach((el, index) => {
       getId(el, index);
-      el.setAttribute("tabindex", "-1");
 
       el.addEventListener("click", function (e) {
         if (!document.body.classList.contains("edit-mode")) return;
@@ -1155,14 +1155,13 @@ body.edit-mode .nudge-controls {
         e.stopPropagation();
         e.stopImmediatePropagation();
 
-        if (e.shiftKey) {
-          toggleSelect(el);
-        } else {
-          selectOnly(el);
+        if (!e.shiftKey) {
+          getSelected().forEach(x => x.classList.remove("fm-selected"));
         }
 
-        window.focus();
-        document.body.focus();
+        el.classList.toggle("fm-selected");
+        updateToolbar();
+
         return false;
       }, true);
 
@@ -1172,102 +1171,96 @@ body.edit-mode .nudge-controls {
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
+
+        return false;
       }, true);
     });
   }
 
-  function toggleEditMode() {
-    document.body.classList.toggle("edit-mode");
-
-    if (document.body.classList.contains("edit-mode")) {
-      document.body.setAttribute("tabindex", "0");
-      document.body.focus();
-    } else {
-      clearSelection();
-    }
-
-    updateToolbar();
-  }
-
-  function addControls() {
+  function addEditorControls() {
     let btn = document.getElementById("positionToggleBtn");
+
     if (!btn) {
       btn = document.createElement("button");
       btn.id = "positionToggleBtn";
       btn.className = "position-toggle-btn";
       btn.type = "button";
       btn.textContent = "Edit Positions";
-      btn.onclick = toggleEditMode;
       document.body.appendChild(btn);
     }
 
+    btn.onclick = function () {
+      document.body.classList.toggle("edit-mode");
+
+      if (!document.body.classList.contains("edit-mode")) {
+        fmClearSelected();
+      }
+
+      document.body.focus();
+      updateToolbar();
+    };
+
     let toolbar = document.getElementById("positionToolbar");
+
     if (!toolbar) {
       toolbar = document.createElement("div");
       toolbar.id = "positionToolbar";
       toolbar.className = "position-toolbar";
-      toolbar.innerHTML = `
-        <div id="positionInfo">No block selected.</div>
-        <div style="margin-top:8px;">
-          Click = select · Shift+Click = multi-select · Arrow = 1px · Ctrl+Arrow = 10px · Alt+Arrow = 0.5px
-        </div>
-        <div>
-          <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
-        </div>
-      `;
       document.body.appendChild(toolbar);
     }
 
-    if (!document.getElementById("nudgeControls")) {
-      const nudge = document.createElement("div");
+    toolbar.innerHTML = `
+      <div id="positionInfo">No block selected.</div>
+      <div style="margin-top:8px;">
+        Click = select · Shift+Click = multi-select · Keyboard arrows or green buttons move selected text
+      </div>
+      <div>
+        <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
+      </div>
+    `;
+
+    let nudge = document.getElementById("nudgeControls");
+
+    if (!nudge) {
+      nudge = document.createElement("div");
       nudge.id = "nudgeControls";
       nudge.className = "nudge-controls";
-      nudge.innerHTML = `
-        <span class="empty"></span>
-        <button type="button" data-dx="0" data-dy="-1">↑</button>
-        <span class="empty"></span>
-        <button type="button" data-dx="-1" data-dy="0">←</button>
-        <button type="button" data-dx="0" data-dy="1">↓</button>
-        <button type="button" data-dx="1" data-dy="0">→</button>
-      `;
       document.body.appendChild(nudge);
-
-      nudge.querySelectorAll("button").forEach(b => {
-        b.addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          moveSelected(Number(b.dataset.dx), Number(b.dataset.dy));
-          document.body.focus();
-        });
-      });
     }
+
+    nudge.innerHTML = `
+      <span class="empty"></span>
+      <button type="button" onclick="fmMoveSelected(0,-1)">↑</button>
+      <span class="empty"></span>
+      <button type="button" onclick="fmMoveSelected(-1,0)">←</button>
+      <button type="button" onclick="fmMoveSelected(0,1)">↓</button>
+      <button type="button" onclick="fmMoveSelected(1,0)">→</button>
+    `;
   }
 
-  function handleKey(e) {
+  function handleKeyboard(e) {
     if (!document.body.classList.contains("edit-mode")) return;
 
-    const key = e.key;
-
-    if (key === "Escape") {
+    if (e.key === "Escape") {
       e.preventDefault();
-      clearSelection();
+      fmClearSelected();
       return;
     }
 
-    if (key && key.toLowerCase() === "s") {
+    if (e.key && e.key.toLowerCase() === "s") {
       e.preventDefault();
-      savePositions();
+      fmSavePositions();
       return;
     }
 
-    if (key && key.toLowerCase() === "e") {
+    if (e.key && e.key.toLowerCase() === "e") {
       e.preventDefault();
-      exportCss();
+      fmExportPositions();
       return;
     }
 
     const arrows = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-    if (!arrows.includes(key)) return;
+    if (!arrows.includes(e.key)) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -1275,29 +1268,25 @@ body.edit-mode .nudge-controls {
 
     const step = e.ctrlKey ? 10 : (e.altKey ? 0.5 : 1);
 
-    let dx = 0;
-    let dy = 0;
-
-    if (key === "ArrowLeft") dx = -step;
-    if (key === "ArrowRight") dx = step;
-    if (key === "ArrowUp") dy = -step;
-    if (key === "ArrowDown") dy = step;
-
-    moveSelected(dx, dy);
+    if (e.key === "ArrowUp") fmMoveSelected(0, -step);
+    if (e.key === "ArrowDown") fmMoveSelected(0, step);
+    if (e.key === "ArrowLeft") fmMoveSelected(-step, 0);
+    if (e.key === "ArrowRight") fmMoveSelected(step, 0);
   }
 
-  window.addEventListener("keydown", handleKey, true);
-  document.addEventListener("keydown", handleKey, true);
+  window.addEventListener("keydown", handleKeyboard, true);
+  document.addEventListener("keydown", handleKeyboard, true);
 
   window.addEventListener("load", function () {
-    makeEditable();
-    addControls();
-    loadPositions();
+    enableSelection();
+    addEditorControls();
+    fmLoadPositions();
   });
 })();
 </script>
 </body>
 </html>
+
 
 
 
