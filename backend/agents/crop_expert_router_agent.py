@@ -125,8 +125,6 @@ class CropExpertRouterAgent:
             "plant_stress_agent",
             "crop_planning_agent",
             "crop_passport_agent",
-            "crop_knowledge_graph_agent",
-            "farmer_recommendation_agent",`n            "crop_knowledge_graph_agent",`n            "farmer_recommendation_agent",
         ]
 
         safety_notes = [
@@ -162,5 +160,3 @@ if __name__ == "__main__":
     )
 
     print(result)
-
-
