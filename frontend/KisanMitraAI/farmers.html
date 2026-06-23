@@ -1194,6 +1194,52 @@ body.edit-mode .fm-selected {
   background: rgba(255,255,0,.18) !important;
 }
 </style>
+<style id="farmers-floating-editor-v1">
+/* FLOATING DRAGGABLE POSITION EDITOR */
+
+.position-toolbar {
+  left: 20px !important;
+  top: 360px !important;
+  bottom: auto !important;
+  width: 430px !important;
+  max-width: 430px !important;
+  cursor: default !important;
+}
+
+.editor-drag-handle {
+  width: 100%;
+  padding: 8px 10px;
+  margin: -4px -4px 8px -4px;
+  border-radius: 10px;
+  background: #08751f;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 13px;
+  cursor: move;
+  user-select: none;
+  text-align: center;
+}
+
+.position-toolbar input {
+  width: 80px !important;
+  height: 28px !important;
+  margin: 3px !important;
+  border-radius: 6px !important;
+  border: 1px solid #9ee7a7 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+.position-toolbar button {
+  min-width: 36px !important;
+  height: 30px !important;
+  padding: 5px 8px !important;
+  margin: 3px !important;
+  border-radius: 7px !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+}
+</style>
 </head>
 
 <body>
@@ -1562,8 +1608,78 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener("load", setup);
 })();
 </script>
+<script id="farmers-floating-editor-v1-js">
+(function () {
+  function makeEditorFloating() {
+    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
+    if (!panel) return;
+
+    if (!panel.querySelector(".editor-drag-handle")) {
+      const handle = document.createElement("div");
+      handle.className = "editor-drag-handle";
+      handle.textContent = "Drag Editor Panel";
+      panel.prepend(handle);
+    }
+
+    const handle = panel.querySelector(".editor-drag-handle");
+
+    panel.style.position = "fixed";
+    panel.style.left = localStorage.getItem("farmersEditorLeft") || "20px";
+    panel.style.top = localStorage.getItem("farmersEditorTop") || "360px";
+    panel.style.bottom = "auto";
+    panel.style.zIndex = "2147483647";
+
+    let dragging = false;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+
+    function num(v) {
+      return parseFloat(String(v || "0").replace("px", "")) || 0;
+    }
+
+    handle.onmousedown = function (e) {
+      dragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startLeft = num(panel.style.left);
+      startTop = num(panel.style.top);
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    document.addEventListener("mousemove", function (e) {
+      if (!dragging) return;
+
+      const newLeft = startLeft + (e.clientX - startX);
+      const newTop = startTop + (e.clientY - startY);
+
+      panel.style.left = newLeft + "px";
+      panel.style.top = newTop + "px";
+      panel.style.bottom = "auto";
+
+      localStorage.setItem("farmersEditorLeft", panel.style.left);
+      localStorage.setItem("farmersEditorTop", panel.style.top);
+    });
+
+    document.addEventListener("mouseup", function () {
+      dragging = false;
+    });
+  }
+
+  window.addEventListener("load", function () {
+    setTimeout(makeEditorFloating, 500);
+  });
+
+  document.addEventListener("click", function () {
+    setTimeout(makeEditorFloating, 100);
+  }, true);
+})();
+</script>
 </body>
 </html>
+
 
 
 
