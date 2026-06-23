@@ -170,6 +170,238 @@ html,body{
 .b3-title{left:745px;top:604px;width:230px}.b3-desc{left:745px;top:626px;width:230px}
 .b4-title{left:1070px;top:604px;width:240px}.b4-desc{left:1070px;top:626px;width:240px}
 </style>
+
+<style id="farmers-measured-map-v1">
+/* FARMERS FINAL MEASURED MAP V1
+   Canvas locked: 1366 x 640
+   This overrides old guessed positions.
+*/
+
+/* Add reference overlay support */
+.ref-check {
+  position: absolute;
+  inset: 0;
+  width: 1366px;
+  height: 640px;
+  object-fit: fill;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+body.show-reference .ref-check {
+  opacity: .42;
+}
+
+/* Header */
+.logo {
+  left: 34px !important;
+  top: 16px !important;
+  width: 230px !important;
+  height: 58px !important;
+}
+
+.nav-label {
+  top: 73px !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+}
+
+.home { left: 365px !important; }
+.farmers { left: 440px !important; }
+.fpo { left: 528px !important; }
+.buyer { left: 610px !important; }
+.ai { left: 690px !important; }
+.trust { left: 790px !important; }
+.contact { left: 860px !important; }
+
+.lang {
+  left: 1015px !important;
+  top: 50px !important;
+  font-size: 15px !important;
+}
+
+.talk {
+  left: 1158px !important;
+  top: 50px !important;
+  font-size: 15px !important;
+}
+
+.login {
+  left: 1285px !important;
+  top: 50px !important;
+  font-size: 15px !important;
+}
+
+/* Hero text */
+.breadcrumb {
+  left: 45px !important;
+  top: 145px !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+}
+
+.title {
+  left: 45px !important;
+  top: 176px !important;
+  width: 610px !important;
+  font-size: 47px !important;
+  line-height: .98 !important;
+  letter-spacing: -1.4px !important;
+  white-space: nowrap !important;
+}
+
+.subtitle {
+  left: 45px !important;
+  top: 241px !important;
+  width: 650px !important;
+  font-size: 24px !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+}
+
+.desc {
+  left: 45px !important;
+  top: 294px !important;
+  width: 535px !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  font-weight: 650 !important;
+}
+
+/* Hero button labels */
+.btn {
+  top: 399px !important;
+  height: 38px !important;
+  font-size: 15px !important;
+  font-weight: 950 !important;
+  white-space: nowrap !important;
+}
+
+.explore {
+  left: 92px !important;
+  width: 165px !important;
+  color: #ffffff !important;
+}
+
+.whatsapp {
+  left: 315px !important;
+  width: 220px !important;
+  color: #08751f !important;
+}
+
+.voice {
+  left: 520px !important;
+  width: 130px !important;
+  color: #08751f !important;
+}
+
+/* Right cards */
+.rtitle {
+  font-size: 14px !important;
+  line-height: 1.1 !important;
+  font-weight: 950 !important;
+}
+
+.rsmall {
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+.rvalue {
+  font-size: 21px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+}
+
+.ai-title { left: 1135px !important; top: 136px !important; }
+.ai-small { left: 1135px !important; top: 160px !important; }
+.ai-value { left: 1135px !important; top: 188px !important; }
+
+.weather-title { left: 1135px !important; top: 255px !important; }
+.weather-value { left: 1135px !important; top: 281px !important; }
+.weather-small { left: 1135px !important; top: 309px !important; }
+
+.market-title { left: 1135px !important; top: 373px !important; }
+.market-small { left: 1135px !important; top: 397px !important; }
+.market-value { left: 1135px !important; top: 424px !important; }
+
+/* Tool cards row */
+.tool-title {
+  font-size: 12px !important;
+  line-height: 1.08 !important;
+  font-weight: 950 !important;
+}
+
+.tool-desc {
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+  font-weight: 650 !important;
+}
+
+.tool-link {
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+}
+
+/* Card 1 */
+.t1-title { left: 108px !important; top: 480px !important; width: 130px !important; }
+.t1-desc  { left: 108px !important; top: 502px !important; width: 130px !important; }
+.t1-link  { left: 55px !important;  top: 573px !important; }
+
+/* Card 2 */
+.t2-title { left: 345px !important; top: 480px !important; width: 130px !important; }
+.t2-desc  { left: 345px !important; top: 502px !important; width: 130px !important; }
+.t2-link  { left: 295px !important; top: 573px !important; }
+
+/* Card 3 */
+.t3-title { left: 565px !important; top: 475px !important; width: 135px !important; }
+.t3-desc  { left: 565px !important; top: 504px !important; width: 135px !important; }
+.t3-link  { left: 525px !important; top: 573px !important; }
+
+/* Card 4 */
+.t4-title { left: 790px !important; top: 480px !important; width: 140px !important; }
+.t4-desc  { left: 790px !important; top: 502px !important; width: 140px !important; }
+.t4-link  { left: 740px !important; top: 573px !important; }
+
+/* Card 5 */
+.t5-title { left: 1010px !important; top: 480px !important; width: 130px !important; }
+.t5-desc  { left: 1010px !important; top: 502px !important; width: 130px !important; }
+.t5-link  { left: 970px !important; top: 573px !important; }
+
+/* Card 6 */
+.t6-title { left: 1195px !important; top: 480px !important; width: 145px !important; }
+.t6-desc  { left: 1195px !important; top: 502px !important; width: 145px !important; }
+.t6-link  { left: 1165px !important; top: 573px !important; }
+
+/* Bottom strip */
+.btitle {
+  font-size: 16px !important;
+  line-height: 1.08 !important;
+  font-weight: 950 !important;
+}
+
+.bdesc {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 650 !important;
+}
+
+.b1-title { left: 135px !important; top: 590px !important; width: 220px !important; }
+.b1-desc  { left: 135px !important; top: 615px !important; width: 220px !important; }
+
+.b2-title { left: 455px !important; top: 590px !important; width: 220px !important; }
+.b2-desc  { left: 455px !important; top: 615px !important; width: 220px !important; }
+
+.b3-title { left: 745px !important; top: 590px !important; width: 240px !important; }
+.b3-desc  { left: 745px !important; top: 615px !important; width: 240px !important; }
+
+.b4-title { left: 1070px !important; top: 590px !important; width: 250px !important; }
+.b4-desc  { left: 1070px !important; top: 615px !important; width: 250px !important; }
+</style>
 </head>
 
 <body>
@@ -249,6 +481,17 @@ html,body{
     <div class="t bdesc b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
   </section>
 </div>
+
+<script id="farmers-reference-toggle">
+  // Press R to compare against the approved reference image.
+  // Press R again to hide it.
+  document.addEventListener("keydown", function(e) {
+    if (e.key.toLowerCase() === "r") {
+      document.body.classList.toggle("show-reference");
+    }
+  });
+</script>
 </body>
 </html>
+
 
