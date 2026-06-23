@@ -832,6 +832,63 @@ body.edit-mode .position-toolbar {
   box-shadow: 0 10px 24px rgba(0,0,0,.22);
 }
 </style>
+<style id="manual-editor-click-arrow-fix-v3">
+/* Manual editor click + arrow fix v3 */
+
+body.edit-mode .fm-hotspot {
+  pointer-events: none !important;
+}
+
+body.edit-mode a.fm-text,
+body.edit-mode a.fm-btn-text {
+  pointer-events: auto !important;
+}
+
+body.edit-mode .fm-text,
+body.edit-mode .fm-btn-text {
+  outline: 1px dashed rgba(0, 120, 255, 0.6) !important;
+  cursor: move !important;
+}
+
+body.edit-mode .fm-selected {
+  outline: 3px solid #ff2a00 !important;
+  background: rgba(255, 255, 0, 0.16) !important;
+}
+
+.nudge-controls {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483647;
+  display: none;
+  grid-template-columns: 44px 44px 44px;
+  gap: 6px;
+  background: rgba(5, 20, 10, 0.92);
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.32);
+}
+
+body.edit-mode .nudge-controls {
+  display: grid;
+}
+
+.nudge-controls button {
+  width: 44px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: #08751f;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.nudge-controls .empty {
+  visibility: hidden;
+}
+</style>
 </head>
 
 <body>
@@ -927,9 +984,10 @@ body.edit-mode .position-toolbar {
 </div>
 
 
-<script id="manual-position-editor-js">
+
+<script id="manual-position-editor-js-v3">
 (function () {
-  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v2";
+  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v3";
   let selectedBlocks = [];
 
   function px(n) {
@@ -949,6 +1007,10 @@ body.edit-mode .position-toolbar {
     el.style.top = px(top);
   }
 
+  function allBlocks() {
+    return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
+  }
+
   function getId(el, index) {
     if (!el.dataset.posId) {
       const classes = Array.from(el.classList).filter(c =>
@@ -960,8 +1022,23 @@ body.edit-mode .position-toolbar {
     return el.dataset.posId;
   }
 
-  function allBlocks() {
-    return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
+  function updateToolbar() {
+    const info = document.getElementById("positionInfo");
+    if (!info) return;
+
+    if (!selectedBlocks.length) {
+      info.innerHTML = "No block selected.";
+      return;
+    }
+
+    const first = selectedBlocks[0];
+    const pos = getPos(first);
+
+    info.innerHTML =
+      "<strong>Selected:</strong> " + selectedBlocks.length +
+      " block(s) | first: " + first.dataset.posId +
+      " | left: " + pos.left.toFixed(1) +
+      "px | top: " + pos.top.toFixed(1) + "px";
   }
 
   function clearSelection() {
@@ -988,27 +1065,20 @@ body.edit-mode .position-toolbar {
     updateToolbar();
   }
 
-  function updateToolbar() {
-    const info = document.getElementById("positionInfo");
-    if (!info) return;
+  function moveSelected(dx, dy) {
+    if (!selectedBlocks.length) return;
 
-    if (!selectedBlocks.length) {
-      info.innerHTML = "No block selected.";
-      return;
-    }
+    selectedBlocks.forEach(el => {
+      const pos = getPos(el);
+      setPos(el, pos.left + dx, pos.top + dy);
+    });
 
-    const first = selectedBlocks[0];
-    const pos = getPos(first);
-
-    info.innerHTML =
-      "<strong>Selected:</strong> " + selectedBlocks.length +
-      " block(s) | first: " + first.dataset.posId +
-      " | left: " + pos.left.toFixed(1) +
-      "px | top: " + pos.top.toFixed(1) + "px";
+    updateToolbar();
   }
 
   function savePositions() {
     const data = {};
+
     allBlocks().forEach((el, index) => {
       const id = getId(el, index);
       const pos = getPos(el);
@@ -1016,7 +1086,7 @@ body.edit-mode .position-toolbar {
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
-    alert("Positions saved in browser.");
+    alert("Positions saved in this browser.");
   }
 
   function loadPositions() {
@@ -1032,7 +1102,7 @@ body.edit-mode .position-toolbar {
         }
       });
     } catch (err) {
-      console.warn("Could not load saved positions", err);
+      console.warn("Could not load positions", err);
     }
   }
 
@@ -1043,11 +1113,10 @@ body.edit-mode .position-toolbar {
       getId(el, index);
       const pos = getPos(el);
 
-      const uniqueClasses = Array.from(el.classList)
-        .filter(c =>
-          c.startsWith("fm-") &&
-          !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
-        );
+      const uniqueClasses = Array.from(el.classList).filter(c =>
+        c.startsWith("fm-") &&
+        !["fm-text", "fm-btn-text", "fm-selected"].includes(c)
+      );
 
       const selector = uniqueClasses.length
         ? "." + uniqueClasses.join(".")
@@ -1074,25 +1143,17 @@ body.edit-mode .position-toolbar {
     });
   }
 
-  function moveSelected(dx, dy) {
-    selectedBlocks.forEach(el => {
-      const pos = getPos(el);
-      setPos(el, pos.left + dx, pos.top + dy);
-    });
-    updateToolbar();
-  }
-
   function makeEditable() {
     allBlocks().forEach((el, index) => {
       getId(el, index);
+      el.setAttribute("tabindex", "-1");
 
-      el.setAttribute("tabindex", "0");
-
-      el.addEventListener("mousedown", function (e) {
+      el.addEventListener("click", function (e) {
         if (!document.body.classList.contains("edit-mode")) return;
 
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
 
         if (e.shiftKey) {
           toggleSelect(el);
@@ -1100,39 +1161,49 @@ body.edit-mode .position-toolbar {
           selectOnly(el);
         }
 
+        window.focus();
         document.body.focus();
-      });
+        return false;
+      }, true);
+
+      el.addEventListener("mousedown", function (e) {
+        if (!document.body.classList.contains("edit-mode")) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+      }, true);
     });
   }
 
   function toggleEditMode() {
     document.body.classList.toggle("edit-mode");
 
-    if (!document.body.classList.contains("edit-mode")) {
-      clearSelection();
-    } else {
+    if (document.body.classList.contains("edit-mode")) {
       document.body.setAttribute("tabindex", "0");
       document.body.focus();
+    } else {
+      clearSelection();
     }
 
     updateToolbar();
   }
 
   function addControls() {
-    if (!document.getElementById("positionToggleBtn")) {
-      const btn = document.createElement("button");
+    let btn = document.getElementById("positionToggleBtn");
+    if (!btn) {
+      btn = document.createElement("button");
       btn.id = "positionToggleBtn";
       btn.className = "position-toggle-btn";
       btn.type = "button";
       btn.textContent = "Edit Positions";
-      btn.onclick = function () {
-        toggleEditMode();
-      };
+      btn.onclick = toggleEditMode;
       document.body.appendChild(btn);
     }
 
-    if (!document.getElementById("positionToolbar")) {
-      const toolbar = document.createElement("div");
+    let toolbar = document.getElementById("positionToolbar");
+    if (!toolbar) {
+      toolbar = document.createElement("div");
       toolbar.id = "positionToolbar";
       toolbar.className = "position-toolbar";
       toolbar.innerHTML = `
@@ -1146,9 +1217,33 @@ body.edit-mode .position-toolbar {
       `;
       document.body.appendChild(toolbar);
     }
+
+    if (!document.getElementById("nudgeControls")) {
+      const nudge = document.createElement("div");
+      nudge.id = "nudgeControls";
+      nudge.className = "nudge-controls";
+      nudge.innerHTML = `
+        <span class="empty"></span>
+        <button type="button" data-dx="0" data-dy="-1">↑</button>
+        <span class="empty"></span>
+        <button type="button" data-dx="-1" data-dy="0">←</button>
+        <button type="button" data-dx="0" data-dy="1">↓</button>
+        <button type="button" data-dx="1" data-dy="0">→</button>
+      `;
+      document.body.appendChild(nudge);
+
+      nudge.querySelectorAll("button").forEach(b => {
+        b.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          moveSelected(Number(b.dataset.dx), Number(b.dataset.dy));
+          document.body.focus();
+        });
+      });
+    }
   }
 
-  document.addEventListener("keydown", function (e) {
+  function handleKey(e) {
     if (!document.body.classList.contains("edit-mode")) return;
 
     const key = e.key;
@@ -1159,25 +1254,24 @@ body.edit-mode .position-toolbar {
       return;
     }
 
-    if (key.toLowerCase() === "s") {
+    if (key && key.toLowerCase() === "s") {
       e.preventDefault();
       savePositions();
       return;
     }
 
-    if (key.toLowerCase() === "e") {
+    if (key && key.toLowerCase() === "e") {
       e.preventDefault();
       exportCss();
       return;
     }
 
-    const arrowKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-    if (!arrowKeys.includes(key)) return;
-
-    if (!selectedBlocks.length) return;
+    const arrows = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+    if (!arrows.includes(key)) return;
 
     e.preventDefault();
     e.stopPropagation();
+    e.stopImmediatePropagation();
 
     const step = e.ctrlKey ? 10 : (e.altKey ? 0.5 : 1);
 
@@ -1190,7 +1284,10 @@ body.edit-mode .position-toolbar {
     if (key === "ArrowDown") dy = step;
 
     moveSelected(dx, dy);
-  }, true);
+  }
+
+  window.addEventListener("keydown", handleKey, true);
+  document.addEventListener("keydown", handleKey, true);
 
   window.addEventListener("load", function () {
     makeEditable();
@@ -1201,6 +1298,7 @@ body.edit-mode .position-toolbar {
 </script>
 </body>
 </html>
+
 
 
 
