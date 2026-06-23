@@ -436,7 +436,8 @@ body.show-reference .ref-check {
   box-shadow: 0 10px 24px rgba(0,0,0,.25);
 }
 </style>
-<style id="compare-overlay-force">
+
+<style id="compare-direct-css">
 .ref-check {
   position: absolute !important;
   left: 0 !important;
@@ -447,20 +448,19 @@ body.show-reference .ref-check {
   z-index: 9998 !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  transition: opacity .2s ease !important;
 }
 
-body.show-reference .ref-check {
-  opacity: .45 !important;
+.ref-check.is-visible {
+  opacity: .55 !important;
 }
 
-.compare-force-btn {
+.compare-direct-btn {
   position: fixed !important;
   right: 22px !important;
   top: 110px !important;
   z-index: 2147483647 !important;
   display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
   padding: 14px 22px !important;
   border: 3px solid #ffffff !important;
   border-radius: 999px !important;
@@ -475,10 +475,12 @@ body.show-reference .ref-check {
 </head>
 
 <body>
-<button id="compareForceBtn" class="compare-force-btn" type="button" onclick="toggleReference()">COMPARE</button>
+<button id="compareDirectBtn" class="compare-direct-btn" type="button">COMPARE</button>
+
 <div class="stage-wrap">
   <section class="stage">
     <img class="bg" src="./assets/farmers-master-clean-background.png?v=farmers-clean-1366-final-overlay" alt="Farmers background">
+      <img id="farmersRefImage" class="ref-check" src="./assets/farmers-master-reference.png?v=compare-direct-1" alt="Reference check">
 
     <a class="t logo" href="./index.html"><img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI"></a>
 
@@ -566,21 +568,35 @@ document.addEventListener("keydown", function(e) {
   }
 });
 </script>
-<script id="compare-overlay-force-js">
-function toggleReference() {
-  document.body.classList.toggle("show-reference");
-}
-window.addEventListener("load", function() {
-  console.log("Farmers compare button loaded");
-});
-document.addEventListener("keydown", function(e) {
-  if (e.key && e.key.toLowerCase() === "r") {
-    toggleReference();
+
+<script id="compare-direct-js">
+(function () {
+  function setupCompare() {
+    var btn = document.getElementById("compareDirectBtn");
+    var ref = document.getElementById("farmersRefImage");
+
+    if (!btn || !ref) {
+      console.log("Compare setup failed", { btn: !!btn, ref: !!ref });
+      return;
+    }
+
+    btn.addEventListener("click", function () {
+      ref.classList.toggle("is-visible");
+      btn.textContent = ref.classList.contains("is-visible") ? "HIDE" : "COMPARE";
+      console.log("Compare toggled");
+    });
   }
-});
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupCompare);
+  } else {
+    setupCompare();
+  }
+})();
 </script>
 </body>
 </html>
+
 
 
 
