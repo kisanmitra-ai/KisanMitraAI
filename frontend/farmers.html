@@ -1024,8 +1024,8 @@ body.edit-mode .position-toolbar {
     const left = document.getElementById("posLeft").value;
     const top = document.getElementById("posTop").value;
 
-    selected.style.left = px(left);
-    selected.style.top = px(top);
+    selected.style.setProperty("left", px(left), "important");
+    selected.style.setProperty("top", px(top), "important");
     updatePanel();
   };
 
@@ -1036,8 +1036,8 @@ body.edit-mode .position-toolbar {
     }
 
     const p = getPos(selected);
-    selected.style.left = px(p.left + dx);
-    selected.style.top = px(p.top + dy);
+    selected.style.setProperty("left", px(p.left + dx), "important");
+    selected.style.setProperty("top", px(p.top + dy), "important");
     updatePanel();
   };
 
@@ -1161,6 +1161,7 @@ body.edit-mode .position-toolbar {
 </script>
 </body>
 </html>
+
 
 
 
