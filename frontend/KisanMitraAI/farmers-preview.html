@@ -436,9 +436,46 @@ body.show-reference .ref-check {
   box-shadow: 0 10px 24px rgba(0,0,0,.25);
 }
 </style>
+<style id="compare-overlay-force">
+.ref-check {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 1366px !important;
+  height: 640px !important;
+  object-fit: fill !important;
+  z-index: 9998 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body.show-reference .ref-check {
+  opacity: .45 !important;
+}
+
+.compare-force-btn {
+  position: fixed !important;
+  right: 22px !important;
+  top: 110px !important;
+  z-index: 2147483647 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 14px 22px !important;
+  border: 3px solid #ffffff !important;
+  border-radius: 999px !important;
+  background: #e00000 !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35) !important;
+}
+</style>
 </head>
 
 <body>
+<button id="compareForceBtn" class="compare-force-btn" type="button" onclick="toggleReference()">COMPARE</button>
 <div class="stage-wrap">
   <section class="stage">
     <img class="bg" src="./assets/farmers-master-clean-background.png?v=farmers-clean-1366-final-overlay" alt="Farmers background">
@@ -529,8 +566,22 @@ document.addEventListener("keydown", function(e) {
   }
 });
 </script>
+<script id="compare-overlay-force-js">
+function toggleReference() {
+  document.body.classList.toggle("show-reference");
+}
+window.addEventListener("load", function() {
+  console.log("Farmers compare button loaded");
+});
+document.addEventListener("keydown", function(e) {
+  if (e.key && e.key.toLowerCase() === "r") {
+    toggleReference();
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
