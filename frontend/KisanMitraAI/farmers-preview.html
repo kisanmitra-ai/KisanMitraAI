@@ -15,51 +15,64 @@
 html,
 body {
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
   background: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 
-  MASTER COORDINATE RULE
-  Canvas: 1366 × 640
-  Every text position uses:
-  left: calc(X / 1366 * 100%);
-  top:  calc(Y / 640 * 100%);
-  width: calc(W / 1366 * 100%);
-*/
-.farmers-stage {
+/* TRUE 1366 × 640 CANVAS SYSTEM */
+.viewport-fit {
   width: 100vw;
   height: 100vh;
+  display: grid;
+  place-items: start center;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.canvas-scale {
+  width: 1366px;
+  height: 640px;
+  position: relative;
+  transform-origin: top center;
+  transform: scale(min(calc(100vw / 1366), calc(100vh / 640)));
+}
+
+.farmers-stage {
+  width: 1366px;
+  height: 640px;
   position: relative;
   overflow: hidden;
   background: #ffffff;
 }
 
 .farmers-bg {
-  width: 100%;
-  height: 100%;
-  display: block;
+  position: absolute;
+  inset: 0;
+  width: 1366px;
+  height: 640px;
   object-fit: fill;
-  object-position: center top;
+  display: block;
   pointer-events: none;
   user-select: none;
 }
 
-.overlay-text {
+/* common */
+.txt {
   position: absolute;
   z-index: 20;
   color: #071122;
+  text-decoration: none;
 }
 
 .logo-real {
   position: absolute;
-  left: calc(32 / 1366 * 100%);
-  top: calc(17 / 640 * 100%);
-  width: calc(230 / 1366 * 100%);
-  height: calc(62 / 640 * 100%);
-  z-index: 25;
+  left: 30px;
+  top: 16px;
+  width: 235px;
+  height: 62px;
+  z-index: 30;
 }
 
 .logo-real img {
@@ -69,88 +82,59 @@ body {
   object-position: left center;
 }
 
-/* Header text coordinate map */
-.nav-home {
-  left: calc(360 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
-.nav-farmers {
-  left: calc(446 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-  color: #08751f;
-}
-
-.nav-fpo {
-  left: calc(535 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
-.nav-buyer {
-  left: calc(618 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
-.nav-ai {
-  left: calc(700 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
-.nav-trust {
-  left: calc(790 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
-.nav-contact {
-  left: calc(870 / 1366 * 100%);
-  top: calc(88 / 640 * 100%);
-}
-
+/* Header labels */
 .nav-label {
-  font-size: calc(13 / 640 * 100vh);
+  font-size: 13px;
   line-height: 1;
   font-weight: 850;
-  text-decoration: none;
   color: #111827;
 }
 
+.nav-home { left: 360px; top: 88px; }
+.nav-farmers { left: 445px; top: 88px; color: #08751f; }
+.nav-fpo { left: 535px; top: 88px; }
+.nav-buyer { left: 618px; top: 88px; }
+.nav-ai { left: 700px; top: 88px; }
+.nav-trust { left: 790px; top: 88px; }
+.nav-contact { left: 870px; top: 88px; }
+
 .header-language {
-  left: calc(1015 / 1366 * 100%);
-  top: calc(57 / 640 * 100%);
-  font-size: calc(15 / 640 * 100vh);
+  left: 1015px;
+  top: 57px;
+  font-size: 15px;
   font-weight: 850;
 }
 
 .header-talk {
-  left: calc(1157 / 1366 * 100%);
-  top: calc(57 / 640 * 100%);
-  font-size: calc(15 / 640 * 100vh);
+  left: 1157px;
+  top: 57px;
+  font-size: 15px;
   font-weight: 850;
   color: #1262ff;
 }
 
 .header-login {
-  left: calc(1288 / 1366 * 100%);
-  top: calc(57 / 640 * 100%);
-  font-size: calc(15 / 640 * 100vh);
+  left: 1288px;
+  top: 57px;
+  font-size: 15px;
   font-weight: 850;
   color: #ffffff;
 }
 
-/* Hero text coordinate map */
+/* Hero */
 .breadcrumb {
-  left: calc(52 / 1366 * 100%);
-  top: calc(154 / 640 * 100%);
-  font-size: calc(15 / 640 * 100vh);
+  left: 52px;
+  top: 154px;
+  font-size: 15px;
   font-weight: 800;
   color: #075c1c;
 }
 
 .hero-title {
-  left: calc(52 / 1366 * 100%);
-  top: calc(184 / 640 * 100%);
-  width: calc(610 / 1366 * 100%);
-  font-size: calc(48 / 640 * 100vh);
+  left: 52px;
+  top: 184px;
+  width: 650px;
+  font-size: 49px;
   line-height: 0.98;
   font-weight: 950;
   letter-spacing: -1.4px;
@@ -159,10 +143,10 @@ body {
 }
 
 .hero-subtitle {
-  left: calc(52 / 1366 * 100%);
-  top: calc(250 / 640 * 100%);
-  width: calc(640 / 1366 * 100%);
-  font-size: calc(27 / 640 * 100vh);
+  left: 52px;
+  top: 250px;
+  width: 700px;
+  font-size: 26px;
   line-height: 1.05;
   font-weight: 950;
   color: #071122;
@@ -170,377 +154,238 @@ body {
 }
 
 .hero-desc {
-  left: calc(52 / 1366 * 100%);
-  top: calc(302 / 640 * 100%);
-  width: calc(550 / 1366 * 100%);
-  font-size: calc(17 / 640 * 100vh);
+  left: 52px;
+  top: 302px;
+  width: 570px;
+  font-size: 16px;
   line-height: 1.45;
   font-weight: 650;
   color: #101820;
 }
 
-/* Button text coordinate map */
+/* Buttons */
 .btn-label {
   position: absolute;
   z-index: 25;
+  top: 414px;
+  height: 38px;
   display: flex;
   align-items: center;
-  height: calc(48 / 640 * 100%);
-  font-size: calc(16 / 640 * 100vh);
+  font-size: 15px;
   font-weight: 950;
-  text-decoration: none;
   line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .btn-explore {
-  left: calc(91 / 1366 * 100%);
-  top: calc(404 / 640 * 100%);
-  width: calc(165 / 1366 * 100%);
+  left: 92px;
+  width: 160px;
   color: #ffffff;
 }
 
 .btn-whatsapp {
-  left: calc(320 / 1366 * 100%);
-  top: calc(404 / 640 * 100%);
-  width: calc(210 / 1366 * 100%);
+  left: 315px;
+  width: 210px;
   color: #08751f;
 }
 
 .btn-voice {
-  left: calc(505 / 1366 * 100%);
-  top: calc(404 / 640 * 100%);
-  width: calc(170 / 1366 * 100%);
+  left: 515px;
+  width: 150px;
   color: #08751f;
 }
 
-/* Right card text coordinate map */
+/* Right cards */
 .right-title {
-  font-size: calc(15 / 640 * 100vh);
+  font-size: 15px;
   line-height: 1.1;
   font-weight: 950;
   color: #111827;
 }
 
 .right-small {
-  font-size: calc(12 / 640 * 100vh);
+  font-size: 12px;
   line-height: 1.2;
   font-weight: 700;
   color: #111827;
 }
 
 .right-value {
-  font-size: calc(23 / 640 * 100vh);
+  font-size: 23px;
   line-height: 1;
   font-weight: 950;
   color: #071122;
 }
 
-.ai-title { left: calc(1128 / 1366 * 100%); top: calc(158 / 640 * 100%); }
-.ai-small { left: calc(1128 / 1366 * 100%); top: calc(182 / 640 * 100%); }
-.ai-value { left: calc(1128 / 1366 * 100%); top: calc(210 / 640 * 100%); }
+.ai-title { left: 1128px; top: 178px; }
+.ai-small { left: 1128px; top: 204px; }
+.ai-value { left: 1128px; top: 232px; }
 
-.weather-title { left: calc(1128 / 1366 * 100%); top: calc(300 / 640 * 100%); }
-.weather-value { left: calc(1128 / 1366 * 100%); top: calc(328 / 640 * 100%); }
-.weather-small { left: calc(1128 / 1366 * 100%); top: calc(358 / 640 * 100%); }
+.weather-title { left: 1128px; top: 318px; }
+.weather-value { left: 1128px; top: 346px; }
+.weather-small { left: 1128px; top: 374px; }
 
-.market-title { left: calc(1128 / 1366 * 100%); top: calc(430 / 640 * 100%); }
-.market-small { left: calc(1128 / 1366 * 100%); top: calc(456 / 640 * 100%); }
-.market-value { left: calc(1128 / 1366 * 100%); top: calc(484 / 640 * 100%); }
+.market-title { left: 1128px; top: 452px; }
+.market-small { left: 1128px; top: 478px; }
+.market-value { left: 1128px; top: 506px; }
 
-/* Tool cards coordinate map */
+/* Tool cards */
 .tool-title {
-  font-size: calc(13 / 640 * 100vh);
+  font-size: 12px;
   line-height: 1.08;
   font-weight: 950;
   color: #111827;
 }
 
 .tool-desc {
-  font-size: calc(10 / 640 * 100vh);
-  line-height: 1.25;
+  font-size: 9px;
+  line-height: 1.22;
   font-weight: 650;
   color: #111827;
 }
 
 .tool-link {
-  font-size: calc(11 / 640 * 100vh);
+  font-size: 10px;
   line-height: 1;
   font-weight: 950;
   color: #08751f;
 }
 
-.t1-title { left: calc(105 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t1-desc  { left: calc(105 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t1-link  { left: calc(105 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t1-title { left: 110px; top: 503px; width: 125px; }
+.t1-desc  { left: 110px; top: 524px; width: 125px; }
+.t1-link  { left: 110px; top: 575px; }
 
-.t2-title { left: calc(285 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t2-desc  { left: calc(285 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t2-link  { left: calc(285 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t2-title { left: 335px; top: 503px; width: 125px; }
+.t2-desc  { left: 335px; top: 524px; width: 125px; }
+.t2-link  { left: 335px; top: 575px; }
 
-.t3-title { left: calc(470 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t3-desc  { left: calc(470 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t3-link  { left: calc(470 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t3-title { left: 555px; top: 503px; width: 130px; }
+.t3-desc  { left: 555px; top: 524px; width: 130px; }
+.t3-link  { left: 555px; top: 575px; }
 
-.t4-title { left: calc(655 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t4-desc  { left: calc(655 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t4-link  { left: calc(655 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t4-title { left: 775px; top: 503px; width: 130px; }
+.t4-desc  { left: 775px; top: 524px; width: 130px; }
+.t4-link  { left: 775px; top: 575px; }
 
-.t5-title { left: calc(840 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t5-desc  { left: calc(840 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(130 / 1366 * 100%); }
-.t5-link  { left: calc(840 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t5-title { left: 995px; top: 503px; width: 130px; }
+.t5-desc  { left: 995px; top: 524px; width: 130px; }
+.t5-link  { left: 995px; top: 575px; }
 
-.t6-title { left: calc(1035 / 1366 * 100%); top: calc(505 / 640 * 100%); width: calc(150 / 1366 * 100%); }
-.t6-desc  { left: calc(1035 / 1366 * 100%); top: calc(528 / 640 * 100%); width: calc(150 / 1366 * 100%); }
-.t6-link  { left: calc(1035 / 1366 * 100%); top: calc(579 / 640 * 100%); }
+.t6-title { left: 1210px; top: 503px; width: 115px; }
+.t6-desc  { left: 1210px; top: 524px; width: 115px; }
+.t6-link  { left: 1210px; top: 575px; }
 
-/* Bottom feature text coordinate map */
+/* Bottom strip */
 .bottom-title {
-  font-size: calc(16 / 640 * 100vh);
-  line-height: 1.1;
+  font-size: 15px;
+  line-height: 1.08;
   font-weight: 950;
   color: #111827;
 }
 
 .bottom-desc {
-  font-size: calc(12 / 640 * 100vh);
-  line-height: 1.28;
+  font-size: 11px;
+  line-height: 1.25;
   font-weight: 650;
   color: #111827;
 }
 
-.b1-title { left: calc(137 / 1366 * 100%); top: calc(616 / 640 * 100%); width: calc(220 / 1366 * 100%); }
-.b1-desc  { left: calc(137 / 1366 * 100%); top: calc(640 / 640 * 100%); width: calc(220 / 1366 * 100%); }
+.b1-title { left: 135px; top: 604px; width: 210px; }
+.b1-desc  { left: 135px; top: 626px; width: 210px; }
 
-.b2-title { left: calc(380 / 1366 * 100%); top: calc(616 / 640 * 100%); width: calc(220 / 1366 * 100%); }
-.b2-desc  { left: calc(380 / 1366 * 100%); top: calc(640 / 640 * 100%); width: calc(220 / 1366 * 100%); }
+.b2-title { left: 455px; top: 604px; width: 210px; }
+.b2-desc  { left: 455px; top: 626px; width: 210px; }
 
-.b3-title { left: calc(625 / 1366 * 100%); top: calc(616 / 640 * 100%); width: calc(240 / 1366 * 100%); }
-.b3-desc  { left: calc(625 / 1366 * 100%); top: calc(640 / 640 * 100%); width: calc(240 / 1366 * 100%); }
+.b3-title { left: 745px; top: 604px; width: 230px; }
+.b3-desc  { left: 745px; top: 626px; width: 230px; }
 
-.b4-title { left: calc(870 / 1366 * 100%); top: calc(616 / 640 * 100%); width: calc(270 / 1366 * 100%); }
-.b4-desc  { left: calc(870 / 1366 * 100%); top: calc(640 / 640 * 100%); width: calc(270 / 1366 * 100%); }
-
-/* Click zones */
-.hotspot {
-  position: absolute;
-  border: 0;
-  background: transparent;
-  z-index: 50;
-  cursor: pointer;
-}
-
-.hs-explore { left: calc(36 / 1366 * 100%); top: calc(390 / 640 * 100%); width: calc(185 / 1366 * 100%); height: calc(56 / 640 * 100%); }
-.hs-whatsapp { left: calc(230 / 1366 * 100%); top: calc(390 / 640 * 100%); width: calc(190 / 1366 * 100%); height: calc(56 / 640 * 100%); }
-.hs-voice { left: calc(430 / 1366 * 100%); top: calc(390 / 640 * 100%); width: calc(170 / 1366 * 100%); height: calc(56 / 640 * 100%); }
-
-@media (max-width: 768px) {
-  .farmers-stage {
-    height: 100vh;
-  }
-
-  .farmers-bg {
-    object-fit: cover;
-    object-position: center top;
-  }
-}
-</style>
-
-<style id="farmers-coordinate-refine-2">
-/* FARMERS COORDINATE REFINE 2 */
-
-/* Hero CTA text: move text inside buttons properly */
-.btn-explore {
-  left: calc(90 / 1366 * 100%) !important;
-  top: calc(414 / 640 * 100%) !important;
-  width: calc(175 / 1366 * 100%) !important;
-}
-
-.btn-whatsapp {
-  left: calc(315 / 1366 * 100%) !important;
-  top: calc(414 / 640 * 100%) !important;
-  width: calc(220 / 1366 * 100%) !important;
-}
-
-.btn-voice {
-  left: calc(505 / 1366 * 100%) !important;
-  top: calc(414 / 640 * 100%) !important;
-  width: calc(160 / 1366 * 100%) !important;
-}
-
-.btn-label {
-  font-size: calc(14 / 640 * 100vh) !important;
-  white-space: nowrap !important;
-}
-
-/* Tool card text must start AFTER the icons */
-.tool-title {
-  font-size: calc(12 / 640 * 100vh) !important;
-  line-height: 1.05 !important;
-  font-weight: 950 !important;
-}
-
-.tool-desc {
-  font-size: calc(9 / 640 * 100vh) !important;
-  line-height: 1.22 !important;
-  font-weight: 650 !important;
-}
-
-.tool-link {
-  font-size: calc(10 / 640 * 100vh) !important;
-  font-weight: 950 !important;
-}
-
-/* Row 1 tools */
-.t1-title { left: calc(110 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(120 / 1366 * 100%) !important; }
-.t1-desc  { left: calc(110 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(120 / 1366 * 100%) !important; }
-.t1-link  { left: calc(110 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-.t2-title { left: calc(335 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(120 / 1366 * 100%) !important; }
-.t2-desc  { left: calc(335 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(120 / 1366 * 100%) !important; }
-.t2-link  { left: calc(335 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-.t3-title { left: calc(555 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t3-desc  { left: calc(555 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t3-link  { left: calc(555 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-.t4-title { left: calc(775 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t4-desc  { left: calc(775 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t4-link  { left: calc(775 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-.t5-title { left: calc(995 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t5-desc  { left: calc(995 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(125 / 1366 * 100%) !important; }
-.t5-link  { left: calc(995 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-.t6-title { left: calc(1210 / 1366 * 100%) !important; top: calc(503 / 640 * 100%) !important; width: calc(115 / 1366 * 100%) !important; }
-.t6-desc  { left: calc(1210 / 1366 * 100%) !important; top: calc(524 / 640 * 100%) !important; width: calc(115 / 1366 * 100%) !important; }
-.t6-link  { left: calc(1210 / 1366 * 100%) !important; top: calc(575 / 640 * 100%) !important; }
-
-/* Bottom strip text must also start AFTER the icons */
-.bottom-title {
-  font-size: calc(15 / 640 * 100vh) !important;
-  line-height: 1.08 !important;
-  font-weight: 950 !important;
-}
-
-.bottom-desc {
-  font-size: calc(11 / 640 * 100vh) !important;
-  line-height: 1.25 !important;
-  font-weight: 650 !important;
-}
-
-.b1-title { left: calc(135 / 1366 * 100%) !important; top: calc(604 / 640 * 100%) !important; width: calc(210 / 1366 * 100%) !important; }
-.b1-desc  { left: calc(135 / 1366 * 100%) !important; top: calc(626 / 640 * 100%) !important; width: calc(210 / 1366 * 100%) !important; }
-
-.b2-title { left: calc(455 / 1366 * 100%) !important; top: calc(604 / 640 * 100%) !important; width: calc(210 / 1366 * 100%) !important; }
-.b2-desc  { left: calc(455 / 1366 * 100%) !important; top: calc(626 / 640 * 100%) !important; width: calc(210 / 1366 * 100%) !important; }
-
-.b3-title { left: calc(745 / 1366 * 100%) !important; top: calc(604 / 640 * 100%) !important; width: calc(230 / 1366 * 100%) !important; }
-.b3-desc  { left: calc(745 / 1366 * 100%) !important; top: calc(626 / 640 * 100%) !important; width: calc(230 / 1366 * 100%) !important; }
-
-.b4-title { left: calc(1070 / 1366 * 100%) !important; top: calc(604 / 640 * 100%) !important; width: calc(240 / 1366 * 100%) !important; }
-.b4-desc  { left: calc(1070 / 1366 * 100%) !important; top: calc(626 / 640 * 100%) !important; width: calc(240 / 1366 * 100%) !important; }
-
-/* Right cards: keep text inside cards */
-.ai-title { left: calc(1128 / 1366 * 100%) !important; top: calc(178 / 640 * 100%) !important; }
-.ai-small { left: calc(1128 / 1366 * 100%) !important; top: calc(204 / 640 * 100%) !important; }
-.ai-value { left: calc(1128 / 1366 * 100%) !important; top: calc(232 / 640 * 100%) !important; }
-
-.weather-title { left: calc(1128 / 1366 * 100%) !important; top: calc(318 / 640 * 100%) !important; }
-.weather-value { left: calc(1128 / 1366 * 100%) !important; top: calc(346 / 640 * 100%) !important; }
-.weather-small { left: calc(1128 / 1366 * 100%) !important; top: calc(374 / 640 * 100%) !important; }
-
-.market-title { left: calc(1128 / 1366 * 100%) !important; top: calc(452 / 640 * 100%) !important; }
-.market-small { left: calc(1128 / 1366 * 100%) !important; top: calc(478 / 640 * 100%) !important; }
-.market-value { left: calc(1128 / 1366 * 100%) !important; top: calc(506 / 640 * 100%) !important; }
+.b4-title { left: 1070px; top: 604px; width: 240px; }
+.b4-desc  { left: 1070px; top: 626px; width: 240px; }
 </style>
 </head>
 
 <body>
-<section class="farmers-stage">
-  <img class="farmers-bg" src="./assets/farmers-master-clean-background.png?v=farmers-coordinate-1" alt="Farmers Background" />
+<div class="viewport-fit">
+  <div class="canvas-scale">
+    <section class="farmers-stage">
+      <img class="farmers-bg" src="./assets/farmers-master-clean-background.png?v=fixed-canvas-1" alt="Farmers Background" />
 
-  <a class="logo-real" href="./index.html">
-    <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-  </a>
+      <a class="logo-real" href="./index.html">
+        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
+      </a>
 
-  <a class="overlay-text nav-label nav-home" href="./index.html" data-i18n="nav.home">Home</a>
-  <a class="overlay-text nav-label nav-farmers" href="#farmers" data-i18n="nav.farmers">Farmers</a>
-  <a class="overlay-text nav-label nav-fpo" href="#fpo" data-i18n="nav.fpo">FPO</a>
-  <a class="overlay-text nav-label nav-buyer" href="#buyer" data-i18n="nav.buyer">Buyer</a>
-  <a class="overlay-text nav-label nav-ai" href="#ai-engine" data-i18n="nav.aiEngine">AI Engine</a>
-  <a class="overlay-text nav-label nav-trust" href="#trust" data-i18n="nav.trust">Trust</a>
-  <a class="overlay-text nav-label nav-contact" href="#contact" data-i18n="nav.contact">Contact</a>
+      <a class="txt nav-label nav-home" href="./index.html">Home</a>
+      <a class="txt nav-label nav-farmers" href="#farmers">Farmers</a>
+      <a class="txt nav-label nav-fpo" href="#fpo">FPO</a>
+      <a class="txt nav-label nav-buyer" href="#buyer">Buyer</a>
+      <a class="txt nav-label nav-ai" href="#ai-engine">AI Engine</a>
+      <a class="txt nav-label nav-trust" href="#trust">Trust</a>
+      <a class="txt nav-label nav-contact" href="#contact">Contact</a>
 
-  <div class="overlay-text header-language" data-i18n="common.language">English</div>
-  <div class="overlay-text header-talk" data-i18n="common.talkToAi">Talk to AI</div>
-  <div class="overlay-text header-login" data-i18n="common.login">Login</div>
+      <div class="txt header-language">English</div>
+      <div class="txt header-talk">Talk to AI</div>
+      <div class="txt header-login">Login</div>
 
-  <div class="overlay-text breadcrumb">
-    <span data-i18n="nav.home">Home</span>
-    <span>›</span>
-    <span data-i18n="nav.farmers">Farmers</span>
+      <div class="txt breadcrumb">Home › Farmers</div>
+
+      <h1 class="txt hero-title">Empowering Farmers.</h1>
+      <h2 class="txt hero-subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
+      <p class="txt hero-desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
+
+      <a class="btn-label btn-explore" href="#farmer-tools">Explore Farmer Tools</a>
+      <a class="btn-label btn-whatsapp" href="#whatsapp">Join WhatsApp Channel</a>
+      <a class="btn-label btn-voice" href="#voice">Ask by Voice</a>
+
+      <div class="txt right-title ai-title">AI Crop Insight</div>
+      <div class="txt right-small ai-small">Wheat · Good Growth</div>
+      <div class="txt right-value ai-value">82/100</div>
+
+      <div class="txt right-title weather-title">Weather Update</div>
+      <div class="txt right-value weather-value">32°C</div>
+      <div class="txt right-small weather-small">Partly Cloudy</div>
+
+      <div class="txt right-title market-title">Market Linkage</div>
+      <div class="txt right-small market-small">Wheat (FAQ)</div>
+      <div class="txt right-value market-value">₹ 2,125</div>
+
+      <div class="txt tool-title t1-title">AI Crop Advisory</div>
+      <div class="txt tool-desc t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
+      <div class="txt tool-link t1-link">Use Now →</div>
+
+      <div class="txt tool-title t2-title">Fertilizer Calculator</div>
+      <div class="txt tool-desc t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
+      <div class="txt tool-link t2-link">Use Now →</div>
+
+      <div class="txt tool-title t3-title">Pest & Disease Detection</div>
+      <div class="txt tool-desc t3-desc">Identify pests and diseases from images and get control solutions.</div>
+      <div class="txt tool-link t3-link">Use Now →</div>
+
+      <div class="txt tool-title t4-title">Weather & Alerts</div>
+      <div class="txt tool-desc t4-desc">Real-time weather updates and alerts to plan farming better.</div>
+      <div class="txt tool-link t4-link">Use Now →</div>
+
+      <div class="txt tool-title t5-title">Mandi Prices</div>
+      <div class="txt tool-desc t5-desc">Check live mandi rates and find the best time to sell.</div>
+      <div class="txt tool-link t5-link">Use Now →</div>
+
+      <div class="txt tool-title t6-title">Schemes & Support</div>
+      <div class="txt tool-desc t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
+      <div class="txt tool-link t6-link">Use Now →</div>
+
+      <div class="txt bottom-title b1-title">AI-Powered Insights</div>
+      <div class="txt bottom-desc b1-desc">Smart recommendations for better yields and lower costs.</div>
+
+      <div class="txt bottom-title b2-title">Trust & Transparency</div>
+      <div class="txt bottom-desc b2-desc">Verified data, traceability and secure transactions.</div>
+
+      <div class="txt bottom-title b3-title">Global Market Linkage</div>
+      <div class="txt bottom-desc b3-desc">Connect to more buyers, better prices, wider markets.</div>
+
+      <div class="txt bottom-title b4-title">Voice & Language Support</div>
+      <div class="txt bottom-desc b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+    </section>
   </div>
-
-  <h1 class="overlay-text hero-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
-  <h2 class="overlay-text hero-subtitle" data-i18n="farmers.hero.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
-  <p class="overlay-text hero-desc" data-i18n="farmers.hero.description">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
-
-  <a class="btn-label btn-explore" href="#farmer-tools" data-i18n="farmers.hero.explore">Explore Farmer Tools</a>
-  <a class="btn-label btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">Join WhatsApp Channel</a>
-  <a class="btn-label btn-voice" href="#voice" data-i18n="farmers.hero.voice">Ask by Voice</a>
-
-  <div class="overlay-text right-title ai-title" data-i18n="farmers.insight.title">AI Crop Insight</div>
-  <div class="overlay-text right-small ai-small" data-i18n="farmers.insight.crop">Wheat · Good Growth</div>
-  <div class="overlay-text right-value ai-value">82/100</div>
-
-  <div class="overlay-text right-title weather-title" data-i18n="farmers.weather.title">Weather Update</div>
-  <div class="overlay-text right-value weather-value">32°C</div>
-  <div class="overlay-text right-small weather-small" data-i18n="farmers.weather.status">Partly Cloudy</div>
-
-  <div class="overlay-text right-title market-title" data-i18n="farmers.market.title">Market Linkage</div>
-  <div class="overlay-text right-small market-small" data-i18n="farmers.market.crop">Wheat (FAQ)</div>
-  <div class="overlay-text right-value market-value">₹ 2,125</div>
-
-  <div class="overlay-text tool-title t1-title" data-i18n="farmers.tools.crop.title">AI Crop Advisory</div>
-  <div class="overlay-text tool-desc t1-desc" data-i18n="farmers.tools.crop.desc">Get AI-powered crop recommendations for higher yield and income.</div>
-  <div class="overlay-text tool-link t1-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text tool-title t2-title" data-i18n="farmers.tools.fertilizer.title">Fertilizer Calculator</div>
-  <div class="overlay-text tool-desc t2-desc" data-i18n="farmers.tools.fertilizer.desc">Calculate the right fertilizer dose for your crop and field size.</div>
-  <div class="overlay-text tool-link t2-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text tool-title t3-title" data-i18n="farmers.tools.pest.title">Pest & Disease Detection</div>
-  <div class="overlay-text tool-desc t3-desc" data-i18n="farmers.tools.pest.desc">Identify pests and diseases from images and get control solutions.</div>
-  <div class="overlay-text tool-link t3-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text tool-title t4-title" data-i18n="farmers.tools.weather.title">Weather & Alerts</div>
-  <div class="overlay-text tool-desc t4-desc" data-i18n="farmers.tools.weather.desc">Real-time weather updates and alerts to plan farming better.</div>
-  <div class="overlay-text tool-link t4-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text tool-title t5-title" data-i18n="farmers.tools.mandi.title">Mandi Prices</div>
-  <div class="overlay-text tool-desc t5-desc" data-i18n="farmers.tools.mandi.desc">Check live mandi rates and find the best time to sell.</div>
-  <div class="overlay-text tool-link t5-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text tool-title t6-title" data-i18n="farmers.tools.scheme.title">Schemes & Support</div>
-  <div class="overlay-text tool-desc t6-desc" data-i18n="farmers.tools.scheme.desc">Explore government schemes, loans, subsidies and insurance options.</div>
-  <div class="overlay-text tool-link t6-link" data-i18n="common.useNow">Use Now →</div>
-
-  <div class="overlay-text bottom-title b1-title" data-i18n="home.features.ai.title">AI-Powered Insights</div>
-  <div class="overlay-text bottom-desc b1-desc" data-i18n="home.features.ai.desc">Smart recommendations for better yields and lower costs.</div>
-
-  <div class="overlay-text bottom-title b2-title" data-i18n="home.features.trust.title">Trust & Transparency</div>
-  <div class="overlay-text bottom-desc b2-desc" data-i18n="home.features.trust.desc">Verified data, traceability and secure transactions.</div>
-
-  <div class="overlay-text bottom-title b3-title" data-i18n="home.features.market.title">Global Market Linkage</div>
-  <div class="overlay-text bottom-desc b3-desc" data-i18n="home.features.market.desc">Connect to more buyers, better prices, wider markets.</div>
-
-  <div class="overlay-text bottom-title b4-title" data-i18n="home.features.voice.title">Voice & Language Support</div>
-  <div class="overlay-text bottom-desc b4-desc" data-i18n="home.features.voice.desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-
-  <button class="hotspot hs-explore" type="button"></button>
-  <button class="hotspot hs-whatsapp" type="button"></button>
-  <button class="hotspot hs-voice" type="button"></button>
-</section>
+</div>
 </body>
 </html>
-
