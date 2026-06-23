@@ -1784,8 +1784,88 @@ document.addEventListener('DOMContentLoaded', function () {
   }, true);
 })();
 </script>
+<script id="farmers-editor-force-position-v3-js">
+(function () {
+  function setImp(el, prop, value) {
+    el.style.setProperty(prop, value, "important");
+  }
+
+  function moveEditorPanel(pos) {
+    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
+    if (!panel) return;
+
+    setImp(panel, "position", "fixed");
+    setImp(panel, "z-index", "2147483647");
+
+    if (pos === "tl") {
+      setImp(panel, "left", "20px");
+      setImp(panel, "right", "auto");
+      setImp(panel, "top", "110px");
+      setImp(panel, "bottom", "auto");
+    }
+
+    if (pos === "tr") {
+      setImp(panel, "left", "auto");
+      setImp(panel, "right", "20px");
+      setImp(panel, "top", "110px");
+      setImp(panel, "bottom", "auto");
+    }
+
+    if (pos === "bl") {
+      setImp(panel, "left", "20px");
+      setImp(panel, "right", "auto");
+      setImp(panel, "top", "auto");
+      setImp(panel, "bottom", "20px");
+    }
+
+    if (pos === "br") {
+      setImp(panel, "left", "auto");
+      setImp(panel, "right", "20px");
+      setImp(panel, "top", "auto");
+      setImp(panel, "bottom", "20px");
+    }
+
+    if (pos === "center") {
+      setImp(panel, "left", "460px");
+      setImp(panel, "right", "auto");
+      setImp(panel, "top", "240px");
+      setImp(panel, "bottom", "auto");
+    }
+  }
+
+  window.moveEditorPanel = moveEditorPanel;
+
+  function addMoveButtons() {
+    const panel = document.getElementById("positionToolbar") || document.querySelector(".position-toolbar");
+    if (!panel) return;
+
+    if (panel.querySelector(".editor-move-row")) return;
+
+    const row = document.createElement("div");
+    row.className = "editor-move-row";
+    row.innerHTML = `
+      <button type="button" onclick="moveEditorPanel('tl')">Top L</button>
+      <button type="button" onclick="moveEditorPanel('tr')">Top R</button>
+      <button type="button" onclick="moveEditorPanel('bl')">Bottom L</button>
+      <button type="button" onclick="moveEditorPanel('br')">Bottom R</button>
+      <button type="button" onclick="moveEditorPanel('center')">Center</button>
+    `;
+
+    panel.prepend(row);
+  }
+
+  window.addEventListener("load", function () {
+    setTimeout(addMoveButtons, 600);
+  });
+
+  document.addEventListener("click", function () {
+    setTimeout(addMoveButtons, 150);
+  }, true);
+})();
+</script>
 </body>
 </html>
+
 
 
 
