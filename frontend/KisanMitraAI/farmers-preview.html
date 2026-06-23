@@ -402,6 +402,39 @@ body.show-reference .ref-check {
 .b4-title { left: 1070px !important; top: 590px !important; width: 250px !important; }
 .b4-desc  { left: 1070px !important; top: 615px !important; width: 250px !important; }
 </style>
+<style id="compare-overlay-fix">
+.ref-check {
+  position: absolute;
+  inset: 0;
+  width: 1366px;
+  height: 640px;
+  object-fit: fill;
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+body.show-reference .ref-check {
+  opacity: .45;
+}
+
+.compare-btn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 99999;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #08751f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+}
+</style>
 </head>
 
 <body>
@@ -482,16 +515,19 @@ body.show-reference .ref-check {
   </section>
 </div>
 
+
 <script id="farmers-reference-toggle">
-  // Press R to compare against the approved reference image.
-  // Press R again to hide it.
-  document.addEventListener("keydown", function(e) {
-    if (e.key.toLowerCase() === "r") {
-      document.body.classList.toggle("show-reference");
-    }
-  });
+function toggleReference() {
+  document.body.classList.toggle("show-reference");
+}
+document.addEventListener("keydown", function(e) {
+  if (e.key && e.key.toLowerCase() === "r") {
+    toggleReference();
+  }
+});
 </script>
 </body>
 </html>
+
 
 
