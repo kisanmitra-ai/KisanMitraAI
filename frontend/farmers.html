@@ -1,1896 +1,528 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KisanMitraAI | Farmers</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#fff;
-  font-family:Arial, Helvetica, sans-serif;
-}
-
-.fm-wrap{
-  width:100vw;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  overflow:hidden;
-  background:#fff;
-}
-
-.fm-stage{
-  width:1366px;
-  height:640px;
-  position:relative;
-  overflow:hidden;
-  transform-origin:top center;
-  transform:scale(min(calc(100vw / 1366), calc(100vh / 640)));
-}
-
-.fm-bg{
-  position:absolute;
-  inset:0;
-  width:1366px;
-  height:640px;
-  object-fit:fill;
-  display:block;
-  pointer-events:none;
-  user-select:none;
-}
-
-.fm-text{
-  position:absolute;
-  z-index:20;
-  text-decoration:none;
-  color:#071122;
-}
-
-.fm-logo{
-  left:34px;
-  top:15px;
-  width:225px;
-  height:60px;
-  z-index:30;
-}
-.fm-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:left center;
-}
-
-/* Header */
-.fm-nav{
-  top:72px;
-  font-size:12px;
-  line-height:1;
-  font-weight:850;
-  color:#111827;
-}
-.fm-nav-home{left:365px}
-.fm-nav-farmers{left:442px;color:#08751f}
-.fm-nav-fpo{left:530px}
-.fm-nav-buyer{left:612px}
-.fm-nav-ai{left:696px}
-.fm-nav-trust{left:793px}
-.fm-nav-contact{left:867px}
-
-.fm-lang{
-  left:1015px;
-  top:49px;
-  font-size:15px;
-  font-weight:850;
-}
-.fm-talk{
-  left:1162px;
-  top:49px;
-  font-size:15px;
-  font-weight:850;
-  color:#1262ff;
-}
-.fm-login{
-  left:1287px;
-  top:49px;
-  font-size:15px;
-  font-weight:850;
-  color:#fff;
-}
-
-/* Hero */
-.fm-breadcrumb{
-  left:46px;
-  top:148px;
-  font-size:14px;
-  font-weight:800;
-  color:#075c1c;
-}
-
-.fm-title{
-  left:46px;
-  top:174px;
-  width:610px;
-  font-size:46px;
-  line-height:.98;
-  font-weight:950;
-  letter-spacing:-1.2px;
-  color:#06651d;
-  white-space:nowrap;
-}
-
-.fm-subtitle{
-  left:46px;
-  top:238px;
-  width:665px;
-  font-size:23px;
-  line-height:1.05;
-  font-weight:950;
-  color:#071122;
-  white-space:nowrap;
-}
-
-.fm-desc{
-  left:46px;
-  top:290px;
-  width:545px;
-  font-size:15px;
-  line-height:1.45;
-  font-weight:650;
-  color:#101820;
-}
-
-/* Hero buttons */
-.fm-btn-text{
-  position:absolute;
-  z-index:40;
-  top:397px;
-  height:42px;
-  display:flex;
-  align-items:center;
-  font-size:15px;
-  line-height:1;
-  font-weight:950;
-  text-decoration:none;
-  white-space:nowrap;
-}
-.fm-btn-explore{
-  left:92px;
-  width:180px;
-  color:#fff;
-}
-.fm-btn-whatsapp{
-  left:337px;
-  width:210px;
-  color:#08751f;
-}
-
-/* Right insight cards */
-.fm-r-title{
-  font-size:14px;
-  line-height:1.1;
-  font-weight:950;
-  color:#111827;
-}
-.fm-r-small{
-  font-size:11px;
-  line-height:1.2;
-  font-weight:700;
-  color:#111827;
-}
-.fm-r-value{
-  font-size:21px;
-  line-height:1;
-  font-weight:950;
-  color:#071122;
-}
-
-.fm-ai-title{left:1135px;top:141px}
-.fm-ai-small{left:1135px;top:166px}
-.fm-ai-health{left:1135px;top:189px}
-.fm-ai-value{left:1135px;top:207px}
-
-.fm-weather-title{left:1135px;top:258px}
-.fm-weather-value{left:1135px;top:283px}
-.fm-weather-small{left:1135px;top:312px}
-.fm-humidity{left:1112px;top:343px;font-size:10px}
-.fm-rain{left:1207px;top:343px;font-size:10px}
-.fm-wind{left:1283px;top:343px;font-size:10px}
-
-.fm-market-title{left:1135px;top:377px}
-.fm-market-small{left:1135px;top:401px}
-.fm-market-value{left:1135px;top:426px}
-.fm-market-mandi{left:1135px;top:459px}
-
-/* Tool cards */
-.fm-tool-title{
-  font-size:12px;
-  line-height:1.08;
-  font-weight:950;
-  color:#111827;
-}
-.fm-tool-desc{
-  font-size:10px;
-  line-height:1.22;
-  font-weight:650;
-  color:#111827;
-}
-.fm-tool-link{
-  font-size:11px;
-  line-height:1;
-  font-weight:950;
-  color:#08751f;
-}
-
-.fm-t1-title{left:108px;top:484px;width:130px}
-.fm-t1-desc{left:108px;top:506px;width:130px}
-.fm-t1-link{left:54px;top:574px}
-
-.fm-t2-title{left:344px;top:484px;width:130px}
-.fm-t2-desc{left:344px;top:506px;width:130px}
-.fm-t2-link{left:295px;top:574px}
-
-.fm-t3-title{left:565px;top:479px;width:135px}
-.fm-t3-desc{left:565px;top:508px;width:135px}
-.fm-t3-link{left:525px;top:574px}
-
-.fm-t4-title{left:790px;top:484px;width:140px}
-.fm-t4-desc{left:790px;top:506px;width:140px}
-.fm-t4-link{left:740px;top:574px}
-
-.fm-t5-title{left:1010px;top:484px;width:130px}
-.fm-t5-desc{left:1010px;top:506px;width:130px}
-.fm-t5-link{left:970px;top:574px}
-
-.fm-t6-title{left:1195px;top:484px;width:145px}
-.fm-t6-desc{left:1195px;top:506px;width:145px}
-.fm-t6-link{left:1165px;top:574px}
-
-/* Bottom strip */
-.fm-bottom-title{
-  font-size:15px;
-  line-height:1.08;
-  font-weight:950;
-  color:#111827;
-}
-.fm-bottom-desc{
-  font-size:11px;
-  line-height:1.25;
-  font-weight:650;
-  color:#111827;
-}
-
-.fm-b1-title{left:135px;top:594px;width:220px}
-.fm-b1-desc{left:135px;top:616px;width:220px}
-
-.fm-b2-title{left:455px;top:594px;width:220px}
-.fm-b2-desc{left:455px;top:616px;width:220px}
-
-.fm-b3-title{left:745px;top:594px;width:240px}
-.fm-b3-desc{left:745px;top:616px;width:240px}
-
-.fm-b4-title{left:1070px;top:594px;width:250px}
-.fm-b4-desc{left:1070px;top:616px;width:250px}
-
-/* Click areas */
-.fm-hotspot{
-  position:absolute;
-  z-index:80;
-  border:0;
-  background:transparent;
-  cursor:pointer;
-}
-.fm-click-home{left:350px;top:35px;width:60px;height:65px}
-.fm-click-farmers{left:430px;top:35px;width:80px;height:65px}
-.fm-click-explore{left:40px;top:390px;width:215px;height:55px}
-.fm-click-whatsapp{left:290px;top:390px;width:245px;height:55px}
-</style>
-<style id="farmers-final-position-patch-v2">
-/* Final Farmers coordinate correction */
-
-/* Hero */
-.fm-title{
-  top:170px !important;
-  font-size:45px !important;
-}
-.fm-subtitle{
-  top:232px !important;
-  font-size:23px !important;
-}
-.fm-desc{
-  top:282px !important;
-  width:540px !important;
-  font-size:14px !important;
-  line-height:1.45 !important;
-}
-
-/* Buttons */
-.fm-btn-text{
-  top:394px !important;
-  font-size:14px !important;
-}
-.fm-btn-explore{
-  left:88px !important;
-}
-.fm-btn-whatsapp{
-  left:337px !important;
-}
-
-/* Right Cards */
-.fm-ai-title{top:137px !important;}
-.fm-ai-small{top:160px !important;}
-.fm-ai-health{top:182px !important;}
-.fm-ai-value{top:202px !important;}
-
-.fm-weather-title{top:252px !important;}
-.fm-weather-value{top:278px !important;}
-.fm-weather-small{top:307px !important;}
-.fm-humidity{top:342px !important;}
-.fm-rain{top:342px !important;}
-.fm-wind{top:342px !important;}
-
-.fm-market-title{top:372px !important;}
-.fm-market-small{top:396px !important;}
-.fm-market-value{top:420px !important;}
-.fm-market-mandi{top:455px !important;}
-
-/* Tool cards */
-.fm-tool-title{
-  font-size:11px !important;
-  line-height:1.08 !important;
-}
-.fm-tool-desc{
-  font-size:8.8px !important;
-  line-height:1.18 !important;
-}
-.fm-tool-link{
-  font-size:10px !important;
-}
-
-.fm-t1-title{top:480px !important;}
-.fm-t1-desc{top:501px !important;}
-.fm-t1-link{top:570px !important;}
-
-.fm-t2-title{top:480px !important;}
-.fm-t2-desc{top:501px !important;}
-.fm-t2-link{top:570px !important;}
-
-.fm-t3-title{top:476px !important;}
-.fm-t3-desc{top:503px !important;}
-.fm-t3-link{top:570px !important;}
-
-.fm-t4-title{top:480px !important;}
-.fm-t4-desc{top:501px !important;}
-.fm-t4-link{top:570px !important;}
-
-.fm-t5-title{top:480px !important;}
-.fm-t5-desc{top:501px !important;}
-.fm-t5-link{top:570px !important;}
-
-.fm-t6-title{top:480px !important;}
-.fm-t6-desc{top:501px !important;}
-.fm-t6-link{top:570px !important;}
-
-/* Bottom strip */
-.fm-bottom-title{
-  font-size:14px !important;
-}
-.fm-bottom-desc{
-  font-size:10px !important;
-  line-height:1.18 !important;
-}
-
-.fm-b1-title{top:588px !important;}
-.fm-b1-desc{top:609px !important;}
-
-.fm-b2-title{top:588px !important;}
-.fm-b2-desc{top:609px !important;}
-
-.fm-b3-title{top:588px !important;}
-.fm-b3-desc{top:609px !important;}
-
-.fm-b4-title{top:588px !important;}
-.fm-b4-desc{top:609px !important;}
-</style>
-<style id="farmers-final-polish-v3">
-/* Farmers final polish v3 */
-
-/* Hero text */
-.fm-title{
-  top:166px !important;
-  left:46px !important;
-  font-size:44px !important;
-}
-
-.fm-subtitle{
-  top:225px !important;
-  left:46px !important;
-  font-size:22px !important;
-}
-
-.fm-desc{
-  top:274px !important;
-  left:46px !important;
-  width:545px !important;
-  font-size:13.5px !important;
-  line-height:1.42 !important;
-}
-
-/* Button labels must sit inside the two buttons */
-.fm-btn-text{
-  top:391px !important;
-  height:42px !important;
-  align-items:center !important;
-  font-size:14px !important;
-  line-height:1 !important;
-  z-index:90 !important;
-}
-
-.fm-btn-explore{
-  left:91px !important;
-  width:175px !important;
-  color:#ffffff !important;
-}
-
-.fm-btn-whatsapp{
-  left:335px !important;
-  width:230px !important;
-  color:#08751f !important;
-}
-
-/* Right cards */
-.fm-ai-title{top:134px !important;}
-.fm-ai-small{top:157px !important;}
-.fm-ai-health{top:179px !important;}
-.fm-ai-value{top:197px !important;}
-
-.fm-weather-title{top:250px !important;}
-.fm-weather-value{top:275px !important;}
-.fm-weather-small{top:304px !important;}
-.fm-humidity{top:336px !important;}
-.fm-rain{top:336px !important;}
-.fm-wind{top:336px !important;}
-
-.fm-market-title{top:369px !important;}
-.fm-market-small{top:393px !important;}
-.fm-market-value{top:417px !important;}
-.fm-market-mandi{top:450px !important;}
-
-/* Tool cards */
-.fm-tool-title{
-  font-size:10.5px !important;
-  line-height:1.08 !important;
-}
-
-.fm-tool-desc{
-  font-size:8.2px !important;
-  line-height:1.16 !important;
-}
-
-.fm-tool-link{
-  font-size:9.5px !important;
-}
-
-.fm-t1-title,.fm-t2-title,.fm-t4-title,.fm-t5-title,.fm-t6-title{
-  top:479px !important;
-}
-
-.fm-t3-title{
-  top:474px !important;
-}
-
-.fm-t1-desc,.fm-t2-desc,.fm-t4-desc,.fm-t5-desc,.fm-t6-desc{
-  top:499px !important;
-}
-
-.fm-t3-desc{
-  top:502px !important;
-}
-
-.fm-t1-link,.fm-t2-link,.fm-t3-link,.fm-t4-link,.fm-t5-link,.fm-t6-link{
-  top:564px !important;
-}
-
-/* Bottom strip lift up */
-.fm-bottom-title{
-  font-size:13.5px !important;
-  line-height:1.05 !important;
-}
-
-.fm-bottom-desc{
-  font-size:9.5px !important;
-  line-height:1.15 !important;
-}
-
-.fm-b1-title,.fm-b2-title,.fm-b3-title,.fm-b4-title{
-  top:584px !important;
-}
-
-.fm-b1-desc,.fm-b2-desc,.fm-b3-desc,.fm-b4-desc{
-  top:604px !important;
-}
-</style>
-<style id="farmers-button-final-fix-v4">
-/* Farmers button and hero cleanup v4 */
-
-/* Give paragraph more breathing room */
-.fm-desc{
-  top:272px !important;
-  width:540px !important;
-  font-size:13px !important;
-  line-height:1.38 !important;
-}
-
-/* Put button text exactly inside buttons */
-.fm-btn-text{
-  top:384px !important;
-  height:42px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  font-size:14px !important;
-  line-height:1 !important;
-  font-weight:950 !important;
-  z-index:999 !important;
-  pointer-events:auto !important;
-}
-
-.fm-btn-explore{
-  left:88px !important;
-  width:170px !important;
-  color:#ffffff !important;
-}
-
-.fm-btn-whatsapp{
-  left:330px !important;
-  width:235px !important;
-  color:#08751f !important;
-}
-
-/* Make sure invisible click layers do not cover button text visually */
-.fm-hotspot{
-  background:transparent !important;
-  opacity:0 !important;
-}
-
-/* Tool row slightly cleaner */
-.fm-tool-title{
-  font-size:10px !important;
-}
-
-.fm-tool-desc{
-  font-size:7.8px !important;
-  line-height:1.14 !important;
-}
-
-.fm-tool-link{
-  font-size:9px !important;
-}
-
-.fm-t1-link,.fm-t2-link,.fm-t3-link,.fm-t4-link,.fm-t5-link,.fm-t6-link{
-  top:558px !important;
-}
-
-/* Bottom strip lift and reduce */
-.fm-bottom-title{
-  top:582px !important;
-  font-size:13px !important;
-}
-
-.fm-bottom-desc{
-  top:601px !important;
-  font-size:9px !important;
-  line-height:1.12 !important;
-}
-</style>
-<style id="farmers-button-lift-v5">
-/* Lift Farmers hero button labels into actual button area */
-
-.fm-btn-text{
-  top:350px !important;
-  height:42px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  font-size:14px !important;
-  font-weight:950 !important;
-  line-height:1 !important;
-  z-index:9999 !important;
-}
-
-.fm-btn-explore{
-  left:91px !important;
-  width:180px !important;
-  color:#ffffff !important;
-}
-
-.fm-btn-whatsapp{
-  left:333px !important;
-  width:235px !important;
-  color:#08751f !important;
-}
-
-/* Keep click areas behind visual text */
-.fm-hotspot{
-  z-index:80 !important;
-}
-</style>
-<style id="farmers-topbar-fix-v1">
-/* FARMERS TOP BAR ONLY FIX */
-
-/* Cover baked/second logo layer from clean background */
-.fm-logo{
-  left:31px !important;
-  top:15px !important;
-  width:235px !important;
-  height:62px !important;
-  z-index:500 !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:flex-start !important;
-  background:#ffffff !important;
-  border-radius:10px !important;
-  overflow:visible !important;
-}
-
-.fm-logo::before{
-  content:"" !important;
-  position:absolute !important;
-  left:-6px !important;
-  top:-4px !important;
-  width:250px !important;
-  height:70px !important;
-  background:#ffffff !important;
-  border-radius:12px !important;
-  z-index:0 !important;
-}
-
-.fm-logo img{
-  position:relative !important;
-  z-index:2 !important;
-  width:230px !important;
-  height:auto !important;
-  object-fit:contain !important;
-  object-position:left center !important;
-  display:block !important;
-}
-
-/* Top menu label alignment only */
-.fm-nav{
-  top:72px !important;
-  font-size:12px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  color:#111827 !important;
-  z-index:500 !important;
-}
-
-/* Pixel-align labels under baked icons */
-.fm-nav-home{left:365px !important;}
-.fm-nav-farmers{left:441px !important;color:#08751f !important;}
-.fm-nav-fpo{left:531px !important;}
-.fm-nav-buyer{left:614px !important;}
-.fm-nav-ai{left:696px !important;}
-.fm-nav-trust{left:796px !important;}
-.fm-nav-contact{left:866px !important;}
-
-/* Right top controls text */
-.fm-lang{
-  left:1018px !important;
-  top:49px !important;
-  font-size:15px !important;
-  font-weight:850 !important;
-  z-index:500 !important;
-}
-
-.fm-talk{
-  left:1163px !important;
-  top:49px !important;
-  font-size:15px !important;
-  font-weight:850 !important;
-  color:#1262ff !important;
-  z-index:500 !important;
-}
-
-.fm-login{
-  left:1287px !important;
-  top:49px !important;
-  font-size:15px !important;
-  font-weight:850 !important;
-  color:#ffffff !important;
-  z-index:500 !important;
-}
-
-/* Keep click areas active but behind visible text */
-.fm-hotspot{
-  z-index:400 !important;
-  background:transparent !important;
-  opacity:0 !important;
-}
-</style>
-<style id="farmers-menu-center-fix-v2">
-/* FARMERS TOP MENU CENTER ALIGN FIX ONLY */
-
-.fm-nav{
-  top:72px !important;
-  width:70px !important;
-  text-align:center !important;
-  font-size:12px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  color:#111827 !important;
-  z-index:600 !important;
-}
-
-/* each label box is centered under its icon */
-.fm-nav-home{
-  left:356px !important;
-}
-
-.fm-nav-farmers{
-  left:430px !important;
-  color:#08751f !important;
-}
-
-.fm-nav-fpo{
-  left:514px !important;
-}
-
-.fm-nav-buyer{
-  left:594px !important;
-}
-
-.fm-nav-ai{
-  left:674px !important;
-  width:95px !important;
-}
-
-.fm-nav-trust{
-  left:773px !important;
-}
-
-.fm-nav-contact{
-  left:842px !important;
-  width:85px !important;
-}
-
-/* keep logo unchanged from previous fix */
-.fm-logo{
-  left:31px !important;
-  top:15px !important;
-  width:235px !important;
-  height:62px !important;
-  z-index:500 !important;
-  background:#ffffff !important;
-  border-radius:10px !important;
-}
-
-.fm-logo img{
-  width:230px !important;
-  height:auto !important;
-  object-fit:contain !important;
-  object-position:left center !important;
-}
-</style>
-
-
-
-
-
-
-
-<style id="farmers-hotfix-v2">
-/* Hero buttons text centering */
-.fm-btn-explore,
-.fm-btn-buyers,
-.fm-btn-whatsapp{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  white-space:nowrap !important;
-}
-
-.fm-btn-explore span,
-.fm-btn-buyers span,
-.fm-btn-whatsapp span{
-  display:inline-block !important;
-  line-height:1.1 !important;
-}
-
-/* Tool card text cleanup */
-.fm-tool-title{line-height:1.05 !important;}
-.fm-tool-desc{line-height:1.18 !important;}
-.fm-tool-link{line-height:1 !important;}
-
-/* Bottom strip text cleanup */
-.fm-bottom-title{line-height:1.05 !important;}
-.fm-bottom-desc{line-height:1.15 !important;}
-
-/* Right panel cleanup */
-.fm-r-title,
-.fm-r-value,
-.fm-r-small{
-  line-height:1.1 !important;
-}
-</style>
-<style id="farmers-production-polish-v1">
-/* FARMERS PAGE PRODUCTION POLISH */
-
-/* Hide manual editor button for production */
-.position-toggle-btn,
-.position-toolbar,
-.nudge-controls {
-  display: none !important;
-}
-
-/* Hero paragraph refinement */
-.fm-desc {
-  width: 560px !important;
-  font-size: 13.2px !important;
-  line-height: 1.45 !important;
-  font-weight: 700 !important;
-}
-
-/* Hero CTA button text */
-.fm-btn-text {
-  height: 42px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-  font-size: 15px !important;
-  font-weight: 950 !important;
-  line-height: 1 !important;
-  white-space: nowrap !important;
-  z-index: 90 !important;
-}
-
-.fm-btn-explore {
-  left: 38px !important;
-  top: 336px !important;
-  width: 176px !important;
-  color: #ffffff !important;
-}
-
-.fm-btn-buyers {
-  left: 237px !important;
-  top: 336px !important;
-  width: 155px !important;
-  color: #075c1c !important;
-}
-
-.fm-btn-whatsapp {
-  left: 416px !important;
-  top: 337px !important;
-  width: 155px !important;
-  color: #075c1c !important;
-}
-
-/* Right cards refinement */
-.fm-r-title {
-  font-size: 15px !important;
-  font-weight: 950 !important;
-  line-height: 1.05 !important;
-}
-
-.fm-r-value {
-  font-size: 21px !important;
-  font-weight: 950 !important;
-  line-height: 1 !important;
-}
-
-.fm-r-small {
-  font-size: 10.5px !important;
-  font-weight: 750 !important;
-  line-height: 1.15 !important;
-}
-
-.fm-ai-title { top: 108px !important; }
-.fm-ai-small { top: 131px !important; }
-.fm-ai-health { top: 153px !important; }
-.fm-ai-value { top: 171px !important; }
-
-.fm-weather-title { top: 216px !important; }
-.fm-weather-value { top: 241px !important; }
-.fm-weather-small { top: 270px !important; }
-
-.fm-market-title { top: 347px !important; }
-.fm-market-small { top: 370px !important; }
-.fm-market-value {
-  top: 393px !important;
-  font-size: 21px !important;
-}
-.fm-market-mandi {
-  top: 426px !important;
-  font-size: 10px !important;
-}
-
-/* Tool cards polish */
-.fm-tool-title {
-  font-size: 10.5px !important;
-  line-height: 1.08 !important;
-  font-weight: 950 !important;
-}
-
-.fm-tool-desc {
-  font-size: 7.7px !important;
-  line-height: 1.18 !important;
-  font-weight: 700 !important;
-}
-
-.fm-tool-link {
-  font-size: 9.5px !important;
-  font-weight: 950 !important;
-}
-
-/* Keep second row cards aligned */
-.fm-t3-title,
-.fm-t4-title,
-.fm-t5-title,
-.fm-t6-title {
-  top: 446px !important;
-}
-
-.fm-t3-desc,
-.fm-t4-desc,
-.fm-t5-desc,
-.fm-t6-desc {
-  top: 466px !important;
-}
-
-.fm-t3-link,
-.fm-t4-link,
-.fm-t5-link,
-.fm-t6-link {
-  top: 493px !important;
-}
-
-/* Bottom strip polish */
-.fm-bottom-title {
-  font-size: 13.2px !important;
-  line-height: 1.05 !important;
-  font-weight: 950 !important;
-}
-
-.fm-bottom-desc {
-  font-size: 8.9px !important;
-  line-height: 1.15 !important;
-  font-weight: 700 !important;
-}
-
-.fm-b1-title { top: 559px !important; }
-.fm-b1-desc { top: 578px !important; }
-
-.fm-b2-title { top: 559px !important; }
-.fm-b2-desc { top: 578px !important; }
-
-.fm-b3-title { top: 559px !important; }
-.fm-b3-desc { top: 578px !important; }
-
-.fm-b4-title { top: 559px !important; }
-.fm-b4-desc { top: 578px !important; }
-</style>
-<style id="farmers-top-right-controls-perfect-v1">
-/* FARMERS TOP RIGHT CONTROLS PERFECT ALIGNMENT */
-
-/* Language pill text */
-.fm-lang{
-  left:1024px !important;
-  top:38px !important;
-  width:78px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:15px !important;
-  line-height:1 !important;
-  font-weight:850 !important;
-  color:#071122 !important;
-  transform:none !important;
-  z-index:650 !important;
-  white-space:nowrap !important;
-  pointer-events:none !important;
-}
-
-/* AI pill text */
-.fm-talk{
-  left:1180px !important;
-  top:38px !important;
-  width:82px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:15px !important;
-  line-height:1 !important;
-  font-weight:900 !important;
-  color:#1262ff !important;
-  transform:none !important;
-  z-index:650 !important;
-  white-space:nowrap !important;
-  pointer-events:none !important;
-}
-
-/* Login pill text */
-.fm-login{
-  left:1284px !important;
-  top:38px !important;
-  width:58px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:15px !important;
-  line-height:1 !important;
-  font-weight:900 !important;
-  color:#ffffff !important;
-  transform:none !important;
-  z-index:650 !important;
-  white-space:nowrap !important;
-  pointer-events:none !important;
-}
-
-/* Make click zones match top-right controls */
-.hs-lang,
-.fm-click-lang{
-  left:985px !important;
-  top:27px !important;
-  width:122px !important;
-  height:50px !important;
-}
-
-.hs-talk,
-.fm-click-talk{
-  left:1128px !important;
-  top:27px !important;
-  width:128px !important;
-  height:50px !important;
-}
-
-.hs-login,
-.fm-click-login{
-  left:1262px !important;
-  top:27px !important;
-  width:86px !important;
-  height:50px !important;
-}
-</style>
-
-
-
-
-<style id="farmers-final-freeze-v2">
-/* FINAL FARMERS MANUAL POSITIONS — FREEZE V2 */
-.fm-logo{left:31.0px !important;top:15.0px !important;transform:none !important;}
-.fm-nav.fm-nav-home{left:356.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-farmers{left:430.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-fpo{left:500.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-buyer{left:580.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-ai{left:646.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-trust{left:730.0px !important;top:72.0px !important;transform:none !important;}
-.fm-nav.fm-nav-contact{left:799.0px !important;top:72.0px !important;transform:none !important;}
-
-.fm-lang{left:1024.0px !important;top:38.0px !important;transform:none !important;}
-.fm-talk{left:1180.0px !important;top:38.0px !important;transform:none !important;}
-.fm-login{left:1284.0px !important;top:38.0px !important;transform:none !important;}
-
-.fm-breadcrumb{left:46.0px !important;top:148.0px !important;transform:none !important;}
-.fm-title{left:46.0px !important;top:166.0px !important;transform:none !important;}
-.fm-subtitle{left:46.0px !important;top:225.0px !important;transform:none !important;}
-.fm-desc{left:46.0px !important;top:272.0px !important;transform:none !important;}
-
-.fm-btn-explore{left:38.0px !important;top:336.0px !important;transform:none !important;}
-.fm-btn-buyers{left:237px !important;top:336px !important;transform:none !important;}
-.fm-btn-whatsapp{left:416.0px !important;top:337.0px !important;transform:none !important;}
-
-.fm-r-title.fm-ai-title{left:1135.0px !important;top:109.0px !important;transform:none !important;}
-.fm-r-small.fm-ai-small{left:1135.0px !important;top:132.0px !important;transform:none !important;}
-.fm-r-small.fm-ai-health{left:1135.0px !important;top:154.0px !important;transform:none !important;}
-.fm-r-value.fm-ai-value{left:1135.0px !important;top:172.0px !important;transform:none !important;}
-
-.fm-r-title.fm-weather-title{left:1135.0px !important;top:217.0px !important;transform:none !important;}
-.fm-r-value.fm-weather-value{left:1135.0px !important;top:242.0px !important;transform:none !important;}
-.fm-r-small.fm-weather-small{left:1135.0px !important;top:271.0px !important;transform:none !important;}
-.fm-r-small.fm-humidity{left:1126.0px !important;top:317.0px !important;transform:none !important;}
-.fm-r-small.fm-rain{left:1186.0px !important;top:317.0px !important;transform:none !important;}
-.fm-r-small.fm-wind{left:1267.0px !important;top:317.0px !important;transform:none !important;}
-
-.fm-r-title.fm-market-title{left:1126.0px !important;top:350.0px !important;transform:none !important;}
-.fm-r-small.fm-market-small{left:1126.0px !important;top:374.0px !important;transform:none !important;}
-.fm-r-value.fm-market-value{left:1135.0px !important;top:390.0px !important;transform:none !important;}
-.fm-r-small.fm-market-mandi{left:1135.0px !important;top:423.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t1-title{left:108.0px !important;top:448.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t1-desc{left:108.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t1-link{left:124.0px !important;top:606.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t2-title{left:344.0px !important;top:448.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t2-desc{left:344.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t2-link{left:478.0px !important;top:597.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t3-title{left:560.0px !important;top:443.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t3-desc{left:560.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t3-link{left:561.0px !important;top:497.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t4-title{left:775.0px !important;top:448.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t4-desc{left:775.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t4-link{left:770.0px !important;top:497.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t5-title{left:997.0px !important;top:448.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t5-desc{left:997.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t5-link{left:1000.0px !important;top:497.0px !important;transform:none !important;}
-
-.fm-tool-title.fm-t6-title{left:1195.0px !important;top:448.0px !important;transform:none !important;}
-.fm-tool-desc.fm-t6-desc{left:1195.0px !important;top:468.0px !important;transform:none !important;}
-.fm-tool-link.fm-t6-link{left:1195.0px !important;top:497.0px !important;transform:none !important;}
-
-.fm-bottom-title.fm-b1-title{left:125.0px !important;top:559.0px !important;transform:none !important;}
-.fm-bottom-desc.fm-b1-desc{left:125.0px !important;top:578.0px !important;transform:none !important;}
-
-.fm-bottom-title.fm-b2-title{left:478.0px !important;top:559.0px !important;transform:none !important;}
-.fm-bottom-desc.fm-b2-desc{left:478.0px !important;top:578.0px !important;transform:none !important;}
-
-.fm-bottom-title.fm-b3-title{left:795.0px !important;top:559.0px !important;transform:none !important;}
-.fm-bottom-desc.fm-b3-desc{left:795.0px !important;top:578.0px !important;transform:none !important;}
-
-.fm-bottom-title.fm-b4-title{left:1109.0px !important;top:559.0px !important;transform:none !important;}
-.fm-bottom-desc.fm-b4-desc{left:1109.0px !important;top:578.0px !important;transform:none !important;}
-
-/* Production: hide editor controls */
-.position-toggle-btn,
-.position-toolbar,
-.nudge-controls,
-.editor-move-row,
-.editor-drag-handle{
-  display:none !important;
-}
-</style>
-
-<style id="farmers-v4-top-final-polish">
-/* FINAL TOP RIGHT + DASHBOARD BUTTON POLISH */
-
-/* Language text */
-.fm-lang{
-  left:1048px !important;
-  top:38px !important;
-  width:68px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:80 !important;
-}
-
-/* AI text - shifted right away from blue mic */
-.fm-talk{
-  left:1210px !important;
-  top:38px !important;
-  width:70px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:80 !important;
-}
-
-/* Login text centered better */
-.fm-login{
-  left:1299px !important;
-  top:38px !important;
-  width:52px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:80 !important;
-}
-
-/* Enter Dashboard final centering */
-.fm-btn-explore{
-  left:70px !important;
-  top:364px !important;
-  width:210px !important;
-  height:48px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  color:#ffffff !important;
-  font-size:17px !important;
-  font-weight:950 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:80 !important;
-}
-
-.fm-btn-buyers,
-.fm-btn-whatsapp{
-  display:none !important;
-}
-</style>
-<style id="farmers-v4-top-final-polish-v2">
-/* FINAL TOP RIGHT CONTROL POLISH V2 */
-
-/* English text */
-.fm-lang{
-  left:1048px !important;
-  top:38px !important;
-  width:70px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:90 !important;
-}
-
-/* AI text: shifted right away from mic */
-.fm-talk{
-  left:1222px !important;
-  top:38px !important;
-  width:64px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:90 !important;
-}
-
-/* Login text: centered inside wider green pill */
-.fm-login{
-  left:1305px !important;
-  top:38px !important;
-  width:48px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:15px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  transform:none !important;
-  z-index:90 !important;
-}
-
-/* Enter Dashboard remains centered */
-.fm-btn-explore{
-  left:70px !important;
-  top:364px !important;
-  width:210px !important;
-  height:48px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  color:#ffffff !important;
-  font-size:17px !important;
-  font-weight:950 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:90 !important;
-}
-
-.fm-btn-buyers,
-.fm-btn-whatsapp{
-  display:none !important;
-}
-</style>
-<style id="farmers-talk-ai-final-fix-v1">
-/* FINAL AI TEXT FIX */
-
-/* Language text */
-.fm-lang{
-  left:1046px !important;
-  top:38px !important;
-  width:74px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:14.5px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:120 !important;
-  pointer-events:none !important;
-}
-
-/* AI text: safe position between blue icon and login */
-.fm-talk{
-  left:1210px !important;
-  top:38px !important;
-  width:74px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:13.5px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:120 !important;
-  pointer-events:none !important;
-}
-
-/* Login text: keep away from AI */
-.fm-login{
-  left:1310px !important;
-  top:38px !important;
-  width:42px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:14px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:120 !important;
-  pointer-events:none !important;
-}
-</style>
-<style id="farmers-talk-ai-overlap-final-v2">
-/* FINAL FIX: AI TEXT FIT BETWEEN MIC AND LOGIN */
-
-.fm-talk{
-  left:1216px !important;
-  top:38px !important;
-  width:62px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  font-size:12.2px !important;
-  font-weight:900 !important;
-  letter-spacing:-0.6px !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:scaleX(.86) !important;
-  transform-origin:left center !important;
-  z-index:200 !important;
-  pointer-events:none !important;
-}
-
-.fm-login{
-  left:1312px !important;
-  top:38px !important;
-  width:38px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:13.2px !important;
-  font-weight:900 !important;
-  letter-spacing:-0.3px !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:200 !important;
-  pointer-events:none !important;
-}
-
-.fm-lang{
-  left:1048px !important;
-  top:38px !important;
-  width:70px !important;
-  height:34px !important;
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  font-size:14.5px !important;
-  font-weight:900 !important;
-  white-space:nowrap !important;
-  line-height:1 !important;
-  transform:none !important;
-  z-index:200 !important;
-  pointer-events:none !important;
-}
-</style>
-
-
-<style id="farmers-all-card-text-final-v2">
-/* FORCE FARMERS CARD TEXT VISIBLE */
-
-/* Remove any hidden effect */
-.fm-r-title,
-.fm-r-value,
-.fm-r-small,
-.fm-tool-title,
-.fm-tool-desc,
-.fm-tool-link,
-.fm-bottom-title,
-.fm-bottom-desc {
-  display:block !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  position:absolute !important;
-  z-index:999 !important;
-  transform:none !important;
-}
-
-/* RIGHT CARDS */
-.fm-r-title{
-  font-size:14px !important;
-  font-weight:950 !important;
-  color:#071122 !important;
-  line-height:1.05 !important;
-  white-space:nowrap !important;
-}
-
-.fm-r-value{
-  font-size:20px !important;
-  font-weight:950 !important;
-  color:#071122 !important;
-  line-height:1 !important;
-  white-space:nowrap !important;
-}
-
-.fm-r-small{
-  font-size:10px !important;
-  font-weight:750 !important;
-  color:#071122 !important;
-  line-height:1.1 !important;
-  white-space:nowrap !important;
-}
-
-.fm-ai-title{left:1135px !important;top:109px !important;}
-.fm-ai-small{left:1135px !important;top:132px !important;}
-.fm-ai-health{left:1135px !important;top:154px !important;}
-.fm-ai-value{left:1135px !important;top:172px !important;}
-
-.fm-weather-title{left:1135px !important;top:217px !important;}
-.fm-weather-value{left:1135px !important;top:242px !important;}
-.fm-weather-small{left:1135px !important;top:271px !important;}
-.fm-humidity{left:1126px !important;top:317px !important;}
-.fm-rain{left:1186px !important;top:317px !important;}
-.fm-wind{left:1267px !important;top:317px !important;}
-
-.fm-market-title{left:1126px !important;top:350px !important;}
-.fm-market-small{left:1126px !important;top:374px !important;}
-.fm-market-value{left:1135px !important;top:390px !important;font-size:19px !important;}
-.fm-market-mandi{left:1135px !important;top:423px !important;}
-
-/* TOOL CARDS */
-.fm-tool-title{
-  font-size:11px !important;
-  font-weight:950 !important;
-  color:#071122 !important;
-  line-height:1.08 !important;
-}
-
-.fm-tool-desc{
-  font-size:8px !important;
-  font-weight:700 !important;
-  color:#071122 !important;
-  line-height:1.18 !important;
-}
-
-.fm-tool-link{
-  font-size:10px !important;
-  font-weight:950 !important;
-  color:#08751f !important;
-  line-height:1 !important;
-}
-
-.fm-t1-title{left:108px !important;top:448px !important;}
-.fm-t1-desc{left:108px !important;top:468px !important;width:130px !important;}
-.fm-t1-link{left:54px !important;top:558px !important;}
-
-.fm-t2-title{left:344px !important;top:448px !important;}
-.fm-t2-desc{left:344px !important;top:468px !important;width:125px !important;}
-.fm-t2-link{left:295px !important;top:558px !important;}
-
-.fm-t3-title{left:560px !important;top:448px !important;}
-.fm-t3-desc{left:560px !important;top:468px !important;width:135px !important;}
-.fm-t3-link{left:561px !important;top:497px !important;}
-
-.fm-t4-title{left:775px !important;top:448px !important;}
-.fm-t4-desc{left:775px !important;top:468px !important;width:135px !important;}
-.fm-t4-link{left:770px !important;top:497px !important;}
-
-.fm-t5-title{left:997px !important;top:448px !important;}
-.fm-t5-desc{left:997px !important;top:468px !important;width:130px !important;}
-.fm-t5-link{left:1000px !important;top:497px !important;}
-
-.fm-t6-title{left:1195px !important;top:448px !important;}
-.fm-t6-desc{left:1195px !important;top:468px !important;width:130px !important;}
-.fm-t6-link{left:1195px !important;top:497px !important;}
-
-/* BOTTOM FEATURE STRIP */
-.fm-bottom-title{
-  font-size:14px !important;
-  font-weight:950 !important;
-  color:#071122 !important;
-  line-height:1.05 !important;
-  white-space:nowrap !important;
-}
-
-.fm-bottom-desc{
-  font-size:9px !important;
-  font-weight:700 !important;
-  color:#071122 !important;
-  line-height:1.18 !important;
-}
-
-.fm-b1-title{left:125px !important;top:559px !important;}
-.fm-b1-desc{left:125px !important;top:578px !important;width:180px !important;}
-
-.fm-b2-title{left:478px !important;top:559px !important;}
-.fm-b2-desc{left:478px !important;top:578px !important;width:190px !important;}
-
-.fm-b3-title{left:795px !important;top:559px !important;}
-.fm-b3-desc{left:795px !important;top:578px !important;width:190px !important;}
-
-.fm-b4-title{left:1109px !important;top:559px !important;}
-.fm-b4-desc{left:1109px !important;top:578px !important;width:190px !important;}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KisanMitraAI Farmers</title>
+
+  <style>
+    :root{
+      --km-green:#08751f;
+      --km-dark:#071122;
+      --km-blue:#1262ff;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html,body{
+      margin:0;
+      padding:0;
+      width:100%;
+      min-height:100%;
+      background:#ffffff;
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .fm-page{
+      width:100%;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      background:#ffffff;
+    }
+
+    .fm-stage{
+      position:relative;
+      width:1366px;
+      height:640px;
+      overflow:hidden;
+      background:#fff;
+      transform-origin:top center;
+    }
+
+    .fm-bg{
+      position:absolute;
+      left:0;
+      top:0;
+      width:1366px;
+      height:640px;
+      object-fit:fill;
+      z-index:1;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    .fm-text{
+      position:absolute;
+      z-index:20;
+      margin:0;
+      padding:0;
+      transform:none;
+      white-space:nowrap;
+    }
+
+    .fm-nav{
+      font-size:12px;
+      line-height:1;
+      font-weight:900;
+      color:var(--km-dark);
+      text-align:center;
+    }
+
+    .fm-nav-farmers{
+      color:var(--km-green);
+    }
+
+    .fm-nav-home{left:356px;top:72px;}
+    .fm-nav-farmers{left:430px;top:72px;}
+    .fm-nav-fpo{left:500px;top:72px;}
+    .fm-nav-buyer{left:580px;top:72px;}
+    .fm-nav-ai{left:646px;top:72px;}
+    .fm-nav-trust{left:730px;top:72px;}
+    .fm-nav-contact{left:799px;top:72px;}
+
+    .fm-lang{
+      left:1046px;
+      top:38px;
+      width:74px;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14.5px;
+      font-weight:900;
+      color:var(--km-dark);
+      line-height:1;
+    }
+
+    .fm-talk{
+      left:1235px;
+      top:38px;
+      width:24px;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      font-weight:950;
+      color:var(--km-blue);
+      line-height:1;
+    }
+
+    .fm-login{
+      left:1310px;
+      top:38px;
+      width:42px;
+      height:34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      font-weight:950;
+      color:#fff;
+      line-height:1;
+    }
+
+    .fm-breadcrumb{
+      left:46px;
+      top:148px;
+      font-size:13px;
+      font-weight:850;
+      color:var(--km-green);
+    }
+
+    .fm-title{
+      left:46px;
+      top:166px;
+      font-size:47px;
+      line-height:.98;
+      font-weight:950;
+      color:var(--km-green);
+      letter-spacing:-1px;
+    }
+
+    .fm-subtitle{
+      left:46px;
+      top:225px;
+      font-size:24px;
+      line-height:1.05;
+      font-weight:950;
+      color:var(--km-dark);
+    }
+
+    .fm-desc{
+      left:46px;
+      top:272px;
+      width:560px;
+      white-space:normal;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:750;
+      color:var(--km-dark);
+    }
+
+    .fm-btn-explore{
+      left:70px;
+      top:364px;
+      width:210px;
+      height:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:17px;
+      font-weight:950;
+      color:#fff;
+      line-height:1;
+    }
+
+    .fm-r-title{
+      font-size:14px;
+      font-weight:950;
+      color:var(--km-dark);
+      line-height:1.05;
+    }
+
+    .fm-r-value{
+      font-size:20px;
+      font-weight:950;
+      color:var(--km-dark);
+      line-height:1;
+    }
+
+    .fm-r-small{
+      font-size:10px;
+      font-weight:750;
+      color:var(--km-dark);
+      line-height:1.1;
+    }
+
+    .fm-ai-title{left:1135px;top:109px;}
+    .fm-ai-small{left:1135px;top:132px;}
+    .fm-ai-health{left:1135px;top:154px;}
+    .fm-ai-value{left:1135px;top:172px;}
+
+    .fm-weather-title{left:1135px;top:217px;}
+    .fm-weather-value{left:1135px;top:242px;}
+    .fm-weather-small{left:1135px;top:271px;}
+    .fm-humidity{left:1126px;top:317px;}
+    .fm-rain{left:1186px;top:317px;}
+    .fm-wind{left:1267px;top:317px;}
+
+    .fm-market-title{left:1126px;top:350px;}
+    .fm-market-small{left:1126px;top:374px;}
+    .fm-market-value{left:1135px;top:390px;font-size:19px;}
+    .fm-market-mandi{left:1135px;top:423px;}
+
+    .fm-tool-title{
+      font-size:11px;
+      font-weight:950;
+      color:var(--km-dark);
+      line-height:1.08;
+      white-space:normal;
+    }
+
+    .fm-tool-desc{
+      font-size:8px;
+      font-weight:700;
+      color:var(--km-dark);
+      line-height:1.18;
+      white-space:normal;
+    }
+
+    .fm-tool-link{
+      font-size:10px;
+      font-weight:950;
+      color:var(--km-green);
+      line-height:1;
+    }
+
+    .fm-t1-title{left:108px;top:448px;width:130px;}
+    .fm-t1-desc{left:108px;top:468px;width:130px;}
+    .fm-t1-link{left:54px;top:558px;}
+
+    .fm-t2-title{left:344px;top:448px;width:125px;}
+    .fm-t2-desc{left:344px;top:468px;width:125px;}
+    .fm-t2-link{left:295px;top:558px;}
+
+    .fm-t3-title{left:560px;top:448px;width:135px;}
+    .fm-t3-desc{left:560px;top:468px;width:135px;}
+    .fm-t3-link{left:561px;top:497px;}
+
+    .fm-t4-title{left:775px;top:448px;width:135px;}
+    .fm-t4-desc{left:775px;top:468px;width:135px;}
+    .fm-t4-link{left:770px;top:497px;}
+
+    .fm-t5-title{left:997px;top:448px;width:130px;}
+    .fm-t5-desc{left:997px;top:468px;width:130px;}
+    .fm-t5-link{left:1000px;top:497px;}
+
+    .fm-t6-title{left:1195px;top:448px;width:130px;}
+    .fm-t6-desc{left:1195px;top:468px;width:130px;}
+    .fm-t6-link{left:1195px;top:497px;}
+
+    .fm-bottom-title{
+      font-size:14px;
+      font-weight:950;
+      color:var(--km-dark);
+      line-height:1.05;
+    }
+
+    .fm-bottom-desc{
+      font-size:9px;
+      font-weight:700;
+      color:var(--km-dark);
+      line-height:1.18;
+      white-space:normal;
+    }
+
+    .fm-bottom-link{
+      font-size:10px;
+      font-weight:950;
+      color:var(--km-green);
+      line-height:1;
+    }
+
+    .fm-b1-title{left:125px;top:559px;}
+    .fm-b1-desc{left:125px;top:578px;width:180px;}
+    .fm-b1-link{left:125px;top:613px;}
+
+    .fm-b2-title{left:478px;top:559px;}
+    .fm-b2-desc{left:478px;top:578px;width:190px;}
+    .fm-b2-link{left:478px;top:613px;}
+
+    .fm-b3-title{left:795px;top:559px;}
+    .fm-b3-desc{left:795px;top:578px;width:190px;}
+    .fm-b3-link{left:795px;top:613px;}
+
+    .fm-b4-title{left:1109px;top:559px;}
+    .fm-b4-desc{left:1109px;top:578px;width:190px;}
+    .fm-b4-link{left:1109px;top:613px;}
+
+    .fm-click{
+      position:absolute;
+      z-index:50;
+      display:block;
+      text-decoration:none;
+      background:transparent;
+    }
+
+    .hot-home{left:335px;top:25px;width:65px;height:75px;}
+    .hot-farmers{left:410px;top:25px;width:75px;height:75px;}
+    .hot-fpo{left:490px;top:25px;width:65px;height:75px;}
+    .hot-buyer{left:565px;top:25px;width:70px;height:75px;}
+    .hot-ai{left:640px;top:25px;width:90px;height:75px;}
+    .hot-trust{left:725px;top:25px;width:75px;height:75px;}
+    .hot-contact{left:800px;top:25px;width:90px;height:75px;}
+    .hot-login{left:1270px;top:26px;width:85px;height:54px;}
+    .hot-dashboard{left:48px;top:352px;width:255px;height:58px;}
+
+    .voice-btn{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+
+    @media (max-width:1366px){
+      .fm-stage{
+        transform:scale(calc(100vw / 1366));
+        height:calc(640px * (100vw / 1366));
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="fm-wrap">
-  <section class="fm-stage">
-    <img class="fm-bg" src="./assets/farmers-master-clean-background-v5.png?v=farmers-clean-v5-final" alt="Farmers Page Background">
-
-    <a class="fm-text fm-logo" href="./index.html">
-      <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI">
-    </a>
-
-    <a class="fm-text fm-nav fm-nav-home" href="./index.html" data-i18n="nav.home">Home</a>
-    <a class="fm-text fm-nav fm-nav-farmers" href="./farmers.html" data-i18n="nav.farmers">Farmers</a>
-    <a class="fm-text fm-nav fm-nav-fpo" href="#fpo" data-i18n="nav.fpo">FPO</a>
-    <a class="fm-text fm-nav fm-nav-buyer" href="#buyer" data-i18n="nav.buyer">Buyer</a>
-    <a class="fm-text fm-nav fm-nav-ai" href="#ai-engine" data-i18n="nav.aiEngine">AI Engine</a>
-    <a class="fm-text fm-nav fm-nav-trust" href="#trust" data-i18n="nav.trust">Trust</a>
-    <a class="fm-text fm-nav fm-nav-contact" href="#contact" data-i18n="nav.contact">Contact</a>
-
-    <div class="fm-text fm-lang" data-i18n="common.language">English</div>
-    <div class="fm-text fm-talk" data-i18n="common.talkToAi">AI</div>
-    <div class="fm-text fm-login" data-i18n="common.login">Login</div>
-
-    <div class="fm-text fm-breadcrumb">
-      <span data-i18n="nav.home">Home</span> › <span data-i18n="nav.farmers">Farmers</span>
-    </div>
-
-    <h1 class="fm-text fm-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
-    <h2 class="fm-text fm-subtitle" data-i18n="farmers.hero.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
-    <p class="fm-text fm-desc" data-i18n="farmers.hero.description">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
-
-    <a class="fm-btn-text fm-btn-explore" href="#farmer-tools" data-i18n="farmers.hero.explore">Enter Dashboard</a>
-    <a class="fm-btn-text fm-btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp"/a>
-
-    <div class="fm-text fm-r-title fm-ai-title" data-i18n="farmers.insight.title">AI Crop Insight</div>
-    <div class="fm-text fm-r-small fm-ai-small" data-i18n="farmers.insight.crop">Wheat · Good Growth</div>
-    <div class="fm-text fm-r-small fm-ai-health" data-i18n="farmers.insight.health">Health Score</div>
-    <div class="fm-text fm-r-value fm-ai-value">82/100</div>
-
-    <div class="fm-text fm-r-title fm-weather-title" data-i18n="farmers.weather.title">Weather Update</div>
-    <div class="fm-text fm-r-value fm-weather-value">32°C</div>
-    <div class="fm-text fm-r-small fm-weather-small" data-i18n="farmers.weather.status">Partly Cloudy</div>
-    <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
-    <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
-    <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
-
-    <div class="fm-text fm-r-title fm-market-title" data-i18n="farmers.market.title">Market Linkage</div>
-    <div class="fm-text fm-r-small fm-market-small" data-i18n="farmers.market.crop">Wheat (FAQ)</div>
-    <div class="fm-text fm-r-value fm-market-value">₹ 2,125</div>
-    <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
-
-    <div class="fm-text fm-tool-title fm-t1-title">AI Crop Advisory</div>
-    <div class="fm-text fm-tool-desc fm-t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
-    <div class="fm-text fm-tool-link fm-t1-link">Use Now →</div>
-
-    <div class="fm-text fm-tool-title fm-t2-title">Fertilizer Calculator</div>
-    <div class="fm-text fm-tool-desc fm-t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
-    <div class="fm-text fm-tool-link fm-t2-link">Use Now →</div>
-
-    <div class="fm-text fm-tool-title fm-t3-title">Pest & Disease Detection</div>
-    <div class="fm-text fm-tool-desc fm-t3-desc">Identify pests and diseases from images and get control solutions.</div>
-    <div class="fm-text fm-tool-link fm-t3-link">Use Now →</div>
-
-    <div class="fm-text fm-tool-title fm-t4-title">Weather & Alerts</div>
-    <div class="fm-text fm-tool-desc fm-t4-desc">Real-time weather updates and alerts to plan farming better.</div>
-    <div class="fm-text fm-tool-link fm-t4-link">Use Now →</div>
-
-    <div class="fm-text fm-tool-title fm-t5-title">Mandi Prices</div>
-    <div class="fm-text fm-tool-desc fm-t5-desc">Check live mandi rates and find the best time to sell.</div>
-    <div class="fm-text fm-tool-link fm-t5-link">Use Now →</div>
-
-    <div class="fm-text fm-tool-title fm-t6-title">Schemes & Support</div>
-    <div class="fm-text fm-tool-desc fm-t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
-    <div class="fm-text fm-tool-link fm-t6-link">Use Now →</div>
-
-    <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
-    <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
-
-    <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
-    <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
-
-    <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
-    <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
-
-    <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
-    <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-
-    <button class="fm-hotspot fm-click-home" onclick="location.href='./index.html'"></button>
-    <button class="fm-hotspot fm-click-farmers" onclick="location.href='./farmers.html'"></button>
-    <button class="fm-hotspot fm-click-explore" onclick="location.href='#farmer-tools'"></button>
-    <button class="fm-hotspot fm-click-whatsapp" onclick="location.href='#whatsapp'"></button>
-  </section>
-</div>
-
-
-
-
-
-
-
-
-<script id="drag-editor-panel-v1">
-document.addEventListener('DOMContentLoaded', function () {
-  const panel = document.querySelector('.fm-editor-panel, .manual-editor-panel, .position-editor-panel');
-  if (!panel) return;
-
-  panel.style.position = 'fixed';
-  panel.style.left = panel.style.left || '20px';
-  panel.style.top = panel.style.top || '540px';
-  panel.style.zIndex = '999999';
-
-  let isDragging = false;
-  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
-
-  function getNum(v){ return parseFloat(String(v || '0').replace('px','')) || 0; }
-
-  const handle = document.createElement('div');
-  handle.textContent = 'Drag Controls';
-  handle.style.cursor = 'move';
-  handle.style.background = '#0a7a28';
-  handle.style.color = '#fff';
-  handle.style.fontWeight = '700';
-  handle.style.padding = '8px 12px';
-  handle.style.borderRadius = '10px';
-  handle.style.marginBottom = '8px';
-  handle.style.userSelect = 'none';
-
-  panel.prepend(handle);
-
-  handle.addEventListener('mousedown', function(e){
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startLeft = getNum(panel.style.left);
-    startTop = getNum(panel.style.top);
-    e.preventDefault();
-    e.stopPropagation();
-  });
-
-  document.addEventListener('mousemove', function(e){
-    if (!isDragging) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    panel.style.left = (startLeft + dx) + 'px';
-    panel.style.top = (startTop + dy) + 'px';
-  });
-
-  document.addEventListener('mouseup', function(){
-    isDragging = false;
-  });
-});
-</script>
-
-
-
-
-
-
-  <div class="fm-text fm-r-small fm-ai-small">Wheat · Good Growth</div>
-  <div class="fm-text fm-r-small fm-ai-health">Health Score</div>
-  <div class="fm-text fm-r-value fm-ai-value">82/100</div>
-
-  <div class="fm-text fm-r-title fm-weather-title">Weather Update</div>
-  <div class="fm-text fm-r-value fm-weather-value">32°C</div>
-  <div class="fm-text fm-r-small fm-weather-small">Partly Cloudy</div>
-  <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
-  <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
-  <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
-
-  <div class="fm-text fm-r-title fm-market-title">Market Linkage</div>
-  <div class="fm-text fm-r-small fm-market-small">Wheat (FAQ)</div>
-  <div class="fm-text fm-r-value fm-market-value">₹ 2,125 / Quintal</div>
-  <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
-
-  <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
-  <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
-
-  <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
-  <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
-
-  <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
-  <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
-
-  <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
-  <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-</div>
-
-  <div class="fm-text fm-r-small fm-ai-small">Wheat · Good Growth</div>
-  <div class="fm-text fm-r-small fm-ai-health">Health Score</div>
-  <div class="fm-text fm-r-value fm-ai-value">82/100</div>
-
-  <div class="fm-text fm-r-title fm-weather-title">Weather Update</div>
-  <div class="fm-text fm-r-value fm-weather-value">32°C</div>
-  <div class="fm-text fm-r-small fm-weather-small">Partly Cloudy</div>
-  <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
-  <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
-  <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
-
-  <div class="fm-text fm-r-title fm-market-title">Market Linkage</div>
-  <div class="fm-text fm-r-small fm-market-small">Wheat (FAQ)</div>
-  <div class="fm-text fm-r-value fm-market-value">₹ 2,125 / Quintal</div>
-  <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
-
-  <div class="fm-text fm-tool-title fm-t1-title">AI Crop Advisory</div>
-  <div class="fm-text fm-tool-desc fm-t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
-  <div class="fm-text fm-tool-link fm-t1-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t2-title">Fertilizer Calculator</div>
-  <div class="fm-text fm-tool-desc fm-t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
-  <div class="fm-text fm-tool-link fm-t2-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t3-title">Pest & Disease Detection</div>
-  <div class="fm-text fm-tool-desc fm-t3-desc">Identify pests and diseases from images and get control solutions.</div>
-  <div class="fm-text fm-tool-link fm-t3-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t4-title">Weather & Alerts</div>
-  <div class="fm-text fm-tool-desc fm-t4-desc">Real-time weather updates and alerts to plan farming better.</div>
-  <div class="fm-text fm-tool-link fm-t4-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t5-title">Mandi Prices</div>
-  <div class="fm-text fm-tool-desc fm-t5-desc">Check live mandi rates and find the best time to sell.</div>
-  <div class="fm-text fm-tool-link fm-t5-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t6-title">Schemes & Support</div>
-  <div class="fm-text fm-tool-desc fm-t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
-  <div class="fm-text fm-tool-link fm-t6-link">Use Now →</div>
-
-  <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
-  <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
-
-  <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
-  <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
-
-  <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
-  <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
-
-  <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
-  <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-</div>
-<div id="farmers-card-text-final-v2">
-  <div class="fm-text fm-r-title fm-ai-title">AI Crop Insight</div>
-  <div class="fm-text fm-r-small fm-ai-small">Wheat · Good Growth</div>
-  <div class="fm-text fm-r-small fm-ai-health">Health Score</div>
-  <div class="fm-text fm-r-value fm-ai-value">82/100</div>
-
-  <div class="fm-text fm-r-title fm-weather-title">Weather Update</div>
-  <div class="fm-text fm-r-value fm-weather-value">32°C</div>
-  <div class="fm-text fm-r-small fm-weather-small">Partly Cloudy</div>
-  <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
-  <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
-  <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
-
-  <div class="fm-text fm-r-title fm-market-title">Market Linkage</div>
-  <div class="fm-text fm-r-small fm-market-small">Wheat (FAQ)</div>
-  <div class="fm-text fm-r-value fm-market-value">₹ 2,125 / Quintal</div>
-  <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
-
-  <div class="fm-text fm-tool-title fm-t1-title">AI Crop Advisory</div>
-  <div class="fm-text fm-tool-desc fm-t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
-  <div class="fm-text fm-tool-link fm-t1-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t2-title">Fertilizer Calculator</div>
-  <div class="fm-text fm-tool-desc fm-t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
-  <div class="fm-text fm-tool-link fm-t2-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t3-title">Pest & Disease Detection</div>
-  <div class="fm-text fm-tool-desc fm-t3-desc">Identify pests and diseases from images and get control solutions.</div>
-  <div class="fm-text fm-tool-link fm-t3-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t4-title">Weather & Alerts</div>
-  <div class="fm-text fm-tool-desc fm-t4-desc">Real-time weather updates and alerts to plan farming better.</div>
-  <div class="fm-text fm-tool-link fm-t4-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t5-title">Mandi Prices</div>
-  <div class="fm-text fm-tool-desc fm-t5-desc">Check live mandi rates and find the best time to sell.</div>
-  <div class="fm-text fm-tool-link fm-t5-link">Use Now →</div>
-
-  <div class="fm-text fm-tool-title fm-t6-title">Schemes & Support</div>
-  <div class="fm-text fm-tool-desc fm-t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
-  <div class="fm-text fm-tool-link fm-t6-link">Use Now →</div>
-
-  <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
-  <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
-
-  <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
-  <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
-
-  <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
-  <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
-
-  <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
-  <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-</div>
+  <main class="fm-page">
+    <section class="fm-stage" id="farmers">
+      <img class="fm-bg" src="/assets/farmers-master-clean-background-v5.png?v=clean-final-replacement-v1" alt="KisanMitraAI Farmers Background" />
+
+      <a class="fm-click hot-home" href="/KisanMitraAI/index.html#home" aria-label="Home"></a>
+      <a class="fm-click hot-farmers" href="/farmers.html" aria-label="Farmers"></a>
+      <a class="fm-click hot-fpo" href="/KisanMitraAI/index.html#fpo" aria-label="FPO"></a>
+      <a class="fm-click hot-buyer" href="/KisanMitraAI/index.html#buyer" aria-label="Buyer"></a>
+      <a class="fm-click hot-ai" href="/KisanMitraAI/index.html#ai-engine" aria-label="AI Engine"></a>
+      <a class="fm-click hot-trust" href="/KisanMitraAI/index.html#trust" aria-label="Trust"></a>
+      <a class="fm-click hot-contact" href="/KisanMitraAI/index.html#contact" aria-label="Contact"></a>
+      <a class="fm-click hot-login" href="/KisanMitraAI/index.html#login" aria-label="Login"></a>
+      <a class="fm-click hot-dashboard" href="/KisanMitraAI/index.html#login" aria-label="Enter Dashboard"></a>
+
+      <div class="fm-text fm-nav fm-nav-home" data-i18n="nav.home">Home</div>
+      <div class="fm-text fm-nav fm-nav-farmers" data-i18n="nav.farmers">Farmers</div>
+      <div class="fm-text fm-nav fm-nav-fpo" data-i18n="nav.fpo">FPO</div>
+      <div class="fm-text fm-nav fm-nav-buyer" data-i18n="nav.buyer">Buyer</div>
+      <div class="fm-text fm-nav fm-nav-ai" data-i18n="nav.ai">AI Engine</div>
+      <div class="fm-text fm-nav fm-nav-trust" data-i18n="nav.trust">Trust</div>
+      <div class="fm-text fm-nav fm-nav-contact" data-i18n="nav.contact">Contact</div>
+
+      <div class="fm-text fm-lang" data-i18n="lang.english">English</div>
+      <div class="fm-text fm-talk" data-i18n="nav.aiShort">AI</div>
+      <div class="fm-text fm-login" data-i18n="nav.login">Login</div>
+
+      <div class="fm-text fm-breadcrumb" data-i18n="farmers.breadcrumb">Home › Farmers</div>
+      <h1 class="fm-text fm-title" data-i18n="farmers.title">Empowering Farmers.</h1>
+      <h2 class="fm-text fm-subtitle" data-i18n="farmers.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
+      <p class="fm-text fm-desc" data-i18n="farmers.desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
+      <div class="fm-text fm-btn-explore" data-i18n="farmers.enterDashboard">Enter Dashboard</div>
+
+      <div class="fm-text fm-r-title fm-ai-title" data-i18n="right.aiTitle">AI Crop Insight</div>
+      <div class="fm-text fm-r-small fm-ai-small" data-i18n="right.aiCrop">Wheat · Good Growth</div>
+      <div class="fm-text fm-r-small fm-ai-health" data-i18n="right.healthScore">Health Score</div>
+      <div class="fm-text fm-r-value fm-ai-value" data-i18n="right.healthValue">82/100</div>
+
+      <div class="fm-text fm-r-title fm-weather-title" data-i18n="right.weatherTitle">Weather Update</div>
+      <div class="fm-text fm-r-value fm-weather-value" data-i18n="right.weatherTemp">32°C</div>
+      <div class="fm-text fm-r-small fm-weather-small" data-i18n="right.weatherStatus">Partly Cloudy</div>
+      <div class="fm-text fm-r-small fm-humidity" data-i18n="right.humidity">Humidity<br>65%</div>
+      <div class="fm-text fm-r-small fm-rain" data-i18n="right.rain">Rain Chance<br>20%</div>
+      <div class="fm-text fm-r-small fm-wind" data-i18n="right.wind">Wind<br>12 km/h</div>
+
+      <div class="fm-text fm-r-title fm-market-title" data-i18n="right.marketTitle">Market Linkage</div>
+      <div class="fm-text fm-r-small fm-market-small" data-i18n="right.marketCrop">Wheat (FAQ)</div>
+      <div class="fm-text fm-r-value fm-market-value" data-i18n="right.marketPrice">₹ 2,125 / Quintal</div>
+      <div class="fm-text fm-r-small fm-market-mandi" data-i18n="right.marketMandi">Mandi: Indore</div>
+
+      <div class="fm-text fm-tool-title fm-t1-title" data-i18n="tool.t1.title">AI Crop Advisory</div>
+      <div class="fm-text fm-tool-desc fm-t1-desc" data-i18n="tool.t1.desc">Get AI-powered crop recommendations for higher yield and income.</div>
+      <div class="fm-text fm-tool-link fm-t1-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-tool-title fm-t2-title" data-i18n="tool.t2.title">Fertilizer Calculator</div>
+      <div class="fm-text fm-tool-desc fm-t2-desc" data-i18n="tool.t2.desc">Calculate the right fertilizer dose for your crop and field size.</div>
+      <div class="fm-text fm-tool-link fm-t2-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-tool-title fm-t3-title" data-i18n="tool.t3.title">Pest & Disease Detection</div>
+      <div class="fm-text fm-tool-desc fm-t3-desc" data-i18n="tool.t3.desc">Identify pests and diseases from images and get control solutions.</div>
+      <div class="fm-text fm-tool-link fm-t3-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-tool-title fm-t4-title" data-i18n="tool.t4.title">Weather & Alerts</div>
+      <div class="fm-text fm-tool-desc fm-t4-desc" data-i18n="tool.t4.desc">Real-time weather updates and alerts to plan farming better.</div>
+      <div class="fm-text fm-tool-link fm-t4-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-tool-title fm-t5-title" data-i18n="tool.t5.title">Mandi Prices</div>
+      <div class="fm-text fm-tool-desc fm-t5-desc" data-i18n="tool.t5.desc">Check live mandi rates and find the best time to sell.</div>
+      <div class="fm-text fm-tool-link fm-t5-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-tool-title fm-t6-title" data-i18n="tool.t6.title">Schemes & Support</div>
+      <div class="fm-text fm-tool-desc fm-t6-desc" data-i18n="tool.t6.desc">Explore government schemes, loans, subsidies and insurance options.</div>
+      <div class="fm-text fm-tool-link fm-t6-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-bottom-title fm-b1-title" data-i18n="bottom.b1.title">AI-Powered Insights</div>
+      <div class="fm-text fm-bottom-desc fm-b1-desc" data-i18n="bottom.b1.desc">Smart recommendations for better yields and lower costs.</div>
+      <div class="fm-text fm-bottom-link fm-b1-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-bottom-title fm-b2-title" data-i18n="bottom.b2.title">Trust & Transparency</div>
+      <div class="fm-text fm-bottom-desc fm-b2-desc" data-i18n="bottom.b2.desc">Verified data, traceability and secure transactions.</div>
+      <div class="fm-text fm-bottom-link fm-b2-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-bottom-title fm-b3-title" data-i18n="bottom.b3.title">Global Market Linkage</div>
+      <div class="fm-text fm-bottom-desc fm-b3-desc" data-i18n="bottom.b3.desc">Connect to more buyers, better prices, wider markets.</div>
+      <div class="fm-text fm-bottom-link fm-b3-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <div class="fm-text fm-bottom-title fm-b4-title" data-i18n="bottom.b4.title">Voice & Language Support</div>
+      <div class="fm-text fm-bottom-desc fm-b4-desc" data-i18n="bottom.b4.desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+      <div class="fm-text fm-bottom-link fm-b4-link" data-i18n="tool.useNow">Use Now →</div>
+
+      <button class="voice-btn" id="listenPage" type="button">Listen</button>
+    </section>
+  </main>
+
+  <script>
+    const kmTranslations = {
+      en: {
+        "nav.home":"Home",
+        "nav.farmers":"Farmers",
+        "nav.fpo":"FPO",
+        "nav.buyer":"Buyer",
+        "nav.ai":"AI Engine",
+        "nav.trust":"Trust",
+        "nav.contact":"Contact",
+        "nav.login":"Login",
+        "nav.aiShort":"AI",
+        "lang.english":"English",
+        "farmers.breadcrumb":"Home › Farmers",
+        "farmers.title":"Empowering Farmers.",
+        "farmers.subtitle":"Better Decisions. Higher Yields. Stronger Income.",
+        "farmers.desc":"KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.",
+        "farmers.enterDashboard":"Enter Dashboard",
+        "right.aiTitle":"AI Crop Insight",
+        "right.aiCrop":"Wheat · Good Growth",
+        "right.healthScore":"Health Score",
+        "right.healthValue":"82/100",
+        "right.weatherTitle":"Weather Update",
+        "right.weatherTemp":"32°C",
+        "right.weatherStatus":"Partly Cloudy",
+        "right.humidity":"Humidity<br>65%",
+        "right.rain":"Rain Chance<br>20%",
+        "right.wind":"Wind<br>12 km/h",
+        "right.marketTitle":"Market Linkage",
+        "right.marketCrop":"Wheat (FAQ)",
+        "right.marketPrice":"₹ 2,125 / Quintal",
+        "right.marketMandi":"Mandi: Indore",
+        "tool.t1.title":"AI Crop Advisory",
+        "tool.t1.desc":"Get AI-powered crop recommendations for higher yield and income.",
+        "tool.t2.title":"Fertilizer Calculator",
+        "tool.t2.desc":"Calculate the right fertilizer dose for your crop and field size.",
+        "tool.t3.title":"Pest & Disease Detection",
+        "tool.t3.desc":"Identify pests and diseases from images and get control solutions.",
+        "tool.t4.title":"Weather & Alerts",
+        "tool.t4.desc":"Real-time weather updates and alerts to plan farming better.",
+        "tool.t5.title":"Mandi Prices",
+        "tool.t5.desc":"Check live mandi rates and find the best time to sell.",
+        "tool.t6.title":"Schemes & Support",
+        "tool.t6.desc":"Explore government schemes, loans, subsidies and insurance options.",
+        "tool.useNow":"Use Now →",
+        "bottom.b1.title":"AI-Powered Insights",
+        "bottom.b1.desc":"Smart recommendations for better yields and lower costs.",
+        "bottom.b2.title":"Trust & Transparency",
+        "bottom.b2.desc":"Verified data, traceability and secure transactions.",
+        "bottom.b3.title":"Global Market Linkage",
+        "bottom.b3.desc":"Connect to more buyers, better prices, wider markets.",
+        "bottom.b4.title":"Voice & Language Support",
+        "bottom.b4.desc":"Talk or listen in your language. Simple, smart & farmer-friendly."
+      }
+    };
+
+    function setLanguage(lang){
+      const dict = kmTranslations[lang] || kmTranslations.en;
+      document.querySelectorAll("[data-i18n]").forEach((el)=>{
+        const key = el.getAttribute("data-i18n");
+        if(dict[key]) el.innerHTML = dict[key];
+      });
+    }
+
+    setLanguage("en");
+
+    function listenFarmersPage(){
+      if(!("speechSynthesis" in window)) return;
+      const text = [
+        document.querySelector(".fm-title")?.innerText,
+        document.querySelector(".fm-subtitle")?.innerText,
+        document.querySelector(".fm-desc")?.innerText
+      ].filter(Boolean).join(". ");
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-IN";
+      utterance.rate = 0.92;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    document.querySelector(".hot-ai")?.addEventListener("click", function(e){
+      e.preventDefault();
+      listenFarmersPage();
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
