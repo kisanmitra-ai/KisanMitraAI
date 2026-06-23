@@ -858,6 +858,41 @@ html,body{
 .fm-bottom-title.fm-b4-title{left:1109.0px !important;top:559.0px !important;transform:none !important;}
 .fm-bottom-desc.fm-b4-desc{left:1109.0px !important;top:578.0px !important;transform:none !important;}
 </style>
+<style id="farmers-hotfix-v2">
+/* Hero buttons text centering */
+.fm-btn-explore,
+.fm-btn-buyers,
+.fm-btn-whatsapp{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+.fm-btn-explore span,
+.fm-btn-buyers span,
+.fm-btn-whatsapp span{
+  display:inline-block !important;
+  line-height:1.1 !important;
+}
+
+/* Tool card text cleanup */
+.fm-tool-title{line-height:1.05 !important;}
+.fm-tool-desc{line-height:1.18 !important;}
+.fm-tool-link{line-height:1 !important;}
+
+/* Bottom strip text cleanup */
+.fm-bottom-title{line-height:1.05 !important;}
+.fm-bottom-desc{line-height:1.15 !important;}
+
+/* Right panel cleanup */
+.fm-r-title,
+.fm-r-value,
+.fm-r-small{
+  line-height:1.1 !important;
+}
+</style>
 </head>
 
 <body>
@@ -889,8 +924,8 @@ html,body{
     <h2 class="fm-text fm-subtitle" data-i18n="farmers.hero.subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
     <p class="fm-text fm-desc" data-i18n="farmers.hero.description">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
 
-    <a class="fm-btn-text fm-btn-explore" href="#farmer-tools" data-i18n="farmers.hero.explore">Explore Farmer Tools</a>
-    <a class="fm-btn-text fm-btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">Join WhatsApp Channel</a>
+    <a class="fm-btn-text fm-btn-explore" href="#farmer-tools" data-i18n="farmers.hero.explore">For Farmers</a>
+    <a class="fm-btn-text fm-btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">How It Works</a>
 
     <div class="fm-text fm-r-title fm-ai-title" data-i18n="farmers.insight.title">AI Crop Insight</div>
     <div class="fm-text fm-r-small fm-ai-small" data-i18n="farmers.insight.crop">Wheat · Good Growth</div>
@@ -959,8 +994,60 @@ html,body{
 
 
 
+<script id="drag-editor-panel-v1">
+document.addEventListener('DOMContentLoaded', function () {
+  const panel = document.querySelector('.fm-editor-panel, .manual-editor-panel, .position-editor-panel');
+  if (!panel) return;
+
+  panel.style.position = 'fixed';
+  panel.style.left = panel.style.left || '20px';
+  panel.style.top = panel.style.top || '540px';
+  panel.style.zIndex = '999999';
+
+  let isDragging = false;
+  let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+  function getNum(v){ return parseFloat(String(v || '0').replace('px','')) || 0; }
+
+  const handle = document.createElement('div');
+  handle.textContent = 'Drag Controls';
+  handle.style.cursor = 'move';
+  handle.style.background = '#0a7a28';
+  handle.style.color = '#fff';
+  handle.style.fontWeight = '700';
+  handle.style.padding = '8px 12px';
+  handle.style.borderRadius = '10px';
+  handle.style.marginBottom = '8px';
+  handle.style.userSelect = 'none';
+
+  panel.prepend(handle);
+
+  handle.addEventListener('mousedown', function(e){
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = getNum(panel.style.left);
+    startTop = getNum(panel.style.top);
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  document.addEventListener('mousemove', function(e){
+    if (!isDragging) return;
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    panel.style.left = (startLeft + dx) + 'px';
+    panel.style.top = (startTop + dy) + 'px';
+  });
+
+  document.addEventListener('mouseup', function(){
+    isDragging = false;
+  });
+});
+</script>
 </body>
 </html>
+
 
 
 
