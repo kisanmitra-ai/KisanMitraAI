@@ -777,6 +777,60 @@ html,body{
   object-position:left center !important;
 }
 </style>
+<style id="manual-position-editor-css">
+/* MANUAL POSITION EDITOR */
+body.edit-mode .fm-text,
+body.edit-mode .fm-btn-text {
+  outline: 1px dashed rgba(0, 120, 255, 0.45);
+  cursor: pointer;
+}
+
+body.edit-mode .fm-selected {
+  outline: 3px solid #ff2a00 !important;
+  background: rgba(255, 255, 0, 0.12) !important;
+}
+
+.position-toolbar {
+  position: fixed;
+  left: 16px;
+  bottom: 18px;
+  z-index: 2147483647;
+  background: rgba(5, 20, 10, 0.92);
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.45;
+  box-shadow: 0 14px 34px rgba(0,0,0,.32);
+  display: none;
+  max-width: 420px;
+}
+
+body.edit-mode .position-toolbar {
+  display: block;
+}
+
+.position-toolbar strong {
+  color: #8cff9b;
+}
+
+.position-toggle-btn {
+  position: fixed;
+  left: 16px;
+  top: 96px;
+  z-index: 2147483647;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: #08751f;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0,0,0,.22);
+}
+</style>
 </head>
 
 <body>
@@ -870,8 +924,222 @@ html,body{
     <button class="fm-hotspot fm-click-whatsapp" onclick="location.href='#whatsapp'"></button>
   </section>
 </div>
+<script id="manual-position-editor-js">
+(function () {
+  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v1";
+  let selected = null;
+
+  function px(n) {
+    return Math.round(n * 10) / 10 + "px";
+  }
+
+  function getPos(el) {
+    const style = window.getComputedStyle(el);
+    return {
+      left: parseFloat(style.left) || 0,
+      top: parseFloat(style.top) || 0
+    };
+  }
+
+  function setPos(el, left, top) {
+    el.style.left = px(left);
+    el.style.top = px(top);
+  }
+
+  function makeEditable() {
+    const blocks = document.querySelectorAll(".fm-text, .fm-btn-text");
+    blocks.forEach((el, index) => {
+      if (!el.dataset.posId) {
+        const className = Array.from(el.classList).find(c =>
+          c.startsWith("fm-") &&
+          !["fm-text", "fm-btn-text"].includes(c)
+        );
+        el.dataset.posId = className || ("block-" + index);
+      }
+
+      el.addEventListener("click", function (e) {
+        if (!document.body.classList.contains("edit-mode")) return;
+        e.preventDefault();
+        e.stopPropagation();
+        selectBlock(el);
+      });
+    });
+  }
+
+  function selectBlock(el) {
+    if (selected) selected.classList.remove("fm-selected");
+    selected = el;
+    selected.classList.add("fm-selected");
+    updateToolbar();
+  }
+
+  function updateToolbar() {
+    const info = document.getElementById("positionInfo");
+    if (!info) return;
+
+    if (!selected) {
+      info.innerHTML = "No block selected.";
+      return;
+    }
+
+    const pos = getPos(selected);
+    info.innerHTML =
+      "<strong>Selected:</strong> " + selected.dataset.posId +
+      " | left: " + pos.left.toFixed(1) +
+      "px | top: " + pos.top.toFixed(1) + "px";
+  }
+
+  function savePositions() {
+    const data = {};
+    document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
+      if (!el.dataset.posId) return;
+      const pos = getPos(el);
+      data[el.dataset.posId] = {
+        left: pos.left,
+        top: pos.top
+      };
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
+    alert("Positions saved in browser.");
+  }
+
+  function loadPositions() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+
+    try {
+      const data = JSON.parse(raw);
+      document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
+        const id = el.dataset.posId;
+        if (data[id]) {
+          setPos(el, data[id].left, data[id].top);
+        }
+      });
+    } catch (e) {
+      console.warn("Could not load saved positions", e);
+    }
+  }
+
+  function exportCss() {
+    let css = "/* FINAL FARMERS MANUAL POSITIONS */\n";
+    document.querySelectorAll(".fm-text, .fm-btn-text").forEach(el => {
+      const id = el.dataset.posId;
+      const pos = getPos(el);
+      const uniqueClasses = Array.from(el.classList)
+        .filter(c => c.startsWith("fm-") && c !== "fm-text" && c !== "fm-btn-text" && c !== "fm-selected");
+
+      const selector = uniqueClasses.length
+        ? "." + uniqueClasses.join(".")
+        : '[data-pos-id="' + id + '"]';
+
+      css += selector + "{left:" + px(pos.left) + " !important;top:" + px(pos.top) + " !important;}\n";
+    });
+
+    navigator.clipboard.writeText(css).then(() => {
+      alert("Final CSS copied to clipboard. Paste it into PowerShell/chat to freeze.");
+    }).catch(() => {
+      const box = document.createElement("textarea");
+      box.value = css;
+      box.style.position = "fixed";
+      box.style.left = "20px";
+      box.style.top = "20px";
+      box.style.width = "80vw";
+      box.style.height = "70vh";
+      box.style.zIndex = "2147483647";
+      document.body.appendChild(box);
+      box.select();
+      alert("Copy the CSS from the text box.");
+    });
+  }
+
+  function toggleEditMode() {
+    document.body.classList.toggle("edit-mode");
+    if (!document.body.classList.contains("edit-mode") && selected) {
+      selected.classList.remove("fm-selected");
+      selected = null;
+    }
+    updateToolbar();
+  }
+
+  function addControls() {
+    if (!document.getElementById("positionToggleBtn")) {
+      const btn = document.createElement("button");
+      btn.id = "positionToggleBtn";
+      btn.className = "position-toggle-btn";
+      btn.type = "button";
+      btn.textContent = "Edit Positions";
+      btn.onclick = toggleEditMode;
+      document.body.appendChild(btn);
+    }
+
+    if (!document.getElementById("positionToolbar")) {
+      const toolbar = document.createElement("div");
+      toolbar.id = "positionToolbar";
+      toolbar.className = "position-toolbar";
+      toolbar.innerHTML = `
+        <div id="positionInfo">No block selected.</div>
+        <div style="margin-top:8px;">
+          Click text → Arrow keys move 1px · Shift=10px · Alt=0.5px
+        </div>
+        <div>
+          <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
+        </div>
+      `;
+      document.body.appendChild(toolbar);
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (!document.body.classList.contains("edit-mode")) return;
+
+    if (e.key === "Escape") {
+      if (selected) selected.classList.remove("fm-selected");
+      selected = null;
+      updateToolbar();
+      return;
+    }
+
+    if (e.key.toLowerCase() === "s") {
+      e.preventDefault();
+      savePositions();
+      return;
+    }
+
+    if (e.key.toLowerCase() === "e") {
+      e.preventDefault();
+      exportCss();
+      return;
+    }
+
+    if (!selected) return;
+
+    const keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+    if (!keys.includes(e.key)) return;
+
+    e.preventDefault();
+
+    const step = e.shiftKey ? 10 : (e.altKey ? 0.5 : 1);
+    const pos = getPos(selected);
+
+    if (e.key === "ArrowLeft") pos.left -= step;
+    if (e.key === "ArrowRight") pos.left += step;
+    if (e.key === "ArrowUp") pos.top -= step;
+    if (e.key === "ArrowDown") pos.top += step;
+
+    setPos(selected, pos.left, pos.top);
+    updateToolbar();
+  });
+
+  window.addEventListener("load", function () {
+    makeEditable();
+    addControls();
+    loadPositions();
+  });
+})();
+</script>
 </body>
 </html>
+
 
 
 
