@@ -986,149 +986,128 @@ body.edit-mode .nudge-controls {
 
 
 
-<script id="manual-position-editor-force-move-v4">
+
+<script id="manual-position-editor-drag-v5">
 (function () {
-  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v4";
+  const STORAGE_KEY = "kisanmitra_farmers_manual_positions_v5";
+  let dragStart = null;
 
   function px(n) {
     return Math.round(n * 10) / 10 + "px";
   }
 
-  function getBlocks() {
+  function blocks() {
     return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
   }
 
-  function getSelected() {
+  function selected() {
     return Array.from(document.querySelectorAll(".fm-selected"));
   }
 
-  function getId(el, index) {
-    if (!el.dataset.posId) {
-      const classes = Array.from(el.classList).filter(c =>
-        c.startsWith("fm-") &&
-        ![
-          "fm-text",
-          "fm-btn-text",
-          "fm-selected"
-        ].includes(c)
-      );
-      el.dataset.posId = classes.join(".") || ("block-" + index);
-    }
-    return el.dataset.posId;
-  }
-
-  function getLeftTop(el) {
-    const cs = window.getComputedStyle(el);
+  function getPos(el) {
+    const s = window.getComputedStyle(el);
     return {
-      left: parseFloat(cs.left) || 0,
-      top: parseFloat(cs.top) || 0
+      left: parseFloat(s.left) || 0,
+      top: parseFloat(s.top) || 0
     };
   }
 
-  function setLeftTop(el, left, top) {
+  function setPos(el, left, top) {
     el.style.left = px(left);
     el.style.top = px(top);
   }
 
-  function updateToolbar() {
+  function getId(el, i) {
+    if (!el.dataset.posId) {
+      const cls = Array.from(el.classList).filter(c =>
+        c.startsWith("fm-") &&
+        !["fm-text","fm-btn-text","fm-selected"].includes(c)
+      );
+      el.dataset.posId = cls.join(".") || ("block-" + i);
+    }
+    return el.dataset.posId;
+  }
+
+  function updateInfo() {
     const info = document.getElementById("positionInfo");
     if (!info) return;
 
-    const selected = getSelected();
-
-    if (!selected.length) {
+    const s = selected();
+    if (!s.length) {
       info.innerHTML = "No block selected.";
       return;
     }
 
-    const first = selected[0];
-    const pos = getLeftTop(first);
-
+    const p = getPos(s[0]);
     info.innerHTML =
-      "<strong>Selected:</strong> " + selected.length +
-      " block(s) | first: " + first.dataset.posId +
-      " | left: " + pos.left.toFixed(1) +
-      "px | top: " + pos.top.toFixed(1) + "px";
+      "<strong>Selected:</strong> " + s.length +
+      " block(s) | first: " + s[0].dataset.posId +
+      " | left: " + p.left.toFixed(1) +
+      "px | top: " + p.top.toFixed(1) + "px";
   }
 
-  window.fmMoveSelected = function (dx, dy) {
-    const selected = getSelected();
+  function clearSelected() {
+    selected().forEach(el => el.classList.remove("fm-selected"));
+    updateInfo();
+  }
 
-    if (!selected.length) {
-      alert("Select a text block first.");
-      return;
-    }
+  function moveSelected(dx, dy) {
+    const s = selected();
+    if (!s.length) return;
 
-    selected.forEach(el => {
-      const pos = getLeftTop(el);
-      setLeftTop(el, pos.left + dx, pos.top + dy);
+    s.forEach(el => {
+      const p = getPos(el);
+      setPos(el, p.left + dx, p.top + dy);
     });
 
-    updateToolbar();
-  };
+    updateInfo();
+  }
 
-  window.fmClearSelected = function () {
-    getSelected().forEach(el => el.classList.remove("fm-selected"));
-    updateToolbar();
-  };
+  window.fmMoveSelected = moveSelected;
 
-  window.fmSavePositions = function () {
+  function savePositions() {
     const data = {};
-
-    getBlocks().forEach((el, index) => {
-      const id = getId(el, index);
-      const pos = getLeftTop(el);
-      data[id] = { left: pos.left, top: pos.top };
+    blocks().forEach((el, i) => {
+      const id = getId(el, i);
+      const p = getPos(el);
+      data[id] = { left: p.left, top: p.top };
     });
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
     alert("Positions saved.");
-  };
+  }
 
-  window.fmLoadPositions = function () {
+  function loadPositions() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return;
 
     try {
       const data = JSON.parse(raw);
-
-      getBlocks().forEach((el, index) => {
-        const id = getId(el, index);
-        if (data[id]) {
-          setLeftTop(el, data[id].left, data[id].top);
-        }
+      blocks().forEach((el, i) => {
+        const id = getId(el, i);
+        if (data[id]) setPos(el, data[id].left, data[id].top);
       });
-    } catch (e) {
-      console.warn("Could not load saved positions", e);
-    }
-  };
+    } catch (e) {}
+  }
 
-  window.fmExportPositions = function () {
+  function exportCss() {
     let css = "/* FINAL FARMERS MANUAL POSITIONS */\n";
 
-    getBlocks().forEach((el, index) => {
-      getId(el, index);
+    blocks().forEach((el, i) => {
+      getId(el, i);
+      const p = getPos(el);
 
-      const pos = getLeftTop(el);
-      const uniqueClasses = Array.from(el.classList).filter(c =>
+      const cls = Array.from(el.classList).filter(c =>
         c.startsWith("fm-") &&
-        ![
-          "fm-text",
-          "fm-btn-text",
-          "fm-selected"
-        ].includes(c)
+        !["fm-text","fm-btn-text","fm-selected"].includes(c)
       );
 
-      const selector = uniqueClasses.length
-        ? "." + uniqueClasses.join(".")
-        : '[data-pos-id="' + el.dataset.posId + '"]';
-
-      css += selector + "{left:" + px(pos.left) + " !important;top:" + px(pos.top) + " !important;}\n";
+      const selector = cls.length ? "." + cls.join(".") : '[data-pos-id="' + el.dataset.posId + '"]';
+      css += selector + "{left:" + px(p.left) + " !important;top:" + px(p.top) + " !important;}\n";
     });
 
-    navigator.clipboard.writeText(css).then(function () {
+    navigator.clipboard.writeText(css).then(() => {
       alert("Final CSS copied to clipboard.");
-    }).catch(function () {
+    }).catch(() => {
       const box = document.createElement("textarea");
       box.value = css;
       box.style.position = "fixed";
@@ -1142,44 +1121,73 @@ body.edit-mode .nudge-controls {
       box.select();
       alert("Copy CSS from the text box.");
     });
-  };
+  }
 
-  function enableSelection() {
-    getBlocks().forEach((el, index) => {
-      getId(el, index);
+  function startDrag(e, el) {
+    if (!document.body.classList.contains("edit-mode")) return;
 
-      el.addEventListener("click", function (e) {
-        if (!document.body.classList.contains("edit-mode")) return;
+    e.preventDefault();
+    e.stopPropagation();
 
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
+    if (!e.shiftKey && !el.classList.contains("fm-selected")) {
+      clearSelected();
+      el.classList.add("fm-selected");
+    }
 
-        if (!e.shiftKey) {
-          getSelected().forEach(x => x.classList.remove("fm-selected"));
-        }
+    if (e.shiftKey) {
+      el.classList.toggle("fm-selected");
+    }
 
-        el.classList.toggle("fm-selected");
-        updateToolbar();
+    const s = selected();
+    dragStart = {
+      x: e.clientX,
+      y: e.clientY,
+      items: s.map(item => {
+        const p = getPos(item);
+        return { el: item, left: p.left, top: p.top };
+      })
+    };
 
-        return false;
+    updateInfo();
+  }
+
+  function dragMove(e) {
+    if (!dragStart) return;
+
+    e.preventDefault();
+
+    const dx = e.clientX - dragStart.x;
+    const dy = e.clientY - dragStart.y;
+
+    dragStart.items.forEach(item => {
+      setPos(item.el, item.left + dx, item.top + dy);
+    });
+
+    updateInfo();
+  }
+
+  function endDrag() {
+    dragStart = null;
+  }
+
+  function setupBlocks() {
+    blocks().forEach((el, i) => {
+      getId(el, i);
+
+      el.addEventListener("pointerdown", function(e) {
+        startDrag(e, el);
       }, true);
 
-      el.addEventListener("mousedown", function (e) {
+      el.addEventListener("click", function(e) {
         if (!document.body.classList.contains("edit-mode")) return;
-
         e.preventDefault();
         e.stopPropagation();
-        e.stopImmediatePropagation();
-
-        return false;
       }, true);
     });
   }
 
-  function addEditorControls() {
+  function setupControls() {
     let btn = document.getElementById("positionToggleBtn");
-
     if (!btn) {
       btn = document.createElement("button");
       btn.id = "positionToggleBtn";
@@ -1191,17 +1199,11 @@ body.edit-mode .nudge-controls {
 
     btn.onclick = function () {
       document.body.classList.toggle("edit-mode");
-
-      if (!document.body.classList.contains("edit-mode")) {
-        fmClearSelected();
-      }
-
-      document.body.focus();
-      updateToolbar();
+      if (!document.body.classList.contains("edit-mode")) clearSelected();
+      updateInfo();
     };
 
     let toolbar = document.getElementById("positionToolbar");
-
     if (!toolbar) {
       toolbar = document.createElement("div");
       toolbar.id = "positionToolbar";
@@ -1212,7 +1214,7 @@ body.edit-mode .nudge-controls {
     toolbar.innerHTML = `
       <div id="positionInfo">No block selected.</div>
       <div style="margin-top:8px;">
-        Click = select · Shift+Click = multi-select · Keyboard arrows or green buttons move selected text
+        Click text, then drag with mouse. Shift+Click = multi-select.
       </div>
       <div>
         <strong>S</strong> Save · <strong>E</strong> Export CSS · <strong>Esc</strong> Deselect
@@ -1220,7 +1222,6 @@ body.edit-mode .nudge-controls {
     `;
 
     let nudge = document.getElementById("nudgeControls");
-
     if (!nudge) {
       nudge = document.createElement("div");
       nudge.id = "nudgeControls";
@@ -1230,62 +1231,61 @@ body.edit-mode .nudge-controls {
 
     nudge.innerHTML = `
       <span class="empty"></span>
-      <button type="button" onclick="fmMoveSelected(0,-1)">↑</button>
+      <button type="button" data-dx="0" data-dy="-1">↑</button>
       <span class="empty"></span>
-      <button type="button" onclick="fmMoveSelected(-1,0)">←</button>
-      <button type="button" onclick="fmMoveSelected(0,1)">↓</button>
-      <button type="button" onclick="fmMoveSelected(1,0)">→</button>
+      <button type="button" data-dx="-1" data-dy="0">←</button>
+      <button type="button" data-dx="0" data-dy="1">↓</button>
+      <button type="button" data-dx="1" data-dy="0">→</button>
     `;
+
+    nudge.querySelectorAll("button").forEach(b => {
+      b.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        moveSelected(Number(b.dataset.dx), Number(b.dataset.dy));
+      });
+    });
   }
 
-  function handleKeyboard(e) {
+  document.addEventListener("pointermove", dragMove, true);
+  document.addEventListener("pointerup", endDrag, true);
+
+  window.addEventListener("keydown", function(e) {
     if (!document.body.classList.contains("edit-mode")) return;
 
     if (e.key === "Escape") {
       e.preventDefault();
-      fmClearSelected();
-      return;
+      clearSelected();
     }
 
-    if (e.key && e.key.toLowerCase() === "s") {
+    if (e.key.toLowerCase() === "s") {
       e.preventDefault();
-      fmSavePositions();
-      return;
+      savePositions();
     }
 
-    if (e.key && e.key.toLowerCase() === "e") {
+    if (e.key.toLowerCase() === "e") {
       e.preventDefault();
-      fmExportPositions();
-      return;
+      exportCss();
     }
-
-    const arrows = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-    if (!arrows.includes(e.key)) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
 
     const step = e.ctrlKey ? 10 : (e.altKey ? 0.5 : 1);
 
-    if (e.key === "ArrowUp") fmMoveSelected(0, -step);
-    if (e.key === "ArrowDown") fmMoveSelected(0, step);
-    if (e.key === "ArrowLeft") fmMoveSelected(-step, 0);
-    if (e.key === "ArrowRight") fmMoveSelected(step, 0);
-  }
-
-  window.addEventListener("keydown", handleKeyboard, true);
-  document.addEventListener("keydown", handleKeyboard, true);
+    if (e.key === "ArrowUp") { e.preventDefault(); moveSelected(0, -step); }
+    if (e.key === "ArrowDown") { e.preventDefault(); moveSelected(0, step); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); moveSelected(-step, 0); }
+    if (e.key === "ArrowRight") { e.preventDefault(); moveSelected(step, 0); }
+  }, true);
 
   window.addEventListener("load", function () {
-    enableSelection();
-    addEditorControls();
-    fmLoadPositions();
+    setupBlocks();
+    setupControls();
+    loadPositions();
   });
 })();
 </script>
 </body>
 </html>
+
 
 
 
