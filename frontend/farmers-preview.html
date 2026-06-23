@@ -1,24 +1,343 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KisanMitraAI Farmers Preview</title>
-  <link rel="stylesheet" href="./styles.css?v=farmers-preview-1" />
-</head>
-<body>
-<section id="farmers" class="farmers-page">
-  <div class="farmers-stage">
-    <img class="farmers-bg" src="./assets/farmers-master-clean-background.png?v=farmers-bg-final-1" alt="Farmers Page Background" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KisanMitraAI Farmers Preview</title>
 
-    <!-- Header real text -->
-    <a class="farmers-logo-text" href="#home">
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.farmers-stage {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.farmers-bg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+  object-position: center top;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Header text */
+.logo-real {
+  position: absolute;
+  left: 2.3%;
+  top: 2.3%;
+  width: 18%;
+  height: 9.5%;
+  z-index: 10;
+}
+
+.logo-real img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.nav-text {
+  position: absolute;
+  left: 25.8%;
+  top: 8.7%;
+  width: 39.5%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.nav-text a {
+  color: #101820;
+  text-decoration: none;
+  font-size: clamp(9px, 0.85vw, 14px);
+  font-weight: 800;
+}
+
+.nav-text a.active {
+  color: #08751f;
+}
+
+.lang-text {
+  position: absolute;
+  left: 73.3%;
+  top: 6.1%;
+  z-index: 10;
+  font-size: clamp(10px, 0.95vw, 15px);
+  font-weight: 850;
+}
+
+.talk-text {
+  position: absolute;
+  left: 85.1%;
+  top: 6.1%;
+  z-index: 10;
+  font-size: clamp(10px, 0.95vw, 15px);
+  font-weight: 850;
+  color: #1262ff;
+}
+
+.login-text {
+  position: absolute;
+  left: 94.6%;
+  top: 6.1%;
+  z-index: 10;
+  font-size: clamp(10px, 0.95vw, 15px);
+  font-weight: 850;
+  color: #ffffff;
+}
+
+/* Hero text */
+.breadcrumb {
+  position: absolute;
+  left: 3.5%;
+  top: 16.4%;
+  z-index: 10;
+  font-size: clamp(11px, 1vw, 16px);
+  font-weight: 700;
+  color: #0b5f1d;
+}
+
+.hero-title {
+  position: absolute;
+  left: 3.5%;
+  top: 22.3%;
+  z-index: 10;
+  width: 45%;
+  font-size: clamp(38px, 4.1vw, 68px);
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -1.8px;
+  color: #06651d;
+}
+
+.hero-subtitle {
+  position: absolute;
+  left: 3.5%;
+  top: 32.3%;
+  z-index: 10;
+  width: 50%;
+  font-size: clamp(17px, 1.9vw, 32px);
+  line-height: 1.12;
+  font-weight: 950;
+  color: #081226;
+}
+
+.hero-desc {
+  position: absolute;
+  left: 3.5%;
+  top: 39.6%;
+  z-index: 10;
+  width: 40%;
+  font-size: clamp(12px, 1.16vw, 20px);
+  line-height: 1.55;
+  font-weight: 650;
+  color: #101820;
+}
+
+/* Buttons */
+.btn-text {
+  position: absolute;
+  top: 52.3%;
+  height: 6.4%;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(11px, 1.05vw, 18px);
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.btn-primary {
+  left: 4.8%;
+  width: 13.2%;
+  color: #ffffff;
+}
+
+.btn-whatsapp {
+  left: 22.0%;
+  width: 14.6%;
+  color: #08751f;
+}
+
+.btn-voice {
+  left: 38.4%;
+  width: 10.5%;
+  color: #08751f;
+}
+
+/* Right cards */
+.right-card {
+  position: absolute;
+  left: 82.8%;
+  width: 13.8%;
+  z-index: 10;
+  color: #101820;
+}
+
+.right-card h3 {
+  font-size: clamp(11px, 0.95vw, 16px);
+  font-weight: 950;
+  margin-bottom: 5px;
+}
+
+.right-card p {
+  font-size: clamp(9px, 0.78vw, 13px);
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.right-card strong {
+  font-size: clamp(15px, 1.45vw, 25px);
+  font-weight: 950;
+}
+
+.card-ai {
+  top: 18.4%;
+}
+
+.card-weather {
+  top: 36.7%;
+}
+
+.card-market {
+  top: 53.8%;
+}
+
+/* Tool cards */
+.tool-card {
+  position: absolute;
+  top: 68.5%;
+  z-index: 10;
+  width: 12.7%;
+  color: #111827;
+}
+
+.tool-card h3 {
+  font-size: clamp(10px, 0.85vw, 15px);
+  line-height: 1.12;
+  font-weight: 950;
+  margin-bottom: 5px;
+}
+
+.tool-card p {
+  font-size: clamp(8px, 0.68vw, 12px);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.tool-card span {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: clamp(9px, 0.75vw, 13px);
+  font-weight: 950;
+  color: #08751f;
+}
+
+.tool-1 { left: 7.5%; }
+.tool-2 { left: 22.7%; }
+.tool-3 { left: 38.6%; }
+.tool-4 { left: 54.3%; }
+.tool-5 { left: 70.3%; }
+.tool-6 { left: 85.8%; }
+
+/* Bottom cards */
+.bottom-card {
+  position: absolute;
+  top: 87.3%;
+  z-index: 10;
+  width: 17%;
+  color: #111827;
+}
+
+.bottom-card h3 {
+  font-size: clamp(12px, 1vw, 18px);
+  line-height: 1.12;
+  font-weight: 950;
+  margin-bottom: 5px;
+}
+
+.bottom-card p {
+  font-size: clamp(9px, 0.82vw, 14px);
+  line-height: 1.32;
+  font-weight: 600;
+}
+
+.bottom-1 { left: 9.6%; }
+.bottom-2 { left: 34.3%; }
+.bottom-3 { left: 58.4%; }
+.bottom-4 { left: 81.2%; }
+
+/* Invisible click buttons */
+.hotspot {
+  position: absolute;
+  z-index: 20;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.hs-explore {
+  left: 2.8%;
+  top: 51.2%;
+  width: 14.5%;
+  height: 7.5%;
+}
+
+.hs-whatsapp {
+  left: 18.8%;
+  top: 51.2%;
+  width: 16.5%;
+  height: 7.5%;
+}
+
+.hs-voice {
+  left: 36.2%;
+  top: 51.2%;
+  width: 13.5%;
+  height: 7.5%;
+}
+
+@media (max-width: 768px) {
+  .farmers-bg {
+    object-fit: cover;
+    object-position: center top;
+  }
+}
+</style>
+</head>
+
+<body>
+  <section class="farmers-stage">
+    <img class="farmers-bg" src="./assets/farmers-master-clean-background.png?v=farmers-overlay-test-1" alt="Farmers Background" />
+
+    <a class="logo-real" href="./index.html">
       <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
     </a>
 
-    <nav class="farmers-nav">
-      <a href="#home" data-i18n="nav.home">Home</a>
-      <a class="active" href="#farmers" data-i18n="nav.farmers">Farmers</a>
+    <nav class="nav-text">
+      <a href="./index.html" data-i18n="nav.home">Home</a>
+      <a href="#farmers" class="active" data-i18n="nav.farmers">Farmers</a>
       <a href="#fpo" data-i18n="nav.fpo">FPO</a>
       <a href="#buyer" data-i18n="nav.buyer">Buyer</a>
       <a href="#ai-engine" data-i18n="nav.aiEngine">AI Engine</a>
@@ -26,118 +345,111 @@
       <a href="#contact" data-i18n="nav.contact">Contact</a>
     </nav>
 
-    <button class="farmers-lang" type="button" data-i18n="common.language">English</button>
-    <button class="farmers-talk" type="button" data-i18n="common.talkToAi">Talk to AI</button>
-    <a class="farmers-login" href="#login" data-i18n="common.login">Login</a>
+    <div class="lang-text" data-i18n="common.language">English</div>
+    <div class="talk-text" data-i18n="common.talkToAi">Talk to AI</div>
+    <div class="login-text" data-i18n="common.login">Login</div>
 
-    <!-- Breadcrumb -->
-    <div class="farmers-breadcrumb">
+    <div class="breadcrumb">
       <span data-i18n="nav.home">Home</span>
       <span>›</span>
       <span data-i18n="nav.farmers">Farmers</span>
     </div>
 
-    <!-- Hero text -->
-    <h1 class="farmers-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
+    <h1 class="hero-title" data-i18n="farmers.hero.title">Empowering Farmers.</h1>
 
-    <h2 class="farmers-subtitle" data-i18n="farmers.hero.subtitle">
+    <h2 class="hero-subtitle" data-i18n="farmers.hero.subtitle">
       Better Decisions. Higher Yields. Stronger Income.
     </h2>
 
-    <p class="farmers-description" data-i18n="farmers.hero.description">
+    <p class="hero-desc" data-i18n="farmers.hero.description">
       KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.
     </p>
 
-    <!-- Hero buttons -->
-    <a class="farmers-primary-btn" href="#farmer-tools" data-i18n="farmers.hero.explore">
+    <a class="btn-text btn-primary" href="#farmer-tools" data-i18n="farmers.hero.explore">
       Explore Farmer Tools
     </a>
 
-    <a class="farmers-whatsapp-btn" href="#whatsapp" data-i18n="farmers.hero.whatsapp">
+    <a class="btn-text btn-whatsapp" href="#whatsapp" data-i18n="farmers.hero.whatsapp">
       Join WhatsApp Channel
     </a>
 
-    <button class="farmers-voice-btn" type="button" data-i18n="farmers.hero.voice">
+    <a class="btn-text btn-voice" href="#voice" data-i18n="farmers.hero.voice">
       Ask by Voice
-    </button>
+    </a>
 
-    <!-- Right insight cards -->
-    <div class="farmers-right-card card-ai">
+    <div class="right-card card-ai">
       <h3 data-i18n="farmers.insight.title">AI Crop Insight</h3>
       <p data-i18n="farmers.insight.crop">Wheat · Good Growth</p>
       <strong>82/100</strong>
     </div>
 
-    <div class="farmers-right-card card-weather">
+    <div class="right-card card-weather">
       <h3 data-i18n="farmers.weather.title">Weather Update</h3>
       <strong>32°C</strong>
       <p data-i18n="farmers.weather.status">Partly Cloudy</p>
     </div>
 
-    <div class="farmers-right-card card-market">
+    <div class="right-card card-market">
       <h3 data-i18n="farmers.market.title">Market Linkage</h3>
       <p data-i18n="farmers.market.crop">Wheat (FAQ)</p>
       <strong>₹ 2,125</strong>
     </div>
 
-    <!-- Tool cards -->
-    <div class="farmers-tool tool-1">
+    <div class="tool-card tool-1">
       <h3 data-i18n="farmers.tools.crop.title">AI Crop Advisory</h3>
       <p data-i18n="farmers.tools.crop.desc">Get AI-powered crop recommendations for higher yield and income.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <div class="farmers-tool tool-2">
+    <div class="tool-card tool-2">
       <h3 data-i18n="farmers.tools.fertilizer.title">Fertilizer Calculator</h3>
       <p data-i18n="farmers.tools.fertilizer.desc">Calculate the right fertilizer dose for your crop and field size.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <div class="farmers-tool tool-3">
+    <div class="tool-card tool-3">
       <h3 data-i18n="farmers.tools.pest.title">Pest & Disease Detection</h3>
       <p data-i18n="farmers.tools.pest.desc">Identify pests and diseases from images and get control solutions.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <div class="farmers-tool tool-4">
+    <div class="tool-card tool-4">
       <h3 data-i18n="farmers.tools.weather.title">Weather & Alerts</h3>
       <p data-i18n="farmers.tools.weather.desc">Real-time weather updates and alerts to plan farming better.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <div class="farmers-tool tool-5">
+    <div class="tool-card tool-5">
       <h3 data-i18n="farmers.tools.mandi.title">Mandi Prices</h3>
       <p data-i18n="farmers.tools.mandi.desc">Check live mandi rates and find the best time to sell.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <div class="farmers-tool tool-6">
+    <div class="tool-card tool-6">
       <h3 data-i18n="farmers.tools.scheme.title">Schemes & Support</h3>
       <p data-i18n="farmers.tools.scheme.desc">Explore government schemes, loans, subsidies and insurance options.</p>
-      <span data-i18n="common.useNow">Use Now</span>
+      <span data-i18n="common.useNow">Use Now →</span>
     </div>
 
-    <!-- Bottom feature text -->
-    <div class="farmers-bottom bottom-1">
+    <div class="bottom-card bottom-1">
       <h3 data-i18n="home.features.ai.title">AI-Powered Insights</h3>
       <p data-i18n="home.features.ai.desc">Smart recommendations for better yields and lower costs.</p>
     </div>
 
-    <div class="farmers-bottom bottom-2">
+    <div class="bottom-card bottom-2">
       <h3 data-i18n="home.features.trust.title">Trust & Transparency</h3>
       <p data-i18n="home.features.trust.desc">Verified data, traceability and secure transactions.</p>
     </div>
 
-    <div class="farmers-bottom bottom-3">
+    <div class="bottom-card bottom-3">
       <h3 data-i18n="home.features.market.title">Global Market Linkage</h3>
       <p data-i18n="home.features.market.desc">Connect to more buyers, better prices, wider markets.</p>
     </div>
 
-    <div class="farmers-bottom bottom-4">
+    <div class="bottom-card bottom-4">
       <h3 data-i18n="home.features.voice.title">Voice & Language Support</h3>
       <p data-i18n="home.features.voice.desc">Talk or listen in your language. Simple, smart & farmer-friendly.</p>
     </div>
-  </div>
-</section>
+  </section>
 </body>
 </html>
