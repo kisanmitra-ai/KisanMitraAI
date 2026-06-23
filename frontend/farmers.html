@@ -1533,6 +1533,50 @@ html,body{
   pointer-events:none !important;
 }
 </style>
+<style id="farmers-right-bottom-text-fix-v1">
+#farmers-right-bottom-text-v1 .fm-text{
+  position:absolute !important;
+  z-index:120 !important;
+}
+
+/* Right Cards */
+.fm-r-title{font-size:14px!important;font-weight:950!important;color:#071122!important;line-height:1.05!important;white-space:nowrap!important;}
+.fm-r-value{font-size:20px!important;font-weight:950!important;color:#071122!important;line-height:1!important;white-space:nowrap!important;}
+.fm-r-small{font-size:10px!important;font-weight:750!important;color:#071122!important;line-height:1.1!important;white-space:nowrap!important;}
+
+.fm-ai-title{left:1135px!important;top:109px!important;}
+.fm-ai-small{left:1135px!important;top:132px!important;}
+.fm-ai-health{left:1135px!important;top:154px!important;}
+.fm-ai-value{left:1135px!important;top:172px!important;}
+
+.fm-weather-title{left:1135px!important;top:217px!important;}
+.fm-weather-value{left:1135px!important;top:242px!important;}
+.fm-weather-small{left:1135px!important;top:271px!important;}
+.fm-humidity{left:1126px!important;top:317px!important;}
+.fm-rain{left:1186px!important;top:317px!important;}
+.fm-wind{left:1267px!important;top:317px!important;}
+
+.fm-market-title{left:1126px!important;top:350px!important;}
+.fm-market-small{left:1126px!important;top:374px!important;}
+.fm-market-value{left:1135px!important;top:390px!important;font-size:19px!important;}
+.fm-market-mandi{left:1135px!important;top:423px!important;}
+
+/* Bottom Cards */
+.fm-bottom-title{font-size:14px!important;font-weight:950!important;color:#071122!important;line-height:1.05!important;white-space:nowrap!important;}
+.fm-bottom-desc{font-size:9px!important;font-weight:700!important;color:#071122!important;line-height:1.18!important;}
+
+.fm-b1-title{left:125px!important;top:559px!important;}
+.fm-b1-desc{left:125px!important;top:578px!important;width:180px!important;}
+
+.fm-b2-title{left:478px!important;top:559px!important;}
+.fm-b2-desc{left:478px!important;top:578px!important;width:190px!important;}
+
+.fm-b3-title{left:795px!important;top:559px!important;}
+.fm-b3-desc{left:795px!important;top:578px!important;width:190px!important;}
+
+.fm-b4-title{left:1109px!important;top:559px!important;}
+.fm-b4-desc{left:1109px!important;top:578px!important;width:190px!important;}
+</style>
 </head>
 
 <body>
@@ -1690,8 +1734,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+<div id="farmers-right-bottom-text-v1">
+  <div class="fm-text fm-r-title fm-ai-title">AI Crop Insight</div>
+  <div class="fm-text fm-r-small fm-ai-small">Wheat · Good Growth</div>
+  <div class="fm-text fm-r-small fm-ai-health">Health Score</div>
+  <div class="fm-text fm-r-value fm-ai-value">82/100</div>
+
+  <div class="fm-text fm-r-title fm-weather-title">Weather Update</div>
+  <div class="fm-text fm-r-value fm-weather-value">32°C</div>
+  <div class="fm-text fm-r-small fm-weather-small">Partly Cloudy</div>
+  <div class="fm-text fm-r-small fm-humidity">Humidity<br>65%</div>
+  <div class="fm-text fm-r-small fm-rain">Rain Chance<br>20%</div>
+  <div class="fm-text fm-r-small fm-wind">Wind<br>12 km/h</div>
+
+  <div class="fm-text fm-r-title fm-market-title">Market Linkage</div>
+  <div class="fm-text fm-r-small fm-market-small">Wheat (FAQ)</div>
+  <div class="fm-text fm-r-value fm-market-value">₹ 2,125 / Quintal</div>
+  <div class="fm-text fm-r-small fm-market-mandi">Mandi: Indore</div>
+
+  <div class="fm-text fm-bottom-title fm-b1-title">AI-Powered Insights</div>
+  <div class="fm-text fm-bottom-desc fm-b1-desc">Smart recommendations for better yields and lower costs.</div>
+
+  <div class="fm-text fm-bottom-title fm-b2-title">Trust & Transparency</div>
+  <div class="fm-text fm-bottom-desc fm-b2-desc">Verified data, traceability and secure transactions.</div>
+
+  <div class="fm-text fm-bottom-title fm-b3-title">Global Market Linkage</div>
+  <div class="fm-text fm-bottom-desc fm-b3-desc">Connect to more buyers, better prices, wider markets.</div>
+
+  <div class="fm-text fm-bottom-title fm-b4-title">Voice & Language Support</div>
+  <div class="fm-text fm-bottom-desc fm-b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+</div>
 </body>
 </html>
+
 
 
 
