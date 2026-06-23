@@ -781,14 +781,15 @@ html,body{
 
 
 
-<style id="manual-position-editor-numeric-css">
+
+<style id="manual-position-editor-transform-css">
 body.edit-mode .fm-hotspot {
   pointer-events: none !important;
 }
 
 body.edit-mode .fm-text,
 body.edit-mode .fm-btn-text {
-  outline: 1px dashed rgba(0, 120, 255, 0.65) !important;
+  outline: 1px dashed rgba(0,120,255,.65) !important;
   cursor: pointer !important;
   user-select: none !important;
 }
@@ -825,7 +826,7 @@ body.edit-mode .fm-selected {
   font-size: 12px;
   font-weight: 700;
   display: none;
-  width: 430px;
+  width: 460px;
   box-shadow: 0 14px 34px rgba(0,0,0,.32);
 }
 
@@ -956,25 +957,14 @@ body.edit-mode .position-toolbar {
 
 
 
-<script id="manual-position-editor-numeric-js">
+
+<script id="manual-position-editor-transform-js">
 (function () {
-  const STORAGE_KEY = "kisanmitra_farmers_numeric_positions_v1";
+  const STORAGE_KEY = "kisanmitra_farmers_transform_positions_v1";
   let selected = null;
 
   function blocks() {
     return Array.from(document.querySelectorAll(".fm-text, .fm-btn-text"));
-  }
-
-  function px(n) {
-    return Math.round(Number(n) * 10) / 10 + "px";
-  }
-
-  function getPos(el) {
-    const s = window.getComputedStyle(el);
-    return {
-      left: parseFloat(s.left) || 0,
-      top: parseFloat(s.top) || 0
-    };
   }
 
   function getId(el, i) {
@@ -986,6 +976,36 @@ body.edit-mode .position-toolbar {
       el.dataset.posId = cls.join(".") || ("block-" + i);
     }
     return el.dataset.posId;
+  }
+
+  function getBasePos(el) {
+    const s = window.getComputedStyle(el);
+    return {
+      left: parseFloat(s.left) || 0,
+      top: parseFloat(s.top) || 0
+    };
+  }
+
+  function getShift(el) {
+    return {
+      x: parseFloat(el.dataset.shiftX || "0"),
+      y: parseFloat(el.dataset.shiftY || "0")
+    };
+  }
+
+  function applyShift(el, x, y) {
+    el.dataset.shiftX = String(x);
+    el.dataset.shiftY = String(y);
+    el.style.setProperty("transform", "translate(" + x + "px," + y + "px)", "important");
+  }
+
+  function currentFinalPos(el) {
+    const base = getBasePos(el);
+    const shift = getShift(el);
+    return {
+      left: base.left + shift.x,
+      top: base.top + shift.y
+    };
   }
 
   function updatePanel() {
@@ -1002,7 +1022,7 @@ body.edit-mode .position-toolbar {
       return;
     }
 
-    const p = getPos(selected);
+    const p = currentFinalPos(selected);
     info.textContent = "Selected: " + selected.dataset.posId;
     leftInput.value = p.left.toFixed(1);
     topInput.value = p.top.toFixed(1);
@@ -1021,11 +1041,11 @@ body.edit-mode .position-toolbar {
       return;
     }
 
-    const left = document.getElementById("posLeft").value;
-    const top = document.getElementById("posTop").value;
+    const targetLeft = parseFloat(document.getElementById("posLeft").value || "0");
+    const targetTop = parseFloat(document.getElementById("posTop").value || "0");
+    const base = getBasePos(selected);
 
-    selected.style.setProperty("left", px(left), "important");
-    selected.style.setProperty("top", px(top), "important");
+    applyShift(selected, targetLeft - base.left, targetTop - base.top);
     updatePanel();
   };
 
@@ -1035,9 +1055,8 @@ body.edit-mode .position-toolbar {
       return;
     }
 
-    const p = getPos(selected);
-    selected.style.setProperty("left", px(p.left + dx), "important");
-    selected.style.setProperty("top", px(p.top + dy), "important");
+    const shift = getShift(selected);
+    applyShift(selected, shift.x + dx, shift.y + dy);
     updatePanel();
   };
 
@@ -1046,8 +1065,8 @@ body.edit-mode .position-toolbar {
 
     blocks().forEach((el, i) => {
       const id = getId(el, i);
-      const p = getPos(el);
-      data[id] = { left: p.left, top: p.top };
+      const shift = getShift(el);
+      data[id] = shift;
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -1060,11 +1079,11 @@ body.edit-mode .position-toolbar {
 
     try {
       const data = JSON.parse(raw);
+
       blocks().forEach((el, i) => {
         const id = getId(el, i);
         if (data[id]) {
-          el.style.left = px(data[id].left);
-          el.style.top = px(data[id].top);
+          applyShift(el, data[id].x || 0, data[id].y || 0);
         }
       });
     } catch(e) {}
@@ -1075,7 +1094,7 @@ body.edit-mode .position-toolbar {
 
     blocks().forEach((el, i) => {
       getId(el, i);
-      const p = getPos(el);
+      const p = currentFinalPos(el);
 
       const cls = Array.from(el.classList).filter(c =>
         c.startsWith("fm-") &&
@@ -1083,7 +1102,7 @@ body.edit-mode .position-toolbar {
       );
 
       const selector = "." + cls.join(".");
-      css += selector + "{left:" + px(p.left) + " !important;top:" + px(p.top) + " !important;}\n";
+      css += selector + "{left:" + p.left.toFixed(1) + "px !important;top:" + p.top.toFixed(1) + "px !important;transform:none !important;}\n";
     });
 
     navigator.clipboard.writeText(css).then(() => {
@@ -1144,6 +1163,8 @@ body.edit-mode .position-toolbar {
         <button onclick="fmMoveBy(0,1)">↓</button>
         <button onclick="fmMoveBy(-10,0)">←10</button>
         <button onclick="fmMoveBy(10,0)">10→</button>
+        <button onclick="fmMoveBy(0,-10)">↑10</button>
+        <button onclick="fmMoveBy(0,10)">10↓</button>
       </div>
       <div>
         <button onclick="fmSavePositions()">Save</button>
@@ -1161,6 +1182,7 @@ body.edit-mode .position-toolbar {
 </script>
 </body>
 </html>
+
 
 
 
