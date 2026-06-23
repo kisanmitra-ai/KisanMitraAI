@@ -6,386 +6,248 @@
 <title>KisanMitraAI Farmers Preview</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  width:100%;
+  min-height:100vh;
+  overflow:hidden;
+  background:#fff;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #ffffff;
-  font-family: Arial, Helvetica, sans-serif;
+/* Locked canvas: background and text scale together */
+.stage-wrap{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  overflow:hidden;
+  background:#fff;
 }
 
-/* TRUE 1366 × 640 CANVAS SYSTEM */
-.viewport-fit {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  place-items: start center;
-  background: #ffffff;
-  overflow: hidden;
+.stage{
+  width:1366px;
+  height:640px;
+  position:relative;
+  overflow:hidden;
+  transform-origin:top center;
+  transform:scale(min(calc(100vw / 1366), calc(100vh / 640)));
 }
 
-.canvas-scale {
-  width: 1366px;
-  height: 640px;
-  position: relative;
-  transform-origin: top center;
-  transform: scale(min(calc(100vw / 1366), calc(100vh / 640)));
+.bg{
+  position:absolute;
+  inset:0;
+  width:1366px;
+  height:640px;
+  object-fit:fill;
+  display:block;
+  pointer-events:none;
+  user-select:none;
 }
 
-.farmers-stage {
-  width: 1366px;
-  height: 640px;
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
+.t{
+  position:absolute;
+  z-index:20;
+  color:#071122;
+  text-decoration:none;
 }
 
-.farmers-bg {
-  position: absolute;
-  inset: 0;
-  width: 1366px;
-  height: 640px;
-  object-fit: fill;
-  display: block;
-  pointer-events: none;
-  user-select: none;
+/* Header */
+.logo{
+  left:32px;
+  top:18px;
+  width:230px;
+  height:58px;
+  z-index:30;
 }
+.logo img{width:100%;height:100%;object-fit:contain;object-position:left center}
 
-/* common */
-.txt {
-  position: absolute;
-  z-index: 20;
-  color: #071122;
-  text-decoration: none;
+.nav{
+  font-size:13px;
+  font-weight:850;
+  line-height:1;
+  color:#111827;
 }
+.home{left:365px;top:88px}
+.farmers{left:445px;top:88px;color:#08751f}
+.fpo{left:535px;top:88px}
+.buyer{left:618px;top:88px}
+.ai{left:700px;top:88px}
+.trust{left:790px;top:88px}
+.contact{left:870px;top:88px}
 
-.logo-real {
-  position: absolute;
-  left: 30px;
-  top: 16px;
-  width: 235px;
-  height: 62px;
-  z-index: 30;
-}
-
-.logo-real img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: left center;
-}
-
-/* Header labels */
-.nav-label {
-  font-size: 13px;
-  line-height: 1;
-  font-weight: 850;
-  color: #111827;
-}
-
-.nav-home { left: 360px; top: 88px; }
-.nav-farmers { left: 445px; top: 88px; color: #08751f; }
-.nav-fpo { left: 535px; top: 88px; }
-.nav-buyer { left: 618px; top: 88px; }
-.nav-ai { left: 700px; top: 88px; }
-.nav-trust { left: 790px; top: 88px; }
-.nav-contact { left: 870px; top: 88px; }
-
-.header-language {
-  left: 1015px;
-  top: 57px;
-  font-size: 15px;
-  font-weight: 850;
-}
-
-.header-talk {
-  left: 1157px;
-  top: 57px;
-  font-size: 15px;
-  font-weight: 850;
-  color: #1262ff;
-}
-
-.header-login {
-  left: 1288px;
-  top: 57px;
-  font-size: 15px;
-  font-weight: 850;
-  color: #ffffff;
-}
+.lang{left:1016px;top:57px;font-size:15px;font-weight:850}
+.talk{left:1158px;top:57px;font-size:15px;font-weight:850;color:#1262ff}
+.login{left:1288px;top:57px;font-size:15px;font-weight:850;color:#fff}
 
 /* Hero */
-.breadcrumb {
-  left: 52px;
-  top: 154px;
-  font-size: 15px;
-  font-weight: 800;
-  color: #075c1c;
+.breadcrumb{left:52px;top:150px;font-size:15px;font-weight:800;color:#075c1c}
+.title{
+  left:52px;
+  top:178px;
+  width:630px;
+  font-size:51px;
+  line-height:.98;
+  font-weight:950;
+  letter-spacing:-1.5px;
+  color:#06651d;
+  white-space:nowrap;
 }
-
-.hero-title {
-  left: 52px;
-  top: 184px;
-  width: 650px;
-  font-size: 49px;
-  line-height: 0.98;
-  font-weight: 950;
-  letter-spacing: -1.4px;
-  color: #06651d;
-  white-space: nowrap;
+.subtitle{
+  left:52px;
+  top:244px;
+  width:710px;
+  font-size:25px;
+  line-height:1.05;
+  font-weight:950;
+  color:#071122;
+  white-space:nowrap;
 }
-
-.hero-subtitle {
-  left: 52px;
-  top: 250px;
-  width: 700px;
-  font-size: 26px;
-  line-height: 1.05;
-  font-weight: 950;
-  color: #071122;
-  white-space: nowrap;
-}
-
-.hero-desc {
-  left: 52px;
-  top: 302px;
-  width: 570px;
-  font-size: 16px;
-  line-height: 1.45;
-  font-weight: 650;
-  color: #101820;
+.desc{
+  left:52px;
+  top:298px;
+  width:560px;
+  font-size:16px;
+  line-height:1.45;
+  font-weight:650;
+  color:#101820;
 }
 
 /* Buttons */
-.btn-label {
-  position: absolute;
-  z-index: 25;
-  top: 414px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 950;
-  line-height: 1;
-  text-decoration: none;
-  white-space: nowrap;
+.btn{
+  position:absolute;
+  z-index:30;
+  top:414px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  font-size:15px;
+  line-height:1;
+  font-weight:950;
+  text-decoration:none;
+  white-space:nowrap;
 }
-
-.btn-explore {
-  left: 92px;
-  width: 160px;
-  color: #ffffff;
-}
-
-.btn-whatsapp {
-  left: 315px;
-  width: 210px;
-  color: #08751f;
-}
-
-.btn-voice {
-  left: 515px;
-  width: 150px;
-  color: #08751f;
-}
+.explore{left:92px;width:175px;color:#fff}
+.whatsapp{left:315px;width:220px;color:#08751f}
+.voice{left:515px;width:160px;color:#08751f}
 
 /* Right cards */
-.right-title {
-  font-size: 15px;
-  line-height: 1.1;
-  font-weight: 950;
-  color: #111827;
-}
+.rtitle{font-size:15px;font-weight:950;line-height:1.1;color:#111827}
+.rsmall{font-size:12px;font-weight:700;line-height:1.2;color:#111827}
+.rvalue{font-size:23px;font-weight:950;line-height:1;color:#071122}
 
-.right-small {
-  font-size: 12px;
-  line-height: 1.2;
-  font-weight: 700;
-  color: #111827;
-}
+.ai-title{left:1128px;top:150px}
+.ai-small{left:1128px;top:176px}
+.ai-value{left:1128px;top:204px}
 
-.right-value {
-  font-size: 23px;
-  line-height: 1;
-  font-weight: 950;
-  color: #071122;
-}
+.weather-title{left:1128px;top:292px}
+.weather-value{left:1128px;top:320px}
+.weather-small{left:1128px;top:350px}
 
-.ai-title { left: 1128px; top: 178px; }
-.ai-small { left: 1128px; top: 204px; }
-.ai-value { left: 1128px; top: 232px; }
+.market-title{left:1128px;top:430px}
+.market-small{left:1128px;top:456px}
+.market-value{left:1128px;top:484px}
 
-.weather-title { left: 1128px; top: 318px; }
-.weather-value { left: 1128px; top: 346px; }
-.weather-small { left: 1128px; top: 374px; }
+/* Tool row */
+.tool-title{font-size:12px;font-weight:950;line-height:1.08;color:#111827}
+.tool-desc{font-size:9px;font-weight:650;line-height:1.22;color:#111827}
+.tool-link{font-size:10px;font-weight:950;line-height:1;color:#08751f}
 
-.market-title { left: 1128px; top: 452px; }
-.market-small { left: 1128px; top: 478px; }
-.market-value { left: 1128px; top: 506px; }
-
-/* Tool cards */
-.tool-title {
-  font-size: 12px;
-  line-height: 1.08;
-  font-weight: 950;
-  color: #111827;
-}
-
-.tool-desc {
-  font-size: 9px;
-  line-height: 1.22;
-  font-weight: 650;
-  color: #111827;
-}
-
-.tool-link {
-  font-size: 10px;
-  line-height: 1;
-  font-weight: 950;
-  color: #08751f;
-}
-
-.t1-title { left: 110px; top: 503px; width: 125px; }
-.t1-desc  { left: 110px; top: 524px; width: 125px; }
-.t1-link  { left: 110px; top: 575px; }
-
-.t2-title { left: 335px; top: 503px; width: 125px; }
-.t2-desc  { left: 335px; top: 524px; width: 125px; }
-.t2-link  { left: 335px; top: 575px; }
-
-.t3-title { left: 555px; top: 503px; width: 130px; }
-.t3-desc  { left: 555px; top: 524px; width: 130px; }
-.t3-link  { left: 555px; top: 575px; }
-
-.t4-title { left: 775px; top: 503px; width: 130px; }
-.t4-desc  { left: 775px; top: 524px; width: 130px; }
-.t4-link  { left: 775px; top: 575px; }
-
-.t5-title { left: 995px; top: 503px; width: 130px; }
-.t5-desc  { left: 995px; top: 524px; width: 130px; }
-.t5-link  { left: 995px; top: 575px; }
-
-.t6-title { left: 1210px; top: 503px; width: 115px; }
-.t6-desc  { left: 1210px; top: 524px; width: 115px; }
-.t6-link  { left: 1210px; top: 575px; }
+.t1-title{left:110px;top:503px;width:125px}.t1-desc{left:110px;top:524px;width:125px}.t1-link{left:110px;top:575px}
+.t2-title{left:335px;top:503px;width:125px}.t2-desc{left:335px;top:524px;width:125px}.t2-link{left:335px;top:575px}
+.t3-title{left:555px;top:503px;width:130px}.t3-desc{left:555px;top:524px;width:130px}.t3-link{left:555px;top:575px}
+.t4-title{left:775px;top:503px;width:130px}.t4-desc{left:775px;top:524px;width:130px}.t4-link{left:775px;top:575px}
+.t5-title{left:995px;top:503px;width:130px}.t5-desc{left:995px;top:524px;width:130px}.t5-link{left:995px;top:575px}
+.t6-title{left:1210px;top:503px;width:115px}.t6-desc{left:1210px;top:524px;width:115px}.t6-link{left:1210px;top:575px}
 
 /* Bottom strip */
-.bottom-title {
-  font-size: 15px;
-  line-height: 1.08;
-  font-weight: 950;
-  color: #111827;
-}
+.btitle{font-size:15px;font-weight:950;line-height:1.08;color:#111827}
+.bdesc{font-size:11px;font-weight:650;line-height:1.25;color:#111827}
 
-.bottom-desc {
-  font-size: 11px;
-  line-height: 1.25;
-  font-weight: 650;
-  color: #111827;
-}
-
-.b1-title { left: 135px; top: 604px; width: 210px; }
-.b1-desc  { left: 135px; top: 626px; width: 210px; }
-
-.b2-title { left: 455px; top: 604px; width: 210px; }
-.b2-desc  { left: 455px; top: 626px; width: 210px; }
-
-.b3-title { left: 745px; top: 604px; width: 230px; }
-.b3-desc  { left: 745px; top: 626px; width: 230px; }
-
-.b4-title { left: 1070px; top: 604px; width: 240px; }
-.b4-desc  { left: 1070px; top: 626px; width: 240px; }
+.b1-title{left:135px;top:604px;width:210px}.b1-desc{left:135px;top:626px;width:210px}
+.b2-title{left:455px;top:604px;width:210px}.b2-desc{left:455px;top:626px;width:210px}
+.b3-title{left:745px;top:604px;width:230px}.b3-desc{left:745px;top:626px;width:230px}
+.b4-title{left:1070px;top:604px;width:240px}.b4-desc{left:1070px;top:626px;width:240px}
 </style>
 </head>
 
 <body>
-<div class="viewport-fit">
-  <div class="canvas-scale">
-    <section class="farmers-stage">
-      <img class="farmers-bg" src="./assets/farmers-master-clean-background.png?v=fixed-canvas-1" alt="Farmers Background" />
+<div class="stage-wrap">
+  <section class="stage">
+    <img class="bg" src="./assets/farmers-master-clean-background.png?v=farmers-final-bg-1366" alt="Farmers background">
 
-      <a class="logo-real" href="./index.html">
-        <img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI" />
-      </a>
+    <a class="t logo" href="./index.html"><img src="./assets/kisanmitra-logo.png" alt="KisanMitraAI"></a>
 
-      <a class="txt nav-label nav-home" href="./index.html">Home</a>
-      <a class="txt nav-label nav-farmers" href="#farmers">Farmers</a>
-      <a class="txt nav-label nav-fpo" href="#fpo">FPO</a>
-      <a class="txt nav-label nav-buyer" href="#buyer">Buyer</a>
-      <a class="txt nav-label nav-ai" href="#ai-engine">AI Engine</a>
-      <a class="txt nav-label nav-trust" href="#trust">Trust</a>
-      <a class="txt nav-label nav-contact" href="#contact">Contact</a>
+    <a class="t nav home" href="./index.html">Home</a>
+    <a class="t nav farmers" href="#farmers">Farmers</a>
+    <a class="t nav fpo" href="#fpo">FPO</a>
+    <a class="t nav buyer" href="#buyer">Buyer</a>
+    <a class="t nav ai" href="#ai-engine">AI Engine</a>
+    <a class="t nav trust" href="#trust">Trust</a>
+    <a class="t nav contact" href="#contact">Contact</a>
 
-      <div class="txt header-language">English</div>
-      <div class="txt header-talk">Talk to AI</div>
-      <div class="txt header-login">Login</div>
+    <div class="t lang">English</div>
+    <div class="t talk">Talk to AI</div>
+    <div class="t login">Login</div>
 
-      <div class="txt breadcrumb">Home › Farmers</div>
+    <div class="t breadcrumb">Home › Farmers</div>
+    <h1 class="t title">Empowering Farmers.</h1>
+    <h2 class="t subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
+    <p class="t desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
 
-      <h1 class="txt hero-title">Empowering Farmers.</h1>
-      <h2 class="txt hero-subtitle">Better Decisions. Higher Yields. Stronger Income.</h2>
-      <p class="txt hero-desc">KisanMitraAI is your smart farming companion, offering AI-powered insights, expert guidance, local-language support, and better market access — all in your language.</p>
+    <a class="btn explore" href="#farmer-tools">Explore Farmer Tools</a>
+    <a class="btn whatsapp" href="#whatsapp">Join WhatsApp Channel</a>
+    <a class="btn voice" href="#voice">Ask by Voice</a>
 
-      <a class="btn-label btn-explore" href="#farmer-tools">Explore Farmer Tools</a>
-      <a class="btn-label btn-whatsapp" href="#whatsapp">Join WhatsApp Channel</a>
-      <a class="btn-label btn-voice" href="#voice">Ask by Voice</a>
+    <div class="t rtitle ai-title">AI Crop Insight</div>
+    <div class="t rsmall ai-small">Wheat · Good Growth</div>
+    <div class="t rvalue ai-value">82/100</div>
 
-      <div class="txt right-title ai-title">AI Crop Insight</div>
-      <div class="txt right-small ai-small">Wheat · Good Growth</div>
-      <div class="txt right-value ai-value">82/100</div>
+    <div class="t rtitle weather-title">Weather Update</div>
+    <div class="t rvalue weather-value">32°C</div>
+    <div class="t rsmall weather-small">Partly Cloudy</div>
 
-      <div class="txt right-title weather-title">Weather Update</div>
-      <div class="txt right-value weather-value">32°C</div>
-      <div class="txt right-small weather-small">Partly Cloudy</div>
+    <div class="t rtitle market-title">Market Linkage</div>
+    <div class="t rsmall market-small">Wheat (FAQ)</div>
+    <div class="t rvalue market-value">₹ 2,125</div>
 
-      <div class="txt right-title market-title">Market Linkage</div>
-      <div class="txt right-small market-small">Wheat (FAQ)</div>
-      <div class="txt right-value market-value">₹ 2,125</div>
+    <div class="t tool-title t1-title">AI Crop Advisory</div>
+    <div class="t tool-desc t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
+    <div class="t tool-link t1-link">Use Now →</div>
 
-      <div class="txt tool-title t1-title">AI Crop Advisory</div>
-      <div class="txt tool-desc t1-desc">Get AI-powered crop recommendations for higher yield and income.</div>
-      <div class="txt tool-link t1-link">Use Now →</div>
+    <div class="t tool-title t2-title">Fertilizer Calculator</div>
+    <div class="t tool-desc t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
+    <div class="t tool-link t2-link">Use Now →</div>
 
-      <div class="txt tool-title t2-title">Fertilizer Calculator</div>
-      <div class="txt tool-desc t2-desc">Calculate the right fertilizer dose for your crop and field size.</div>
-      <div class="txt tool-link t2-link">Use Now →</div>
+    <div class="t tool-title t3-title">Pest & Disease Detection</div>
+    <div class="t tool-desc t3-desc">Identify pests and diseases from images and get control solutions.</div>
+    <div class="t tool-link t3-link">Use Now →</div>
 
-      <div class="txt tool-title t3-title">Pest & Disease Detection</div>
-      <div class="txt tool-desc t3-desc">Identify pests and diseases from images and get control solutions.</div>
-      <div class="txt tool-link t3-link">Use Now →</div>
+    <div class="t tool-title t4-title">Weather & Alerts</div>
+    <div class="t tool-desc t4-desc">Real-time weather updates and alerts to plan farming better.</div>
+    <div class="t tool-link t4-link">Use Now →</div>
 
-      <div class="txt tool-title t4-title">Weather & Alerts</div>
-      <div class="txt tool-desc t4-desc">Real-time weather updates and alerts to plan farming better.</div>
-      <div class="txt tool-link t4-link">Use Now →</div>
+    <div class="t tool-title t5-title">Mandi Prices</div>
+    <div class="t tool-desc t5-desc">Check live mandi rates and find the best time to sell.</div>
+    <div class="t tool-link t5-link">Use Now →</div>
 
-      <div class="txt tool-title t5-title">Mandi Prices</div>
-      <div class="txt tool-desc t5-desc">Check live mandi rates and find the best time to sell.</div>
-      <div class="txt tool-link t5-link">Use Now →</div>
+    <div class="t tool-title t6-title">Schemes & Support</div>
+    <div class="t tool-desc t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
+    <div class="t tool-link t6-link">Use Now →</div>
 
-      <div class="txt tool-title t6-title">Schemes & Support</div>
-      <div class="txt tool-desc t6-desc">Explore government schemes, loans, subsidies and insurance options.</div>
-      <div class="txt tool-link t6-link">Use Now →</div>
+    <div class="t btitle b1-title">AI-Powered Insights</div>
+    <div class="t bdesc b1-desc">Smart recommendations for better yields and lower costs.</div>
 
-      <div class="txt bottom-title b1-title">AI-Powered Insights</div>
-      <div class="txt bottom-desc b1-desc">Smart recommendations for better yields and lower costs.</div>
+    <div class="t btitle b2-title">Trust & Transparency</div>
+    <div class="t bdesc b2-desc">Verified data, traceability and secure transactions.</div>
 
-      <div class="txt bottom-title b2-title">Trust & Transparency</div>
-      <div class="txt bottom-desc b2-desc">Verified data, traceability and secure transactions.</div>
+    <div class="t btitle b3-title">Global Market Linkage</div>
+    <div class="t bdesc b3-desc">Connect to more buyers, better prices, wider markets.</div>
 
-      <div class="txt bottom-title b3-title">Global Market Linkage</div>
-      <div class="txt bottom-desc b3-desc">Connect to more buyers, better prices, wider markets.</div>
-
-      <div class="txt bottom-title b4-title">Voice & Language Support</div>
-      <div class="txt bottom-desc b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
-    </section>
-  </div>
+    <div class="t btitle b4-title">Voice & Language Support</div>
+    <div class="t bdesc b4-desc">Talk or listen in your language. Simple, smart & farmer-friendly.</div>
+  </section>
 </div>
 </body>
 </html>
