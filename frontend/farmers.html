@@ -1028,10 +1028,22 @@ body.edit-mode .position-toolbar {
     topInput.value = p.top.toFixed(1);
   }
 
-  function selectBlock(el) {
-    blocks().forEach(b => b.classList.remove("fm-selected"));
-    selected = el;
-    selected.classList.add("fm-selected");
+  function selectBlock(el, multi) {
+    if (!multi) {
+      blocks().forEach(b => b.classList.remove("fm-selected"));
+      selected = el;
+      selected.classList.add("fm-selected");
+    } else {
+      if (el.classList.contains("fm-selected")) {
+        el.classList.remove("fm-selected");
+      } else {
+        el.classList.add("fm-selected");
+      }
+
+      const allSelected = Array.from(document.querySelectorAll(".fm-selected"));
+      selected = allSelected.length ? allSelected[0] : null;
+    }
+
     updatePanel();
   }
 
@@ -1050,13 +1062,19 @@ body.edit-mode .position-toolbar {
   };
 
   window.fmMoveBy = function (dx, dy) {
-    if (!selected) {
+    const selectedBlocks = Array.from(document.querySelectorAll(".fm-selected"));
+
+    if (!selectedBlocks.length) {
       alert("Select a text block first.");
       return;
     }
 
-    const shift = getShift(selected);
-    applyShift(selected, shift.x + dx, shift.y + dy);
+    selectedBlocks.forEach(function (block) {
+      const shift = getShift(block);
+      applyShift(block, shift.x + dx, shift.y + dy);
+    });
+
+    selected = selectedBlocks[0];
     updatePanel();
   };
 
@@ -1133,7 +1151,7 @@ body.edit-mode .position-toolbar {
         e.stopPropagation();
         e.stopImmediatePropagation();
 
-        selectBlock(el);
+        selectBlock(el, e.shiftKey);
         return false;
       }, true);
     });
@@ -1182,6 +1200,7 @@ body.edit-mode .position-toolbar {
 </script>
 </body>
 </html>
+
 
 
 
